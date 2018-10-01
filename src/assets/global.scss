@@ -1,0 +1,63 @@
+/*========================================*/
+/* css reset */
+/*========================================*/
+body,h1,h2,h3,h4,h5,h6,hr,p,blockquote,dl,dt,dd,ul,ol,li,pre,
+form,fieldset,legend,button,input,textarea,th,td  {margin:0;padding:0;}
+body,button,input,select,textarea{font:12px/1.5     tahoma,arial,\5b8b\4f53;}
+ul,ol{list-style:none;}
+a{text-decoration:none;}
+a:hover{text-decoration:underline;}
+fieldset,img{border:0;}
+table{border-collapse:collapse;border-spacing:0;}
+button{outline:none;}
+//input{outline:none;border:0}
+/*========================================*/
+/* 颜色集*/
+/*========================================*/
+$blue:#0093e4;
+$jdRed:#e4393c;//京东红
+$green: #17f060;
+$dark: #000000;
+$default: #ffffff;
+$success:#19be6b;
+$primary: #2d8cf0;
+$lightPrimary:#5cadff;
+$darkPrimary:#2b85e4;
+$warning : #ff9900;
+$danger: #ed3f14;
+$info:#2d8cf0;
+$title:#1c2438;//标题
+$content:#495060;//正文
+$subColor:#80848f;//辅助
+$disabled:#bbbec4;//失效，禁用
+$border:#dddee1;//边框
+$divider:#e9eaec;//分割线
+$Background:#f8f8f9;
+//背景颜色，默认为白色
+@mixin bgc($color:$default){
+  background-color: $color;
+}
+// 字体颜色，默认为黑色
+@mixin fc($color:$dark){
+  color: $color;
+}
+@mixin fstyle(){
+  font-family: "Helvetica Neue",Helvetica,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","微软雅黑",Arial,sans-serif;
+}
+//怪异盒子模型，带边框，默认黑色，1px，实线，改宽度的优先级最高，颜色次之
+@mixin ieBox($width:1px,$color:$border,$type:solid){
+  box-sizing: border-box;
+  border:$width $type $color;
+}
+/* 清除浮动及上边距溢出 */
+.clear{
+  &:before,
+  &:after{
+    content: "";
+    display:table;
+  }
+  &:after{
+    clear: both;
+    overflow: hidden;
+  }
+}
