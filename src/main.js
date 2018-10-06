@@ -9,7 +9,7 @@ import LYJ from './utils/lyj.js';
 import 'es6-promise/auto';
 import axios from './axios'
 
-
+import App from './App'
 
 import store from './store'
 
@@ -24,6 +24,7 @@ Vue.prototype.$notification = myComponent.Lnotification;
 // import todo from '@/store/todo.js';
 /* eslint-disable no-new */
 
+// import component from 'component_path'
 
 
 
@@ -31,7 +32,7 @@ new Vue({
   el: '#app',
   router,
   store,
-  components: myComponent,
+  components: {App},
   template: '<App/>'
 })
 

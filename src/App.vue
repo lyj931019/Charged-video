@@ -1,15 +1,16 @@
 <template>
   <div id="app">
-
+    <MyHeader/>
     <router-view/>
   </div>
 </template>
 
 <script>
-
-export default {
-  name: 'App'
-}
+  import MyHeader from '@/components/MyHeader.vue'
+  export default {
+    name: 'App',
+    components: {MyHeader}
+  }
 </script>
 
 <style lang="scss">

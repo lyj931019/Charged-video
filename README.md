@@ -53,3 +53,14 @@ git push -u origin master
 ``` 
 # 各组件路径 : src/common/... 
 各组件都有对应的 ***readme.md*** 
+
+
+
+https://note.youdao.com/share/?id=b8ea907c83d5793c3411ee5f02b4600a&type=note#/
+
+
+https://online.berklee.edu/sample-a-lesson
+
+http://intro.online.berklee.edu/#/170/OSAMP-101.01/170/1/introduction
+
+https://www.processon.com/view/link/5badfb87e4b0d4d65c1b0025

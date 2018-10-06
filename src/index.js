@@ -11,7 +11,7 @@ import TodoItem from '@/components/todo/todo-item.vue'
 import StoreTest from '@/components/store-test'
 
 import Pages from './pages'
-
+import UseCompontents from './components'
 export default {
   App,
   Row,Col,Container,
@@ -24,7 +24,7 @@ export default {
   TodoList,
   TodoItem,
   StoreTest,
-  ...Pages
+  ...Pages,...UseCompontents
 }
 // const install = function(Vue, opts = {}) {
 //   if (install.installed) return;
