@@ -1,63 +1,148 @@
-/*========================================*/
-/* css reset */
-/*========================================*/
-body,h1,h2,h3,h4,h5,h6,hr,p,blockquote,dl,dt,dd,ul,ol,li,pre,
-form,fieldset,legend,button,input,textarea,th,td  {margin:0;padding:0;}
-body,button,input,select,textarea{font:12px/1.5     tahoma,arial,\5b8b\4f53;}
-ul,ol{list-style:none;}
-a{text-decoration:none;}
-a:hover{text-decoration:underline;}
-fieldset,img{border:0;}
-table{border-collapse:collapse;border-spacing:0;}
-button{outline:none;}
-//input{outline:none;border:0}
-/*========================================*/
-/* 颜色集*/
-/*========================================*/
-$blue:#0093e4;
-$jdRed:#e4393c;//京东红
-$green: #17f060;
-$dark: #000000;
-$default: #ffffff;
-$success:#19be6b;
-$primary: #2d8cf0;
-$lightPrimary:#5cadff;
-$darkPrimary:#2b85e4;
-$warning : #ff9900;
-$danger: #ed3f14;
-$info:#2d8cf0;
-$title:#1c2438;//标题
-$content:#495060;//正文
-$subColor:#80848f;//辅助
-$disabled:#bbbec4;//失效，禁用
-$border:#dddee1;//边框
-$divider:#e9eaec;//分割线
-$Background:#f8f8f9;
-//背景颜色，默认为白色
-@mixin bgc($color:$default){
-  background-color: $color;
+body {
+  font-family: "Avenir Next Cyr W00 Regular", Helvetica, Arial, sans-serif, Helvetica, Arial, sans-serif;
+  color: #0e1416;
+  font-size: 1.33rem;
+  font-weight: 200;
+  opacity: 1;
+  transition: 1s opacity;
+  padding-left: 60px;
+  padding-right: 60px;
+  -webkit-overflow-scrolling: touch;
+  max-width: 2300px;
+  margin-left: auto;
+  margin-right: auto
 }
-// 字体颜色，默认为黑色
-@mixin fc($color:$dark){
-  color: $color;
+
+body.fade-out {
+  opacity: 0;
+  transition: none
 }
-@mixin fstyle(){
-  font-family: "Helvetica Neue",Helvetica,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","微软雅黑",Arial,sans-serif;
+
+h1 {
+  font-family: "Avenir Next Cyr W00 Bold", Helvetica, Arial, sans-serif;
+  font-size: 3rem;
+  line-height: 4.5rem;
+  margin-bottom: 1rem;
 }
-//怪异盒子模型，带边框，默认黑色，1px，实线，改宽度的优先级最高，颜色次之
-@mixin ieBox($width:1px,$color:$border,$type:solid){
-  box-sizing: border-box;
-  border:$width $type $color;
+h2 {
+  font-family: "Avenir Next Cyr W00 Bold", Helvetica, Arial, sans-serif;
+  font-size: 3.17rem;
+  line-height: 3.17rem;
+  margin-bottom: 1rem;
 }
-/* 清除浮动及上边距溢出 */
-.clear{
-  &:before,
-  &:after{
-    content: "";
-    display:table;
+h3 {
+  font-family: "Avenir Next Cyr W00 Bold", Helvetica, Arial, sans-serif;
+  font-size: 1.67rem;
+  line-height: 2.25rem;
+}
+h4 {
+  font-family: "Avenir Next Cyr W00 Bold", Helvetica, Arial, sans-serif;
+  font-size: 1.33rem;
+  line-height: 2.2rem;
+}
+h5 {
+  font-family: "Avenir Next Cyr W00 Bold", Helvetica, Arial, sans-serif;
+  font-size: 1.16rem;
+  line-height: 1.5rem;
+}
+li {
+  font-family: "Avenir Next Cyr W00 Regular", Helvetica, Arial, sans-serif;
+  font-size: 1.33rem;
+  line-height: 2.2rem;
+}
+p, p.txt-md, .txt-md {
+  font-family: "Avenir Next Cyr W00 Regular", Helvetica, Arial, sans-serif;
+  font-size: 1.33rem;
+  line-height: 2.2rem;
+}
+
+p.txt-sm, .txt-sm {
+  font-family: "Avenir Next Cyr W00 Regular", Helvetica, Arial, sans-serif;
+  font-size: 1.16rem;
+  line-height: 1.5rem;
+}
+p.txt-lg, .txt-lg {
+  font-family: "Avenir Next Cyr W00 Regular", Helvetica, Arial, sans-serif;
+  font-size: 1.67rem;
+  line-height: 2.50rem;
+}
+a.txt-lg, p.txt-lg>a, .txt-lg>a {
+  font-family: "Avenir Next Cyr W00 Bold", Helvetica, Arial, sans-serif;
+  font-size: 1.67rem;
+  line-height: 2.50rem;
+  text-decoration: underline;
+}
+a {
+  color: #078baa;
+}
+
+.nav-tabs {
+  border-bottom: 1px solid #dddddd;
+}
+.nav {
+  display: flex;
+  padding-left: 0;
+  margin-bottom: 0;
+  list-style: none;
+}
+ol, ul, dl {
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+.nav-tabs .nav-item {
+  margin-bottom: -1px;
+}
+.nav-item {
+  display: inline-block;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.nav-tabs .nav-link.active, .nav-tabs .nav-item.show .nav-link {
+  color: #464a4c;
+  background-color: white;
+  border-color: #dddddd #dddddd white;
+}
+
+
+.nav-item>a {
+  color: black;
+  display: flex;
+  margin: 0 0 -1px 0;
+  padding: 0.5em 1em;
+  position: relative;
+}
+
+
+
+hr {
+  color: #dee2e5;
+  margin: 30px 0;
+}
+hr {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  border: 0;
+  border-top: 1px solid rgba(0,0,0,0.1);
+}
+hr {
+  box-sizing: content-box;
+  height: 0;
+  overflow: visible;
+}
+
+
+@media (min-width: 768px){
+  .hidden-md-up {
+      display: none !important;
+    }
+}
+@media (max-width: 767px){
+  .hidden-sm-down {
+    display: none !important;
   }
-  &:after{
-    clear: both;
-    overflow: hidden;
-  }
+}
+
+.clearfix {
+  overflow: auto;
 }
