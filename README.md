@@ -22,37 +22,37 @@ For a detailed explanation on how things work, check out the [guide](http://vuej
 
 
 # Vue 安装
-``` 
+```
 $ npm install --global vue-cli
-``` 
+```
 ## 创建一个基于 webpack 模板的新项目
-``` 
+```
 $ vue init webpack my-project
-``` 
+```
 ## 安装依赖，走你
-``` 
+```
 $ cd my-project
 $ npm install
 $ npm run dev
-``` 
+```
 ## 安装 Scss （应该能简写成一行）
-``` 
+```
 npm install --save-dev node-sass
 npm install --save-dev sass-loader
-``` 
+```
 
 
 # git 操作命令
-``` 
+```
 git add .
 git commit -m ''
-``` 
+```
 ## 上传代码
-``` 
+```
 git push -u origin master
-``` 
-# 各组件路径 : src/common/... 
-各组件都有对应的 ***readme.md*** 
+```
+# 各组件路径 : src/common/...
+各组件都有对应的 ***readme.md***
 
 
 
@@ -64,3 +64,7 @@ https://online.berklee.edu/sample-a-lesson
 http://intro.online.berklee.edu/#/170/OSAMP-101.01/170/1/introduction
 
 https://www.processon.com/view/link/5badfb87e4b0d4d65c1b0025
+
+
+API
+http://dev2.people71.com/github/educate/advanced/backend/web/

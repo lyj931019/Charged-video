@@ -131,6 +131,15 @@ hr {
   overflow: visible;
 }
 
+em, i {
+  font-family: "Avenir Next Cyr W00 Italic", Helvetica, Arial, sans-serif;
+}
+strong, b, .bold {
+  font-family: "Avenir Next Cyr W00 Bold", Helvetica, Arial, sans-serif;
+  font-weight: normal;
+}
+
+
 
 @media (min-width: 768px){
   .hidden-md-up {
@@ -145,4 +154,26 @@ hr {
 
 .clearfix {
   overflow: auto;
+}
+.details-container {
+  margin: 20px 0;
+}
+.details-container h2 {
+  margin: 59px 0 20px 0;
+  font-family: "Avenir Next Cyr W00 Demi", Helvetica, Arial, sans-serif;
+  font-size: 3rem;
+  line-height: 4rem;
+}
+.details-container ul {
+  margin-left: 5px;
+}
+.details-container li {
+  font-family: "Avenir Next Cyr W00 Light", Helvetica, Arial, sans-serif;
+  font-size: 1.75rem;
+  padding: 4px 0;
+}
+
+
+.lead-form-global, .lead-form-coming-soon, .lead-form-sample-lesson, .lead-form-graduate-checklist {
+  display: none;
 }
