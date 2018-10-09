@@ -10,5 +10,10 @@ export default [
     path: '/list',
     name: 'list',
     component: Pages.List
+  },
+  {
+    path: '/detail/:num',
+    name: 'detail',
+    component: Pages.Detail
   }
 ]

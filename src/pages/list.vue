@@ -107,7 +107,7 @@
               <div class="all item music-history-and-liberal-arts music-production" v-for="(item,index) in lessonList">
                 <div class="card-main">
                   <div class="course-code hidden-sm-down">{{item.num}}</div>
-                  <a class="title" href="/courses/3d-design-with-blender">{{item.name}}</a>
+                  <a class="title" href="#" @click.prevent="goToDetail(item.num)">{{item.name}}</a>
                   <div class="details">
                     <div class="course-level">
                       <div style="cursor:pointer;" class="course-level-icon offering-supporting-detail skill-level-3" data-toggle="popover" data-trigger="focus" tabindex="0" data-content="300 level course. Advanced Intermediate course material." data-placement="left" data-original-title="Level 3 Course" rel="nofollow">
@@ -140,7 +140,7 @@
                       </div>
                     </div>
                   </div>
-                  <div class="desc" v-html="item.abstract"></div>
+                  <div class="desc" v-html="item.synopsis"></div>
                 </div>
                 <div class="card-foot">
 
@@ -209,7 +209,8 @@
       },
       getLessionFromType(type_id){
         let _this = this;
-        this.type = type_id
+        this.type = type_id;
+        type_id = type_id===0?'':type_id;
         this.$http({
           method:'get',
           url:'/courses',
@@ -223,6 +224,9 @@
           _this.lessonList=res.data.data.items;
           console.log(_this.lessonList)
         })
+      },
+      goToDetail(num){
+        this.$router.push({ name: 'detail', params: { num }})
       }
     },
     beforeMount:function(){
