@@ -15,5 +15,10 @@ export default [
     path: '/detail/:num',
     name: 'detail',
     component: Pages.Detail
+  },
+  {
+    path: '/UserLesson',
+    name: 'userLesson',
+    component: Pages.UserLesson
   }
 ]

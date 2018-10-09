@@ -1,337 +1,411 @@
 <template>
   <div>
-    <h1>{{$route.params.num}}</h1>
-    <section class="content-head" data-scroll-index="0" id="overview">
-      <div class="container-fluid" style="position: static;">
-        <div class="row justify-content-between">
-          <div class="col-12 col-lg-9" property="data-sticky_column">
-            <div class="course-head">
-              <a class="txt-lg a-black" href="/courses" itemprop="url">Online Courses</a>
-              <h1>3D Design with Blender</h1>
-              <div class="course-subhead">
-                <img alt="author.full_name" class="img-circle"
-                     src="https://online.berklee.edu/user/avatar?user_id=33535733">
+    <MyHeader/>
+    <div v-if="courses">
+      <!--<h1>{{$route.params.num}}</h1>-->
 
-                <div class="course-subhead-text">
-                  <p class="txt-sm">
-                    Authored
-                    <span>
+      <section class="content-head" data-scroll-index="0" id="overview">
+        <div class="container-fluid" style="position: static;">
+          <div class="row justify-content-between">
+            <div class="col-12 col-lg-9" property="data-sticky_column">
+              <div class="course-head">
+                <a class="txt-lg a-black" href="/courses" itemprop="url">Online Courses</a>
+                <h1>{{courses.name}}</h1>
+                <div class="course-subhead">
+                  <img alt="author.full_name" class="img-circle"
+                       src="https://online.berklee.edu/user/avatar?user_id=33535733">
+
+                  <div class="course-subhead-text">
+                    <p class="txt-sm">
+                      Authored
+                      <span>
 by
-<a class="a-body-link" href="#instructors">Nick Jainschigg</a>
+<a class="a-body-link" href="#instructors">{{courses.name}}待定</a>
 </span>
-                  </p>
-                  <div class="separator">|</div>
-                  <p class="txt-sm">
-                    Course Code:
-                    <span>
+                    </p>
+                    <div class="separator">|</div>
+                    <p class="txt-sm">
+                      Course Code:
+                      <span>
 OLART-310
 </span>
-                  </p>
+                    </p>
+                  </div>
                 </div>
+                <!-- - if course_is_private_lesson(course) -->
+                <!-- %p.txt-sm Note: Private Lessons are open to Guitar Degree Majors only. -->
               </div>
-              <!-- - if course_is_private_lesson(course) -->
-              <!-- %p.txt-sm Note: Private Lessons are open to Guitar Degree Majors only. -->
-            </div>
-            <div class="row">
-              <div class="col-12 col-lg-4 push-lg-8">
-                <div class="key-points">
-                  <div class="term-message">
-                    <i>
-                      <svg class="svg-inline--fa fa-calendar-alt fa-w-14" aria-hidden="true" data-prefix="far"
-                           data-icon="calendar-alt" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"
-                           data-fa-i2svg="">
-                        <path fill="currentColor"
-                              d="M148 288h-40c-6.6 0-12-5.4-12-12v-40c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12zm108-12v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm96 0v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm-96 96v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm-96 0v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm192 0v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm96-260v352c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V112c0-26.5 21.5-48 48-48h48V12c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v52h128V12c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v52h48c26.5 0 48 21.5 48 48zm-48 346V160H48v298c0 3.3 2.7 6 6 6h340c3.3 0 6-2.7 6-6z"></path>
-                      </svg><!-- <div class="far fa-calendar-alt"></div> -->
-                    </i>
-                    <div class="term-message-text">
-                      <h4>Next Term Starts January 14</h4>
+              <div class="row">
+                <div class="col-12 col-lg-4 push-lg-8">
+                  <div class="key-points">
+                    <div class="term-message">
+                      <i>
+                        <svg class="svg-inline--fa fa-calendar-alt fa-w-14" aria-hidden="true" data-prefix="far"
+                             data-icon="calendar-alt" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"
+                             data-fa-i2svg="">
+                          <path fill="currentColor"
+                                d="M148 288h-40c-6.6 0-12-5.4-12-12v-40c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12zm108-12v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm96 0v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm-96 96v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm-96 0v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm192 0v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm96-260v352c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V112c0-26.5 21.5-48 48-48h48V12c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v52h128V12c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v52h48c26.5 0 48 21.5 48 48zm-48 346V160H48v298c0 3.3 2.7 6 6 6h340c3.3 0 6-2.7 6-6z"></path>
+                        </svg><!-- <div class="far fa-calendar-alt"></div> -->
+                      </i>
+                      <div class="term-message-text">
+                        <h4>Next Term Starts January 14</h4>
+                      </div>
+                    </div>
+                    <div class="key-course-level">
+                      <div style="cursor:pointer;" class="course-level-icon offering-supporting-detail skill-level-3"
+                           data-toggle="popover" data-trigger="focus" tabindex="0"
+                           data-content="300 level course. Advanced Intermediate course material." data-placement="left"
+                           data-original-title="Level 3 Course" rel="nofollow">
+                        <template v-if="courses.level ==1">
+                          <img src="../assets/img/skill-level-1.svg">
+                        </template>
+                        <template v-else-if="courses.level ==2">
+                          <img src="../assets/img/skill-level-2.svg">
+                        </template>
+                        <template v-else-if="courses.level ==3">
+                          <img src="../assets/img/skill-level-3.svg">
+                        </template>
+                        <template v-else>
+                          <img src="../assets/img/skill-level-4.svg">
+                        </template>
+                      </div>
+                      <div class="key-course-text"><h4>Level {{courses.level}}</h4></div>
+                    </div>
+                    <div class="credit-tuition">
+                      <h4>3-Credit Tuition</h4>
+                      ${{courses.price}}
+                    </div>
+                    <div class="non-credit-tuition">
+                      <h4>Non-Credit Tuition</h4>
+                      ${{courses.price}}
                     </div>
                   </div>
-                  <div class="key-course-level">
-                    <div style="cursor:pointer;" class="course-level-icon offering-supporting-detail skill-level-3"
-                         data-toggle="popover" data-trigger="focus" tabindex="0"
-                         data-content="300 level course. Advanced Intermediate course material." data-placement="left"
-                         data-original-title="Level 3 Course" rel="nofollow"><img src="/assets/skill-level-3.svg"
-                                                                                  alt="Level 3"></div>
-                    <div class="key-course-text"><h4>Level 3</h4></div>
-                  </div>
-                  <div class="credit-tuition">
-                    <h4>3-Credit Tuition</h4>
-                    $1,497
-                  </div>
-                  <div class="non-credit-tuition">
-                    <h4>Non-Credit Tuition</h4>
-                    $1,250
-                  </div>
                 </div>
-              </div>
-              <div class="col-12 col-lg-8 pull-lg-4">
-                <div class="overview">
-                  <p>
-                    3D Design with Blender is an introduction to the world of cinematic visual effects through the medium of Blender, an amazingly versatile piece of free and open-source software. The course is designed for the musician who wants to add interesting visual, non-existent elements or environments to self-made videos, the aspiring filmmaker who wants to move away from strict realism and add variety to a production, traditional media artists interested in moving their work into animation or interactivity, or just about anybody who is curious about how a "summer VFX blockbuster" is made. </p>
-                  <div class="read-more-container">
-                    <!--<a class="read-more" data-toggle="collapse" href="#readmore" >Read More</a>-->
-                    <div class="collapse" id="readmore">
-                      <p>
-                        3D Design with Blender was written by Nicholas Jainschigg, a professor in the Illustration department at the prestigious Rhode Island School of Design. His students have gone on to work for ILM, Weta Digital, Digital Domain, Framestore, Pixar, Dreamworks, Blizzard, Id, Turbine, Microsoft Games, Irrational Games, 2K Games, Harmonix, and others.</p>
-                      <p>
-                        The course is designed to make the medium of 3D modeling, rendering, and animation understandable and accessible. It is also designed to make you comfortable with compositing—the mixing, adding, subtracting, and shuffling of real and imaginary visual elements—which is at the heart of most visual effects work. Along the way, you will be developing the skills that allow for the successful use of any visual effects software: an eye for color, an understanding of perspective and composition, and dramatic storytelling that allows you to make the unbelievable believable.</p>
-                      <p>
-                        While it is true that modern visual effects can put almost anything onto the screen that the mind can conceive, unless you have the budget of James Cameron or J.J. Abrams, you have be a little more crafty. This course will focus on ways to get the most impressive visuals at minimal expense and substituting planning, skill, and creativity for a massive budget.</p>
-                      <p>By the end of the course, you will be able to:</p>
-                      <ul>
-                        <li>Construct, texture, and light virtual 3D objects</li>
-                        <li>
-                          Animate simple object motions, physics-based interactions, and particle-type effects like fire, smoke, and explosions
-                        </li>
-                        <li>
-                          Add virtual objects to your real-world video footage, and place real-world elements into constructed imagery
-                        </li>
-                        <li>
-                          Edit the look and timing of your effects shots to maximize their emotional impact and narrative flow
-                        </li>
-                      </ul>
-                    </div>
-                    <a class="read-less" data-toggle="collapse" href="#readmore"> Read {{readTips}}</a></div>
-                </div>
-                <div class="overview-video">
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-4 col-lg-3 hidden-md-down side-nav-container" style="position: static;">
-            <div class="side-nav sticky-item is_stuck" property="data-sticky_column"
-                 style="position: fixed; top: 270px; width: 320px;">
-              <div class="side-nav-main">
-                <a class="nav-scroll active" data-scroll-nav="0" href="#overview">Overview</a>
-                <a class="nav-scroll" data-scroll-nav="1" href="#syllabus">Syllabus</a>
-                <a class="nav-scroll last" data-scroll-nav="2" href="#requirements">Requirements</a>
-                <a class="nav-scroll" data-scroll-nav="3" href="#instructors">Instructors</a>
-                <a class="btn-action bo-button"
-                   href="https://online.berklee.edu/store/cart/course_items?course_item_id=37620529">
-                  <svg class="svg-inline--fa fa-check-square fa-w-14 hidden-lg-up" aria-hidden="true" data-prefix="fa"
-                       data-icon="check-square" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"
-                       data-fa-i2svg="">
-                    <path fill="currentColor"
-                          d="M400 480H48c-26.51 0-48-21.49-48-48V80c0-26.51 21.49-48 48-48h352c26.51 0 48 21.49 48 48v352c0 26.51-21.49 48-48 48zm-204.686-98.059l184-184c6.248-6.248 6.248-16.379 0-22.627l-22.627-22.627c-6.248-6.248-16.379-6.249-22.628 0L184 302.745l-70.059-70.059c-6.248-6.248-16.379-6.248-22.628 0l-22.627 22.627c-6.248 6.248-6.248 16.379 0 22.627l104 104c6.249 6.25 16.379 6.25 22.628.001z"></path>
-                  </svg><!-- <i class="fa fa-check-square hidden-lg-up"></i> --> Enroll Now <span>No application required</span></a>
-                <a class="bo-button-alt" href="#footer-form">Request Info</a>
-                <div class="contain-watchlist"><a class="add-to-watchlist watchlist-btn" data-method="put"
-                                                  href="/watchlist/courses/138?slug=3d-design-with-blender"
-                                                  rel="nofollow">Add to Favorites</a></div>
-                <div class="side-nav-advisor-block">
-                  <div id="rtp-contact">
-                    <div class="advisor-contact-block">
-                      <p class="guidance">Need guidance?</p>
-                      <a class="tel-main" href="tel:18662375533">1-866-BERKLEE</a>
-                      <a class="tel-intl" href="tel:16177472146">Int'l: +1-617-747-2146</a>
-                      <p class="call-text"><a href="tel:18662375533">Call</a>,&nbsp;<a href="sms:18662375533">Text</a>,&nbsp;or&nbsp;<a
-                        href="mailto: advisors@online.berklee.edu">Email us</a></p>
-                    </div>
-                  </div>
+                <div class="col-12 col-lg-8 pull-lg-4">
+                  <div class="overview">
+                    <p>{{courses.synopsis}}</p>
+                    <div class="read-more-container">
+                      <!--<a class="read-more" data-toggle="collapse" href="#readmore" >Read More</a>-->
+                      <div class="collapse" id="readmore" v-html="courses.abstract">
+                        <!--<p>-->
+                        <!--3D Design with Blender was written by Nicholas Jainschigg, a professor in the Illustration department at the prestigious Rhode Island School of Design. His students have gone on to work for ILM, Weta Digital, Digital Domain, Framestore, Pixar, Dreamworks, Blizzard, Id, Turbine, Microsoft Games, Irrational Games, 2K Games, Harmonix, and others.</p>-->
+                        <!--<p>-->
+                        <!--The course is designed to make the medium of 3D modeling, rendering, and animation understandable and accessible. It is also designed to make you comfortable with compositing—the mixing, adding, subtracting, and shuffling of real and imaginary visual elements—which is at the heart of most visual effects work. Along the way, you will be developing the skills that allow for the successful use of any visual effects software: an eye for color, an understanding of perspective and composition, and dramatic storytelling that allows you to make the unbelievable believable.</p>-->
+                        <!--<p>-->
+                        <!--While it is true that modern visual effects can put almost anything onto the screen that the mind can conceive, unless you have the budget of James Cameron or J.J. Abrams, you have be a little more crafty. This course will focus on ways to get the most impressive visuals at minimal expense and substituting planning, skill, and creativity for a massive budget.</p>-->
+                        <!--<p>By the end of the course, you will be able to:</p>-->
+                        <!--<ul>-->
+                        <!--<li>Construct, texture, and light virtual 3D objects</li>-->
+                        <!--<li>-->
+                        <!--Animate simple object motions, physics-based interactions, and particle-type effects like fire, smoke, and explosions-->
+                        <!--</li>-->
+                        <!--<li>-->
+                        <!--Add virtual objects to your real-world video footage, and place real-world elements into constructed imagery-->
+                        <!--</li>-->
+                        <!--<li>-->
+                        <!--Edit the look and timing of your effects shots to maximize their emotional impact and narrative flow-->
+                        <!--</li>-->
+                        <!--</ul>-->
 
+                      </div>
+                      <a class="read-less" data-toggle="collapse" href="#readmore"> Read {{readTips}}</a></div>
+                  </div>
+                  <div class="overview-video">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-4 col-lg-3 hidden-md-down side-nav-container" style="position: static;">
+              <div class="side-nav sticky-item is_stuck" property="data-sticky_column"
+                   style="position: fixed; top: 270px; width: 320px;">
+                <div class="side-nav-main">
+                  <a class="nav-scroll active" data-scroll-nav="0" href="#overview">Overview</a>
+                  <a class="nav-scroll" data-scroll-nav="1" href="#syllabus">Syllabus</a>
+                  <a class="nav-scroll last" data-scroll-nav="2" href="#requirements">Requirements</a>
+                  <a class="nav-scroll" data-scroll-nav="3" href="#instructors">Instructors</a>
+                  <a class="btn-action bo-button"
+                     href="https://online.berklee.edu/store/cart/course_items?course_item_id=37620529">
+                    <!--<svg class="svg-inline&#45;&#45;fa fa-check-square fa-w-14 hidden-lg-up" aria-hidden="true" data-prefix="fa"-->
+                    <!--data-icon="check-square" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"-->
+                    <!--data-fa-i2svg="">-->
+                    <!--<path fill="currentColor"-->
+                    <!--d="M400 480H48c-26.51 0-48-21.49-48-48V80c0-26.51 21.49-48 48-48h352c26.51 0 48 21.49 48 48v352c0 26.51-21.49 48-48 48zm-204.686-98.059l184-184c6.248-6.248 6.248-16.379 0-22.627l-22.627-22.627c-6.248-6.248-16.379-6.249-22.628 0L184 302.745l-70.059-70.059c-6.248-6.248-16.379-6.248-22.628 0l-22.627 22.627c-6.248 6.248-6.248 16.379 0 22.627l104 104c6.249 6.25 16.379 6.25 22.628.001z"></path>-->
+                    <!--</svg>-->
+                    <!-- <i class="fa fa-check-square hidden-lg-up"></i> -->
+                    Enroll Now <span>No application required</span></a>
+                  <a class="bo-button-alt" href="#footer-form">Request Info</a>
+                  <div class="contain-watchlist"><a class="add-to-watchlist watchlist-btn" data-method="put"
+                                                    href="/watchlist/courses/138?slug=3d-design-with-blender"
+                                                    rel="nofollow">Add to Favorites</a></div>
+                  <div class="side-nav-advisor-block">
+                    <div id="rtp-contact">
+                      <div class="advisor-contact-block">
+                        <p class="guidance">Need guidance?</p>
+                        <a class="tel-main" href="tel:18662375533">1-866-BERKLEE</a>
+                        <a class="tel-intl" href="tel:16177472146">Int'l: +1-617-747-2146</a>
+                        <p class="call-text"><a href="tel:18662375533">Call</a>,&nbsp;<a href="sms:18662375533">Text</a>,&nbsp;or&nbsp;<a
+                          href="mailto: advisors@online.berklee.edu">Email us</a></p>
+                      </div>
+                    </div>
+
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-    </section>
-    <section class="page-section content-syllabus">
-      <div class="container-fluid">
-        <div class="row">
-          <div class="col-12 col-lg-7">
-            <div class="syllabus content-section">
-              <h2>Syllabus</h2>
-              <p class="bo-list-closed">
-                <i>
+      </section>
+      <section class="page-section content-syllabus">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-12 col-lg-7">
+              <div class="syllabus content-section">
+                <h2>Syllabus</h2>
+                <template v-for="(lesson,index) in courses.lessons" >
+                  <p class="bo-list-closed" >
+                    <a data-toggle="collapse" :data-target="'#lesson-content'+index" >
+                      <i>
+                        <svg class="svg-inline--fa fa-caret-right fa-w-6" aria-hidden="true" data-prefix="fa"
+                             data-icon="caret-right" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 512"
+                             data-fa-i2svg="">
+                          <path fill="currentColor"
+                                d="M0 384.662V127.338c0-17.818 21.543-26.741 34.142-14.142l128.662 128.662c7.81 7.81 7.81 20.474 0 28.284L34.142 398.804C21.543 411.404 0 402.48 0 384.662z"></path>
+                        </svg><!-- <span class="fa fa-caret-right"></span> -->
+                      </i>
+                      <em>
+                  <span class="syllabus-title">
+                    Lesson {{lesson.lesson}}
+                  </span>
+                        <strong>{{lesson.title}}&nbsp;</strong>
+                      </em>
+                    </a>
+
+
+                  </p>
+                  <div class="collapse lesson-content" :id="'lesson-content'+index" style="margin-left: 152px;" v-html="lesson.abstract">
+
+                  </div>
+                </template>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="page-section content-requirements">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-12 col-lg-7">
+              <div class="requirements content-section" data-scroll-index="2" id="requirements">
+                <h2>Requirements</h2>
+                <h4><i class="closed">
                   <svg class="svg-inline--fa fa-caret-right fa-w-6" aria-hidden="true" data-prefix="fa"
                        data-icon="caret-right" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 512"
                        data-fa-i2svg="">
                     <path fill="currentColor"
                           d="M0 384.662V127.338c0-17.818 21.543-26.741 34.142-14.142l128.662 128.662c7.81 7.81 7.81 20.474 0 28.284L34.142 398.804C21.543 411.404 0 402.48 0 384.662z"></path>
-                  </svg><!-- <span class="fa fa-caret-right"></span> -->
-                </i>
-                <em>
-                  <span class="syllabus-title">
-                    Lesson 1
-                  </span>
-                  <strong>Introduction to Visual Effects and Blender&nbsp;</strong>
-                </em>
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    <section class="page-section content-requirements">
-      <div class="container-fluid">
-        <div class="row">
-          <div class="col-12 col-lg-7">
-            <div class="requirements content-section" data-scroll-index="2" id="requirements">
-              <h2>Requirements</h2>
-              <h4><i class="closed">
-                <svg class="svg-inline--fa fa-caret-right fa-w-6" aria-hidden="true" data-prefix="fa"
-                     data-icon="caret-right" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 512"
-                     data-fa-i2svg="">
-                  <path fill="currentColor"
-                        d="M0 384.662V127.338c0-17.818 21.543-26.741 34.142-14.142l128.662 128.662c7.81 7.81 7.81 20.474 0 28.284L34.142 398.804C21.543 411.404 0 402.48 0 384.662z"></path>
-                </svg><!-- <span class="fa fa-caret-right"></span> --></i>Prerequisites
-              </h4>
-              <div class="truncate-paragraph" style="display: none;"><p>Students should have:</p>
-                <ul>
-                  <li>Familiarity and comfort with basic computer skills and file formats</li>
-                  <li>
-                    Familiarity with a 2D graphics program such as Photoshop (any version) or GIMP, Painter, or equivalent
-                  </li>
-                </ul>
-                <p>
-                  No art experience is required, but an openness and willingness to experiment with artistic ideas and processes will make your work much stronger. While this course is primarily intended to provide technical information and inspiration, every assignment will include an artistic component, whether color judgment, composition, timing, or other aspect of 3D and animation.&nbsp;</p>
-              </div>
-              <hr>
-              <h4 style="cursor: auto;"><i class="closed">
-                <svg class="svg-inline--fa fa-caret-right fa-w-6" aria-hidden="true" data-prefix="fa"
-                     data-icon="caret-right" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 512"
-                     data-fa-i2svg="">
-                  <path fill="currentColor"
-                        d="M0 384.662V127.338c0-17.818 21.543-26.741 34.142-14.142l128.662 128.662c7.81 7.81 7.81 20.474 0 28.284L34.142 398.804C21.543 411.404 0 402.48 0 384.662z"></path>
-                </svg><!-- <span class="fa fa-caret-right"></span> --></i>No Required Textbooks
-              </h4>
-              <hr>
-              <h4><i class="closed">
-                <svg class="svg-inline--fa fa-caret-right fa-w-6" aria-hidden="true" data-prefix="fa"
-                     data-icon="caret-right" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 512"
-                     data-fa-i2svg="">
-                  <path fill="currentColor"
-                        d="M0 384.662V127.338c0-17.818 21.543-26.741 34.142-14.142l128.662 128.662c7.81 7.81 7.81 20.474 0 28.284L34.142 398.804C21.543 411.404 0 402.48 0 384.662z"></path>
-                </svg><!-- <span class="fa fa-caret-right"></span> --></i>Software Requirements
-              </h4>
-              <div class="readmore-hidden">
-                <ul>
-                  <li><a href="http://www.blender.org" target="“blank&quot;">Blender 2.66 or higher</a></li>
-                  <li>2D editing software such as Photoshop or freely available <a href="http://www.gimp.org/"
-                                                                                   target="“blank&quot;">open-source GIMP</a>
-                  </li>
-                  <li>Audio-editing software such as freely available <a href="http://audacity.sourceforge.net/"
-                                                                         target="“blank&quot;">open-source Audacity</a>
-                  </li>
-                  <li>Optional: a GIF authoring tool for the creation of aniGIFs and stereoscopic Web images</li>
-                </ul>
-                <p>Mac Users</p>
-                <ul>
-                  <li>OS X 10.9 Mavericks or higher (click <a href="https://support.apple.com/kb/SP702?locale=en_US"
-                                                              target="_blank">here</a> for system requirements)
-                  </li>
-                  <li>Latest version of <a href="https://www.google.com/chrome/" target="_blank">Google Chrome</a></li>
-                </ul>
-                <p>Windows Users</p>
-                <ul>
-                  <li>Windows 7 or higher (click <a
-                    href="https://support.microsoft.com/en-us/help/10737/windows-7-system-requirements" target="_blank">here</a>
-                    for system requirements)
-                  </li>
-                  <li>Latest version of <a href="https://www.google.com/chrome/" target="_blank">Google Chrome</a></li>
-                </ul>
-                <p>All Users</p>
-                <ul>
-                  <li>To view / participate in live chats, get the <a
-                    href="https://chrome.google.com/webstore/detail/cisco-webex-extension/jlhmfgmfgeifomenelglieieghnjghma"
-                    target="_blank">WebEx extension for Google Chrome</a>.
-                  </li>
-                </ul>
-              </div>
-              <hr>
-              <h4><i class="closed">
-                <svg class="svg-inline--fa fa-caret-right fa-w-6" aria-hidden="true" data-prefix="fa"
-                     data-icon="caret-right" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 512"
-                     data-fa-i2svg="">
-                  <path fill="currentColor"
-                        d="M0 384.662V127.338c0-17.818 21.543-26.741 34.142-14.142l128.662 128.662c7.81 7.81 7.81 20.474 0 28.284L34.142 398.804C21.543 411.404 0 402.48 0 384.662z"></path>
-                </svg><!-- <span class="fa fa-caret-right"></span> --></i>Hardware Requirements
-              </h4>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    <section class="page-section content-faculty">
-      <div class="container-fluid">
-        <div class="row">
-          <div class="col-12 col-lg-7">
-            <div class="faculty content-section" data-scroll-index="3" id="instructors">
-              <h2>Instructors</h2>
-              <div class="row">
-                <div class="col-12 col-sm-2 instructor-img">
-                  <img alt="faculty.full_name" class="rounded-circle"
-                       src="https://online.berklee.edu/user/avatar?user_id=33535733">
+                  </svg><!-- <span class="fa fa-caret-right"></span> --></i>Prerequisites
+                </h4>
+                <div class="truncate-paragraph" style="display: none;"><p>Students should have:</p>
+                  <ul>
+                    <li>Familiarity and comfort with basic computer skills and file formats</li>
+                    <li>
+                      Familiarity with a 2D graphics program such as Photoshop (any version) or GIMP, Painter, or equivalent
+                    </li>
+                  </ul>
+                  <p>
+                    No art experience is required, but an openness and willingness to experiment with artistic ideas and processes will make your work much stronger. While this course is primarily intended to provide technical information and inspiration, every assignment will include an artistic component, whether color judgment, composition, timing, or other aspect of 3D and animation.&nbsp;</p>
                 </div>
-                <div class="col-12 col-sm-10 instr">
-                  <div class="txt-lg fac-name"><a class="a-body-link"
-                                                  href="/faculty/nick-jainschigg">Nick Jainschigg</a></div>
-                  <p class="txt-sm">Author &amp; Instructor</p>
-                  <p><em>Nick Jainschigg</em>
-                    was born in New York City and grew up near the Metropolitan Museum of Art and the American Museum of Natural History. The two influences of art and natural science have been with him ever since. After graduating with a BFA in illustration, he pursued a career in science fiction and fantasy illustration, producing hundreds of covers and interiors for most of the major (and many minor) publishers. He discovered the computer as a means of expression in the late 90s and hasn't had a decent night's sleep since. Currently, he is a professor in the Illustration department of the Rhode Island School of Design and continues to work on animations, interactive illustration, and painting in oils.
-                  </p>
-                  <div class="read-more-container">
-                    <!--<a class="read-more" href="#">Read More</a>-->
-                    <div class="collapse" id="instrreadmore">
-                      <p>
-                        His work has been featured in or written about in publications from Marvel Comics, DC Comics, Ballantine Books, PBS Interactive, The New York Times, Wizards of the Coast, Tor Books, Scholastic Inc., MacMillan Publishing, Domino Magazine, Paramount, and Viacom. His digital paleontological reconstructions have been featured on the Discovery Channel and at the Polish Academy of Sciences, the Maastricht Natural History Museum, and the University of California Museum of Paleontology.
-                      </p>
+                <hr>
+                <h4 style="cursor: auto;"><i class="closed">
+                  <svg class="svg-inline--fa fa-caret-right fa-w-6" aria-hidden="true" data-prefix="fa"
+                       data-icon="caret-right" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 512"
+                       data-fa-i2svg="">
+                    <path fill="currentColor"
+                          d="M0 384.662V127.338c0-17.818 21.543-26.741 34.142-14.142l128.662 128.662c7.81 7.81 7.81 20.474 0 28.284L34.142 398.804C21.543 411.404 0 402.48 0 384.662z"></path>
+                  </svg><!-- <span class="fa fa-caret-right"></span> --></i>No Required Textbooks
+                </h4>
+                <hr>
+                <h4><i class="closed">
+                  <svg class="svg-inline--fa fa-caret-right fa-w-6" aria-hidden="true" data-prefix="fa"
+                       data-icon="caret-right" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 512"
+                       data-fa-i2svg="">
+                    <path fill="currentColor"
+                          d="M0 384.662V127.338c0-17.818 21.543-26.741 34.142-14.142l128.662 128.662c7.81 7.81 7.81 20.474 0 28.284L34.142 398.804C21.543 411.404 0 402.48 0 384.662z"></path>
+                  </svg><!-- <span class="fa fa-caret-right"></span> --></i>Software Requirements
+                </h4>
+                <div class="readmore-hidden">
+                  <ul>
+                    <li><a href="http://www.blender.org" target="“blank&quot;">Blender 2.66 or higher</a></li>
+                    <li>2D editing software such as Photoshop or freely available <a href="http://www.gimp.org/"
+                                                                                     target="“blank&quot;">open-source GIMP</a>
+                    </li>
+                    <li>Audio-editing software such as freely available <a href="http://audacity.sourceforge.net/"
+                                                                           target="“blank&quot;">open-source Audacity</a>
+                    </li>
+                    <li>Optional: a GIF authoring tool for the creation of aniGIFs and stereoscopic Web images</li>
+                  </ul>
+                  <p>Mac Users</p>
+                  <ul>
+                    <li>OS X 10.9 Mavericks or higher (click <a href="https://support.apple.com/kb/SP702?locale=en_US"
+                                                                target="_blank">here</a> for system requirements)
+                    </li>
+                    <li>Latest version of <a href="https://www.google.com/chrome/" target="_blank">Google Chrome</a></li>
+                  </ul>
+                  <p>Windows Users</p>
+                  <ul>
+                    <li>Windows 7 or higher (click <a
+                      href="https://support.microsoft.com/en-us/help/10737/windows-7-system-requirements" target="_blank">here</a>
+                      for system requirements)
+                    </li>
+                    <li>Latest version of <a href="https://www.google.com/chrome/" target="_blank">Google Chrome</a></li>
+                  </ul>
+                  <p>All Users</p>
+                  <ul>
+                    <li>To view / participate in live chats, get the <a
+                      href="https://chrome.google.com/webstore/detail/cisco-webex-extension/jlhmfgmfgeifomenelglieieghnjghma"
+                      target="_blank">WebEx extension for Google Chrome</a>.
+                    </li>
+                  </ul>
+                </div>
+                <hr>
+                <h4><i class="closed">
+                  <svg class="svg-inline--fa fa-caret-right fa-w-6" aria-hidden="true" data-prefix="fa"
+                       data-icon="caret-right" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 512"
+                       data-fa-i2svg="">
+                    <path fill="currentColor"
+                          d="M0 384.662V127.338c0-17.818 21.543-26.741 34.142-14.142l128.662 128.662c7.81 7.81 7.81 20.474 0 28.284L34.142 398.804C21.543 411.404 0 402.48 0 384.662z"></path>
+                  </svg><!-- <span class="fa fa-caret-right"></span> --></i>Hardware Requirements
+                </h4>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="page-section content-faculty">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-12 col-lg-7">
+              <div class="faculty content-section" data-scroll-index="3" id="instructors">
+                <h2>Instructors</h2>
+                <div class="row">
+                  <div class="col-12 col-sm-2 instructor-img">
+                    <img alt="faculty.full_name" class="rounded-circle"
+                         src="https://online.berklee.edu/user/avatar?user_id=33535733">
+                  </div>
+                  <div class="col-12 col-sm-10 instr">
+                    <div class="txt-lg fac-name"><a class="a-body-link"
+                                                    href="/faculty/nick-jainschigg">Nick Jainschigg</a></div>
+                    <p class="txt-sm">Author &amp; Instructor</p>
+                    <p><em>Nick Jainschigg</em>
+                      was born in New York City and grew up near the Metropolitan Museum of Art and the American Museum of Natural History. The two influences of art and natural science have been with him ever since. After graduating with a BFA in illustration, he pursued a career in science fiction and fantasy illustration, producing hundreds of covers and interiors for most of the major (and many minor) publishers. He discovered the computer as a means of expression in the late 90s and hasn't had a decent night's sleep since. Currently, he is a professor in the Illustration department of the Rhode Island School of Design and continues to work on animations, interactive illustration, and painting in oils.
+                    </p>
+                    <div class="read-more-container">
+                      <!--<a class="read-more" href="#">Read More</a>-->
+                      <div class="collapse" id="instrreadmore">
+                        <p>
+                          His work has been featured in or written about in publications from Marvel Comics, DC Comics, Ballantine Books, PBS Interactive, The New York Times, Wizards of the Coast, Tor Books, Scholastic Inc., MacMillan Publishing, Domino Magazine, Paramount, and Viacom. His digital paleontological reconstructions have been featured on the Discovery Channel and at the Polish Academy of Sciences, the Maastricht Natural History Museum, and the University of California Museum of Paleontology.
+                        </p>
+                      </div>
+                      <a class="read-less" href="#instrreadmore" data-toggle="collapse"
+                         style="display: inline-block;font-weight: bold;"> Read {{instrReadTips}}</a>
                     </div>
-                    <a class="read-less" href="#instrreadmore" data-toggle="collapse" style="display: inline-block;font-weight: bold;"> Read {{instrReadTips}}</a>
                   </div>
                 </div>
-              </div>
 
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    <section class="page-section content-relations">
-      <div class="container-fluid">
-        <div class="row">
-          <div class="col-12 col-lg-7">
-            <div class="content-section">
-              <h2>What's Next?</h2>
-              <p class="overview">When taken for credit, 3D Design with Blender can be applied towards these associated programs:</p>
-              <div class="associated-3d-design-with-blender">
-                <h4>Associated Certificate Programs</h4>
-                <ul class="related-certificates bo-list-lined">
-                  <li>
-                    <a href="/certificates/general-music-studies-professional">
-                      General Music Studies
-                      Professional Certificate
-                    </a>
-                  </li>
-                  <li>
-                    <a href="/certificates/general-music-studies-advanced-professional">
-                      General Music Studies
-                      Advanced Professional Certificate
-                    </a>
-                  </li>
-                </ul>
               </div>
             </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+      <section class="page-section content-relations">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-12 col-lg-7">
+              <div class="content-section">
+                <h2>What's Next?</h2>
+                <p class="overview">
+                  When taken for credit, 3D Design with Blender can be applied towards these associated programs:</p>
+                <div class="associated-3d-design-with-blender">
+                  <h4>Associated Certificate Programs</h4>
+                  <ul class="related-certificates bo-list-lined">
+                    <li>
+                      <a href="/certificates/general-music-studies-professional">
+                        General Music Studies
+                        Professional Certificate
+                      </a>
+                    </li>
+                    <li>
+                      <a href="/certificates/general-music-studies-advanced-professional">
+                        General Music Studies
+                        Advanced Professional Certificate
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="page-section content-advisors">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-12 col-lg-7">
+              <div class="advisors content-section">
+                <h2>Questions?</h2>
+                <p class="txt-lg">
+                  Contact our Academic Advisors by phone at 1-866-BERKLEE (U.S.), 1-617-747-2146 (INT'L), or by email at <a
+                  href="mailto:advisors@online.berklee.edu">advisors@online.berklee.edu</a>.</p>
+                <p class="txt-lg">
+                  We can also answer basic questions in the comments below. Please note that all comments are public.</p>
+                <a class="read-more bo-button-tertiary" href="#comments" style="background: none;">Comments</a>
+                <div class="comments readmore-hidden" id="comments">
+                  <div id="fb-root">
+                    <div class="fb-comments" data-href="http://online.berklee.edu/courses/3d-design-with-blender"
+                         data-num-posts="10" data-width="100%" id="fb-container"></div>
+                  </div>
+                  <br>
+                  <br>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+    <MyFooter/>
   </div>
+
 </template>
 
 <script>
+  import Components from '../components/index'
   export default {
     name: 'detail',
+    components:Components,
     data() {
       return {
         readTips: 'More',
-        instrReadTips:'More'
+        instrReadTips: 'More',
+        courses: null
       }
     },
     methods: {},
+    beforeMount() {
+      console.log(12312)
+      let num = this.$route.params.num;
+      let _this = this;
+      this.$http({
+        method: 'get',
+        url: '/courses/' + num,
+      }).then(res => {
+        console.log(res.data)
+        _this.courses = res.data.data;
+        console.log(_this.courses)
+      })
+    },
     mounted() {
       let _this = this;
       $('#readmore').on('hide.bs.collapse', function () {
@@ -788,9 +862,10 @@ OLART-310
 
   .faculty a.read-more:hover, .faculty a.read-less:hover, .faculty a.read-more:hover, .faculty a.read-less:hover {
     text-decoration: none;
-    background-color: rgba(238,36,60,0.2);
+    background-color: rgba(238, 36, 60, 0.2);
   }
-  .faculty a.read-more,.faculty a.read-less, .faculty a.read-more, .faculty a.read-less {
+
+  .faculty a.read-more, .faculty a.read-less, .faculty a.read-more, .faculty a.read-less {
     font-family: "Avenir Next Cyr W00 Bold", Helvetica, Arial, sans-serif;
     font-size: 1.2rem;
     line-height: 2.2rem;
@@ -802,10 +877,10 @@ OLART-310
     transition: all ease .2s;
   }
 
-
   .content-relations {
     background: #eff1f3;
   }
+
   .content-relations p.overview {
     font-size: 1.16rem;
     line-height: 2rem;
@@ -823,6 +898,7 @@ OLART-310
   .content-relations ul {
     margin-bottom: 2rem;
   }
+
   .bo-list-lined {
     font-size: 1rem;
     line-height: 155%;
@@ -830,9 +906,11 @@ OLART-310
     margin: 0;
     padding: 0;
   }
+
   .bo-list-lined li {
     padding: 5px 0;
   }
+
   .bo-list-lined li a {
     color: #25353c;
     text-decoration: none;
@@ -840,8 +918,152 @@ OLART-310
     box-shadow: inset 0 -1px 0 #ee243c;
     transition: all ease .2s;
   }
-  .bo-list-lined li a:hover{
+
+  .bo-list-lined li a:hover {
     text-decoration: none;
-    background-color: rgba(238,36,60,0.2);
+    background-color: rgba(238, 36, 60, 0.2);
   }
+
+  .content-advisors .advisors p a:hover, .content-advisors .advisors p a:hover {
+    text-decoration: none;
+    background-color: rgba(238, 36, 60, 0.2);
+  }
+
+  .content-advisors .advisors p a, .content-advisors .advisors p a {
+    text-decoration: none;
+    color: #25353c;
+    text-decoration: none;
+    -webkit-box-shadow: inset 0 -1px 0 #ee243c;
+    box-shadow: inset 0 -1px 0 #ee243c;
+    transition: all ease .2s;
+  }
+
+  a.read-more:hover, a.read-less:hover {
+    color: #12191c;
+  }
+
+  .bo-button-tertiary:hover {
+    background: white;
+    border-color: black;
+    color: black;
+  }
+
+  .bo-button-tertiary:hover {
+    background: #e6e6e6;
+    color: #0e1416;
+    cursor: pointer;
+  }
+
+  a.read-more, a.read-less {
+    color: #25353c;
+  }
+
+  a:hover {
+    color: #056379;
+  }
+
+  a:focus, a:hover {
+    color: #014c8c;
+    text-decoration: underline;
+  }
+
+  a:active, a:hover {
+    outline-width: 0;
+  }
+
+  .bo-button-tertiary {
+    font-family: "Avenir Next Cyr W00 Bold", Helvetica, Arial, sans-serif;
+    font-size: 1.33rem;
+    line-height: 2.2rem;
+    text-decoration: underline;
+    background: white;
+    border: 0;
+    color: #0e1416;
+    display: inline-block;
+    margin: 0px;
+    outline: 0;
+    padding: 10px;
+    text-align: center;
+    text-decoration: none;
+    transition: background 0.3s ease;
+    white-space: nowrap;
+    font-family: "Avenir Next Cyr W00 Bold", Helvetica, Arial, sans-serif;
+    font-size: 1.16rem;
+    line-height: 1.5rem;
+    border: 3px solid #0e1416;
+    padding: 7px;
+  }
+
+  .bo-button-alt, .bo-button-secondary {
+    font-family: "Avenir Next Cyr W00 Bold", Helvetica, Arial, sans-serif;
+    font-size: 1.33rem;
+    line-height: 2.2rem;
+    text-decoration: underline;
+    background: white;
+    border: 0;
+    color: #ee243c;
+    display: inline-block;
+    margin: 0px;
+    outline: 0;
+    padding: 10px;
+    text-align: center;
+    text-decoration: none;
+    transition: background 0.3s ease;
+    white-space: nowrap;
+    font-family: "Avenir Next Cyr W00 Bold", Helvetica, Arial, sans-serif;
+    font-size: 1.16rem;
+    line-height: 1.5rem;
+    border: 3px solid #ee243c;
+    padding: 7px;
+  }
+
+  .bo-button span, .bo-button-primary span {
+    font-family: "Avenir Next Cyr W00 Regular", Helvetica, Arial, sans-serif;
+    font-size: 1rem;
+    line-height: 1.5rem;
+    display: block;
+  }
+
+  .side-nav-main .bo-button-alt {
+    color: #ee243c;
+    margin: 0 auto;
+    white-space: normal;
+  }
+
+  .side-nav-main .btn-action, .side-nav-main .bo-button-alt {
+    display: block;
+    letter-spacing: .5px;
+    margin: 1rem auto 1.5rem;
+    width: 90%;
+  }
+
+  .product .side-nav-main a {
+    color: black;
+    font-family: "Avenir Next Cyr W00 Demi", Helvetica, Arial, sans-serif;
+    text-decoration: none;
+  }
+
+  .bo-button-alt:hover, .bo-button-secondary:hover {
+    background: white;
+    border-color: #cf1027;
+    color: #cf1027;
+  }
+
+  .bo-button-alt:hover, .bo-button-secondary:hover {
+    background: #e6e6e6;
+    color: #ee243c;
+    cursor: pointer;
+  }
+
+  .collapse.lesson-content {
+    margin-left: 152px;
+  }
+
+  @media (max-width: 768px) {
+    .collapse.lesson-content {
+      margin-left: 45px;
+    }
+
+  }
+
 </style>

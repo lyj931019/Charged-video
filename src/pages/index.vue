@@ -1,328 +1,335 @@
 <template>
-  <div class="home_page">
-    <div class="content-wrap" id="main-content">
-      <section class="primary-slot" id="rtp-hero">
-        <div class="container-fluid">
-          <div class="row">
-            <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-5 column-left">
-              <div id="rtp-top-two">
-                <div class="top-block" id="rtp-mission">
-                  <h1>Learn Music Online with Berklee</h1>
-                  <ul class="offerings-list">
-                    <li>
-                      <a href="/music-degrees/graduate">
-                        <h3 class="no-underline">
-                          <span class="underline">Master's Degrees</span>
-                          <span class="new">New!</span>
-                        </h3>
-                        <div class="txt-sm">
-<span class="timing">
-<span class="date">Nov. 19</span> - application deadline for Jan. 2019 term start
-</span>
-                        </div>
-                      </a>
-                    </li>
-                    <li>
-                      <a class="action clearfix" href="/music-degrees/undergraduate" itemprop="url">
-                        <h3>Bachelor's Degrees</h3>
-                        <div class="txt-sm">
-<span class="timing">
-<span class="date">Nov. 19</span> - application deadline for Jan. 2019 term start
-</span>
-                        </div>
-                      </a>
-                    </li>
-                    <li>
-                      <a class="action clearfix" href="/certificates" itemprop="url">
-                        <h3>Multi-Course Certificates</h3>
-                        <div class="txt-sm">
-<span class="timing">
-<span class="date">January 14</span> - next term starts, no application required
-</span>
-                        </div>
-                      </a>
-                    </li>
-                    <li>
-                      <a class="action clearfix" href="/courses" itemprop="url">
-                        <h3>12-Week Courses</h3>
-                        <div class="txt-sm">
-<span class="timing">
-<span class="date">January 14</span> - next term starts, no application required
-</span>
-                        </div>
-                      </a>
-                    </li>
-                    <li>
-                      <a class="txt-md compare" href="/about/compare-online-music-education-offerings">Compare Our Offerings</a>
-                    </li>
-                  </ul>
-                  <div class="column-left-cta">
-                    <a href="#footer-form">Request Info</a>
-                    <a class="hidden-md-down" href="/sample-a-lesson" itemprop="url">Sample a Lesson</a>
-                  </div>
-                </div>
-                <div class="timing-message-box">
-                  <div id="green-block-content">
-                    <h3 style="margin-bottom: 0">Now Accepting Degree Applications for Winter 2019</h3>
-                    <p>Deadline is November 19, 2018</p>
-                  </div>
-
-
-                  <div id="green-block-content-cta">
-                    <a class="action bo-button" href="https://online.berklee.edu/music-degrees">Apply Now</a>
-                  </div>
-                </div>
-              </div>
-              <div id="rtp-contact">
-                <div class="advisor-contact-block">
-                  <p class="guidance">Need guidance?</p>
-                  <a class="tel-main" href="tel:18662375533">1-866-BERKLEE</a>
-                  <a class="tel-intl" href="tel:16177472146">Int'l: +1-617-747-2146</a>
-                  <p class="call-text"><a href="tel:18662375533">Call</a>,&nbsp;<a href="sms:18662375533">Text</a>,&nbsp;or&nbsp;<a
-                    href="mailto: advisors@online.berklee.edu">Email us</a></p>
-                </div>
-              </div>
-
-              <div class="white-space"></div>
-            </div>
-            <div class="hidden-sm-down col-md-6 col-lg-6 col-xl-7 column-right">
-              <div class="bo-tabs">
-                <ul class="nav nav-tabs" role="tablist">
-                  <li class="nav-item hidden-sm-down">
-                    <a class="nav-link txt-lg"  href="#interests" id="rtp-tab-label" :class="isInterests?'active':''" @click="changeActive(true)">
-                      Interests
-                    </a>
-                  </li>
-                  <li class="nav-item hidden-sm-down">
-                    <a class="nav-link txt-lg" href="#coming-soon" :class="isInterests?'':'active'" @click="changeActive(false)">
-                      New Courses
-                    </a>
-                  </li>
-                  <li class="nav-item dropdown hidden-md-up">
-                    <a class="nav-link txt-lg dropdown-toggle" data-toggle="dropdown" href="#" rel="nofollow"
-                       role="tab">
-                      Explore More
-                      <b class="caret"></b>
-                    </a>
-                    <ul class="dropdown-menu">
-                      <li>
-                        <a data-toggle="tab" href="#interests" rel="nofollow">
-                          Interest Areas
-                        </a>
-                      </li>
-                      <li>
-                        <a data-toggle="tab" href="#coming-soon" rel="nofollow">
-                          New Courses <span class="hidden-tablet hidden-phone hidden-md-down">Enrolling Now</span>
-                        </a>
-                      </li>
-                    </ul>
-                  </li>
-                </ul>
-                <div class="tab-content">
-                  <div class="tab-pane" id="interests" role="tabpanel" aria-expanded="true" :class="isInterests?'active':''">
-                    <p class="hidden-sm-down">
-                      With our degree programs, certificate programs, and more than 150 courses led by Berklee faculty and industry experts, it's easy to find the offering that's right for you.
-                    </p>
-                    <ul class="interest-list listToggle">
-                      <li>
-                        <a href="/music-production" itemprop="url">Music Production</a>
-                      </li>
-                      <li>
-                        <a href="/guitar" itemprop="url">Guitar</a>
-                      </li>
-                      <li>
-                        <a href="/music-theory-harmony-and-ear-training">Music Theory, Harmony, and Ear Training</a>
-                      </li>
-                      <li>
-                        <a href="/songwriting" itemprop="url">Songwriting</a>
-                      </li>
-                      <li>
-                        <a href="/music-business" itemprop="url">Music Business</a>
-                      </li>
-                      <li>
-                        <a href="/voice">Voice</a>
-                      </li>
-                      <li>
-                        <a href="/piano-and-keyboard">Piano and Keyboard</a>
-                      </li>
-                      <li>
-                        <a href="/arranging">Arranging</a>
-                      </li>
-                      <li>
-                        <a href="/bass">Bass</a>
-                      </li>
-                      <li>
-                        <a href="/orchestration">Orchestration</a>
-                      </li>
-                      <li>
-                        <a href="/drums">Drums</a>
-                      </li>
-                      <li>
-                        <a href="/music-history-and-liberal-arts">Music History and Liberal Arts</a>
-                      </li>
-                      <li>
-                        <a href="/music-for-film-tv-and-games" itemprop="url">Music for Film, TV, and Games</a>
-                      </li>
-                      <li>
-                        <a href="/improvisation">Improvisation</a>
-                      </li>
-
-                    </ul>
-                  </div>
-                  <div class="coming-soon tab-pane" id="coming-soon" role="tabpanel" aria-expanded="false" :class="isInterests?'':'active'">
-
-                    <br>
-                    <div class="row">
-                      <div class="col-12">
-                        <ul>
-
-                          <li class="clearfix">
-                            <a href="/courses/ableton-live-techniques-non-linear-creative-strategies-and-composition">
-                              <img class="float-left img-circle fr-dii fr-fil fr-draggable" src="//online.berklee.edu/user/avatar?user_id=48040150">
-                              <h5>Ableton Live Techniques: Non-Linear Creative Strategies and Composition</h5>
-                              <span style="font-size: 1.2rem;">by Erin Barra and Loudon Stearns</span>
-                            </a>
-                          </li>
-                          <li class="clearfix">
-                            <a href="/courses/ear-training-2">
-                              <img class="img-circle float-left" src="https://s3.amazonaws.com/berkleemusic/users/profile_photos/1960372/large_thumbnail.jpg?1397753575">
-                              <h5>Ear Training 2</h5>
-                              <span style="font-size: 1.2rem;">by Gaye Tolan Hatfield</span>
-
-                            </a>
-                          </li>
-
-
-                          <li class="clearfix">
-                            <a href="courses/solo-guitar-performance-accompaniment-and-arranging">
-                              <img class="img-circle float-left" src="//online.berklee.edu/user/avatar?user_id=490437">
-                              <h5>Solo Guitar: Performance, Accompaniment, and Arranging</h5>
-                              <span style="font-size: 1.2rem;">by John Baboian</span>
-                            </a>
-                          </li>
-
-
-
-                        </ul>
-                      </div>
-                      <div class="col-12">
-                        <ul>
-
-                        </ul>
-                      </div>
-                    </div>
-                    <div class="container-content">
-                      <div class="inner text-center">
-                        <a class="bo-button" href="/coming-soon/">
-                          See Full List
-                          <i class="icon-caret-right"></i>
-                        </a>
-                      </div>
-                    </div>
-
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-      <section class="section-news">
-        <div class="container-fluid home-thumbnails">
-          <div class="row">
-            <div class="col-12 col-md-8">
-              <div class="promo-box-first">
-                <div class="responsive-media-container">
-                  <img src="../assets/img/home-masters-hero.jpg" class="img-responsive">
-                </div>
-                <div class="promo-block-first-text">
-                  <h2>
-                    Application Now Open for Graduate Degree Programs
-                  </h2>
-                  <p class="txt-lg">
-                    We designed our online graduate programs to be completed in one year, providing you with the most affordable and flexible option for earning your master's degree with Berklee College of Music. <a
-                    href="https://online.berklee.edu/apply" style="color: #FFF;">Apply today</a>.
-                  </p>
-                  <ul>
-                    <li class="txt-lg">
-                      <a href="/music-degrees/graduate/music-production">
-                        Master of Music in <span>Music Production</span>
-                      </a>
-                    </li>
-                    <li class="txt-lg">
-                      <a href="/music-degrees/graduate/music-business">
-                        Master of Arts in <span>Music Business</span>
-                      </a>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-            <div class="col-12 col-md-4 top-promos">
-              <div id="rtp-small-promo-1">
-                <a href="https://welcome.online.berklee.edu/military" class="thumb-container" target="_blank">
-                  <div class="thumb-flex">
-                    <img alt="Military Student Andrew Bonica, wearing camo, on a Jeep, with a pink guitar"
-                         src="../assets/img/homepage_military.jpg" style="max-width: 416px;">
-                    <h4>U.S. Military Saves Big on Tuition</h4>
-                    <p>
-                      See how active duty, veterans, and military families are saving at least 30% with Berklee Online's Military Benefits.
-                    </p>
-                  </div>
-                </a>
-              </div>
-              <div id="rtp-small-promo-2">
-                <a href="https://online.berklee.edu/takenote/berklee-online-achieves-97-percent-student-satisfaction/"
-                   class="thumb-container" target="_blank">
-                  <div class="thumb-flex">
-                    <img alt="Several Berklee students in a classroom" src="../assets/img/student_satisfaction.jpg"
-                         style="max-width: 416px;">
-                    <h4>97% Student Satisfaction Rate at Berklee Online</h4>
-                    <p>
-                      A brand new exit survey of 2018 grads reveals that nearly all of our graduating students were satisfied with their Berklee Online experience.
-                    </p>
-                  </div>
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-      <hr>
-      <section class="section-sample">
-        <div class="container-fluid">
-          <div class="row">
-            <div class="col-12">
-              <div id="rtp-full-width-promo">
-                <h2>
-                  Discover Why Musicians Succeed at Berklee Online
-                </h2>
-              </div>
-            </div>
+  <div>
+    <MyHeader/>
+    <div class="home_page">
+      <div class="content-wrap" id="main-content">
+        <section class="primary-slot" id="rtp-hero">
+          <div class="container-fluid">
             <div class="row">
-              <div class="col-12 col-md-6 col-lg-5">
-                <p class="txt-lg">
-                  Curious about how online learning works? Explore our unique learning environment in one of 12 free sample lessons.
-                </p>
-                <a class="bo-button-alt" href="/sample-a-lesson">
-                  Try It Now
-                </a>
+              <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-5 column-left">
+                <div id="rtp-top-two">
+                  <div class="top-block" id="rtp-mission">
+                    <h1>Learn Music Online with Berklee</h1>
+                    <ul class="offerings-list">
+                      <li>
+                        <a href="/music-degrees/graduate">
+                          <h3 class="no-underline">
+                            <span class="underline">Master's Degrees</span>
+                            <span class="new">New!</span>
+                          </h3>
+                          <div class="txt-sm">
+<span class="timing">
+<span class="date">Nov. 19</span> - application deadline for Jan. 2019 term start
+</span>
+                          </div>
+                        </a>
+                      </li>
+                      <li>
+                        <a class="action clearfix" href="/music-degrees/undergraduate" itemprop="url">
+                          <h3>Bachelor's Degrees</h3>
+                          <div class="txt-sm">
+<span class="timing">
+<span class="date">Nov. 19</span> - application deadline for Jan. 2019 term start
+</span>
+                          </div>
+                        </a>
+                      </li>
+                      <li>
+                        <a class="action clearfix" href="/certificates" itemprop="url">
+                          <h3>Multi-Course Certificates</h3>
+                          <div class="txt-sm">
+<span class="timing">
+<span class="date">January 14</span> - next term starts, no application required
+</span>
+                          </div>
+                        </a>
+                      </li>
+                      <li>
+                        <a class="action clearfix" href="/courses" itemprop="url">
+                          <h3>12-Week Courses</h3>
+                          <div class="txt-sm">
+<span class="timing">
+<span class="date">January 14</span> - next term starts, no application required
+</span>
+                          </div>
+                        </a>
+                      </li>
+                      <li>
+                        <a class="txt-md compare" href="/about/compare-online-music-education-offerings">Compare Our Offerings</a>
+                      </li>
+                    </ul>
+                    <div class="column-left-cta">
+                      <a href="#footer-form">Request Info</a>
+                      <a class="hidden-md-down" href="/sample-a-lesson" itemprop="url">Sample a Lesson</a>
+                    </div>
+                  </div>
+                  <div class="timing-message-box">
+                    <div id="green-block-content">
+                      <h3 style="margin-bottom: 0">Now Accepting Degree Applications for Winter 2019</h3>
+                      <p>Deadline is November 19, 2018</p>
+                    </div>
+
+
+                    <div id="green-block-content-cta">
+                      <a class="action bo-button" href="https://online.berklee.edu/music-degrees">Apply Now</a>
+                    </div>
+                  </div>
+                </div>
+                <div id="rtp-contact">
+                  <div class="advisor-contact-block">
+                    <p class="guidance">Need guidance?</p>
+                    <a class="tel-main" href="tel:18662375533">1-866-BERKLEE</a>
+                    <a class="tel-intl" href="tel:16177472146">Int'l: +1-617-747-2146</a>
+                    <p class="call-text"><a href="tel:18662375533">Call</a>,&nbsp;<a href="sms:18662375533">Text</a>,&nbsp;or&nbsp;<a
+                      href="mailto: advisors@online.berklee.edu">Email us</a></p>
+                  </div>
+                </div>
+
+                <div class="white-space"></div>
               </div>
-              <div class="col-12 col-md-6 col-lg-7">
-                <img class="img-cross-media" src="../assets/img/boccealldevice_min.png">
+              <div class="hidden-sm-down col-md-6 col-lg-6 col-xl-7 column-right">
+                <div class="bo-tabs">
+                  <ul class="nav nav-tabs" role="tablist">
+                    <li class="nav-item hidden-sm-down">
+                      <a class="nav-link txt-lg"  href="#interests" id="rtp-tab-label" :class="isInterests?'active':''" @click="changeActive(true)">
+                        Interests
+                      </a>
+                    </li>
+                    <li class="nav-item hidden-sm-down">
+                      <a class="nav-link txt-lg" href="#coming-soon" :class="isInterests?'':'active'" @click="changeActive(false)">
+                        New Courses
+                      </a>
+                    </li>
+                    <li class="nav-item dropdown hidden-md-up">
+                      <a class="nav-link txt-lg dropdown-toggle" data-toggle="dropdown" href="#" rel="nofollow"
+                         role="tab">
+                        Explore More
+                        <b class="caret"></b>
+                      </a>
+                      <ul class="dropdown-menu">
+                        <li>
+                          <a data-toggle="tab" href="#interests" rel="nofollow">
+                            Interest Areas
+                          </a>
+                        </li>
+                        <li>
+                          <a data-toggle="tab" href="#coming-soon" rel="nofollow">
+                            New Courses <span class="hidden-tablet hidden-phone hidden-md-down">Enrolling Now</span>
+                          </a>
+                        </li>
+                      </ul>
+                    </li>
+                  </ul>
+                  <div class="tab-content">
+                    <div class="tab-pane" id="interests" role="tabpanel" aria-expanded="true" :class="isInterests?'active':''">
+                      <p class="hidden-sm-down">
+                        With our degree programs, certificate programs, and more than 150 courses led by Berklee faculty and industry experts, it's easy to find the offering that's right for you.
+                      </p>
+                      <ul class="interest-list listToggle">
+                        <li>
+                          <a href="/music-production" itemprop="url">Music Production</a>
+                        </li>
+                        <li>
+                          <a href="/guitar" itemprop="url">Guitar</a>
+                        </li>
+                        <li>
+                          <a href="/music-theory-harmony-and-ear-training">Music Theory, Harmony, and Ear Training</a>
+                        </li>
+                        <li>
+                          <a href="/songwriting" itemprop="url">Songwriting</a>
+                        </li>
+                        <li>
+                          <a href="/music-business" itemprop="url">Music Business</a>
+                        </li>
+                        <li>
+                          <a href="/voice">Voice</a>
+                        </li>
+                        <li>
+                          <a href="/piano-and-keyboard">Piano and Keyboard</a>
+                        </li>
+                        <li>
+                          <a href="/arranging">Arranging</a>
+                        </li>
+                        <li>
+                          <a href="/bass">Bass</a>
+                        </li>
+                        <li>
+                          <a href="/orchestration">Orchestration</a>
+                        </li>
+                        <li>
+                          <a href="/drums">Drums</a>
+                        </li>
+                        <li>
+                          <a href="/music-history-and-liberal-arts">Music History and Liberal Arts</a>
+                        </li>
+                        <li>
+                          <a href="/music-for-film-tv-and-games" itemprop="url">Music for Film, TV, and Games</a>
+                        </li>
+                        <li>
+                          <a href="/improvisation">Improvisation</a>
+                        </li>
+
+                      </ul>
+                    </div>
+                    <div class="coming-soon tab-pane" id="coming-soon" role="tabpanel" aria-expanded="false" :class="isInterests?'':'active'">
+
+                      <br>
+                      <div class="row">
+                        <div class="col-12">
+                          <ul>
+
+                            <li class="clearfix">
+                              <a href="/courses/ableton-live-techniques-non-linear-creative-strategies-and-composition">
+                                <img class="float-left img-circle fr-dii fr-fil fr-draggable" src="//online.berklee.edu/user/avatar?user_id=48040150">
+                                <h5>Ableton Live Techniques: Non-Linear Creative Strategies and Composition</h5>
+                                <span style="font-size: 1.2rem;">by Erin Barra and Loudon Stearns</span>
+                              </a>
+                            </li>
+                            <li class="clearfix">
+                              <a href="/courses/ear-training-2">
+                                <img class="img-circle float-left" src="https://s3.amazonaws.com/berkleemusic/users/profile_photos/1960372/large_thumbnail.jpg?1397753575">
+                                <h5>Ear Training 2</h5>
+                                <span style="font-size: 1.2rem;">by Gaye Tolan Hatfield</span>
+
+                              </a>
+                            </li>
+
+
+                            <li class="clearfix">
+                              <a href="courses/solo-guitar-performance-accompaniment-and-arranging">
+                                <img class="img-circle float-left" src="//online.berklee.edu/user/avatar?user_id=490437">
+                                <h5>Solo Guitar: Performance, Accompaniment, and Arranging</h5>
+                                <span style="font-size: 1.2rem;">by John Baboian</span>
+                              </a>
+                            </li>
+
+
+
+                          </ul>
+                        </div>
+                        <div class="col-12">
+                          <ul>
+
+                          </ul>
+                        </div>
+                      </div>
+                      <div class="container-content">
+                        <div class="inner text-center">
+                          <a class="bo-button" href="/coming-soon/">
+                            See Full List
+                            <i class="icon-caret-right"></i>
+                          </a>
+                        </div>
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
+        <section class="section-news">
+          <div class="container-fluid home-thumbnails">
+            <div class="row">
+              <div class="col-12 col-md-8">
+                <div class="promo-box-first">
+                  <div class="responsive-media-container">
+                    <img src="../assets/img/home-masters-hero.jpg" class="img-responsive">
+                  </div>
+                  <div class="promo-block-first-text">
+                    <h2>
+                      Application Now Open for Graduate Degree Programs
+                    </h2>
+                    <p class="txt-lg">
+                      We designed our online graduate programs to be completed in one year, providing you with the most affordable and flexible option for earning your master's degree with Berklee College of Music. <a
+                      href="https://online.berklee.edu/apply" style="color: #FFF;">Apply today</a>.
+                    </p>
+                    <ul>
+                      <li class="txt-lg">
+                        <a href="/music-degrees/graduate/music-production">
+                          Master of Music in <span>Music Production</span>
+                        </a>
+                      </li>
+                      <li class="txt-lg">
+                        <a href="/music-degrees/graduate/music-business">
+                          Master of Arts in <span>Music Business</span>
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="col-12 col-md-4 top-promos">
+                <div id="rtp-small-promo-1">
+                  <a href="https://welcome.online.berklee.edu/military" class="thumb-container" target="_blank">
+                    <div class="thumb-flex">
+                      <img alt="Military Student Andrew Bonica, wearing camo, on a Jeep, with a pink guitar"
+                           src="../assets/img/homepage_military.jpg" style="max-width: 416px;">
+                      <h4>U.S. Military Saves Big on Tuition</h4>
+                      <p>
+                        See how active duty, veterans, and military families are saving at least 30% with Berklee Online's Military Benefits.
+                      </p>
+                    </div>
+                  </a>
+                </div>
+                <div id="rtp-small-promo-2">
+                  <a href="https://online.berklee.edu/takenote/berklee-online-achieves-97-percent-student-satisfaction/"
+                     class="thumb-container" target="_blank">
+                    <div class="thumb-flex">
+                      <img alt="Several Berklee students in a classroom" src="../assets/img/student_satisfaction.jpg"
+                           style="max-width: 416px;">
+                      <h4>97% Student Satisfaction Rate at Berklee Online</h4>
+                      <p>
+                        A brand new exit survey of 2018 grads reveals that nearly all of our graduating students were satisfied with their Berklee Online experience.
+                      </p>
+                    </div>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <hr>
+        <section class="section-sample">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-12">
+                <div id="rtp-full-width-promo">
+                  <h2>
+                    Discover Why Musicians Succeed at Berklee Online
+                  </h2>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-12 col-md-6 col-lg-5">
+                  <p class="txt-lg">
+                    Curious about how online learning works? Explore our unique learning environment in one of 12 free sample lessons.
+                  </p>
+                  <a class="bo-button-alt" href="/sample-a-lesson">
+                    Try It Now
+                  </a>
+                </div>
+                <div class="col-12 col-md-6 col-lg-7">
+                  <img class="img-cross-media" src="../assets/img/boccealldevice_min.png">
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
     </div>
+    <MyFooter/>
   </div>
+
 
 </template>
 
 <script>
+  import Components from '../components'
   export default {
     name: 'Index',
+    components:Components,
     data(){
       return {
         isInterests:true
