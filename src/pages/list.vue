@@ -86,10 +86,10 @@
               </div>
               <div class="filter filter-interest">
                 <hr>
-                <p>Interest</p>
+                <p>分类</p>
                 <ul class="interest-filter-list sidebar-filter expand-list filter-all">
                   <li class="filter">
-                    <a class="all" data-filter-by="all" href="#" :class="type==0?'filter-on':''" @click.prevent="getLessionFromType('')">All</a>
+                    <a class="all" data-filter-by="all" href="#" :class="type==0?'filter-on':''" @click.prevent="getLessionFromType('')">所有</a>
                   </li>
                   <template v-if="typeList.length>0">
                     <li class="filter" v-for="(type_item,index) in typeList">
@@ -130,13 +130,13 @@
                     </div>
                     <div class="course-tuition">
                       <div class="for-credit">
-                        Credit:
+                        课程价格:
                         ${{item.price}}
                       </div>
-                      <div class="no-credit">
-                        Non-credit:
-                        ${{item.price}}
-                      </div>
+                      <!--<div class="no-credit">-->
+                        <!--Non-credit:-->
+                        <!--${{item.price}}-->
+                      <!--</div>-->
                     </div>
                   </div>
                   <div class="desc" v-html="item.synopsis"></div>

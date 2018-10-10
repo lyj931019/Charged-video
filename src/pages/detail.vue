@@ -17,9 +17,9 @@
 
                   <div class="course-subhead-text">
                     <p class="txt-sm">
-                      Authored
+                      教师
                       <span>
-by
+：
 <a class="a-body-link" href="#instructors">{{courses.instructor.name}}</a>
 </span>
                     </p>
@@ -48,7 +48,7 @@ by
                         </svg><!-- <div class="far fa-calendar-alt"></div> -->
                       </i>
                       <div class="term-message-text">
-                        <h4>Next Term Starts January 14</h4>
+                        <h4>2019/1/4</h4>
                       </div>
                     </div>
                     <div class="key-course-level">
@@ -72,13 +72,13 @@ by
                       <div class="key-course-text"><h4>Level {{courses.level}}</h4></div>
                     </div>
                     <div class="credit-tuition">
-                      <h4>3-Credit Tuition</h4>
+                      <h4>课程价格</h4>
                       ${{courses.price}}
                     </div>
-                    <div class="non-credit-tuition">
-                      <h4>Non-Credit Tuition</h4>
-                      ${{courses.price}}
-                    </div>
+                    <!--<div class="non-credit-tuition">-->
+                      <!--<h4>Non-Credit Tuition</h4>-->
+                      <!--${{courses.price}}-->
+                    <!--</div>-->
                   </div>
                 </div>
                 <div class="col-12 col-lg-8 pull-lg-4">
@@ -108,7 +108,7 @@ by
                         <!--</ul>-->
 
                       </div>
-                      <a class="read-less" data-toggle="collapse" href="#readmore"> Read {{readTips}}</a></div>
+                      <a class="read-less" data-toggle="collapse" href="#readmore"> 更{{readTips}}</a></div>
                   </div>
                   <div class="overview-video">
                   </div>
@@ -160,7 +160,7 @@ by
           <div class="row">
             <div class="col-12 col-lg-7">
               <div class="syllabus content-section">
-                <h2>Syllabus</h2>
+                <h2>教学大纲</h2>
                 <template v-for="(lesson,index) in courses.lessons" >
                   <p class="bo-list-closed" >
                     <a data-toggle="collapse" :data-target="'#lesson-content-'+index" class="lesson-toggle" >
@@ -197,7 +197,7 @@ by
           <div class="row">
             <div class="col-12 col-lg-7">
               <div class="requirements content-section" data-scroll-index="2" id="requirements">
-                <h2>Requirements</h2>
+                <h2>要求</h2>
                 <h4>
                   <a href="#prerequisites" data-toggle="collapse">
                     <i class="closed">
@@ -206,7 +206,8 @@ by
                            data-fa-i2svg="">
                         <path fill="currentColor"
                               d="M0 384.662V127.338c0-17.818 21.543-26.741 34.142-14.142l128.662 128.662c7.81 7.81 7.81 20.474 0 28.284L34.142 398.804C21.543 411.404 0 402.48 0 384.662z"></path>
-                      </svg><!-- <span class="fa fa-caret-right"></span> --></i>Prerequisites
+                      </svg><!-- <span class="fa fa-caret-right"></span> --></i>
+                    先决条件
                   </a>
 
                 </h4>
@@ -214,7 +215,7 @@ by
                   <div class="truncate-paragraph collapse lesson-content" id="prerequisites" v-html="courses.requirements_prerequisites"></div>
                 </template>
                 <template v-else>
-                  <div class="truncate-paragraph collapse lesson-content" id="prerequisites">No content</div>
+                  <div class="truncate-paragraph collapse lesson-content" id="prerequisites">未设置</div>
                 </template>
 
                 <hr>
@@ -226,7 +227,7 @@ by
                            data-fa-i2svg="">
                         <path fill="currentColor"
                               d="M0 384.662V127.338c0-17.818 21.543-26.741 34.142-14.142l128.662 128.662c7.81 7.81 7.81 20.474 0 28.284L34.142 398.804C21.543 411.404 0 402.48 0 384.662z"></path>
-                      </svg><!-- <span class="fa fa-caret-right"></span> --></i>No Required Textbooks
+                      </svg><!-- <span class="fa fa-caret-right"></span> --></i>必要的教科书
                   </a>
 
                 </h4>
@@ -234,7 +235,7 @@ by
                   <div class="truncate-paragraph collapse lesson-content" id="textbooks" v-html="courses.requirements_textbooks"></div>
                 </template>
                 <template v-else>
-                  <div class="truncate-paragraph collapse lesson-content" id="textbooks">No content</div>
+                  <div class="truncate-paragraph collapse lesson-content" id="textbooks">未设置</div>
                 </template>
                 <hr>
                 <h4>
@@ -245,7 +246,7 @@ by
                            data-fa-i2svg="">
                         <path fill="currentColor"
                               d="M0 384.662V127.338c0-17.818 21.543-26.741 34.142-14.142l128.662 128.662c7.81 7.81 7.81 20.474 0 28.284L34.142 398.804C21.543 411.404 0 402.48 0 384.662z"></path>
-                      </svg><!-- <span class="fa fa-caret-right"></span> --></i>Software Requirements
+                      </svg><!-- <span class="fa fa-caret-right"></span> --></i>软件要求
                   </a>
 
                 </h4>
@@ -253,7 +254,7 @@ by
                   <div class="truncate-paragraph collapse lesson-content" id="software" v-html="courses.requirements_software"></div>
                 </template>
                 <template v-else>
-                  <div class="truncate-paragraph collapse lesson-content" id="software">No content</div>
+                  <div class="truncate-paragraph collapse lesson-content" id="software">未设置</div>
                 </template>
                 <hr>
                 <h4>
@@ -264,7 +265,7 @@ by
                            data-fa-i2svg="">
                         <path fill="currentColor"
                               d="M0 384.662V127.338c0-17.818 21.543-26.741 34.142-14.142l128.662 128.662c7.81 7.81 7.81 20.474 0 28.284L34.142 398.804C21.543 411.404 0 402.48 0 384.662z"></path>
-                      </svg><!-- <span class="fa fa-caret-right"></span> --></i>Hardware Requirements
+                      </svg><!-- <span class="fa fa-caret-right"></span> --></i>硬件要求
                   </a>
 
                 </h4>
@@ -272,7 +273,7 @@ by
                   <div class="truncate-paragraph collapse lesson-content" id="hardware" v-html="courses.requirements_hardware"></div>
                 </template>
                 <template v-else>
-                  <div class="truncate-paragraph collapse lesson-content" id="hardware">No content</div>
+                  <div class="truncate-paragraph collapse lesson-content" id="hardware">未设置</div>
                 </template>
               </div>
             </div>
@@ -284,7 +285,7 @@ by
           <div class="row">
             <div class="col-12 col-lg-7">
               <div class="faculty content-section" data-scroll-index="3" id="instructors">
-                <h2>Instructors</h2>
+                <h2>教师简介</h2>
                 <div class="row">
                   <div class="col-12 col-sm-2 instructor-img">
                     <img alt="faculty.full_name" class="rounded-circle"
@@ -390,8 +391,8 @@ by
     components:Components,
     data() {
       return {
-        readTips: 'More',
-        instrReadTips: 'More',
+        readTips: '多',
+        instrReadTips: '多',
         courses: null
       }
     },
@@ -428,21 +429,22 @@ by
     },
     mounted() {
       let _this = this;
-      $('#readmore').on('hide.bs.collapse', function () {
+      $('#readmore').on('hidden.bs.collapse', function () {
         // do something…
-        _this.readTips = 'More'
+        _this.readTips = 'more'
+//        console.log('dsadw')
       });
       $('#readmore').on('show.bs.collapse', function () {
         // do something…
-        _this.readTips = 'Less'
+        _this.readTips = 'less'
       });
       $('#instrreadmore').on('hide.bs.collapse', function () {
         // do something…
-        _this.instrReadTips = 'More'
+        _this.instrReadTips = '多'
       });
       $('#instrreadmore').on('show.bs.collapse', function () {
         // do something…
-        _this.instrReadTips = 'Less'
+        _this.instrReadTips = '少'
       });
     }
   }
@@ -673,7 +675,7 @@ by
   }
 
   .key-points .term-message-text {
-    margin: 0 0 0 .85rem;
+    margin: 0.85rem 0 0 .85rem;
   }
 
   .key-points h4 {

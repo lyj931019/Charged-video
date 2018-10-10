@@ -58,12 +58,13 @@
           <div class="lesson-content">
             <table></table>
             <!--<div v-html="lessonContent.abstract"></div>-->
-            <div>
-              {{lessonContent.content}}
-            </div>
             <div v-if="lessonContent.video">
               <video :src="lessonContent.video" controls="controls"></video>
             </div>
+            <div>
+              {{lessonContent.content}}
+            </div>
+
 
           </div>
         </div>
