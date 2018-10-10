@@ -133,7 +133,7 @@ by
                     <!--</svg>-->
                     <!-- <i class="fa fa-check-square hidden-lg-up"></i> -->
                     Enroll Now <span>No application required</span></a>
-                  <a class="bo-button-alt" href="#footer-form">Request Info</a>
+                  <a class="bo-button-alt" href="#footer-form" @click.prevent="buyTheCourse">购买课程</a>
                   <div class="contain-watchlist"><a class="add-to-watchlist watchlist-btn" data-method="put"
                                                     href="/watchlist/courses/138?slug=3d-design-with-blender"
                                                     rel="nofollow">Add to Favorites</a></div>
@@ -214,7 +214,7 @@ by
                   <div class="truncate-paragraph collapse lesson-content" id="prerequisites" v-html="courses.requirements_prerequisites"></div>
                 </template>
                 <template v-else>
-                  <div class="truncate-paragraph collapse lesson-content" id="prerequisites">not found</div>
+                  <div class="truncate-paragraph collapse lesson-content" id="prerequisites">No content</div>
                 </template>
 
                 <hr>
@@ -234,7 +234,7 @@ by
                   <div class="truncate-paragraph collapse lesson-content" id="textbooks" v-html="courses.requirements_textbooks"></div>
                 </template>
                 <template v-else>
-                  <div class="truncate-paragraph collapse lesson-content" id="textbooks">not found</div>
+                  <div class="truncate-paragraph collapse lesson-content" id="textbooks">No content</div>
                 </template>
                 <hr>
                 <h4>
@@ -253,7 +253,7 @@ by
                   <div class="truncate-paragraph collapse lesson-content" id="software" v-html="courses.requirements_software"></div>
                 </template>
                 <template v-else>
-                  <div class="truncate-paragraph collapse lesson-content" id="software">not found</div>
+                  <div class="truncate-paragraph collapse lesson-content" id="software">No content</div>
                 </template>
                 <hr>
                 <h4>
@@ -272,7 +272,7 @@ by
                   <div class="truncate-paragraph collapse lesson-content" id="hardware" v-html="courses.requirements_hardware"></div>
                 </template>
                 <template v-else>
-                  <div class="truncate-paragraph collapse lesson-content" id="hardware">not found</div>
+                  <div class="truncate-paragraph collapse lesson-content" id="hardware">No content</div>
                 </template>
               </div>
             </div>
@@ -317,6 +317,7 @@ by
           </div>
         </div>
       </section>
+      <!--
       <section class="page-section content-relations">
         <div class="container-fluid">
           <div class="row">
@@ -373,6 +374,9 @@ by
           </div>
         </div>
       </section>
+
+      -->
+
     </div>
     <MyFooter/>
   </div>
@@ -391,7 +395,24 @@ by
         courses: null
       }
     },
-    methods: {},
+    methods: {
+      buyTheCourse(){
+        let _this = this;
+        this.$http({
+          method: 'post',
+          url: '/users/courses/',
+          params:{
+            user_id:2,
+            course_id:2
+          }
+        }).then(res => {
+          console.log(res.data)
+//          _this.courses = res.data.data;
+          _this.$router.push({ name: 'userCourse'})
+          console.log(_this.courses)
+        })
+      }
+    },
     beforeMount() {
       console.log(12312)
       let num = this.$route.params.num;

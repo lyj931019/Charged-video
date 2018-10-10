@@ -16,8 +16,13 @@ export default [
     component: Pages.Detail
   },
   {
-    path: '/UserLesson',
+    path: '/userLesson',
     name: 'userLesson',
     component: Pages.UserLesson
+  },
+  {
+    path: '/userCourse',
+    name: 'userCourse',
+    component: Pages.UserCourse
   }
 ]

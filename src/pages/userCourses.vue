@@ -45,79 +45,25 @@
           </div>
         </div>
       </div>
-      <div class="list-container">
+      <div class="list-container" v-if="lessonList">
         <div class="row ">
-          <div class="type-list col-12 col-lg-4">
-            <div class="inner-scroller">
-              <div class="filter form-group" id="filter_controls"></div>
-              <div class="filter level-filter-list">
-                <p>
-                  Level
-                </p>
-                <ul class="filter-level sidebar-filter filter-all">
-                  <li class="filter course-filter-all">
-                    <a class="level-filter all filter-on" data-filter-by="all" href="#" @click.prevent="getLessionFromLevel('')">All Levels</a>
-                  </li>
-                  <li class="filter">
-                    <a class="level-filter" data-filter-by="level-1" data-html="true" data-toggle="tooltip" href="#" title="" data-original-title="<p class='level-tip'>Foundational courses, no prerequisites required.</p>" @click.prevent="getLessionFromLevel(1)">
-                      <img alt="Level 1" src="../assets/img/skill-level-1.svg">
-                      Level 1
-                    </a>
-                  </li>
-                  <li class="filter">
-                    <a class="level-filter" data-filter-by="level-2" data-html="true" data-toggle="tooltip" href="#" title="" data-original-title="<p class='level-tip'>Intermediate courses, some prerequisites may be required.</p>" @click.prevent="getLessionFromLevel(2)">
-                      <img alt="Level 2" src="../assets/img/skill-level-2.svg">
-                      Level 2
-                    </a>
-                  </li>
-                  <li class="filter">
-                    <a class="level-filter" data-filter-by="level-3" data-html="true" data-toggle="tooltip" href="#" title="" data-original-title="<p class='level-tip'>Advanced intermediate courses, some prerequisites required.</p>" @click.prevent="getLessionFromLevel(3)">
-                      <img alt="Level 3" src="../assets/img/skill-level-3.svg">
-                      Level 3
-                    </a>
-                  </li>
-                  <li class="filter">
-                    <a class="level-filter" data-filter-by="level-4" data-html="true" data-toggle="tooltip" href="#" title="" data-original-title="<p class='level-tip'>Advanced courses, prerequisites required.</p>" @click.prevent="getLessionFromLevel(4)">
-                      <img alt="Level 4" src="../assets/img/skill-level-4.svg">
-                      Level 4
-                    </a>
-                  </li>
-                </ul>
-              </div>
-              <div class="filter filter-interest">
-                <hr>
-                <p>Interest</p>
-                <ul class="interest-filter-list sidebar-filter expand-list filter-all">
-                  <li class="filter">
-                    <a class="all" data-filter-by="all" href="#" :class="type==0?'filter-on':''" @click.prevent="getLessionFromType('')">All</a>
-                  </li>
-                  <template v-if="typeList.length>0">
-                    <li class="filter" v-for="(type_item,index) in typeList">
-                      <a class="all" data-filter-by="all" href="#" :class="type==type_item.id?'filter-on':''" @click.prevent="getLessionFromType(type_item.id)">{{type_item.name}}</a>
-                    </li>
-                  </template>
-
-                </ul>
-              </div>
-            </div>
-          </div>
-          <div class="lesson-list col-12 col-lg-8">
-            <div class="filtered-index row justify-content-center"  v-if="lessonList.length>0">
-              <div class="all item music-history-and-liberal-arts music-production col-12 col-lg-5" v-for="(item,index) in lessonList">
+          <div class="lesson-list col-12">
+            <div class="filtered-index row justify-content-center" v-if="lessonList.length>0">
+              <div class="all item music-history-and-liberal-arts music-production col-12 col-lg-3" v-for="(item,index) in lessonList">
                 <div class="card-main">
-                  <div class="course-code hidden-sm-down">{{item.num}}</div>
-                  <a class="title" href="#" @click.prevent="goToDetail(item.num)">{{item.name}}</a>
+                  <div class="course-code hidden-sm-down">{{item.course.num}}</div>
+                  <a class="title" href="#" @click.prevent="goToStudyPage">{{item.course.name}}</a>
                   <div class="details">
                     <div class="course-level">
                       <div style="cursor:pointer;" class="course-level-icon offering-supporting-detail skill-level-3" data-toggle="popover" data-trigger="focus" tabindex="0" data-content="300 level course. Advanced Intermediate course material." data-placement="left" data-original-title="Level 3 Course" rel="nofollow">
                         <!--<img :src="'../assets/img/skill-level-'+item.level+'.svg'" >-->
-                        <template v-if="item.level ==1">
+                        <template v-if="item.course.level ==1">
                           <img src="../assets/img/skill-level-1.svg">
                         </template>
-                        <template v-else-if="item.level ==2">
+                        <template v-else-if="item.course.level ==2">
                           <img src="../assets/img/skill-level-2.svg">
                         </template>
-                        <template v-else-if="item.level ==3">
+                        <template v-else-if="item.course.level ==3">
                           <img src="../assets/img/skill-level-3.svg">
                         </template>
                         <template v-else>
@@ -125,27 +71,110 @@
                         </template>
                       </div>
                       <div class="key-course-text">
-                        <h4>Level {{item.level}}</h4>
+                        <h4>Level {{item.course.level}}</h4>
                       </div>
                     </div>
                     <div class="course-tuition">
                       <div class="for-credit">
                         Credit:
-                        ${{item.price}}
+                        ${{item.course.price}}
                       </div>
                       <div class="no-credit">
                         Non-credit:
-                        ${{item.price}}
+                        ${{item.course.price}}
                       </div>
                     </div>
                   </div>
-                  <div class="desc" v-html="item.synopsis"></div>
+                  <div class="desc" v-html="item.course.synopsis"></div>
                 </div>
                 <div class="card-foot">
 
                 </div>
               </div>
+              <div class="all item music-history-and-liberal-arts music-production col-12 col-lg-3" v-for="(item,index) in lessonList">
+                <div class="card-main">
+                  <div class="course-code hidden-sm-down">{{item.course.num}}</div>
+                  <a class="title" href="#" @click.prevent="goToStudyPage">{{item.course.name}}</a>
+                  <div class="details">
+                    <div class="course-level">
+                      <div style="cursor:pointer;" class="course-level-icon offering-supporting-detail skill-level-3" data-toggle="popover" data-trigger="focus" tabindex="0" data-content="300 level course. Advanced Intermediate course material." data-placement="left" data-original-title="Level 3 Course" rel="nofollow">
+                        <!--<img :src="'../assets/img/skill-level-'+item.level+'.svg'" >-->
+                        <template v-if="item.course.level ==1">
+                          <img src="../assets/img/skill-level-1.svg">
+                        </template>
+                        <template v-else-if="item.course.level ==2">
+                          <img src="../assets/img/skill-level-2.svg">
+                        </template>
+                        <template v-else-if="item.course.level ==3">
+                          <img src="../assets/img/skill-level-3.svg">
+                        </template>
+                        <template v-else>
+                          <img src="../assets/img/skill-level-4.svg">
+                        </template>
+                      </div>
+                      <div class="key-course-text">
+                        <h4>Level {{item.course.level}}</h4>
+                      </div>
+                    </div>
+                    <div class="course-tuition">
+                      <div class="for-credit">
+                        Credit:
+                        ${{item.course.price}}
+                      </div>
+                      <div class="no-credit">
+                        Non-credit:
+                        ${{item.course.price}}
+                      </div>
+                    </div>
+                  </div>
+                  <div class="desc" v-html="item.course.synopsis"></div>
+                </div>
+                <div class="card-foot">
 
+                </div>
+              </div>
+              <div class="all item music-history-and-liberal-arts music-production col-12 col-lg-3" v-for="(item,index) in lessonList">
+                <div class="card-main">
+                  <div class="course-code hidden-sm-down">{{item.course.num}}</div>
+                  <a class="title" href="#" @click.prevent="goToStudyPage">{{item.course.name}}</a>
+                  <div class="details">
+                    <div class="course-level">
+                      <div style="cursor:pointer;" class="course-level-icon offering-supporting-detail skill-level-3" data-toggle="popover" data-trigger="focus" tabindex="0" data-content="300 level course. Advanced Intermediate course material." data-placement="left" data-original-title="Level 3 Course" rel="nofollow">
+                        <!--<img :src="'../assets/img/skill-level-'+item.level+'.svg'" >-->
+                        <template v-if="item.course.level ==1">
+                          <img src="../assets/img/skill-level-1.svg">
+                        </template>
+                        <template v-else-if="item.course.level ==2">
+                          <img src="../assets/img/skill-level-2.svg">
+                        </template>
+                        <template v-else-if="item.course.level ==3">
+                          <img src="../assets/img/skill-level-3.svg">
+                        </template>
+                        <template v-else>
+                          <img src="../assets/img/skill-level-4.svg">
+                        </template>
+                      </div>
+                      <div class="key-course-text">
+                        <h4>Level {{item.course.level}}</h4>
+                      </div>
+                    </div>
+                    <div class="course-tuition">
+                      <div class="for-credit">
+                        Credit:
+                        ${{item.course.price}}
+                      </div>
+                      <div class="no-credit">
+                        Non-credit:
+                        ${{item.course.price}}
+                      </div>
+                    </div>
+                  </div>
+                  <div class="desc" v-html="item.course.synopsis"></div>
+                </div>
+                <div class="card-foot">
+
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -153,89 +182,35 @@
     </div>
     <MyFooter/>
   </div>
-
 </template>
 
 <script>
   import Components from '../components/index'
   export default {
-    name: 'list',
+    name:'userCourse',
     components:Components,
     data(){
       return {
-        lessonList:[],
-        type:'0',
-        typeList:[]
+        lessonList:null
       }
     },
     methods:{
-      getLessonList(){
-        let _this = this;
-        this.$http({
-          method:'get',
-          url:'/courses',
-          params: {
-            page: 1,
-            pageSize:20
-          }
-        }).then(res=>{
-          _this.lessonList=res.data.data.items;
-        })
-        this.$http({
-          method:'get',
-          url:'/types',
-          params: {
-            page: 1,
-            pageSize:20
-          }
-        }).then(res=>{
-//          console.log(res.data)
-          _this.typeList=res.data.data.items;
-//          console.log(_this.lessonList)
-        })
-      },
-      getLessionFromLevel(level){
-        let _this = this;
-        this.type = 0;
-        this.$http({
-          method:'get',
-          url:'/courses',
-          params: {
-            page: 1,
-            pageSize:20,
-            level
-          }
-        }).then(res=>{
-          console.log(res.data)
-          _this.lessonList=res.data.data.items;
-          console.log(_this.lessonList)
-        })
-      },
-      getLessionFromType(type_id){
-        let _this = this;
-        this.type = type_id;
-//        type_id = type_id===0?'':type_id;
-        this.$http({
-          method:'get',
-          url:'/courses',
-          params: {
-            page: 1,
-            pageSize:20,
-            type_id
-          }
-        }).then(res=>{
-          console.log(res.data)
-          _this.lessonList=res.data.data.items;
-          console.log(_this.lessonList)
-        })
-      },
-      goToDetail(num){
-        this.$router.push({ name: 'detail', params: { num }})
+      goToStudyPage(){
+        this.$router.push({ name: 'userLesson'})
       }
     },
-    beforeMount:function(){
-      this.getLessonList();
+    beforeMount(){
+      let _this = this;
+      this.$http({
+        method:'get',
+        url:'/users/courses?user_id=2',
+      }).then(res=>{
+        console.log(res.data)
+        _this.lessonList=res.data.data.items;
+        console.log(_this.lessonList)
+      })
     }
+
   }
 </script>
 
@@ -352,7 +327,7 @@
     padding: 0px;
   }
   .filtered-index {
-    /*display: grid;*/ /*css 的栅格系统*/
+    /*display: grid;*/
     /*grid-template-columns: 50% 50%;*/
     margin-left: -15px;
     margin-right: -15px;

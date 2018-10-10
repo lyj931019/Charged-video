@@ -27,7 +27,7 @@
             <li class="nav-item">
               <router-link :to="{ name: 'list'}">
                 <a class="nav-link" href="#">
-                  Courses
+                  所有课程
                 </a>
               </router-link>
 
@@ -43,9 +43,9 @@
               <!--</a>-->
             <!--</li>-->
             <li class="nav-item">
-              <router-link :to="{ name: 'userLesson'}">
+              <router-link :to="{ name: 'userCourse'}">
                 <a class="nav-link" href="#">
-                  Mine
+                  我的课程
                 </a>
               </router-link>
 

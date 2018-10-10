@@ -28,6 +28,11 @@
         <div class="aside-list">
           <div class="aside-item" @click="toggleAsideDetailActive">
             <img src="../assets/img/book.png" alt="">
+            章节列表
+          </div>
+          <div class="aside-item" @click="goback">
+            <img src="../assets/img/goback.png" alt="">
+            返回
           </div>
         </div>
         <div class="aside-detail" :class="asideDetailActive?'active':''" v-if="courses">
@@ -78,6 +83,9 @@
       }
     },
     methods:{
+      goback(){
+        this.$router.go(-1);
+      },
       toggleClassRoomActive(){
         this.classRoomActive = !this.classRoomActive;
       },
@@ -283,13 +291,22 @@
     border-radius: 25px;
     margin: 5px 29px 0 0;
   }
+  .aside-list{
+    padding-top: 2rem;
+  }
   .aside-item{
     text-align: center;
     width: 60px;
     padding:6px 0;
+    cursor: pointer;
+    text-align: center;
+    font-size: 0.8rem;
+    margin-bottom: 1rem;
   }
 
-
+  .aside-detail>*{
+    cursor: pointer;
+  }
   .aside-detail h2.select-prompt {
     text-align: left;
     padding: 16px 24px;
