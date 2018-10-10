@@ -5,8 +5,8 @@ body {
   font-weight: 200;
   opacity: 1;
   transition: 1s opacity;
-  padding-left: 60px;
-  padding-right: 60px;
+  //padding-left: 60px;
+  //padding-right: 60px;
   -webkit-overflow-scrolling: touch;
   max-width: 2300px;
   margin-left: auto;
@@ -47,12 +47,12 @@ h5 {
 }
 li {
   font-family: "Avenir Next Cyr W00 Regular", Helvetica, Arial, sans-serif;
-  font-size: 1.33rem;
+  font-size: 1.16rem;
   line-height: 2.2rem;
 }
 p, p.txt-md, .txt-md {
   font-family: "Avenir Next Cyr W00 Regular", Helvetica, Arial, sans-serif;
-  font-size: 1.33rem;
+  font-size: 1.16rem;
   line-height: 2.2rem;
 }
 
@@ -304,3 +304,9 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 }
 
 
+
+@media (max-width: 991px){
+  .hidden-md-down {
+    display: none !important;
+  }
+}

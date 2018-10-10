@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="body">
     <MyHeader/>
     <div class="home_page">
       <div class="content-wrap" id="main-content">
@@ -12,7 +12,7 @@
                     <h1>Learn Music Online with Berklee</h1>
                     <ul class="offerings-list">
                       <li>
-                        <a href="/music-degrees/graduate">
+                        <a href="#">
                           <h3 class="no-underline">
                             <span class="underline">Master's Degrees</span>
                             <span class="new">New!</span>
@@ -25,7 +25,7 @@
                         </a>
                       </li>
                       <li>
-                        <a class="action clearfix" href="/music-degrees/undergraduate" itemprop="url">
+                        <a class="action clearfix" href="#" itemprop="url">
                           <h3>Bachelor's Degrees</h3>
                           <div class="txt-sm">
 <span class="timing">
@@ -35,7 +35,7 @@
                         </a>
                       </li>
                       <li>
-                        <a class="action clearfix" href="/certificates" itemprop="url">
+                        <a class="action clearfix" href="#" itemprop="url">
                           <h3>Multi-Course Certificates</h3>
                           <div class="txt-sm">
 <span class="timing">
@@ -45,7 +45,7 @@
                         </a>
                       </li>
                       <li>
-                        <a class="action clearfix" href="/courses" itemprop="url">
+                        <a class="action clearfix" href="#" itemprop="url">
                           <h3>12-Week Courses</h3>
                           <div class="txt-sm">
 <span class="timing">
@@ -55,12 +55,12 @@
                         </a>
                       </li>
                       <li>
-                        <a class="txt-md compare" href="/about/compare-online-music-education-offerings">Compare Our Offerings</a>
+                        <a class="txt-md compare" href="#">Compare Our Offerings</a>
                       </li>
                     </ul>
                     <div class="column-left-cta">
                       <a href="#footer-form">Request Info</a>
-                      <a class="hidden-md-down" href="/sample-a-lesson" itemprop="url">Sample a Lesson</a>
+                      <a class="hidden-md-down" href="#" itemprop="url">Sample a Lesson</a>
                     </div>
                   </div>
                   <div class="timing-message-box">
@@ -71,17 +71,17 @@
 
 
                     <div id="green-block-content-cta">
-                      <a class="action bo-button" href="https://online.berklee.edu/music-degrees">Apply Now</a>
+                      <a class="action bo-button" href="#">Apply Now</a>
                     </div>
                   </div>
                 </div>
                 <div id="rtp-contact">
                   <div class="advisor-contact-block">
                     <p class="guidance">Need guidance?</p>
-                    <a class="tel-main" href="tel:18662375533">1-866-BERKLEE</a>
-                    <a class="tel-intl" href="tel:16177472146">Int'l: +1-617-747-2146</a>
-                    <p class="call-text"><a href="tel:18662375533">Call</a>,&nbsp;<a href="sms:18662375533">Text</a>,&nbsp;or&nbsp;<a
-                      href="mailto: advisors@online.berklee.edu">Email us</a></p>
+                    <a class="tel-main" href="#">1-866-BERKLEE</a>
+                    <a class="tel-intl" href="#">Int'l: +1-617-747-2146</a>
+                    <p class="call-text"><a href="#">Call</a>,&nbsp;<a href="sms:18662375533">Text</a>,&nbsp;or&nbsp;<a
+                      href="#">Email us</a></p>
                   </div>
                 </div>
 
@@ -127,46 +127,46 @@
                       </p>
                       <ul class="interest-list listToggle">
                         <li>
-                          <a href="/music-production" itemprop="url">Music Production</a>
+                          <a href="#" itemprop="url">Music Production</a>
                         </li>
                         <li>
-                          <a href="/guitar" itemprop="url">Guitar</a>
+                          <a href="#" itemprop="url">Guitar</a>
                         </li>
                         <li>
-                          <a href="/music-theory-harmony-and-ear-training">Music Theory, Harmony, and Ear Training</a>
+                          <a href="#">Music Theory, Harmony, and Ear Training</a>
                         </li>
                         <li>
-                          <a href="/songwriting" itemprop="url">Songwriting</a>
+                          <a href="#" itemprop="url">Songwriting</a>
                         </li>
                         <li>
-                          <a href="/music-business" itemprop="url">Music Business</a>
+                          <a href="#" itemprop="url">Music Business</a>
                         </li>
                         <li>
-                          <a href="/voice">Voice</a>
+                          <a href="#">Voice</a>
                         </li>
                         <li>
-                          <a href="/piano-and-keyboard">Piano and Keyboard</a>
+                          <a href="#">Piano and Keyboard</a>
                         </li>
                         <li>
-                          <a href="/arranging">Arranging</a>
+                          <a href="#">Arranging</a>
                         </li>
                         <li>
-                          <a href="/bass">Bass</a>
+                          <a href="#">Bass</a>
                         </li>
                         <li>
-                          <a href="/orchestration">Orchestration</a>
+                          <a href="#">Orchestration</a>
                         </li>
                         <li>
-                          <a href="/drums">Drums</a>
+                          <a href="#">Drums</a>
                         </li>
                         <li>
-                          <a href="/music-history-and-liberal-arts">Music History and Liberal Arts</a>
+                          <a href="#">Music History and Liberal Arts</a>
                         </li>
                         <li>
-                          <a href="/music-for-film-tv-and-games" itemprop="url">Music for Film, TV, and Games</a>
+                          <a href="#" itemprop="url">Music for Film, TV, and Games</a>
                         </li>
                         <li>
-                          <a href="/improvisation">Improvisation</a>
+                          <a href="#">Improvisation</a>
                         </li>
 
                       </ul>
@@ -179,15 +179,15 @@
                           <ul>
 
                             <li class="clearfix">
-                              <a href="/courses/ableton-live-techniques-non-linear-creative-strategies-and-composition">
-                                <img class="float-left img-circle fr-dii fr-fil fr-draggable" src="//online.berklee.edu/user/avatar?user_id=48040150">
+                              <a href="#">
+                                <img class="float-left img-circle fr-dii fr-fil fr-draggable" src="../assets/img/avatar.png">
                                 <h5>Ableton Live Techniques: Non-Linear Creative Strategies and Composition</h5>
                                 <span style="font-size: 1.2rem;">by Erin Barra and Loudon Stearns</span>
                               </a>
                             </li>
                             <li class="clearfix">
-                              <a href="/courses/ear-training-2">
-                                <img class="img-circle float-left" src="https://s3.amazonaws.com/berkleemusic/users/profile_photos/1960372/large_thumbnail.jpg?1397753575">
+                              <a href="#">
+                                <img class="img-circle float-left" src="../assets/img/avatar.png">
                                 <h5>Ear Training 2</h5>
                                 <span style="font-size: 1.2rem;">by Gaye Tolan Hatfield</span>
 
@@ -196,8 +196,8 @@
 
 
                             <li class="clearfix">
-                              <a href="courses/solo-guitar-performance-accompaniment-and-arranging">
-                                <img class="img-circle float-left" src="//online.berklee.edu/user/avatar?user_id=490437">
+                              <a href="#">
+                                <img class="img-circle float-left" src="../assets/img/avatar.png">
                                 <h5>Solo Guitar: Performance, Accompaniment, and Arranging</h5>
                                 <span style="font-size: 1.2rem;">by John Baboian</span>
                               </a>
@@ -215,7 +215,7 @@
                       </div>
                       <div class="container-content">
                         <div class="inner text-center">
-                          <a class="bo-button" href="/coming-soon/">
+                          <a class="bo-button" href="#">
                             See Full List
                             <i class="icon-caret-right"></i>
                           </a>
@@ -243,16 +243,16 @@
                     </h2>
                     <p class="txt-lg">
                       We designed our online graduate programs to be completed in one year, providing you with the most affordable and flexible option for earning your master's degree with Berklee College of Music. <a
-                      href="https://online.berklee.edu/apply" style="color: #FFF;">Apply today</a>.
+                      href="#" style="color: #FFF;">Apply today</a>.
                     </p>
                     <ul>
                       <li class="txt-lg">
-                        <a href="/music-degrees/graduate/music-production">
+                        <a href="#">
                           Master of Music in <span>Music Production</span>
                         </a>
                       </li>
                       <li class="txt-lg">
-                        <a href="/music-degrees/graduate/music-business">
+                        <a href="#">
                           Master of Arts in <span>Music Business</span>
                         </a>
                       </li>
@@ -262,7 +262,7 @@
               </div>
               <div class="col-12 col-md-4 top-promos">
                 <div id="rtp-small-promo-1">
-                  <a href="https://welcome.online.berklee.edu/military" class="thumb-container" target="_blank">
+                  <a href="#" class="thumb-container" target="_blank">
                     <div class="thumb-flex">
                       <img alt="Military Student Andrew Bonica, wearing camo, on a Jeep, with a pink guitar"
                            src="../assets/img/homepage_military.jpg" style="max-width: 416px;">
@@ -274,7 +274,7 @@
                   </a>
                 </div>
                 <div id="rtp-small-promo-2">
-                  <a href="https://online.berklee.edu/takenote/berklee-online-achieves-97-percent-student-satisfaction/"
+                  <a href="#"
                      class="thumb-container" target="_blank">
                     <div class="thumb-flex">
                       <img alt="Several Berklee students in a classroom" src="../assets/img/student_satisfaction.jpg"
@@ -306,7 +306,7 @@
                   <p class="txt-lg">
                     Curious about how online learning works? Explore our unique learning environment in one of 12 free sample lessons.
                   </p>
-                  <a class="bo-button-alt" href="/sample-a-lesson">
+                  <a class="bo-button-alt" href="#">
                     Try It Now
                   </a>
                 </div>

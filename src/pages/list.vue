@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="body">
     <MyHeader/>
     <div>
       <div class="feature feature-photo">
@@ -56,7 +56,7 @@
                 </p>
                 <ul class="filter-level sidebar-filter filter-all">
                   <li class="filter course-filter-all">
-                    <a class="level-filter all filter-on" data-filter-by="all" href="#">All Levels</a>
+                    <a class="level-filter all filter-on" data-filter-by="all" href="#" @click.prevent="getLessionFromLevel('')">All Levels</a>
                   </li>
                   <li class="filter">
                     <a class="level-filter" data-filter-by="level-1" data-html="true" data-toggle="tooltip" href="#" title="" data-original-title="<p class='level-tip'>Foundational courses, no prerequisites required.</p>" @click.prevent="getLessionFromLevel(1)">
@@ -200,6 +200,7 @@
       },
       getLessionFromLevel(level){
         let _this = this;
+        this.type = 0;
         this.$http({
           method:'get',
           url:'/courses',

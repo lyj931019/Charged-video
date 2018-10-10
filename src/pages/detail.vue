@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="body">
     <MyHeader/>
     <div v-if="courses">
       <!--<h1>{{$route.params.num}}</h1>-->
@@ -9,25 +9,25 @@
           <div class="row justify-content-between">
             <div class="col-12 col-lg-9" property="data-sticky_column">
               <div class="course-head">
-                <a class="txt-lg a-black" href="/courses" itemprop="url">Online Courses</a>
+                <a class="txt-lg a-black" href="#" itemprop="url">Online Courses</a>
                 <h1>{{courses.name}}</h1>
                 <div class="course-subhead">
                   <img alt="author.full_name" class="img-circle"
-                       src="https://online.berklee.edu/user/avatar?user_id=33535733">
+                       :src="courses.instructor.avatar">
 
                   <div class="course-subhead-text">
                     <p class="txt-sm">
                       Authored
                       <span>
 by
-<a class="a-body-link" href="#instructors">{{courses.name}}待定</a>
+<a class="a-body-link" href="#instructors">{{courses.instructor.name}}</a>
 </span>
                     </p>
                     <div class="separator">|</div>
                     <p class="txt-sm">
                       Course Code:
                       <span>
-OLART-310
+{{courses.num}}
 </span>
                     </p>
                   </div>
@@ -124,7 +124,7 @@ OLART-310
                   <a class="nav-scroll last" data-scroll-nav="2" href="#requirements">Requirements</a>
                   <a class="nav-scroll" data-scroll-nav="3" href="#instructors">Instructors</a>
                   <a class="btn-action bo-button"
-                     href="https://online.berklee.edu/store/cart/course_items?course_item_id=37620529">
+                     href="#">
                     <!--<svg class="svg-inline&#45;&#45;fa fa-check-square fa-w-14 hidden-lg-up" aria-hidden="true" data-prefix="fa"-->
                     <!--data-icon="check-square" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"-->
                     <!--data-fa-i2svg="">-->
@@ -163,7 +163,7 @@ OLART-310
                 <h2>Syllabus</h2>
                 <template v-for="(lesson,index) in courses.lessons" >
                   <p class="bo-list-closed" >
-                    <a data-toggle="collapse" :data-target="'#lesson-content'+index" >
+                    <a data-toggle="collapse" :data-target="'#lesson-content-'+index" class="lesson-toggle" >
                       <i>
                         <svg class="svg-inline--fa fa-caret-right fa-w-6" aria-hidden="true" data-prefix="fa"
                              data-icon="caret-right" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 512"
@@ -182,7 +182,7 @@ OLART-310
 
 
                   </p>
-                  <div class="collapse lesson-content" :id="'lesson-content'+index" style="margin-left: 152px;" v-html="lesson.abstract">
+                  <div class="collapse lesson-content" :id="'lesson-content-'+index" style="margin-top: 1rem;" v-html="lesson.abstract">
 
                   </div>
                 </template>
@@ -198,85 +198,82 @@ OLART-310
             <div class="col-12 col-lg-7">
               <div class="requirements content-section" data-scroll-index="2" id="requirements">
                 <h2>Requirements</h2>
-                <h4><i class="closed">
-                  <svg class="svg-inline--fa fa-caret-right fa-w-6" aria-hidden="true" data-prefix="fa"
-                       data-icon="caret-right" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 512"
-                       data-fa-i2svg="">
-                    <path fill="currentColor"
-                          d="M0 384.662V127.338c0-17.818 21.543-26.741 34.142-14.142l128.662 128.662c7.81 7.81 7.81 20.474 0 28.284L34.142 398.804C21.543 411.404 0 402.48 0 384.662z"></path>
-                  </svg><!-- <span class="fa fa-caret-right"></span> --></i>Prerequisites
+                <h4>
+                  <a href="#prerequisites" data-toggle="collapse">
+                    <i class="closed">
+                      <svg class="svg-inline--fa fa-caret-right fa-w-6" aria-hidden="true" data-prefix="fa"
+                           data-icon="caret-right" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 512"
+                           data-fa-i2svg="">
+                        <path fill="currentColor"
+                              d="M0 384.662V127.338c0-17.818 21.543-26.741 34.142-14.142l128.662 128.662c7.81 7.81 7.81 20.474 0 28.284L34.142 398.804C21.543 411.404 0 402.48 0 384.662z"></path>
+                      </svg><!-- <span class="fa fa-caret-right"></span> --></i>Prerequisites
+                  </a>
+
                 </h4>
-                <div class="truncate-paragraph" style="display: none;"><p>Students should have:</p>
-                  <ul>
-                    <li>Familiarity and comfort with basic computer skills and file formats</li>
-                    <li>
-                      Familiarity with a 2D graphics program such as Photoshop (any version) or GIMP, Painter, or equivalent
-                    </li>
-                  </ul>
-                  <p>
-                    No art experience is required, but an openness and willingness to experiment with artistic ideas and processes will make your work much stronger. While this course is primarily intended to provide technical information and inspiration, every assignment will include an artistic component, whether color judgment, composition, timing, or other aspect of 3D and animation.&nbsp;</p>
-                </div>
+                <template v-if="courses.requirements_prerequisites">
+                  <div class="truncate-paragraph collapse lesson-content" id="prerequisites" v-html="courses.requirements_prerequisites"></div>
+                </template>
+                <template v-else>
+                  <div class="truncate-paragraph collapse lesson-content" id="prerequisites">not found</div>
+                </template>
+
                 <hr>
-                <h4 style="cursor: auto;"><i class="closed">
-                  <svg class="svg-inline--fa fa-caret-right fa-w-6" aria-hidden="true" data-prefix="fa"
-                       data-icon="caret-right" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 512"
-                       data-fa-i2svg="">
-                    <path fill="currentColor"
-                          d="M0 384.662V127.338c0-17.818 21.543-26.741 34.142-14.142l128.662 128.662c7.81 7.81 7.81 20.474 0 28.284L34.142 398.804C21.543 411.404 0 402.48 0 384.662z"></path>
-                  </svg><!-- <span class="fa fa-caret-right"></span> --></i>No Required Textbooks
+                <h4 style="cursor: auto;">
+                  <a href="#textbooks" data-toggle="collapse">
+                    <i class="closed">
+                      <svg class="svg-inline--fa fa-caret-right fa-w-6" aria-hidden="true" data-prefix="fa"
+                           data-icon="caret-right" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 512"
+                           data-fa-i2svg="">
+                        <path fill="currentColor"
+                              d="M0 384.662V127.338c0-17.818 21.543-26.741 34.142-14.142l128.662 128.662c7.81 7.81 7.81 20.474 0 28.284L34.142 398.804C21.543 411.404 0 402.48 0 384.662z"></path>
+                      </svg><!-- <span class="fa fa-caret-right"></span> --></i>No Required Textbooks
+                  </a>
+
                 </h4>
+                <template v-if="courses.requirements_textbooks">
+                  <div class="truncate-paragraph collapse lesson-content" id="textbooks" v-html="courses.requirements_textbooks"></div>
+                </template>
+                <template v-else>
+                  <div class="truncate-paragraph collapse lesson-content" id="textbooks">not found</div>
+                </template>
                 <hr>
-                <h4><i class="closed">
-                  <svg class="svg-inline--fa fa-caret-right fa-w-6" aria-hidden="true" data-prefix="fa"
-                       data-icon="caret-right" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 512"
-                       data-fa-i2svg="">
-                    <path fill="currentColor"
-                          d="M0 384.662V127.338c0-17.818 21.543-26.741 34.142-14.142l128.662 128.662c7.81 7.81 7.81 20.474 0 28.284L34.142 398.804C21.543 411.404 0 402.48 0 384.662z"></path>
-                  </svg><!-- <span class="fa fa-caret-right"></span> --></i>Software Requirements
+                <h4>
+                  <a href="#software" data-toggle="collapse">
+                    <i class="closed">
+                      <svg class="svg-inline--fa fa-caret-right fa-w-6" aria-hidden="true" data-prefix="fa"
+                           data-icon="caret-right" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 512"
+                           data-fa-i2svg="">
+                        <path fill="currentColor"
+                              d="M0 384.662V127.338c0-17.818 21.543-26.741 34.142-14.142l128.662 128.662c7.81 7.81 7.81 20.474 0 28.284L34.142 398.804C21.543 411.404 0 402.48 0 384.662z"></path>
+                      </svg><!-- <span class="fa fa-caret-right"></span> --></i>Software Requirements
+                  </a>
+
                 </h4>
-                <div class="readmore-hidden">
-                  <ul>
-                    <li><a href="http://www.blender.org" target="“blank&quot;">Blender 2.66 or higher</a></li>
-                    <li>2D editing software such as Photoshop or freely available <a href="http://www.gimp.org/"
-                                                                                     target="“blank&quot;">open-source GIMP</a>
-                    </li>
-                    <li>Audio-editing software such as freely available <a href="http://audacity.sourceforge.net/"
-                                                                           target="“blank&quot;">open-source Audacity</a>
-                    </li>
-                    <li>Optional: a GIF authoring tool for the creation of aniGIFs and stereoscopic Web images</li>
-                  </ul>
-                  <p>Mac Users</p>
-                  <ul>
-                    <li>OS X 10.9 Mavericks or higher (click <a href="https://support.apple.com/kb/SP702?locale=en_US"
-                                                                target="_blank">here</a> for system requirements)
-                    </li>
-                    <li>Latest version of <a href="https://www.google.com/chrome/" target="_blank">Google Chrome</a></li>
-                  </ul>
-                  <p>Windows Users</p>
-                  <ul>
-                    <li>Windows 7 or higher (click <a
-                      href="https://support.microsoft.com/en-us/help/10737/windows-7-system-requirements" target="_blank">here</a>
-                      for system requirements)
-                    </li>
-                    <li>Latest version of <a href="https://www.google.com/chrome/" target="_blank">Google Chrome</a></li>
-                  </ul>
-                  <p>All Users</p>
-                  <ul>
-                    <li>To view / participate in live chats, get the <a
-                      href="https://chrome.google.com/webstore/detail/cisco-webex-extension/jlhmfgmfgeifomenelglieieghnjghma"
-                      target="_blank">WebEx extension for Google Chrome</a>.
-                    </li>
-                  </ul>
-                </div>
+                <template v-if="courses.requirements_software">
+                  <div class="truncate-paragraph collapse lesson-content" id="software" v-html="courses.requirements_software"></div>
+                </template>
+                <template v-else>
+                  <div class="truncate-paragraph collapse lesson-content" id="software">not found</div>
+                </template>
                 <hr>
-                <h4><i class="closed">
-                  <svg class="svg-inline--fa fa-caret-right fa-w-6" aria-hidden="true" data-prefix="fa"
-                       data-icon="caret-right" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 512"
-                       data-fa-i2svg="">
-                    <path fill="currentColor"
-                          d="M0 384.662V127.338c0-17.818 21.543-26.741 34.142-14.142l128.662 128.662c7.81 7.81 7.81 20.474 0 28.284L34.142 398.804C21.543 411.404 0 402.48 0 384.662z"></path>
-                  </svg><!-- <span class="fa fa-caret-right"></span> --></i>Hardware Requirements
+                <h4>
+                  <a href="#hardware" data-toggle="collapse">
+                    <i class="closed">
+                      <svg class="svg-inline--fa fa-caret-right fa-w-6" aria-hidden="true" data-prefix="fa"
+                           data-icon="caret-right" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 512"
+                           data-fa-i2svg="">
+                        <path fill="currentColor"
+                              d="M0 384.662V127.338c0-17.818 21.543-26.741 34.142-14.142l128.662 128.662c7.81 7.81 7.81 20.474 0 28.284L34.142 398.804C21.543 411.404 0 402.48 0 384.662z"></path>
+                      </svg><!-- <span class="fa fa-caret-right"></span> --></i>Hardware Requirements
+                  </a>
+
                 </h4>
+                <template v-if="courses.requirements_hardware">
+                  <div class="truncate-paragraph collapse lesson-content" id="hardware" v-html="courses.requirements_hardware"></div>
+                </template>
+                <template v-else>
+                  <div class="truncate-paragraph collapse lesson-content" id="hardware">not found</div>
+                </template>
               </div>
             </div>
           </div>
@@ -291,25 +288,27 @@ OLART-310
                 <div class="row">
                   <div class="col-12 col-sm-2 instructor-img">
                     <img alt="faculty.full_name" class="rounded-circle"
-                         src="https://online.berklee.edu/user/avatar?user_id=33535733">
+                         :src="courses.instructor.avatar">
                   </div>
                   <div class="col-12 col-sm-10 instr">
                     <div class="txt-lg fac-name"><a class="a-body-link"
-                                                    href="/faculty/nick-jainschigg">Nick Jainschigg</a></div>
+                                                    href="/faculty/nick-jainschigg">{{courses.instructor.name}}</a></div>
                     <p class="txt-sm">Author &amp; Instructor</p>
-                    <p><em>Nick Jainschigg</em>
-                      was born in New York City and grew up near the Metropolitan Museum of Art and the American Museum of Natural History. The two influences of art and natural science have been with him ever since. After graduating with a BFA in illustration, he pursued a career in science fiction and fantasy illustration, producing hundreds of covers and interiors for most of the major (and many minor) publishers. He discovered the computer as a means of expression in the late 90s and hasn't had a decent night's sleep since. Currently, he is a professor in the Illustration department of the Rhode Island School of Design and continues to work on animations, interactive illustration, and painting in oils.
-                    </p>
+                    <div>
+                      <!--<em>Nick Jainschigg</em>-->
+                     <div v-html="courses.instructor.abstract"></div>
+                    </div>
+                    <!--
                     <div class="read-more-container">
-                      <!--<a class="read-more" href="#">Read More</a>-->
                       <div class="collapse" id="instrreadmore">
-                        <p>
-                          His work has been featured in or written about in publications from Marvel Comics, DC Comics, Ballantine Books, PBS Interactive, The New York Times, Wizards of the Coast, Tor Books, Scholastic Inc., MacMillan Publishing, Domino Magazine, Paramount, and Viacom. His digital paleontological reconstructions have been featured on the Discovery Channel and at the Polish Academy of Sciences, the Maastricht Natural History Museum, and the University of California Museum of Paleontology.
+                        <p v-html="courses.instructor.abstract">
+
                         </p>
                       </div>
                       <a class="read-less" href="#instrreadmore" data-toggle="collapse"
                          style="display: inline-block;font-weight: bold;"> Read {{instrReadTips}}</a>
                     </div>
+                    -->
                   </div>
                 </div>
 
@@ -551,7 +550,7 @@ OLART-310
 
   .advisor-contact-block .tel-main {
     font-family: "Avenir Next Cyr W00 Regular", Helvetica, Arial, sans-serif;
-    font-size: 1.67rem;
+    font-size: 1.4rem;
     line-height: 2.50rem;
     /*font-family: "Avenir Next Cyr W00 Bold", Helvetica, Arial, sans-serif;*/
     /*font-size: 1.85rem;*/
@@ -564,7 +563,7 @@ OLART-310
 
   .advisor-contact-block .tel-intl {
     font-family: "Avenir Next Cyr W00 Regular", Helvetica, Arial, sans-serif;
-    font-size: 1rem;
+    font-size: 0.9rem;
     line-height: 1.5rem;
     display: block;
   }
@@ -813,6 +812,9 @@ OLART-310
     font-size: 1.3rem;
     line-height: 2.25rem;
     cursor: pointer;
+  }
+  .content-requirements h4 a, .content-requirements h4 a{
+    color: #000000;
   }
 
   .content-requirements i, .content-requirements i {
@@ -1066,4 +1068,7 @@ OLART-310
 
   }
 
+  .lesson-toggle{
+    display: flex;
+  }
 </style>

@@ -5,48 +5,59 @@
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
-        <a class="navbar-brand" href="#"><img src="../assets/img/berklee-online-logo-red-gray.png" alt=""></a>
+        <router-link :to="{ name: 'index'}"><a class="navbar-brand" href="#"><img src="../assets/img/berklee-online-logo-red-gray.png" alt=""></a></router-link>
 
         <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
           <ul class="navbar-nav mr-auto mt-2 mt-lg-0 center">
+            <!--<li class="nav-item">-->
+              <!--<a class="nav-link" href="#">-->
+                <!--All Programs-->
+              <!--</a>-->
+            <!--</li>-->
+            <!--<li class="nav-item">-->
+              <!--<a class="nav-link" href="#">-->
+                <!--Degrees-->
+              <!--</a>-->
+            <!--</li>-->
+            <!--<li class="nav-item">-->
+              <!--<a class="nav-link" href="#">-->
+                <!--Certificates-->
+              <!--</a>-->
+            <!--</li>-->
             <li class="nav-item">
-              <a class="nav-link" href="#">
-                All Programs
-              </a>
+              <router-link :to="{ name: 'list'}">
+                <a class="nav-link" href="#">
+                  Courses
+                </a>
+              </router-link>
+
             </li>
+            <!--<li class="nav-item">-->
+              <!--<a class="nav-link" href="#">-->
+                <!--Admissions-->
+              <!--</a>-->
+            <!--</li>-->
+            <!--<li class="nav-item">-->
+              <!--<a class="nav-link" href="#">-->
+                <!--About-->
+              <!--</a>-->
+            <!--</li>-->
             <li class="nav-item">
-              <a class="nav-link" href="#">
-                Degrees
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">
-                Certificates
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">
-                Courses
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">
-                Admissions
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">
-                About
-              </a>
+              <router-link :to="{ name: 'userLesson'}">
+                <a class="nav-link" href="#">
+                  Mine
+                </a>
+              </router-link>
+
             </li>
           </ul>
           <form class="form-inline my-2 my-lg-0">
             <!--<input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">-->
             <!--<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>-->
-            <a class="nav-link apply hidden-md-down" href="/apply">
+            <a class="nav-link apply hidden-md-down" href="#">
               Apply
             </a>
-            <a class="btn-login nav-link" href="https://online.berklee.edu/register/login?return_url=https://online.berklee.edu/" id="login" rel="nofollow">Log In</a>
+            <a class="btn-login nav-link" href="#" id="login" rel="nofollow">Log In</a>
 
           </form>
         </div>

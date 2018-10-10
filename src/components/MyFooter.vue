@@ -71,7 +71,7 @@
                 <h3>
                   Berklee Online
                   <div class="footer-head-icons">
-                    <a href="//www.facebook.com/berkleeonline" target="_blank">
+                    <a href="#" target="_blank">
                       <svg class="svg-inline--fa fa-facebook fa-w-14" aria-hidden="true" data-prefix="fab"
                            data-icon="facebook" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"
                            data-fa-i2svg="">
@@ -79,7 +79,7 @@
                               d="M448 56.7v398.5c0 13.7-11.1 24.7-24.7 24.7H309.1V306.5h58.2l8.7-67.6h-67v-43.2c0-19.6 5.4-32.9 33.5-32.9h35.8v-60.5c-6.2-.8-27.4-2.7-52.2-2.7-51.6 0-87 31.5-87 89.4v49.9h-58.4v67.6h58.4V480H24.7C11.1 480 0 468.9 0 455.3V56.7C0 43.1 11.1 32 24.7 32h398.5c13.7 0 24.8 11.1 24.8 24.7z"></path>
                       </svg><!-- <span class="fab fa-facebook"></span> -->
                     </a>
-                    <a href="//www.twitter.com/berkleeonline" target="_blank">
+                    <a href="#" target="_blank">
                       <svg class="svg-inline--fa fa-twitter fa-w-16" aria-hidden="true" data-prefix="fab"
                            data-icon="twitter" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"
                            data-fa-i2svg="">
@@ -87,7 +87,7 @@
                               d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"></path>
                       </svg><!-- <span class="fab fa-twitter"></span> -->
                     </a>
-                    <a href="//www.youtube.com/user/BerkleeMusic" target="_blank">
+                    <a href="#" target="_blank">
                       <svg class="svg-inline--fa fa-youtube fa-w-18" aria-hidden="true" data-prefix="fab"
                            data-icon="youtube" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"
                            data-fa-i2svg="">
@@ -95,7 +95,7 @@
                               d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305zm-317.51 213.508V175.185l142.739 81.205-142.739 81.201z"></path>
                       </svg><!-- <span class="fab fa-youtube"></span> -->
                     </a>
-                    <a href="//www.instagram.com/berkleeonline/" target="_blank">
+                    <a href="#" target="_blank">
                       <svg class="svg-inline--fa fa-instagram fa-w-14" aria-hidden="true" data-prefix="fab"
                            data-icon="instagram" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"
                            data-fa-i2svg="">
@@ -104,30 +104,30 @@
                       </svg><!-- <span class="fab fa-instagram"></span> -->
                     </a>
                     <a class="magazine"
-                       href="//online.berklee.edu/takenote/?utm_source=bol&amp;utm_campaign=takenote&amp;utm_medium=catalog"
+                       href="#"
                        target="_blank">
                       Magazine
                     </a>
                   </div>
                 </h3>
                 <p class="footer-brief">
-                  Berklee Online is <a href="https://www.berklee.edu" target="_blank" style="color: #eff1f3">Berklee College of Music's</a>
+                  Berklee Online is <a href="#" target="_blank" style="color: #eff1f3">Berklee College of Music's</a>
                   online extension school. With world renowned faculty and unparalleled networking opportunities, Berklee Online brings the best of Berklee to students around the world.
                   <br>
                   <br>
                   ‐ Visit Berklee:
-                  <a href="https://www.berklee.edu" style="color: #eff1f3;" target="_blank">
+                  <a href="#" style="color: #eff1f3;" target="_blank">
                     www.berklee.edu
                   </a>
                   <br>
                   ‐ Berklee Events:
-                  <a href="https://www.berklee.edu/events" style=" color: #eff1f3;" target="_blank">
+                  <a href="#" style=" color: #eff1f3;" target="_blank">
                     www.berklee.edu/events
                   </a>
                 </p>
                 <div class="hidden-md-down" id="tweets-container">
                   <a class="twitter-timeline" data-width="520" data-height="600" data-theme="dark"
-                     data-link-color="#078BAA" href="https://twitter.com/BerkleeOnline?ref_src=twsrc%5Etfw">Tweets by BerkleeOnline</a>
+                     data-link-color="#078BAA" href="#">Tweets by BerkleeOnline</a>
                 </div>
               </div>
             </div>
@@ -138,56 +138,56 @@
                 All Programs
               </h4>
               <ul>
-                <li><a href="/music-degrees" itemprop="url">All Online Music Degree Programs</a></li>
-                <li><a href="/certificates" itemprop="url">All Online Music Certificates</a></li>
-                <li><a href="/courses" itemprop="url">All Online Music Courses</a></li>
-                <li><a href="/about/compare-online-music-education-offerings">Compare Our Music Education Offerings</a>
+                <li><a href="#" itemprop="url">All Online Music Degree Programs</a></li>
+                <li><a href="#" itemprop="url">All Online Music Certificates</a></li>
+                <li><a href="#" itemprop="url">All Online Music Courses</a></li>
+                <li><a href="#">Compare Our Music Education Offerings</a>
                 </li>
               </ul>
               <h4 class="hidden-md-up">
                 Music Degree Programs
               </h4>
               <ul class="hidden-md-up">
-                <li><a href="/music-degrees" itemprop="url">Choose Your Major</a></li>
+                <li><a href="#" itemprop="url">Choose Your Major</a></li>
                 <li>
-                  <a href="/degrees/about/degree-admissions-requirements" itemprop="url">Admissions Requirements</a>
+                  <a href="#" itemprop="url">Admissions Requirements</a>
                 </li>
                 <li>
-                  <a href="/degrees/about/degree-tuition-financial-aid" itemprop="url">Tuition and Financial Aid</a>
+                  <a href="#" itemprop="url">Tuition and Financial Aid</a>
                 </li>
                 <li>
-                  <a href="/degrees/about/degree-program-academic-calendar">Academic Calendar</a>
+                  <a href="#">Academic Calendar</a>
                 </li>
                 <li>
-                  <a href="/degrees/about/degree-program-internships">Internships</a>
+                  <a href="#">Internships</a>
                 </li>
                 <li>
-                  <a href="/degrees/about/prior-learning-credit">Prior Learning Credit</a>
+                  <a href="#">Prior Learning Credit</a>
                 </li>
                 <li>
-                  <a href="/degrees/about/degree-transfer">Transfer Credits</a>
+                  <a href="#">Transfer Credits</a>
                 </li>
                 <li>
-                  <a href="/degrees/about/degree-completion">Degree Completion</a>
+                  <a href="#">Degree Completion</a>
                 </li>
                 <li>
-                  <a href="/degrees/about/degree-program-policies-and-forms">Policies and Forms</a>
+                  <a href="#">Policies and Forms</a>
                 </li>
               </ul>
               <h4>
                 About <span class="hidden-tablet hidden-sm-down">Berklee Online</span>
               </h4>
               <ul>
-                <li><a href="/about/berklee-online" itemprop="url">About Berklee Online</a></li>
-                <li><a href="/about/compare-online-music-education-offerings">Compare Our Music Education Offerings</a>
+                <li><a href="#" itemprop="url">About Berklee Online</a></li>
+                <li><a href="#">Compare Our Music Education Offerings</a>
                 </li>
-                <li><a href="/events">Events</a></li>
-                <li><a href="/faculty">Faculty Directory</a></li>
-                <li><a href="/about/leadership-team">Leadership Team</a></li>
-                <li><a href="/students">Student Stories</a></li>
-                <li><a href="/scholarships">Music Scholarships</a></li>
-                <li><a href="/about/contact-us" itemprop="url">Contact/Help</a></li>
-                <li><a href="/work-with-us">Careers at Berklee Online</a></li>
+                <li><a href="#">Events</a></li>
+                <li><a href="#">Faculty Directory</a></li>
+                <li><a href="#">Leadership Team</a></li>
+                <li><a href="#">Student Stories</a></li>
+                <li><a href="#">Music Scholarships</a></li>
+                <li><a href="#" itemprop="url">Contact/Help</a></li>
+                <li><a href="#">Careers at Berklee Online</a></li>
               </ul>
               <h4>
                 Resources
@@ -330,8 +330,8 @@
   .main-footer h3, .main-footer h4 {
     color: #dee2e5;
     font-family: "Avenir Next Cyr W00 Demi", Helvetica, Arial, sans-serif;
-    font-size: 2rem;
-    line-height: 2.5rem;
+    font-size: 1.6rem;
+    line-height: 2rem;
   }
 
   .footer-head-icons {
@@ -394,12 +394,6 @@
   .main-footer .footer-block-inner {
     padding: 40px;
   }
-  .main-footer h3, .main-footer h4 {
-    color: #dee2e5;
-    font-family: "Avenir Next Cyr W00 Demi", Helvetica, Arial, sans-serif;
-    font-size: 2rem;
-    line-height: 2.5rem;
-  }
   .main-footer ul {
     padding-left: 0px;
     padding-bottom: 1px;
@@ -452,7 +446,7 @@
     color: #eff1f3;
   }
   .footer-bottom, .footer-bottom p {
-    font-size: 1.2rem;
+    font-size: 0.9rem;
   }
   .footer-bottom .left {
     text-align: left;
@@ -460,4 +454,52 @@
   .footer-bottom .right {
     text-align: right;
   }
+
+
+
+
+
+  @media (max-width: 768px){
+    .no-gutter {
+      margin-left: 0;
+      margin-right: 0;
+    }
+  }
+
+  @media (max-width: 767px){
+    .details-container h2 {
+      margin-top: 20px;
+      font-size: 2.0rem;
+      line-height: 2.4rem;
+    }
+  }
+  @media (max-width: 767px){
+    .details-container ul {
+      padding-left: 20px;
+    }
+  }
+  @media (max-width: 767px){
+    .details-container li {
+      padding: 0;
+      font-size: 1.2rem;
+    }
+  }
+
+  @media (max-width: 1200px){
+    .main-footer h3 {
+      font-size: 1.9rem;
+      line-height: 2.25rem;
+    }
+    .main-footer  .footer-brief{
+      font-size: 1.5rem;
+    }
+  }
+  @media (max-width: 543px){
+    .footer-head-icons {
+      font-size: 1.75rem;
+      float: none;
+      margin-top: 4px;
+    }
+  }
+
 </style>
