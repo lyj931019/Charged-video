@@ -7,8 +7,8 @@
         </button>
         <router-link :to="{ name: 'index'}"><a class="navbar-brand" href="#"><img src="../assets/img/berklee-online-logo-red-gray.png" alt=""></a></router-link>
 
-        <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
-          <ul class="navbar-nav mr-auto mt-2 mt-lg-0 center">
+        <div class="collapse navbar-collapse " id="navbarTogglerDemo03">
+          <ul class="navbar-nav mr-auto mt-2 mt-lg-0 center justify-content-end">
             <!--<li class="nav-item">-->
               <!--<a class="nav-link" href="#">-->
                 <!--All Programs-->
@@ -24,6 +24,14 @@
                 <!--Certificates-->
               <!--</a>-->
             <!--</li>-->
+            <li class="nav-item">
+              <router-link :to="{ name: 'index'}">
+                <a class="nav-link" href="#">
+                  首页
+                </a>
+              </router-link>
+
+            </li>
             <li class="nav-item">
               <router-link :to="{ name: 'list'}">
                 <a class="nav-link" href="#">
@@ -42,22 +50,25 @@
                 <!--About-->
               <!--</a>-->
             <!--</li>-->
-            <li class="nav-item">
-              <router-link :to="{ name: 'userCourse'}">
-                <a class="nav-link" href="#">
-                  我的课程
-                </a>
-              </router-link>
+            <!--<li class="nav-item">-->
+              <!--<router-link :to="{ name: 'userCenter'}">-->
+                <!--<a class="nav-link" href="#">-->
+                  <!--我的课程-->
+                <!--</a>-->
+              <!--</router-link>-->
 
-            </li>
+            <!--</li>-->
           </ul>
-          <form class="form-inline my-2 my-lg-0">
+          <form class="form-inline my-2 my-lg-0" style="margin:0 1.3rem">
             <!--<input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">-->
             <!--<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>-->
-            <a class="nav-link apply hidden-md-down" href="#">
-              Apply
-            </a>
-            <a class="btn-login nav-link" href="#" id="login" rel="nofollow">Log In</a>
+            <!--<a class="nav-link apply hidden-md-down" href="#">-->
+              <!--Apply-->
+            <!--</a>-->
+            <router-link :to="{ name: 'login'}">
+              <a class="btn-login nav-link" href="#" id="login" rel="nofollow">Log In</a>
+            </router-link>
+
 
           </form>
         </div>

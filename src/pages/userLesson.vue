@@ -5,8 +5,8 @@
         <img src="../assets/img/Berklee_Logo_Square.svg" alt="">
         <span>Sample Lessons</span>
       </div>
-      <div class="title">
-        Lesson 1 - Introduction
+      <div class="title" v-if="lessonContent">
+        {{lessonContent.title}}
       </div>
       <div class="avatar">
         <img src="../assets/img/avatar.png" alt="">
@@ -28,10 +28,12 @@
         <div class="aside-list">
           <div class="aside-item" @click="toggleAsideDetailActive">
             <img src="../assets/img/book.png" alt="">
+            <br>
             章节列表
           </div>
           <div class="aside-item" @click="goback">
             <img src="../assets/img/goback.png" alt="">
+            <br>
             返回
           </div>
         </div>
@@ -304,7 +306,9 @@
     font-size: 0.8rem;
     margin-bottom: 1rem;
   }
-
+  .aside-item img{
+    width: 36px;
+  }
   .aside-detail>*{
     cursor: pointer;
   }

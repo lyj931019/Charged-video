@@ -3,7 +3,9 @@ import List from './list.vue'
 import Detail from './detail.vue'
 import UserLesson from './userLesson.vue'
 import UserCourse from './userCourses.vue'
+import UserCenter from './userCenter.vue'
+import Login from './login.vue'
 
 export default {
-  Index,List,Detail,UserLesson,UserCourse
+  Index,List,Detail,UserLesson,UserCourse,UserCenter,Login
 }

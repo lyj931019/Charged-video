@@ -9,7 +9,9 @@
           <div class="row justify-content-between">
             <div class="col-12 col-lg-9" property="data-sticky_column">
               <div class="course-head">
-                <a class="txt-lg a-black" href="#" itemprop="url">Online Courses</a>
+                <router-link :to="{ name: 'list'}">
+                  <a class="txt-lg a-black" href="#" itemprop="url">在线课程</a>
+                </router-link>
                 <h1>{{courses.name}}</h1>
                 <div class="course-subhead">
                   <img alt="author.full_name" class="img-circle"
@@ -25,7 +27,7 @@
                     </p>
                     <div class="separator">|</div>
                     <p class="txt-sm">
-                      Course Code:
+                      课程编号:
                       <span>
 {{courses.num}}
 </span>
@@ -48,7 +50,7 @@
                         </svg><!-- <div class="far fa-calendar-alt"></div> -->
                       </i>
                       <div class="term-message-text">
-                        <h4>2019/1/4</h4>
+                        <h4>2019/1/14</h4>
                       </div>
                     </div>
                     <div class="key-course-level">
@@ -83,32 +85,36 @@
                 </div>
                 <div class="col-12 col-lg-8 pull-lg-4">
                   <div class="overview">
-                    <p>{{courses.synopsis}}</p>
+                    <!--<p>{{courses.synopsis}}</p>-->
+                    <p v-html="courses.abstract"></p>
+                    <!--
                     <div class="read-more-container">
-                      <!--<a class="read-more" data-toggle="collapse" href="#readmore" >Read More</a>-->
+                      <a class="read-more" data-toggle="collapse" href="#readmore" >Read More</a>
                       <div class="collapse" id="readmore" v-html="courses.abstract">
-                        <!--<p>-->
-                        <!--3D Design with Blender was written by Nicholas Jainschigg, a professor in the Illustration department at the prestigious Rhode Island School of Design. His students have gone on to work for ILM, Weta Digital, Digital Domain, Framestore, Pixar, Dreamworks, Blizzard, Id, Turbine, Microsoft Games, Irrational Games, 2K Games, Harmonix, and others.</p>-->
-                        <!--<p>-->
-                        <!--The course is designed to make the medium of 3D modeling, rendering, and animation understandable and accessible. It is also designed to make you comfortable with compositing—the mixing, adding, subtracting, and shuffling of real and imaginary visual elements—which is at the heart of most visual effects work. Along the way, you will be developing the skills that allow for the successful use of any visual effects software: an eye for color, an understanding of perspective and composition, and dramatic storytelling that allows you to make the unbelievable believable.</p>-->
-                        <!--<p>-->
-                        <!--While it is true that modern visual effects can put almost anything onto the screen that the mind can conceive, unless you have the budget of James Cameron or J.J. Abrams, you have be a little more crafty. This course will focus on ways to get the most impressive visuals at minimal expense and substituting planning, skill, and creativity for a massive budget.</p>-->
-                        <!--<p>By the end of the course, you will be able to:</p>-->
-                        <!--<ul>-->
-                        <!--<li>Construct, texture, and light virtual 3D objects</li>-->
-                        <!--<li>-->
-                        <!--Animate simple object motions, physics-based interactions, and particle-type effects like fire, smoke, and explosions-->
-                        <!--</li>-->
-                        <!--<li>-->
-                        <!--Add virtual objects to your real-world video footage, and place real-world elements into constructed imagery-->
-                        <!--</li>-->
-                        <!--<li>-->
-                        <!--Edit the look and timing of your effects shots to maximize their emotional impact and narrative flow-->
-                        <!--</li>-->
-                        <!--</ul>-->
+                        <p>
+                        3D Design with Blender was written by Nicholas Jainschigg, a professor in the Illustration department at the prestigious Rhode Island School of Design. His students have gone on to work for ILM, Weta Digital, Digital Domain, Framestore, Pixar, Dreamworks, Blizzard, Id, Turbine, Microsoft Games, Irrational Games, 2K Games, Harmonix, and others.</p>
+                        <p>
+                        The course is designed to make the medium of 3D modeling, rendering, and animation understandable and accessible. It is also designed to make you comfortable with compositing—the mixing, adding, subtracting, and shuffling of real and imaginary visual elements—which is at the heart of most visual effects work. Along the way, you will be developing the skills that allow for the successful use of any visual effects software: an eye for color, an understanding of perspective and composition, and dramatic storytelling that allows you to make the unbelievable believable.</p>
+                        <p>
+                        While it is true that modern visual effects can put almost anything onto the screen that the mind can conceive, unless you have the budget of James Cameron or J.J. Abrams, you have be a little more crafty. This course will focus on ways to get the most impressive visuals at minimal expense and substituting planning, skill, and creativity for a massive budget.</p>
+                        <p>By the end of the course, you will be able to:</p>
+                        <ul>
+                        <li>Construct, texture, and light virtual 3D objects</li>
+                        <li>
+                        Animate simple object motions, physics-based interactions, and particle-type effects like fire, smoke, and explosions
+                        </li>
+                        <li>
+                        Add virtual objects to your real-world video footage, and place real-world elements into constructed imagery
+                        </li>
+                        <li>
+                        Edit the look and timing of your effects shots to maximize their emotional impact and narrative flow
+                        </li>
+                        </ul>
 
                       </div>
                       <a class="read-less" data-toggle="collapse" href="#readmore"> 更{{readTips}}</a></div>
+                    -->
+
                   </div>
                   <div class="overview-video">
                   </div>
@@ -119,32 +125,32 @@
               <div class="side-nav sticky-item is_stuck" property="data-sticky_column"
                    style="position: fixed; top: 270px; width: 320px;">
                 <div class="side-nav-main">
-                  <a class="nav-scroll active" data-scroll-nav="0" href="#overview">Overview</a>
-                  <a class="nav-scroll" data-scroll-nav="1" href="#syllabus">Syllabus</a>
-                  <a class="nav-scroll last" data-scroll-nav="2" href="#requirements">Requirements</a>
-                  <a class="nav-scroll" data-scroll-nav="3" href="#instructors">Instructors</a>
-                  <a class="btn-action bo-button"
-                     href="#">
+                  <a class="nav-scroll active" data-scroll-nav="0" href="#overview">概览</a>
+                  <a class="nav-scroll" data-scroll-nav="1" href="#syllabus">教学大纲</a>
+                  <a class="nav-scroll last" data-scroll-nav="2" href="#requirements">学习要求</a>
+                  <a class="nav-scroll" data-scroll-nav="3" href="#instructors">教师介绍</a>
+                  <!--<a class="btn-action bo-button"-->
+                     <!--href="#">-->
                     <!--<svg class="svg-inline&#45;&#45;fa fa-check-square fa-w-14 hidden-lg-up" aria-hidden="true" data-prefix="fa"-->
                     <!--data-icon="check-square" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"-->
                     <!--data-fa-i2svg="">-->
                     <!--<path fill="currentColor"-->
                     <!--d="M400 480H48c-26.51 0-48-21.49-48-48V80c0-26.51 21.49-48 48-48h352c26.51 0 48 21.49 48 48v352c0 26.51-21.49 48-48 48zm-204.686-98.059l184-184c6.248-6.248 6.248-16.379 0-22.627l-22.627-22.627c-6.248-6.248-16.379-6.249-22.628 0L184 302.745l-70.059-70.059c-6.248-6.248-16.379-6.248-22.628 0l-22.627 22.627c-6.248 6.248-6.248 16.379 0 22.627l104 104c6.249 6.25 16.379 6.25 22.628.001z"></path>-->
                     <!--</svg>-->
-                    <!-- <i class="fa fa-check-square hidden-lg-up"></i> -->
-                    Enroll Now <span>No application required</span></a>
+                     <!--<i class="fa fa-check-square hidden-lg-up"></i> -->
+                    <!--Enroll Now <span>No application required</span></a>-->
                   <a class="bo-button-alt" href="#footer-form" @click.prevent="buyTheCourse">购买课程</a>
                   <div class="contain-watchlist"><a class="add-to-watchlist watchlist-btn" data-method="put"
                                                     href="/watchlist/courses/138?slug=3d-design-with-blender"
-                                                    rel="nofollow">Add to Favorites</a></div>
+                                                    rel="nofollow">加入收藏</a></div>
                   <div class="side-nav-advisor-block">
                     <div id="rtp-contact">
                       <div class="advisor-contact-block">
-                        <p class="guidance">Need guidance?</p>
-                        <a class="tel-main" href="tel:18662375533">1-866-BERKLEE</a>
-                        <a class="tel-intl" href="tel:16177472146">Int'l: +1-617-747-2146</a>
-                        <p class="call-text"><a href="tel:18662375533">Call</a>,&nbsp;<a href="sms:18662375533">Text</a>,&nbsp;or&nbsp;<a
-                          href="mailto: advisors@online.berklee.edu">Email us</a></p>
+                        <p class="guidance">咨询热线</p>
+                        <a class="tel-main" href="tel:18662375533">400-882-3823</a>
+                        <!--<a class="tel-intl" href="tel:16177472146">Int'l: +1-617-747-2146</a>-->
+                        <!--<p class="call-text"><a href="tel:18662375533">电话</a>,&nbsp;<a href="sms:18662375533">短息</a>,&nbsp;or&nbsp;<a-->
+                          <!--href="mailto: advisors@online.berklee.edu">邮件</a></p>-->
                       </div>
                     </div>
 
@@ -182,9 +188,12 @@
 
 
                   </p>
-                  <div class="collapse lesson-content" :id="'lesson-content-'+index" style="margin-top: 1rem;" v-html="lesson.abstract">
+                  <div style="margin-top: 1rem;" class="col-con">
+                    <div class="collapse lesson-content" :id="'lesson-content-'+index"  v-html="lesson.abstract">
 
+                    </div>
                   </div>
+
                 </template>
 
               </div>
@@ -197,7 +206,8 @@
           <div class="row">
             <div class="col-12 col-lg-7">
               <div class="requirements content-section" data-scroll-index="2" id="requirements">
-                <h2>要求</h2>
+                <h2 style="margin-bottom: 1rem;">学习要求</h2>
+                <!--<hr>-->
                 <h4>
                   <a href="#prerequisites" data-toggle="collapse">
                     <i class="closed">
@@ -211,12 +221,14 @@
                   </a>
 
                 </h4>
-                <template v-if="courses.requirements_prerequisites">
-                  <div class="truncate-paragraph collapse lesson-content" id="prerequisites" v-html="courses.requirements_prerequisites"></div>
-                </template>
-                <template v-else>
-                  <div class="truncate-paragraph collapse lesson-content" id="prerequisites">未设置</div>
-                </template>
+                <div class="col-con">
+                  <template v-if="courses.requirements_prerequisites">
+                    <div class="truncate-paragraph collapse lesson-content" id="prerequisites" v-html="courses.requirements_prerequisites"></div>
+                  </template>
+                  <template v-else>
+                    <div class="truncate-paragraph collapse lesson-content" id="prerequisites">未设置</div>
+                  </template>
+                </div>
 
                 <hr>
                 <h4 style="cursor: auto;">
@@ -231,12 +243,15 @@
                   </a>
 
                 </h4>
-                <template v-if="courses.requirements_textbooks">
-                  <div class="truncate-paragraph collapse lesson-content" id="textbooks" v-html="courses.requirements_textbooks"></div>
-                </template>
-                <template v-else>
-                  <div class="truncate-paragraph collapse lesson-content" id="textbooks">未设置</div>
-                </template>
+                <div class="col-con">
+                  <template v-if="courses.requirements_textbooks">
+                    <div class="truncate-paragraph collapse lesson-content" id="textbooks" v-html="courses.requirements_textbooks"></div>
+                  </template>
+                  <template v-else>
+                    <div class="truncate-paragraph collapse lesson-content" id="textbooks">未设置</div>
+                  </template>
+                </div>
+
                 <hr>
                 <h4>
                   <a href="#software" data-toggle="collapse">
@@ -250,12 +265,15 @@
                   </a>
 
                 </h4>
-                <template v-if="courses.requirements_software">
-                  <div class="truncate-paragraph collapse lesson-content" id="software" v-html="courses.requirements_software"></div>
-                </template>
-                <template v-else>
-                  <div class="truncate-paragraph collapse lesson-content" id="software">未设置</div>
-                </template>
+                <div class="col-con">
+                  <template v-if="courses.requirements_software">
+                    <div class="truncate-paragraph collapse lesson-content" id="software" v-html="courses.requirements_software"></div>
+                  </template>
+                  <template v-else>
+                    <div class="truncate-paragraph collapse lesson-content" id="software">未设置</div>
+                  </template>
+                </div>
+
                 <hr>
                 <h4>
                   <a href="#hardware" data-toggle="collapse">
@@ -269,12 +287,15 @@
                   </a>
 
                 </h4>
-                <template v-if="courses.requirements_hardware">
-                  <div class="truncate-paragraph collapse lesson-content" id="hardware" v-html="courses.requirements_hardware"></div>
-                </template>
-                <template v-else>
-                  <div class="truncate-paragraph collapse lesson-content" id="hardware">未设置</div>
-                </template>
+                <div class="col-con">
+                  <template v-if="courses.requirements_hardware">
+                    <div class="truncate-paragraph collapse lesson-content" id="hardware" v-html="courses.requirements_hardware"></div>
+                  </template>
+                  <template v-else>
+                    <div class="truncate-paragraph collapse lesson-content" id="hardware">未设置</div>
+                  </template>
+                </div>
+
               </div>
             </div>
           </div>
@@ -294,7 +315,8 @@
                   <div class="col-12 col-sm-10 instr">
                     <div class="txt-lg fac-name"><a class="a-body-link"
                                                     href="/faculty/nick-jainschigg">{{courses.instructor.name}}</a></div>
-                    <p class="txt-sm">Author &amp; Instructor</p>
+                    <!--<p class="txt-sm">Author &amp; Instructor</p>-->
+                    <p class="txt-sm">作者 &amp; 讲师</p>
                     <div>
                       <!--<em>Nick Jainschigg</em>-->
                      <div v-html="courses.instructor.abstract"></div>
@@ -409,7 +431,7 @@
         }).then(res => {
           console.log(res.data)
 //          _this.courses = res.data.data;
-          _this.$router.push({ name: 'userCourse'})
+          _this.$router.push({ name: 'userCenter'})
           console.log(_this.courses)
         })
       }
@@ -1080,12 +1102,12 @@
     cursor: pointer;
   }
 
-  .collapse.lesson-content {
+  .col-con {
     margin-left: 152px;
   }
 
   @media (max-width: 768px) {
-    .collapse.lesson-content {
+    .col-con {
       margin-left: 45px;
     }
 

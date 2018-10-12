@@ -9,19 +9,15 @@
               <div class="row">
                 <div class="feature-callout col-12 col-sm-12 col-md-8 col-lg-6">
                   <h1 isrender="true">
-                    Online
-                    Music
-                    Courses
+                    在线课程
                   </h1>
                   <p isrender="true">
-                    Our 12-week online
-                    music
-                    courses are authored and taught by industry experts and the same renowned instructors that teach at Berklee College of Music's Boston campus.
+                    我们为期12周的在线课程由行业专家和各大名校的教授进行授课。
                   </p>
                   <ul>
-                    <li isrender="true">Accredited by the New England Association of Schools and Colleges</li>
-                    <li isrender="true">Credits transfer to hundreds of other colleges and universities</li>
-                    <li isrender="true">Many Berklee Online courses apply toward certificates and degree programs</li>
+                    <li isrender="true">由新英格兰学校和学院协会认证</li>
+                    <li isrender="true">在线课程适用于各类证书和学位课程</li>
+                    <!--<li isrender="true">Many Berklee Online courses apply toward certificates and degree programs</li>-->
                   </ul>
                   <hr>
                   <div class="interest-dates">
@@ -35,7 +31,7 @@
                         </svg><!-- <div class="far fa-clock"></div> -->
                       </i>
                       <a href="/about/academic-calendar" target="blank" isrender="true">
-                        Next Term Starts January 14
+                        下一期将于1月14日开始
                       </a>
                     </div>
                   </div>
@@ -464,7 +460,7 @@
     -webkit-flex-direction: column;
     flex-direction: column;
     font-family: "Avenir Next Cyr W00 Regular", Helvetica, Arial, sans-serif;
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     padding: 10px 8px 2px 8px;
     position: relative;
     text-align: center;
@@ -490,7 +486,7 @@
   .sidebar-filter:not(.filter-level) li:not(.expand-section) a {
     color: black;
     font-family: "Avenir Next Cyr W00 Regular", Helvetica, Arial, sans-serif;
-    font-size: 1.2rem;
+    font-size: 1rem;
     position: relative;
   }
   .sidebar-filter:not(.filter-level) li:not(.expand-section) a:before {

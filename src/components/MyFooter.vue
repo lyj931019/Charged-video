@@ -1,8 +1,8 @@
 <template>
   <div>
-    <!-- 
-      
-   
+    <!--
+
+
     <section data-swiftype-index="false" id="footer">
       <section class="footer-form no-gutter" id="footer-form">
         <div class="container-fluid">
@@ -19,7 +19,7 @@
               </div>
             </div>
             <div class="col-12 col-sm-12 col-md-5 offset-md-1 col-sm-6 pull-right">
-            
+
             </div>
             <a>
               <i class="icon-remove-sign icon-2x pull-right"></i>
@@ -27,7 +27,7 @@
           </div>
         </div>
       </section>
- 
+
       <footer class="main-footer no-gutter" id="info-footer">
         <div class="row no-gutters">
           <div class="col-12 col-sm-12 col-lg-6">
@@ -196,16 +196,16 @@
           </div>
         </div>
         <div class="row">
-          <div class="col-sm-8 col-12 left">
+          <div class="col-12 center text-center">
             © Copyright 2001 -
             2018
             <a href="#" target="_blank">Berklee College of Music</a>
           </div>
-          <div class="col-sm-4 col-12 right">
-            <a href="#">Terms</a>
-            <span>&nbsp;•&nbsp;</span>
-            <a href="#">Privacy Policy</a>
-          </div>
+          <!--<div class="col-sm-4 col-12 right">-->
+            <!--<a href="#">Terms</a>-->
+            <!--<span>&nbsp;•&nbsp;</span>-->
+            <!--<a href="#">Privacy Policy</a>-->
+          <!--</div>-->
         </div>
       </div>
 

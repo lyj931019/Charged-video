@@ -23,6 +23,17 @@ export default [
   {
     path: '/userCourse',
     name: 'userCourse',
-    component: Pages.UserCourse
+    component: Pages.UserCenter
+  },
+  {
+    path: '/userCenter',
+    name: 'userCenter',
+    component: Pages.UserCenter
+  }
+  ,
+  {
+    path: '/login',
+    name: 'login',
+    component: Pages.Login
   }
 ]

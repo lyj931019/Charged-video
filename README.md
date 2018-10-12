@@ -55,6 +55,25 @@ git push -u origin master
 各组件都有对应的 ***readme.md***
 
 
+#npm run build
+## 修改配置
+./build/utils.js
+```
+ if (options.extract) {
+      return ExtractTextPlugin.extract({
+        publicPath: '../../',
+      })
+    }
+```
+./config/index.js
+```
+build: {
+  // ...
+  assetsPublicPath: './',
+}
+```
+
+
 
 https://note.youdao.com/share/?id=b8ea907c83d5793c3411ee5f02b4600a&type=note#/
 
