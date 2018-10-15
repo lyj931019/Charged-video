@@ -3,7 +3,7 @@ export default [
   {
     path: '/',
     name: 'index',
-    component: Pages.Index
+    component: Pages.IndexF
   },
   {
     path: '/list',

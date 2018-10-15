@@ -14,7 +14,7 @@ import App from './App'
 import store from './store'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap/dist/js/bootstrap.bundle.min'
-
+import '../static/global.css'
 
 Vue.prototype._ = LYJ;
 Vue.prototype.$http = axios;
