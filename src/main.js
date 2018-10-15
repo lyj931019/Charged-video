@@ -12,6 +12,9 @@ import axios from './axios'
 import App from './App'
 
 import store from './store'
+import 'bootstrap/dist/css/bootstrap.min.css'
+import 'bootstrap/dist/js/bootstrap.bundle.min'
+
 
 Vue.prototype._ = LYJ;
 Vue.prototype.$http = axios;

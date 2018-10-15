@@ -1,0 +1,113 @@
+body {
+  font-family: "Avenir Next Cyr W00 Regular", Helvetica, Arial, sans-serif, Helvetica, Arial, sans-serif;
+  opacity: 1;
+  max-width: 2300px;
+}
+
+
+
+.body {
+  padding-left: 60px;
+  padding-right: 60px;
+  font-size: 1.2rem;
+}
+
+@media (max-width: 768px) {
+  .body {
+    padding: 0 10px;
+  }
+}
+
+
+
+
+hr {
+  color: #dee2e5;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  border: 0;
+}
+
+
+@media (min-width: 992px){
+  .push-lg-8 {
+    left: 66.66667%;
+  }
+}
+
+
+
+@media (min-width: 992px){
+  .pull-lg-4 {
+    right: 33.33333%;
+  }
+}
+
+
+
+
+
+
+
+@media (max-width: 1400px) and (min-width: 768px){
+  .container-fluid {
+    padding-right: 45px !important;
+    padding-left: 45px !important;
+  }
+}
+
+@media (min-width: 1200px) {
+  .feature .container-fluid {
+    padding-right: 60px;
+    padding-left: 60px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .container-fluid {
+    padding-right: 45px;
+    padding-left: 45px;
+  }
+
+  .container-fluid {
+    max-width: 1400px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .container-fluid {
+    padding-right: 15px;
+    padding-left: 15px;
+  }
+
+}
+
+@media (min-width: 992px) {
+  .container-fluid {
+    padding-right: 15px;
+    padding-left: 15px;
+  }
+}
+
+@media (min-width: 768px) {
+  .container-fluid {
+    padding-right: 15px;
+    padding-left: 15px;
+  }
+}
+
+@media (min-width: 576px) {
+  .container-fluid {
+    padding-right: 15px;
+    padding-left: 15px;
+  }
+
+  .container-fluid {
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    padding-right: 15px;
+    padding-left: 15px;
+  }
+}
+
