@@ -71,17 +71,133 @@
                 <h4>400-882-3823</h4>
               </div>
             </div>
-            <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6 d-sm-none d-md-block column-right">
+            <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6 d-sm-none d-none d-md-block column-right">
               <div class="bo-tabs">
                 <div class="tabs-nav">
                   <a href="#" class="active">Interests</a>
                   <a href="#">New Courses</a>
                 </div>
                 <div class="tab-content">
+                  <div class="tab-item">
+                    <p>
+                      With our degree programs, certificate programs, and more than 150 courses led by Berklee faculty and industry experts, it's easy to find the offering that's right for you.
+                    </p>
+                    <div class="intersts-list">
+                      <div class="intersts-item">
+                        Music Production
+                      </div>
+                      <div class="intersts-item">
+                        Guitar
+                      </div>
+                      <div class="intersts-item">
+                        Music Theory, Harmony, and Ear Training
+                      </div>
+                      <div class="intersts-item">
+                        Songwriting
+                      </div>
+                      <div class="intersts-item">
+                        Music Business
+                      </div>
+                      <div class="intersts-item">
+                        Voice
+                      </div>
+                      <div class="intersts-item">
+                        Piano and Keyboard
+                      </div>
+                      <div class="intersts-item">
+                        Arranging
+                      </div>
+                      <div class="intersts-item">
+                        Bass
+                      </div>
+                      <div class="intersts-item">
+                        Orchestration
+                      </div>
+                      <div class="intersts-item">
+                        Drums
+                      </div>
+                      <div class="intersts-item">
+                        Music History and Liberal Arts
+                      </div>
+                      <div class="intersts-item">
+                        Music for Film, TV, and Games
+                      </div>
+                      <div class="intersts-item">
+                        Improvisation
+                      </div>
+                    </div>
+                  </div>
+                  <div class="tab-item active">
+                    <div class="course-list">
+                      <div class="course-item">
+                        <div class="avatar">
+                          <img src="../assets/img/avatar.png" alt="">
+                        </div>
+                        <div>
+                          <div class="title">
+                            Arranging for Songwriters: Instrumentation and Production in Songwriting
+                          </div>
+                          <p>by Sarah Brindell and Bonnie Hayes</p>
+                        </div>
+                      </div>
+                      <div class="course-item">
+                        <div class="avatar">
+                          <img src="../assets/img/avatar.png" alt="">
+                        </div>
+                        <div>
+                          <div class="title">
+                            Ableton Live Techniques: Non-Linear Creative Strategies and Composition
+                          </div>
+                          <p>by Erin Barra and Loudon Stearns</p>
+                        </div>
+                      </div>
+                      <div class="course-item">
+                        <div class="avatar">
+                          <img src="../assets/img/avatar.png" alt="">
+                        </div>
+                        <div>
+                          <div class="title">
+                            Ear Training 2
+                          </div>
+                          <p>by Gaye Tolan Hatfield</p>
+                        </div>
+                      </div>
+                    </div>
+                    <div style="text-align: center;">
+                      <div class="btn btn-danger" style="font-weight: bold;">See Full List</div>
+                    </div>
+
+                  </div>
 
                 </div>
               </div>
             </div>
+          </div>
+        </div>
+      </div>
+      <div class="container thumbnails">
+        <div class="row">
+          <div class="col-12 col-md-8 middle-left">
+            <img src="../assets/img/home-masters-hero.jpg" alt="">
+            <div class="thumbnails-left">
+              <h2>
+                Application Now Open for Graduate Degree Programs
+              </h2>
+              <p>
+                We designed our online graduate programs to be completed in one year, providing you with the most affordable and flexible option for earning your master's degree with Berklee College of Music. <a href="#">Apply today</a>
+              </p>
+              <ul>
+                <li>
+                  Master of Music in <a href="#">Music Production</a>
+                </li>
+                <li>
+                  Master of Arts in  <a href="#">Music Business</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-12 col-md-4">
+
           </div>
         </div>
       </div>
@@ -106,10 +222,11 @@
     background-size: 100%;
   }
 
-  .row>div{
-    padding-left:0;
-    padding-right:0;
+  .row > div {
+    padding-left: 0;
+    padding-right: 0;
   }
+
   .bg-grey {
     background-color: #eff1f3;
     padding: 45px 30px 60px 30px;
@@ -222,27 +339,30 @@
     margin-top: 575px;
     padding-left: 0;
   }
+
   @media (max-width: 1200px) {
     .column-right {
       margin-top: 400px;
     }
   }
+
   @media (max-width: 992px) {
     .column-right {
       margin-top: 350px;
     }
   }
 
-  .column-right{
+  .column-right {
     background-color: #fff;
   }
 
-  .tabs-nav{
-    border-bottom:1px solid #25353c;
+  .tabs-nav {
+    border-bottom: 1px solid #25353c;
     display: flex;
     justify-content: flex-start;
   }
-  .tabs-nav a{
+
+  .tabs-nav a {
     color: #25353c;
     font-weight: bold;
     font-size: 1.4rem;
@@ -252,15 +372,85 @@
     top: 3px;
     padding: 15px 30px;
     text-decoration: none;
-    border-bottom:5px solid;
-    border-bottom-color:transparent;
+    border-bottom: 5px solid;
+    border-bottom-color: transparent;
     display: inline-block;
     box-sizing: border-box;
   }
-  .tabs-nav a:hover{
+
+  .tabs-nav a:hover {
     border-bottom-color: #ccc;
   }
-  .tabs-nav a.active{
+
+  .tabs-nav a.active {
     border-bottom-color: #ee243c;
+  }
+
+  .tab-content {
+    padding: 30px 30px 0 30px;
+    min-height: 450px;
+  }
+
+  .tab-item {
+    display: none;
+  }
+
+  .tab-item.active {
+    display: block;
+  }
+
+  .tab-item {
+    line-height: 2.2rem;
+  }
+
+  .intersts-list {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+
+  .intersts-item {
+    width: 40%;
+    margin-right: 10px;
+    margin-bottom: 15px;
+    font-weight: bold;
+    font-size: 1rem;
+    line-height: 1.5rem;
+  }
+  .course-list{
+    padding-top: 20px;
+  }
+  .course-item{
+    display: flex;
+    justify-content: flex-start;
+  }
+  .course-item .avatar{
+    width: 60px;
+
+  }
+  .course-item .title{
+    font-weight: bold;
+    font-size: 1rem;
+    line-height: 1.5rem;
+    margin-bottom: 0;
+  }
+
+
+  .thumbnails{
+
+  }
+  .thumbnails img{
+    width: 100%;
+  }
+  .thumbnails-left{
+    background-color: #25353c;
+    color: #ffffff;
+    padding: 30px;
+    font-size: 1.2rem;
+  }
+  .thumbnails-left a{
+    color: #ffffff;
+    text-decoration: underline;
+    font-weight: bold;
   }
 </style>
