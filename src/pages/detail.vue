@@ -147,7 +147,7 @@
                     <div id="rtp-contact">
                       <div class="advisor-contact-block">
                         <p class="guidance">咨询热线</p>
-                        <a class="tel-main" href="tel:18662375533">400-882-3823</a>
+                        <a class="tel-main" href="tel:400-882-3823">400-882-3823</a>
                         <!--<a class="tel-intl" href="tel:16177472146">Int'l: +1-617-747-2146</a>-->
                         <!--<p class="call-text"><a href="tel:18662375533">电话</a>,&nbsp;<a href="sms:18662375533">短息</a>,&nbsp;or&nbsp;<a-->
                           <!--href="mailto: advisors@online.berklee.edu">邮件</a></p>-->

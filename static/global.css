@@ -9,14 +9,20 @@ body {
 .body {
   padding-left: 60px;
   padding-right: 60px;
-  font-size: 1.2rem;
+  font-size: 0.9rem;
 }
-
-@media (max-width: 768px) {
+@media (max-width: 992px){
+  .body {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}
+@media (max-width: 768px){
   .body {
     padding: 0 10px;
   }
 }
+
 
 
 
