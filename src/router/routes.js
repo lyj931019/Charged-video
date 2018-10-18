@@ -11,6 +11,11 @@ export default [
     component: Pages.List
   },
   {
+    path: '/listf',
+    name: 'listf',
+    component: Pages.ListF
+  },
+  {
     path: '/detail/:num',
     name: 'detail',
     component: Pages.Detail

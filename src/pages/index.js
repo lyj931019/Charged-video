@@ -11,10 +11,11 @@ import Login from './login.vue'
 //
 
 import IndexF from './index-f.vue'
+import ListF from './list-f.vue'
 
 
 
 export default {
   Index,List,Detail,UserLesson,UserCourse,UserCenter,Login,
-  IndexF
+  IndexF,ListF
 }

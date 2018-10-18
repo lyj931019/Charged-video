@@ -74,11 +74,11 @@
             <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6 d-sm-none d-none d-md-block column-right">
               <div class="bo-tabs">
                 <div class="tabs-nav">
-                  <a href="#" class="active">Interests</a>
-                  <a href="#">New Courses</a>
+                  <a href="#" :class="[{active:active}]" @click.prevent="changeActive(true)">Interests</a>
+                  <a href="#" :class="[{active:!active}]" @click.prevent="changeActive(false)">New Courses</a>
                 </div>
                 <div class="tab-content">
-                  <div class="tab-item">
+                  <div :class="[{active:active}]" class="tab-item">
                     <p>
                       With our degree programs, certificate programs, and more than 150 courses led by Berklee faculty and industry experts, it's easy to find the offering that's right for you.
                     </p>
@@ -127,7 +127,7 @@
                       </div>
                     </div>
                   </div>
-                  <div class="tab-item active">
+                  <div :class="[{active:!active}]" class="tab-item">
                     <div class="course-list">
                       <div class="course-item">
                         <div class="avatar">
@@ -196,8 +196,46 @@
               </ul>
             </div>
           </div>
-          <div class="col-12 col-md-4">
+          <div class="col-12 col-md-4 thumbnails-right">
+              <div class="row">
+                <div class="col-6 col-md-12">
+                  <img src="../assets/img/homepage_military.jpg" alt="">
+                  <h4>U.S. Military Saves Big on Tuition</h4>
+                  <p>
+                    See how active duty, veterans, and military families are saving at least 30% with Berklee Online's Military Benefits.
+                  </p>
+                </div>
+                <div class="col-6 col-md-12">
+                  <img src="../assets/img/homepage_military.jpg" alt="">
+                  <h4>U.S. Military Saves Big on Tuition</h4>
+                  <p>
+                    See how active duty, veterans, and military families are saving at least 30% with Berklee Online's Military Benefits.
+                  </p>
+                </div>
+              </div>
+          </div>
+        </div>
+      </div>
 
+      <hr style="margin-top: 30px;">
+
+      <div class="container-fluid sample">
+        <h2 class="title">
+          Discover Why Musicians Succeed at Berklee Online
+        </h2>
+        <div class="row">
+          <div class="col-12 col-md-6 col-lg-5">
+            <p class="txt-lg">
+              Curious about how online learning works? Explore our unique learning environment in one of 12 free sample lessons.
+            </p>
+            <div>
+              <a class="bo-button-alt" href="/sample-a-lesson">
+                Try It Now
+              </a>
+            </div>
+          </div>
+          <div class="col-12 col-md-6 col-lg-7">
+            <img src="../assets/img/boccealldevice_min.png" alt="">
           </div>
         </div>
       </div>
@@ -212,6 +250,16 @@
   export default {
     name: 'index-f',
     components: Components,
+    data(){
+      return {
+        active:true
+      }
+    },
+    methods:{
+      changeActive(bool){
+        this.active = bool;
+      }
+    }
   }
 </script>
 
@@ -423,6 +471,7 @@
   .course-item{
     display: flex;
     justify-content: flex-start;
+    margin-bottom: 40px;
   }
   .course-item .avatar{
     width: 60px;
@@ -437,7 +486,7 @@
 
 
   .thumbnails{
-
+    margin-top: 60px;
   }
   .thumbnails img{
     width: 100%;
@@ -452,5 +501,41 @@
     color: #ffffff;
     text-decoration: underline;
     font-weight: bold;
+  }
+
+  .thumbnails-right .row{
+    margin-left: 15px;
+    margin-right: 0;
+  }
+  .thumbnails-right>.row>.col-6 {
+    padding:0 15px;
+  }
+
+  .sample{
+    margin-top: 30px;
+    margin-bottom: 60px;
+  }
+  .sample .title{
+    text-align: center;
+    margin-bottom: 60px;
+  }
+  .sample .bo-button-alt{
+    color: #ee243c;
+    display: inline-block;
+    margin: 0px;
+    outline: 0;
+    font-size: 1.16rem;
+    line-height: 1.5rem;
+    border: 3px solid #ee243c;
+    padding: 7px;
+  }
+  .sample .txt-lg{
+    font-size: 1.4rem;
+    line-height: 2.50rem;
+    color: #0e1416;
+    font-weight: 200;
+  }
+  .sample img{
+    width: 100%;
   }
 </style>
