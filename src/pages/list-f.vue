@@ -46,10 +46,41 @@
             </div>
             <div class="level-list">
               <a href="#">
-                <Level level="1"></Level>
+                <Level :level="1"></Level>
+                <h6>Level 1</h6>
+              </a>
+              <a href="#">
+                <Level :level="2"></Level>
+                <h6>Level 2</h6>
+              </a>
+              <a href="#">
+                <Level :level="3"></Level>
+                <h6>Level 3</h6>
+              </a>
+              <a href="#">
+                <Level :level="4"></Level>
+                <h6>Level 4</h6>
               </a>
             </div>
             <hr>
+          </div>
+          <div class="col-12 col-lg-4">
+            <div class="row course-list">
+              <div class="col-12 course-item">
+                <p class="course-id">YII001</p>
+                <h2 class="course-name">Yii 2.0 权威指南</h2>
+                <div class="course-info">
+                  <div class="course-price">课程价格:$0</div>
+                  <div class="course-level">
+                    <Level :level="1"></Level>
+                    <h6>Level 1</h6>
+                  </div>
+                </div>
+                <div class="course-intr">
+                  我是摘要
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -138,5 +169,52 @@
     font-size: 1.3rem;
     font-weight: 500;
     line-height: 2rem;
+  }
+  .level-list{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .level-list a{
+    text-align: center;
+    display: inline-block;
+    width: 60px;
+  }
+  .level-list a h6{
+    color: #25353c;
+    margin-top: 0.1rem;
+    font-weight: 600;
+  }
+
+  .course-item{
+    box-shadow: rgba(0, 0, 0, 0.22) 3px 3px 8px;
+    margin: 15px;
+    padding: 30px;
+    border:1px solid rgb(222, 226, 229);
+  }
+
+  .course-id{
+    margin-bottom: 0;
+    font-size: 1.15rem;
+  }
+  .course-name{
+    box-shadow: rgb(238, 36, 60) 0px -1px 0px inset;
+    display: inline-block;
+    font-weight: 500;
+  }
+  .course-info{
+    text-align: right;
+  }
+  .course-price{
+    float: left;
+    font-size: 1.2rem;
+  }
+  .course-level{
+    display: inline-block;
+    text-align: center;
+    /*float: right;*/
+  }
+  .course-intr{
+    font-size: 1.1rem;
   }
 </style>
