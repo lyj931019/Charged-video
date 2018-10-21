@@ -41,44 +41,56 @@
         <div class="row">
           <div class="col-12 col-lg-4">
             <div class="level">
-              <a href="#">All Level</a>
+              <a href="#" @click.prevent="getCourseListFromLevel('')">All Level</a>
               <p class="title">Level</p>
             </div>
             <div class="level-list">
-              <a href="#">
+              <a href="#" @click.prevent="getCourseListFromLevel(1)">
                 <Level :level="1"></Level>
                 <h6>Level 1</h6>
               </a>
-              <a href="#">
+              <a href="#" @click.prevent="getCourseListFromLevel(2)">
                 <Level :level="2"></Level>
                 <h6>Level 2</h6>
               </a>
-              <a href="#">
+              <a href="#" @click.prevent="getCourseListFromLevel(3)">
                 <Level :level="3"></Level>
                 <h6>Level 3</h6>
               </a>
-              <a href="#">
+              <a href="#" @click.prevent="getCourseListFromLevel(4)">
                 <Level :level="4"></Level>
                 <h6>Level 4</h6>
               </a>
             </div>
             <hr>
+            <div class="sort">
+              <p class="title">分类</p>
+            </div>
+            <ul class="sort-list">
+              <li class="sort-item">
+                <a href="#"  :class="typeId==''?'filter-on':''"  @click.prevent="getCourseListFromSort('')">所有</a>
+              </li>
+              <template  v-if="sortList.length>0">
+                <li class="sort-item" v-for="(type_item,index) in sortList">
+                  <a href="#"  :class="typeId==type_item.id?'filter-on':''"  @click.prevent="getCourseListFromSort(type_item.id)">{{type_item.name}}</a>
+                </li>
+              </template>
+
+            </ul>
           </div>
-          <div class="col-12 col-lg-4">
-            <div class="row course-list">
-              <div class="col-12 course-item">
-                <p class="course-id">YII001</p>
-                <h2 class="course-name">Yii 2.0 权威指南</h2>
+          <div class="col-12 col-lg-8">
+            <div class="row course-list"  v-if="courseList.length>0">
+              <div class="col-11 col-lg-5 course-item" v-for="(item,index) in courseList">
+                <p class="course-id">{{item.num}}</p>
+                <h2 class="course-name" @click.prevent="goToDetail(item.num)">{{item.name}}</h2>
                 <div class="course-info">
-                  <div class="course-price">课程价格:$0</div>
+                  <div class="course-price">课程价格:${{item.price}}</div>
                   <div class="course-level">
-                    <Level :level="1"></Level>
-                    <h6>Level 1</h6>
+                    <Level :level="item.level"></Level>
+                    <h6>Level {{item.level}}</h6>
                   </div>
                 </div>
-                <div class="course-intr">
-                  我是摘要
-                </div>
+                <div class="course-intr" v-html="item.synopsis"></div>
               </div>
             </div>
           </div>
@@ -96,9 +108,62 @@
     name: 'listF',
     components: Components,
     data() {
-      return {}
+      return {
+        courseList:[],
+        typeId:'',
+        params: {
+          page: 1,
+          pageSize:20
+        },
+        sortList:[],
+      }
     },
-    methods: {}
+    methods: {
+      getCourseList(key,value){
+        let _this = this;
+        console.log(key)
+        console.log(value)
+        let params = JSON.parse(JSON.stringify(_this.params));
+        if(key && value){
+          params[key]=value;
+        }
+        console.log(params)
+        this.$http({
+          method:'get',
+          url:'/courses',
+          params
+        }).then(res=>{
+          _this.courseList=res.data.data.items;
+        })
+      },
+      getSortList(){
+        let _this = this;
+        this.$http({
+          method:'get',
+          url:'/types',
+          params: {
+            page: 1,
+            pageSize:20
+          }
+        }).then(res=>{
+          _this.sortList=res.data.data.items;
+        })
+      },
+      goToDetail(num){
+        this.$router.push({ name: 'detail', params: { num }})
+      },
+      getCourseListFromSort(typeId){
+        this.typeId = typeId;
+        this.getCourseList('type_id',typeId)
+      },
+      getCourseListFromLevel(level){
+        this.getCourseList('level',level)
+      }
+    },
+    beforeMount:function(){
+      this.getCourseList('','');
+      this.getSortList();
+    }
   }
 </script>
 
@@ -165,7 +230,7 @@
     float: right;
     font-size: 1.2rem;
   }
-  .level .title{
+  .level .title,.sort .title{
     font-size: 1.3rem;
     font-weight: 500;
     line-height: 2rem;
@@ -216,5 +281,54 @@
   }
   .course-intr{
     font-size: 1.1rem;
+  }
+  .sort-list{
+    list-style: none;
+  }
+  .sort-list .sort-item a{
+    color: black;
+    font-family: "Avenir Next Cyr W00 Regular", Helvetica, Arial, sans-serif;
+    font-size: 1rem;
+    position: relative;
+  }
+  .sort-list .sort-item{
+    list-style-type: none;
+    margin-bottom: .28em;
+    padding: 0.25em 0 0 2.5em;
+  }
+  .sort-list .sort-item a.filter-on{
+    text-decoration: none;
+    color: #25353c;
+    -webkit-box-shadow: inset 0 -1px 0 #ee243c;
+    box-shadow: inset 0 -1px 0 #ee243c;
+    transition: all ease .2s;
+  }
+  .sort-list .sort-item a:before{
+    content: " ";
+    display: block;
+    border: solid 0.8em #DEE2E5;
+    border-radius: 1.4em;
+    height: 0;
+    width: 0;
+    position: absolute;
+    left: -2.75em;
+    top: 40%;
+    margin-top: -0.75em;
+  }
+  .sort-list .sort-item a.filter-on:after {
+    content: " ";
+    display: block;
+    width: 0.7em;
+    height: 1.2em;
+    border: solid limegreen;
+    border-width: 0 0.3em 0.3em 0;
+    position: absolute;
+    left: -2.3em;
+    top: 0;
+    margin-top: -0.2em;
+    -webkit-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    -o-transform: rotate(45deg);
+    transform: rotate(45deg);
   }
 </style>

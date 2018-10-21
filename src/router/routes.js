@@ -8,12 +8,12 @@ export default [
   {
     path: '/list',
     name: 'list',
-    component: Pages.List
+    component: Pages.ListF
   },
   {
-    path: '/listf',
-    name: 'listf',
-    component: Pages.ListF
+    path: '/detailf/:num',
+    name: 'detailf',
+    component: Pages.DetailF
   },
   {
     path: '/detail/:num',
