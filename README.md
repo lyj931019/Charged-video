@@ -72,6 +72,10 @@ build: {
   assetsPublicPath: './',
 }
 ```
+# 数组或对象改变但视图不刷新
+https://blog.csdn.net/zifeiyu130/article/details/78950244
+
+
 
 
 

@@ -4,7 +4,7 @@
       <MyHeader/>
     </div>
 
-    <div style="background-color: #000000;" class="centerTitle">
+    <div style="background-color: #25353c;" class="centerTitle">
       <div class="body">
         <div class="container-fluid">
           <div class="row">

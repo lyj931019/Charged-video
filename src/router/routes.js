@@ -11,15 +11,15 @@ export default [
     component: Pages.ListF
   },
   {
-    path: '/detailf/:num',
-    name: 'detailf',
-    component: Pages.DetailF
-  },
-  {
     path: '/detail/:num',
     name: 'detail',
-    component: Pages.Detail
+    component: Pages.DetailF
   },
+  // {
+  //   path: '/detail/:num',
+  //   name: 'detail',
+  //   component: Pages.Detail
+  // },
   {
     path: '/userLesson',
     name: 'userLesson',

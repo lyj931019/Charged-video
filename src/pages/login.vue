@@ -31,6 +31,7 @@
   </div>
 </template>
 <script>
+  import { mapMutations } from 'vuex'
   export default {
     name: 'login',
     data() {
@@ -41,6 +42,10 @@
       }
     },
     methods: {
+      ...mapMutations([
+        'changeLoginStatus', // 将 `this.increment()` 映射为 `this.$store.commit('increment')`
+        'changeUserInfo' // 将 `this.incrementBy(amount)` 映射为 `this.$store.commit('incrementBy', amount)`
+      ]),
       login() {
         let _this = this;
         if (this.userName.length > 0 && this.userPwd.length > 0) {
@@ -63,6 +68,9 @@
           }).then(res => {
             console.log(res)
             if (res.data.state.code == 0) {
+              _this.changeLoginStatus(true);
+//              console.log(res.data.data)
+              _this.changeUserInfo(res.data.data);
               _this.$router.push({name: 'userCenter'});
             }else{
               _this.loginErr = true;

@@ -14,8 +14,9 @@
                 </router-link>
                 <h1>{{courses.name}}</h1>
                 <div class="course-subhead">
-                  <img alt="author.full_name" class="img-circle"
-                       :src="courses.instructor.avatar">
+                  <Avatar :src="courses.instructor.avatar"/>
+                  <!--<img alt="author.full_name" class="img-circle"-->
+                       <!--:src="courses.instructor.avatar">-->
 
                   <div class="course-subhead-text">
                     <p class="txt-sm">

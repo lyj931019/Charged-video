@@ -1,5 +1,11 @@
 const state = {
-  msg: '我是原始数据',
-  myShow:true
+  isLogin:false,
+  user:{
+    user_id: 0,
+    user_email: "",
+    user_nickname: "",
+    user_sex: 1,
+    user_avatar: "",
+  }
 }
 export default state;
