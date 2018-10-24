@@ -203,11 +203,13 @@
 </template>
 
 <script>
-  import Components from '../components'
-
+  import Common from '../components/common'
+  import Level from '../components/level.vue'
+  import Avatar from '../components/avatar.vue'
+  import DownArrow from '../components/down-arrow.vue'
   export default {
     name: 'detailF',
-    components: Components,
+    components: {...Common,Level,Avatar,DownArrow},
     data() {
       return {
         courses: null,
@@ -243,6 +245,7 @@
         method: 'get',
         url: '/courses/' + num,
       }).then(res => {
+//        console.log(res.data.data)
         for (let obj of res.data.data.lessons) {
           _this.lessonActive.push(false);
         }

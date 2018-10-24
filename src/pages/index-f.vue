@@ -245,11 +245,11 @@
 </template>
 
 <script>
-  import Components from '../components'
+  import Common from '../components/common'
 
   export default {
     name: 'index-f',
-    components: Components,
+    components: Common,
     data(){
       return {
         active:true

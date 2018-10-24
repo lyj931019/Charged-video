@@ -102,11 +102,11 @@
 </template>
 
 <script>
-  import Components from '../components'
-
+  import Common from '../components/common'
+  import Level from '../components/level.vue'
   export default {
     name: 'listF',
-    components: Components,
+    components: {...Common,Level},
     data() {
       return {
         courseList:[],
