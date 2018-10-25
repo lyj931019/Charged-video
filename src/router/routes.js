@@ -34,11 +34,15 @@ export default [
     path: '/userCenter',
     name: 'userCenter',
     component: Pages.UserCenter
-  }
-  ,
+  },
   {
     path: '/login',
     name: 'login',
     component: Pages.Login
+  },
+  {
+    path: '/about',
+    name: 'about',
+    component: Pages.About
   }
 ]

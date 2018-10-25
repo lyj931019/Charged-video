@@ -25,6 +25,14 @@
               </router-link>
 
             </li>
+            <li class="nav-item">
+              <router-link :to="{ name: 'about'}">
+                <a class="nav-link" href="#">
+                  关于我们
+                </a>
+              </router-link>
+
+            </li>
           </ul>
           <form class="form-inline my-2 my-lg-0" style="margin:0 1.3rem">
             <router-link :to="{ name: 'login'}" v-if="!getIsLogin">

@@ -2,9 +2,54 @@
   <div>
     <MyHeader/>
     <div class="container-fluid">
-      <div class="row">
-        <div class="col-12 col-lg-3">aside</div>
-        <div class="col-12 col-lg-9">content</div>
+      <h1 class="about-header">关于我们</h1>
+      <div class="row about-container">
+        <div class="col-12 col-md-4 col-lg-3 about-aside">
+          <ul class="aside-list">
+            <li class="aside-item" :class="{active:active==='CompanyProfile'}" @click="changePage('CompanyProfile')">
+              公司介绍
+            </li>
+            <li class="aside-item" :class="{active:active==='Tutorial'}" @click="changePage('Tutorial')">
+              学习教程
+            </li>
+            <li class="aside-item" :class="{active:active==='UserAgreement'}" @click="changePage('UserAgreement')">
+              用户协议
+            </li>
+            <li class="aside-item" :class="{active:active==='PaymentAgreement'}" @click="changePage('PaymentAgreement')">
+              支付协议
+            </li>
+            <li class="aside-item" :class="{active:active==='AboutUs'}" @click="changePage('AboutUs')">
+              关于我们
+            </li>
+          </ul>
+          <div class="phone">
+            <p>咨询热线</p>
+            <h4>400-882-3823</h4>
+          </div>
+        </div>
+        <div class="col-12 col-md-8 col-lg-9 about-section">
+          <div class="row">
+            <div class="col-2"></div>
+            <div class="col-8">
+              <template v-if="pages">
+                <div class="about-content" v-for="(page,index) in pages" :key="page.name">
+                  <div :class="{active:active===page.name}">
+                    <!--<h1>{{page.title}}</h1>-->
+                    <template v-if="page.content">
+                      <div v-html="page.content"></div>
+                    </template>
+                    <template v-else>
+                      <div :class="{active:active===page.name}">未设置</div>
+                    </template>
+                  </div>
+
+                </div>
+              </template>
+
+
+            </div>
+          </div>
+        </div>
       </div>
     </div>
     <MyFooter/>
@@ -17,13 +62,75 @@
     name:'about',
     components:Common,
     data(){
-
+      return {
+        active:'CompanyProfile',
+        pages:null
+      }
     },
-    methods:{}
-
+    methods:{
+      changePage(pageName){
+        this.active = pageName;
+      }
+    },
+    beforeMount() {
+      let _this = this;
+      this.$http({
+        method: 'get',
+        url: '/pages',
+      }).then(res => {
+        _this.pages = res.data.data;
+      })
+    }
   }
 </script>
 
 <style scoped>
-
+  .about-header{
+    font-weight: 700;
+    padding: 2rem 0;
+  }
+  .about-container{
+    border-top:1px solid #25353c;
+    margin-bottom: 5rem;
+    min-height: 450px;
+  }
+  .about-aside{
+    padding-top: 2.5rem;
+    padding-right: 0;
+    border-right:1px solid #25353c;
+  }
+  .about-aside .aside-list{
+    list-style: none;
+    padding: 0;
+    margin:0 0 1rem 0;
+  }
+  .about-aside .aside-list .aside-item{
+    padding: 0.7rem;
+    cursor: pointer;
+  }
+  .about-aside .aside-list .aside-item.active{
+    background-color: #eff1f3;
+    font-weight: bold;
+  }
+  .about-aside .aside-list .aside-item:hover{
+    background-color: #dee2e5;
+  }
+  .about-section{
+    padding-top: 2.5rem;
+  }
+  .phone{
+    background-color: #25353c;
+    color: #fff;
+    padding: 20px 15px;
+    text-align: center;
+  }
+  .phone p{
+    font-size: 1.1rem;
+  }
+  .about-content>div{
+    display: none;
+  }
+  .about-content>div.active{
+    display: block;
+  }
 </style>

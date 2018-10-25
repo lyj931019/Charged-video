@@ -6,7 +6,7 @@ import UserCourse from './userCourses.vue'
 import UserCenter from './userCenter.vue'
 import Login from './login.vue'
 
-
+import About from './about.vue'
 
 //
 
@@ -17,6 +17,6 @@ import DetailF from './detail-f.vue'
 
 
 export default {
-  Index,List,Detail,UserLesson,UserCourse,UserCenter,Login,
+  Index,List,Detail,UserLesson,UserCourse,UserCenter,Login,About,
   IndexF,ListF,DetailF
 }

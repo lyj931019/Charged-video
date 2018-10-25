@@ -55,7 +55,7 @@ git push -u origin master
 各组件都有对应的 ***readme.md***
 
 
-#npm run build
+# npm run build
 ## 修改配置
 ./build/utils.js
 ```
@@ -72,6 +72,11 @@ build: {
   assetsPublicPath: './',
 }
 ```
+# 静态资源目录 static
+开发时只需按照真实路径即可
+即 `./static`
+
+
 # 数组或对象改变但视图不刷新
 https://blog.csdn.net/zifeiyu130/article/details/78950244
 
