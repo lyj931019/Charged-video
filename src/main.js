@@ -29,12 +29,14 @@ Vue.prototype.$notification = myComponent.Lnotification;
 
 // import component from 'component_path'
 
+import i18n from './i18n'
 
 
 new Vue({
   el: '#app',
   router,
   store,
+  i18n,
   components: {App},
   template: '<App/>'
 })

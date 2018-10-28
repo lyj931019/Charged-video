@@ -12,7 +12,7 @@
             <li class="nav-item">
               <router-link :to="{ name: 'index'}">
                 <a class="nav-link" href="#">
-                  首页
+                  {{$t("header.home")}}
                 </a>
               </router-link>
 
@@ -20,7 +20,7 @@
             <li class="nav-item">
               <router-link :to="{ name: 'list'}">
                 <a class="nav-link" href="#">
-                  所有课程
+                  {{$t("header.courses")}}
                 </a>
               </router-link>
 
@@ -28,7 +28,7 @@
             <li class="nav-item">
               <router-link :to="{ name: 'about'}">
                 <a class="nav-link" href="#">
-                  关于我们
+                  {{$t("header.aboutUs")}}
                 </a>
               </router-link>
 
@@ -36,7 +36,7 @@
           </ul>
           <form class="form-inline my-2 my-lg-0" style="margin:0 1.3rem">
             <router-link :to="{ name: 'login'}" v-if="!getIsLogin">
-              <a class="btn-login nav-link" href="#" id="login" rel="nofollow">Log In</a>
+              <a class="btn-login nav-link" href="#" id="login" rel="nofollow">{{$t('header.login')}}</a>
             </router-link>
             <template v-if="getIsLogin">
               <Avatar :src="getUserInfo.user_avatar"/>

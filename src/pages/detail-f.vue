@@ -61,8 +61,11 @@
                   <div class="nav-scroll">概览</div>
                   <div class="nav-scroll">概览</div>
                   <div class="nav-scroll">概览</div>
-                  <div class="buy">购买课程</div>
-                  <div class="collection">加入收藏</div>
+                  <div class="buy" @click="buyCourse">购买课程</div>
+                  <div class="collection" >
+                    <span @click="tryCourse">试用课程</span>
+                    <span @click="favoritesCourse">加入收藏</span>
+                  </div>
                   <div class="phone">
                     <p>咨询热线</p>
                     <h4>400-882-3823</h4>
@@ -207,6 +210,7 @@
   import Level from '../components/level.vue'
   import Avatar from '../components/avatar.vue'
   import DownArrow from '../components/down-arrow.vue'
+  import { mapGetters } from 'vuex'
   export default {
     name: 'detailF',
     components: {...Common,Level,Avatar,DownArrow},
@@ -219,6 +223,13 @@
         software: false,
         hardware: false
       }
+    },
+    computed: {
+      // 使用对象展开运算符将 getter 混入 computed 对象中
+      ...mapGetters([
+        'getIsLogin',
+        'getUserInfo'
+      ])
     },
     methods: {
       showLessonContent(index) {
@@ -236,6 +247,66 @@
       },
       showHardware() {
         this.hardware = !this.hardware;
+      },
+      buyCourse(){
+        if(this.getIsLogin){
+          let _this = this;
+          this.$http({
+            method: 'post',
+            url: '/users/courses/',
+            params:{
+              user_id:_this.getUserInfo.user_id,
+              course_id:courses.id
+            }
+          }).then(res => {
+            console.log(res.data)
+            _this.$router.push({ name: 'userCenter'})
+            console.log(_this.courses)
+          })
+        }else{
+          this.gotoLogin();
+        }
+      },
+      tryCourse(){
+        if(this.getIsLogin){
+          let _this = this;
+          this.$http({
+            method: 'post',
+            url: '/users/courses/',
+            params:{
+              user_id:_this.getUserInfo.user_id,
+              course_id:courses.id
+            }
+          }).then(res => {
+            console.log(res.data)
+            _this.$router.push({ name: 'userCenter'})
+            console.log(_this.courses)
+          })
+        }else{
+          this.gotoLogin();
+        }
+      },
+      favoritesCourse(){
+        if(this.getIsLogin){
+          let _this = this;
+          this.$http({
+            method: 'post',
+            url: '/users/favorites/',
+            params:{
+              user_id:_this.getUserInfo.user_id,
+              course_id:courses.id
+            }
+          }).then(res => {
+            console.log(res.data)
+            _this.$router.push({ name: 'userCenter'})
+            console.log(_this.courses)
+          })
+        }else{
+          this.gotoLogin();
+        }
+      },
+      gotoLogin(){
+        this.$router.push({ name: 'login'})
       }
     },
     beforeMount() {
@@ -245,7 +316,7 @@
         method: 'get',
         url: '/courses/' + num,
       }).then(res => {
-//        console.log(res.data.data)
+        console.log(res.data.data)
         for (let obj of res.data.data.lessons) {
           _this.lessonActive.push(false);
         }
@@ -444,8 +515,14 @@
     font-size: 1.16rem;
     line-height: 1.5rem;
     text-align: center;
-    text-decoration: underline;
+
     font-weight: 400;
+  }
+  .collection>span{
+    text-decoration: underline;
+  }
+  .collection>span:nth-child(1){
+    margin-right: 2rem;
   }
   .phone{
     background-color: #25353c;
