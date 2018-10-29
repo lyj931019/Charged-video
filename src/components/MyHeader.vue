@@ -38,10 +38,20 @@
             <router-link :to="{ name: 'login'}" v-if="!getIsLogin">
               <a class="btn-login nav-link" href="#" id="login" rel="nofollow">{{$t('header.login')}}</a>
             </router-link>
+            <router-link :to="{ name: 'register'}" v-if="!getIsLogin">
+              <a class="btn-login nav-link" style="margin-left: 1rem;" href="#" id="register" rel="nofollow">{{$t('header.register')}}</a>
+            </router-link>
             <template v-if="getIsLogin">
-              <Avatar :src="getUserInfo.user_avatar"/>
+              <span id="avatarDropDown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="button">
+                 <Avatar :src="getUserInfo.user_avatar"/>
+              </span>
             </template>
-
+            <div class="dropdown-menu" style="float: right;right: 2px;left: auto" aria-labelledby="avatarDropDown">
+              <router-link class="dropdown-item" href="#" :to="{ name: 'userCenter'}">
+                个人中心
+              </router-link>
+              <a class="dropdown-item" href="#">注销</a>
+            </div>
           </form>
         </div>
       </nav>

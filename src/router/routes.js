@@ -41,6 +41,11 @@ export default [
     component: Pages.Login
   },
   {
+    path: '/register',
+    name: 'register',
+    component: Pages.Register
+  },
+  {
     path: '/about',
     name: 'about',
     component: Pages.About

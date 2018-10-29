@@ -33,29 +33,54 @@
       <div class="body">
         <div class="container-fluid">
           <div class="row">
-            <div class="col-12">
-              <p>我的课程</p>
+            <div class="col-12 col-md-3">
+              <p :class="{active:active=='course'}" @click="changeTab('course')">
+                我的课程
+                <span class="triangle"></span>
+              </p>
+            </div>
+            <div class="col-12 col-md-3">
+              <p :class="{active:active=='favorites'}" @click="changeTab('favorites')">
+                我的收藏
+                <span class="triangle"></span>
+              </p>
             </div>
           </div>
         </div>
       </div>
+
     </div>
-    <div class="course" v-if="lessonList">
+    <div class="course" >
       <div class="body">
         <div class="container-fluid">
           <div class="row">
-            <div class="col-12 col-lg-8" style="margin-bottom: 2rem;">
-              <template v-for="(item,index) in lessonList">
-                <div class="courseItem">
-                  <router-link :to="{ name: 'userLesson'}">
-                    <a class="nav-link" href="#">
-                      {{item.course.name}}
-                    </a>
-                  </router-link>
+            <div class="col-12 col-lg-8 tab-container" style="margin-bottom: 2rem;" :class="{active:active=='course'}">
+              <template v-if="lessonList">
+                <template v-for="(item,index) in lessonList">
+                  <div class="courseItem">
+                    <router-link :to="{ name: 'userLesson'}">
+                      <a class="nav-link" href="#">
+                        {{item.course.name}}
+                      </a>
+                    </router-link>
 
-                </div>
+                  </div>
+                </template>
               </template>
+            </div>
+            <div class="col-12 col-lg-8 tab-container" style="margin-bottom: 2rem;" :class="{active:active=='favorites'}">
+              <template v-if="favoritesList">
+                <template v-for="(item,index) in favoritesList">
+                  <div class="courseItem">
+                    <router-link :to="{ name: 'userLesson'}">
+                      <a class="nav-link" href="#">
+                        {{item.course.name}}
+                      </a>
+                    </router-link>
 
+                  </div>
+                </template>
+              </template>
             </div>
             <div class="col-12 col-lg-1"></div>
             <div class="col-12 col-lg-3">
@@ -82,30 +107,58 @@
 </template>
 
 <script>
+  import { mapGetters } from 'vuex'
   import Components from '../components/index'
   export default {
     name:'userCenter',
     components:Components,
     data(){
       return {
-        lessonList:null
+        lessonList:null,
+        favoritesList:null,
+        active:'course'
       }
     },
     methods:{
       goToStudyPage(){
         this.$router.push({ name: 'userLesson'})
+      },
+      changeTab(tab){
+        this.active = tab;
+        if(tab == 'favorites' && !this.favoritesList){
+          this.getFavorites();
+        }
+      },
+      getFavorites(){
+        let _this = this;
+        this.$http({
+          method:'get',
+          url:'/users/favorites?user_id='+_this.getUserInfo.user_id,
+        }).then(res=>{
+          console.log(res.data)
+          _this.favoritesList=res.data.data.items;
+          console.log(_this.favoritesList);
+          console.log('f')
+        })
       }
     },
     beforeMount(){
       let _this = this;
       this.$http({
         method:'get',
-        url:'/users/courses?user_id=2',
+        url:'/users/favorites?user_id='+_this.getUserInfo.user_id,
       }).then(res=>{
         console.log(res.data)
         _this.lessonList=res.data.data.items;
         console.log(_this.lessonList)
       })
+    },
+    computed: {
+      // 使用对象展开运算符将 getter 混入 computed 对象中
+      ...mapGetters([
+        'getIsLogin',
+        'getUserInfo'
+      ])
     }
 
   }
@@ -131,11 +184,34 @@
   }
 
   .userList{
-    padding: 0.6rem 0;
+    padding: 1rem 0;
   }
   .userList p{
     font-weight: bold;
     margin-bottom: 0;
+    position: relative;
+    cursor: pointer;
+  }
+  .triangle{
+    position: absolute;
+    bottom: -16px;
+    left: 18px;
+    margin: auto;
+    width: 0;
+    height: 0;
+    border-width: 10px;
+    border-style: solid;
+    border-color: transparent transparent #fff transparent;
+    display: none;
+  }
+  .userList p.active .triangle{
+    display: block;
+  }
+  .tab-container{
+    display: none;
+  }
+  .tab-container.active{
+    display: block;
   }
   .course{
     padding:0.4rem 0;

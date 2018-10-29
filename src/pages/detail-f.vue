@@ -294,7 +294,7 @@
             url: '/users/favorites/',
             params:{
               user_id:_this.getUserInfo.user_id,
-              course_id:courses.id
+              course_id:_this.courses.id
             }
           }).then(res => {
             console.log(res.data)

@@ -3,7 +3,8 @@ module.exports = {
     login: 'Login',
     home:'Home',
     courses:'Courses',
-    aboutUs:'about us'
+    aboutUs:'About us',
+    register:'Register'
   },
   placeholder: {
     enter: 'Please type in your favorite brand'

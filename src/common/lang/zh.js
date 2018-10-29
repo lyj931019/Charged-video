@@ -3,7 +3,8 @@ module.exports = {
     login: '登录',
     home:'首页',
     courses:'所有课程',
-    aboutUs:'关于我们'
+    aboutUs:'关于我们',
+    register:'注册'
   },
   placeholder: {
     enter: '请输入您喜欢的品牌'

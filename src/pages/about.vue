@@ -2,7 +2,7 @@
   <div>
     <MyHeader/>
     <div class="container-fluid">
-      <h1 class="about-header">关于我们</h1>
+      <h1 class="about-header">学校信息，报名和政策</h1>
       <div class="row about-container">
         <div class="col-12 col-md-4 col-lg-3 about-aside">
           <ul class="aside-list">
