@@ -101,6 +101,7 @@
 </template>
 
 <script>
+  import { mapGetters } from 'vuex'
   import Components from '../components/index'
   export default {
     name:'userCourse',
@@ -115,11 +116,20 @@
         this.$router.push({ name: 'userLesson'})
       }
     },
+    computed: {
+      // 使用对象展开运算符将 getter 混入 computed 对象中
+      ...mapGetters([
+        'getIsLogin',
+        'getUserInfo'
+      ])
+    },
     beforeMount(){
       let _this = this;
+      console.log(321)
+      console.log(_this.getUserInfo.user_id)
       this.$http({
         method:'get',
-        url:'/users/courses?user_id=2',
+        url:'/users/courses?user_id='+_this.getUserInfo.user_id,
       }).then(res=>{
         console.log(res.data)
         _this.lessonList=res.data.data.items;

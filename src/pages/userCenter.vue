@@ -45,12 +45,18 @@
                 <span class="triangle"></span>
               </p>
             </div>
+            <div class="col-12 col-md-3">
+              <p :class="{active:active=='account'}" @click="changeTab('account')">
+                我的账户
+                <span class="triangle"></span>
+              </p>
+            </div>
           </div>
         </div>
       </div>
 
     </div>
-    <div class="course" >
+    <div class="course">
       <div class="body">
         <div class="container-fluid">
           <div class="row">
@@ -68,11 +74,13 @@
                 </template>
               </template>
             </div>
-            <div class="col-12 col-lg-8 tab-container" style="margin-bottom: 2rem;" :class="{active:active=='favorites'}">
+            <div class="col-12 col-lg-8 tab-container" style="margin-bottom: 2rem;"
+                 :class="{active:active=='favorites'}">
               <template v-if="favoritesList">
                 <template v-for="(item,index) in favoritesList">
                   <div class="courseItem">
-                    <router-link :to="{ name: 'userLesson'}">
+                    <span class="delete" @click="deleteFavorites(item.course_id)">删除</span>
+                    <router-link :to="{name: 'detail', params: { num: item.course.num } }">
                       <a class="nav-link" href="#">
                         {{item.course.name}}
                       </a>
@@ -81,6 +89,23 @@
                   </div>
                 </template>
               </template>
+            </div>
+            <div class="col-12 col-lg-8 tab-container" style="margin-bottom: 2rem;" :class="{active:active=='account'}">
+              <div class="courseItem">
+                  <a class="nav-link" href="#">
+                    更改密码
+                  </a>
+              </div>
+              <div class="courseItem">
+                <a class="nav-link" href="#">
+                  编辑姓名和电子邮件地址
+                </a>
+              </div>
+              <div class="courseItem">
+                <a class="nav-link" href="#">
+                  修改电子邮件偏好
+                </a>
+              </div>
             </div>
             <div class="col-12 col-lg-1"></div>
             <div class="col-12 col-lg-3">
@@ -107,49 +132,62 @@
 </template>
 
 <script>
-  import { mapGetters } from 'vuex'
+  import {mapGetters} from 'vuex'
   import Components from '../components/index'
+
   export default {
-    name:'userCenter',
-    components:Components,
-    data(){
+    name: 'userCenter',
+    components: Components,
+    data() {
       return {
-        lessonList:null,
-        favoritesList:null,
-        active:'course'
+        lessonList: null,
+        favoritesList: null,
+        active: 'course'
       }
     },
-    methods:{
-      goToStudyPage(){
-        this.$router.push({ name: 'userLesson'})
+    methods: {
+      goToStudyPage() {
+        this.$router.push({name: 'userLesson'})
       },
-      changeTab(tab){
+      changeTab(tab) {
         this.active = tab;
-        if(tab == 'favorites' && !this.favoritesList){
+        if (tab == 'favorites' && !this.favoritesList) {
           this.getFavorites();
         }
       },
-      getFavorites(){
+      getFavorites() {
         let _this = this;
         this.$http({
-          method:'get',
-          url:'/users/favorites?user_id='+_this.getUserInfo.user_id,
-        }).then(res=>{
+          method: 'get',
+          url: '/favorites?user_id=' + _this.getUserInfo.user_id,
+        }).then(res => {
           console.log(res.data)
-          _this.favoritesList=res.data.data.items;
-          console.log(_this.favoritesList);
-          console.log('f')
+          _this.favoritesList = res.data.data;
+        })
+      },
+      deleteFavorites(course_id){
+        let _this = this;
+        let params = {
+          user_id:_this.getUserInfo.user_id,
+          course_id
+        }
+        this.$http.delete("/favorites", {data: params}).then(res => {
+          console.log(res.data);
+          if(parseInt(res.data.state.code) === 0){
+            _this.getFavorites();
+          }
         })
       }
     },
-    beforeMount(){
+    beforeMount() {
       let _this = this;
+      console.log(_this.getUserInfo.user_id)
       this.$http({
-        method:'get',
-        url:'/users/favorites?user_id='+_this.getUserInfo.user_id,
-      }).then(res=>{
+        method: 'get',
+        url: '/users/courses?user_id=' + _this.getUserInfo.user_id,
+      }).then(res => {
         console.log(res.data)
-        _this.lessonList=res.data.data.items;
+        _this.lessonList = res.data.data;
         console.log(_this.lessonList)
       })
     },
@@ -165,34 +203,40 @@
 </script>
 
 <style scoped>
-  .centerTitle{
+  .centerTitle {
     padding-top: 3rem;
   }
-  .centerTitle h1{
+
+  .centerTitle h1 {
     color: #ffffff;
   }
-  .centerTitle h4{
+
+  .centerTitle h4 {
     color: #f0202e;
     margin-bottom: 5rem;
   }
-  .knowMore{
-    padding:1rem 0;
+
+  .knowMore {
+    padding: 1rem 0;
   }
-  .knowMore p{
+
+  .knowMore p {
     color: #078baa;
     margin-bottom: 0;
   }
 
-  .userList{
+  .userList {
     padding: 1rem 0;
   }
-  .userList p{
+
+  .userList p {
     font-weight: bold;
     margin-bottom: 0;
     position: relative;
     cursor: pointer;
   }
-  .triangle{
+
+  .triangle {
     position: absolute;
     bottom: -16px;
     left: 18px;
@@ -204,39 +248,68 @@
     border-color: transparent transparent #fff transparent;
     display: none;
   }
-  .userList p.active .triangle{
+
+  .userList p.active .triangle {
     display: block;
   }
-  .tab-container{
+
+  @media (max-width: 768px) {
+    .userList p.active .triangle {
+      display: none;
+    }
+
+    .userList p {
+      text-align: center;
+    }
+  }
+
+  .tab-container {
     display: none;
   }
-  .tab-container.active{
+
+  .tab-container.active {
     display: block;
   }
-  .course{
-    padding:0.4rem 0;
+
+  .course {
+    padding: 0.4rem 0;
     min-height: 240px;
     margin-bottom: 5rem;
+    position: relative;
   }
-  .courseItem{
+
+  .courseItem {
     padding: 0.4rem 0;
-    border-bottom:1px solid #ccc;
+    border-bottom: 1px solid #ccc;
   }
-  .course a{
+
+  .course a {
     font-weight: bold;
-    font-size:1rem;
+    font-size: 1rem;
+    /*margin-right: 4rem;*/
   }
-  .courseItem:hover{
+  .course .delete{
+    position: absolute;
+    color: #f0202e;
+    line-height: 2.4rem;
+    cursor: pointer;
+    z-index: 20;
+    right: 2rem;
+  }
+  .courseItem:hover {
     background-color: #ccc;
   }
-  .courseInfo{
-    padding:0.5rem 1.6rem;
+
+  .courseInfo {
+    padding: 0.5rem 1.6rem;
   }
-  .courseInfo>div{
+
+  .courseInfo > div {
     background-color: #ccc;
     padding: 1rem;
   }
-  .courseInfo h4{
+
+  .courseInfo h4 {
     margin-bottom: 1rem;
   }
 </style>

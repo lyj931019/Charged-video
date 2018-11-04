@@ -2,7 +2,7 @@
   <div>
     <MyHeader/>
     <div class="body" v-if="courses">
-      <div class="bg">
+      <div class="bg" id="abs">
         <div class="container-fluid">
           <h5 class="online-course">
             <a href="#">在线课程</a>
@@ -54,13 +54,13 @@
 
               </div>
             </div>
-            <div class="col-12 col-lg-3 d-lg-block d-none">
+            <div class="col-12 col-lg-3 d-none d-lg-block">
               <div class="side-nav">
                 <div class="side-nav-main">
-                  <div class="nav-scroll active">概览</div>
-                  <div class="nav-scroll">概览</div>
-                  <div class="nav-scroll">概览</div>
-                  <div class="nav-scroll">概览</div>
+                  <div class="nav-scroll" :class="{active:windowScrollTop<lessonH}" @click="gotoSection(absH)">概览</div>
+                  <div class="nav-scroll" :class="{active:windowScrollTop>=lessonH && windowScrollTop<requireH}" @click="gotoSection(lessonH+1)">教学大纲</div>
+                  <div class="nav-scroll" :class="{active:windowScrollTop>=requireH && windowScrollTop<authorH}" @click="gotoSection(requireH+1)">学习要求</div>
+                  <div class="nav-scroll" :class="{active:windowScrollTop>authorH}" @click="gotoSection(authorH+1)">教师简介</div>
                   <div class="buy" @click="buyCourse">购买课程</div>
                   <div class="collection" >
                     <span @click="tryCourse">试用课程</span>
@@ -77,7 +77,7 @@
         </div>
 
       </div>
-      <div class="lesson">
+      <div class="lesson" id="lesson">
         <div class="container-fluid">
           <div class="row">
             <div class="col-12 col-lg-9" v-if="courses">
@@ -101,7 +101,7 @@
           </div>
         </div>
       </div>
-      <div class="bg requirements">
+      <div class="bg requirements" id="require">
         <div class="container-fluid">
           <div class="row">
             <div class="col-12 col-lg-9">
@@ -177,7 +177,7 @@
           </div>
         </div>
       </div>
-      <div class="author">
+      <div class="author" id="author">
         <div class="container-fluid">
           <div class="row">
             <div class="col-12 col-lg-9" v-if="courses">
@@ -201,7 +201,17 @@
 
       </div>
     </div>
+
     <MyFooter/>
+    <div class="d-block d-lg-none course-footer">
+      <a href="#" class="box">咨询</a>
+      <a href="#" class="box">试用课程</a>
+      <a href="#" class="box">加入收藏</a>
+      <a href="#" class="box">购买课程</a>
+    </div>
+    <div class="courser-footer-margin d-block d-lg-none">
+
+    </div>
   </div>
 </template>
 
@@ -221,7 +231,12 @@
         prerequisites: false,
         textbooks: false,
         software: false,
-        hardware: false
+        hardware: false,
+        absH:0,
+        lessonH:0,
+        requireH:0,
+        authorH:0,
+        windowScrollTop:0,
       }
     },
     computed: {
@@ -256,7 +271,7 @@
             url: '/users/courses/',
             params:{
               user_id:_this.getUserInfo.user_id,
-              course_id:courses.id
+              course_id:_this.courses.id
             }
           }).then(res => {
             console.log(res.data)
@@ -275,7 +290,7 @@
             url: '/users/courses/',
             params:{
               user_id:_this.getUserInfo.user_id,
-              course_id:courses.id
+              course_id:_this.courses.id
             }
           }).then(res => {
             console.log(res.data)
@@ -307,6 +322,15 @@
       },
       gotoLogin(){
         this.$router.push({ name: 'login'})
+      },
+      gotoSection(top){
+        console.log(123)
+        let _this = this;
+        console.log( _this.windowScrollTop);
+        console.log(top)
+        $('body').animate({
+          scrollTop:  top
+        }, 500);
       }
     },
     beforeMount() {
@@ -322,6 +346,22 @@
         }
         _this.courses = res.data.data;
       })
+    },
+    updated(){
+      let _this = this;
+      _this.absH = parseInt($('#abs').offset().top)-(270-27.5);
+      _this.lessonH = parseInt($('#lesson').offset().top)-(270-27.5+55);
+      _this.requireH = parseInt($('#require').offset().top)-(270-27.5+55*2);
+      _this.authorH = parseInt($('#author').offset().top)-(270-27.5+55*3);
+
+
+      window.onscroll = function () {
+//        _this.windowScrollTop = document.documentElement.scrollTop || document.body.scrollTop
+        _this.windowScrollTop = parseInt($(window).scrollTop());
+      }
+    },
+    destroyed(){
+      window.onscroll = function () {}
     }
   }
 </script>
@@ -483,6 +523,17 @@
     -webkit-box-shadow: 0.7em 0.7em 2em rgba(0, 0, 0, 0.45);
     box-shadow: 0.7em 0.7em 2em rgba(0, 0, 0, 0.45);
     z-index: 100;
+    display: block;
+  }
+  @media (max-width: 1550px) {
+    .side-nav{
+      width: 240px;
+    }
+  }
+  @media (min-width: 1550px) {
+    /*.side-nav{*/
+    /*display: none;*/
+    /*}*/
   }
   .side-nav-main {
     background-color: white;
@@ -500,6 +551,17 @@
     letter-spacing: .5px;
     padding: 10px 15px;
     cursor: pointer;
+  }
+  .side-nav-main .nav-scroll.active:before {
+    content: "";
+    position: absolute;
+    right: 100%;
+    width: 0;
+    height: 0;
+    margin-top: -10px;
+    border-top: calc(.875rem + 12px) solid transparent;
+    border-bottom: calc(.875rem + 12px) solid transparent;
+    border-right: 1.7rem solid #7ea0af;
   }
   .buy{
     font-size: 1.16rem;
@@ -532,5 +594,30 @@
   }
   .phone p{
     font-size: 1.1rem;
+  }
+
+  .courser-footer-margin{
+    margin-top: 60px;
+  }
+  .course-footer{
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    box-shadow: 0em 0em 2rem rgba(0,0,0,0.45);
+    background-color: #fff;
+    text-align: center;
+  }
+  .course-footer .box{
+    padding: 1rem;
+    background-color: #fff;
+    text-align: center;
+    border-right: 2px solid #eff1f3;
+    display: inline-block;
+    width: 24%;
+    box-sizing: border-box;
+  }
+  .course-footer .box:last-child{
+    border:none;
   }
 </style>

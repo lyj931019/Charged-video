@@ -28,7 +28,7 @@ export default [
   {
     path: '/userCourse',
     name: 'userCourse',
-    component: Pages.UserCenter
+    component: Pages.UserCourse
   },
   {
     path: '/userCenter',
