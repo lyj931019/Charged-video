@@ -48,9 +48,9 @@
             </template>
             <div class="dropdown-menu" style="float: right;right: 2px;left: auto" aria-labelledby="avatarDropDown">
               <router-link class="dropdown-item" href="#" :to="{ name: 'userCenter'}">
-                个人中心
+                {{$t('header.userCenter')}}
               </router-link>
-              <a class="dropdown-item" href="#">注销</a>
+              <a class="dropdown-item" href="#">{{$t('header.logout')}}</a>
             </div>
           </form>
         </div>

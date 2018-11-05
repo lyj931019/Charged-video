@@ -2,28 +2,28 @@
   <div>
     <MyHeader/>
     <div class="container-fluid">
-      <h1 class="about-header">学校信息，报名和政策</h1>
+      <h1 class="about-header">{{$t('about.title')}}</h1>
       <div class="row about-container">
         <div class="col-12 col-md-4 col-lg-3 about-aside">
           <ul class="aside-list">
             <li class="aside-item" :class="{active:active==='CompanyProfile'}" @click="changePage('CompanyProfile')">
-              公司介绍
+              {{$t('about.companyProfile')}}
             </li>
             <li class="aside-item" :class="{active:active==='Tutorial'}" @click="changePage('Tutorial')">
-              学习教程
+              {{$t('about.learningTutorial')}}
             </li>
             <li class="aside-item" :class="{active:active==='UserAgreement'}" @click="changePage('UserAgreement')">
-              用户协议
+              {{$t('about.userAgreement')}}
             </li>
             <li class="aside-item" :class="{active:active==='PaymentAgreement'}" @click="changePage('PaymentAgreement')">
-              支付协议
+              {{$t('about.paymentAgreement')}}
             </li>
             <li class="aside-item" :class="{active:active==='AboutUs'}" @click="changePage('AboutUs')">
-              关于我们
+              {{$t('about.aboutUs')}}
             </li>
           </ul>
           <div class="phone">
-            <p>咨询热线</p>
+            <p>{{$t('common.supportHotline')}}</p>
             <h4>400-882-3823</h4>
           </div>
         </div>
@@ -39,7 +39,7 @@
                       <div v-html="page.content"></div>
                     </template>
                     <template v-else>
-                      <div :class="{active:active===page.name}">未设置</div>
+                      <div :class="{active:active===page.name}">{{$t('common.noContent')}}</div>
                     </template>
                   </div>
 
