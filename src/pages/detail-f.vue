@@ -5,7 +5,7 @@
       <div class="bg" id="abs">
         <div class="container-fluid">
           <h5 class="online-course">
-            <a href="#">在线课程</a>
+            <a href="#">{{$t('detail.onlineCourse')}}</a>
           </h5>
           <div class="row">
 
@@ -14,12 +14,12 @@
               <div class="course-author">
                 <Avatar :src="courses.instructor.avatar"/>
                 <span>
-                  教师:
+                  {{$t('detail.author')}}:
                   <a class="a-body-link" href="#">{{courses.instructor.name}}</a>
                 </span>
                 <i>|</i>
                 <span>
-                  课程编号:{{courses.num}}
+                  {{$t('detail.courseNum')}}:{{courses.num}}
                 </span>
               </div>
               <div class="row mt-5">
@@ -43,7 +43,7 @@
                       <span>Level {{courses.level}}</span>
                     </div>
                     <div class="course-price">
-                      <p>课程价格</p>
+                      <p>{{$t('detail.coursePrice')}}</p>
                       <p>¥{{courses.price}}</p>
                     </div>
                   </div>
@@ -57,17 +57,17 @@
             <div class="col-12 col-lg-3 d-none d-lg-block">
               <div class="side-nav">
                 <div class="side-nav-main">
-                  <div class="nav-scroll" :class="{active:windowScrollTop<lessonH}" @click="gotoSection(absH)">概览</div>
-                  <div class="nav-scroll" :class="{active:windowScrollTop>=lessonH && windowScrollTop<requireH}" @click="gotoSection(lessonH+1)">教学大纲</div>
-                  <div class="nav-scroll" :class="{active:windowScrollTop>=requireH && windowScrollTop<authorH}" @click="gotoSection(requireH+1)">学习要求</div>
-                  <div class="nav-scroll" :class="{active:windowScrollTop>authorH}" @click="gotoSection(authorH+1)">教师简介</div>
-                  <div class="buy" @click="buyCourse">购买课程</div>
+                  <div class="nav-scroll" :class="{active:windowScrollTop<lessonH}" @click="gotoSection(absH)">{{$t('detail.overview')}}</div>
+                  <div class="nav-scroll" :class="{active:windowScrollTop>=lessonH && windowScrollTop<requireH}" @click="gotoSection(lessonH+1)">{{$t('detail.syllabus')}}</div>
+                  <div class="nav-scroll" :class="{active:windowScrollTop>=requireH && windowScrollTop<authorH}" @click="gotoSection(requireH+1)">{{$t('detail.learningRequirements')}}</div>
+                  <div class="nav-scroll" :class="{active:windowScrollTop>authorH}" @click="gotoSection(authorH+1)">{{$t('detail.teacherProfile')}}</div>
+                  <div class="buy" @click="buyCourse">{{$t('detail.buyCourse')}}</div>
                   <div class="collection" >
-                    <span @click="tryCourse">试用课程</span>
-                    <span @click="favoritesCourse">加入收藏</span>
+                    <span @click="tryCourse">{{$t('detail.tryCourse')}}</span>
+                    <span @click="favoritesCourse">{{$t('detail.favoritesCourse')}}</span>
                   </div>
                   <div class="phone">
-                    <p>咨询热线</p>
+                    <p>{{$t('common.supportHotline')}}</p>
                     <h4>400-882-3823</h4>
                   </div>
                 </div>
@@ -81,7 +81,7 @@
         <div class="container-fluid">
           <div class="row">
             <div class="col-12 col-lg-9" v-if="courses">
-              <h2>教学大纲</h2>
+              <h2>{{$t('detail.syllabus')}}</h2>
               <template v-for="(lesson,index) in courses.lessons">
                 <p class="lesson-title">
                   <a href="#" @click.prevent="showLessonContent(index)">
@@ -105,12 +105,12 @@
         <div class="container-fluid">
           <div class="row">
             <div class="col-12 col-lg-9">
-              <h2>学习要求</h2>
+              <h2>{{$t('detail.learningRequirements')}}</h2>
               <div>
                 <p class="lesson-title">
                   <a href="#" @click.prevent="showPrerequisites">
                     <DownArrow :active="prerequisites"/>
-                    <strong>先决条件</strong>
+                    <strong>{{$t('detail.prerequisites')}}</strong>
                   </a>
                 </p>
                 <div class="lesson-content" :class="{active:prerequisites}">
@@ -118,7 +118,7 @@
                     <div v-html="courses.requirements_prerequisites"></div>
                   </template>
                   <template v-else>
-                    <div>未设置</div>
+                    <div>{{$t('common.noContent')}}</div>
                   </template>
                 </div>
               </div>
@@ -126,7 +126,7 @@
                 <p class="lesson-title">
                   <a href="#" @click.prevent="showTextbooks">
                     <DownArrow :active="textbooks"/>
-                    <strong>必要的教科书</strong>
+                    <strong>{{$t('detail.textbooks')}}</strong>
                   </a>
                 </p>
                 <div class="lesson-content" :class="{active:textbooks}">
@@ -134,7 +134,7 @@
                     <div v-html="courses.requirements_textbooks"></div>
                   </template>
                   <template v-else>
-                    <div>未设置</div>
+                    <div>{{$t('common.noContent')}}</div>
                   </template>
                 </div>
 
@@ -143,7 +143,7 @@
                 <p class="lesson-title">
                   <a href="#" @click.prevent="showSoftware">
                     <DownArrow :active="software"/>
-                    <strong>软件要求</strong>
+                    <strong>{{$t('detail.software')}}</strong>
                   </a>
                 </p>
                 <div class="lesson-content" :class="{active:software}">
@@ -151,7 +151,7 @@
                     <div v-html="courses.requirements_software"></div>
                   </template>
                   <template v-else>
-                    <div>未设置</div>
+                    <div>{{$t('common.noContent')}}</div>
                   </template>
                 </div>
 
@@ -160,7 +160,7 @@
                 <p class="lesson-title">
                   <a href="#" @click.prevent="showHardware">
                     <DownArrow :active="hardware"/>
-                    <strong>硬件要求</strong>
+                    <strong>{{$t('detail.hardware')}}</strong>
                   </a>
                 </p>
                 <div class="lesson-content" :class="{active:hardware}">
@@ -168,7 +168,7 @@
                     <div v-html="courses.requirements_hardware"></div>
                   </template>
                   <template v-else>
-                    <div>未设置</div>
+                    <div>{{$t('common.noContent')}}</div>
                   </template>
                 </div>
 
@@ -181,7 +181,7 @@
         <div class="container-fluid">
           <div class="row">
             <div class="col-12 col-lg-9" v-if="courses">
-              <h2>教师简介</h2>
+              <h2>{{$t('detail.teacherProfile')}}</h2>
               <div class="author-content">
                 <div>
                   <Avatar :src="courses.instructor.avatar"/>
@@ -190,7 +190,7 @@
                   <h5 class="author-name">
                     <span>{{courses.instructor.name}}</span>
                   </h5>
-                  <p>作者 &amp; 讲师</p>
+                  <p>{{$t('detail.author')}} &amp; {{$t('detail.lecturer')}}</p>
                   <div v-html="courses.instructor.abstract"></div>
                 </div>
               </div>
@@ -204,10 +204,10 @@
 
     <MyFooter/>
     <div class="d-block d-lg-none course-footer">
-      <a href="#" class="box">咨询</a>
-      <a href="#" class="box">试用课程</a>
-      <a href="#" class="box">加入收藏</a>
-      <a href="#" class="box">购买课程</a>
+      <a href="#" class="box">{{$t('header.userCenter')}}</a>
+      <a href="#" class="box">{{$t('detail.tryCourse')}}</a>
+      <a href="#" class="box">{{$t('detail.favoritesCourse')}}</a>
+      <a href="#" class="box">{{$t('detail.buyCourse')}}</a>
     </div>
     <div class="courser-footer-margin d-block d-lg-none">
 
@@ -324,12 +324,12 @@
         this.$router.push({ name: 'login'})
       },
       gotoSection(top){
-        console.log(123)
+//        console.log('top'+top)
         let _this = this;
-        console.log( _this.windowScrollTop);
-        console.log(top)
-        $('body').animate({
-          scrollTop:  top
+//        console.log( _this.windowScrollTop);
+//        console.log(top)
+        $('html,body').animate({
+          scrollTop: top
         }, 500);
       }
     },

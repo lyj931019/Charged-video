@@ -10,7 +10,7 @@
             <div class="col-12 col-lg-9" property="data-sticky_column">
               <div class="course-head">
                 <router-link :to="{ name: 'list'}">
-                  <a class="txt-lg a-black" href="#" itemprop="url">在线课程</a>
+                  <a class="txt-lg a-black" href="#" itemprop="url">{{$t('detail.onlineCourse')}}</a>
                 </router-link>
                 <h1>{{courses.name}}</h1>
                 <div class="course-subhead">
@@ -20,7 +20,7 @@
 
                   <div class="course-subhead-text">
                     <p class="txt-sm">
-                      教师
+                      {{$t('detail.author')}}
                       <span>
 ：
 <a class="a-body-link" href="#instructors">{{courses.instructor.name}}</a>
@@ -28,7 +28,7 @@
                     </p>
                     <div class="separator">|</div>
                     <p class="txt-sm">
-                      课程编号:
+                      {{$t('detail.courseNum')}}:
                       <span>
 {{courses.num}}
 </span>
@@ -75,7 +75,7 @@
                       <div class="key-course-text"><h4>Level {{courses.level}}</h4></div>
                     </div>
                     <div class="credit-tuition">
-                      <h4>课程价格</h4>
+                      <h4>{{$t('detail.coursePrice')}}</h4>
                       ${{courses.price}}
                     </div>
                     <!--<div class="non-credit-tuition">-->

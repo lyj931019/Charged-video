@@ -14,7 +14,8 @@ const messages = {
 console.log(messages.zh);
 
 const i18n = new VueI18n({
-  locale: localStorage.getItem('locale') || 'zh',
+  // locale: localStorage.getItem('locale') || 'zh',
+  locale: 'en',
   messages
 })
 
