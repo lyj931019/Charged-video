@@ -64,7 +64,7 @@
               <template v-if="lessonList">
                 <template v-for="(item,index) in lessonList">
                   <div class="courseItem">
-                    <router-link :to="{ name: 'userLesson'}">
+                    <router-link :to="{ name: 'learningCenter',params: {num:item.course.num}}">
                       <a class="nav-link" href="#">
                         {{item.course.name}}
                       </a>
@@ -147,7 +147,7 @@
     },
     methods: {
       goToStudyPage() {
-        this.$router.push({name: 'userLesson'})
+//        this.$router.push({name: 'learningCenter'})
       },
       changeTab(tab) {
         this.active = tab;
@@ -170,29 +170,46 @@
         let params = {
           user_id:_this.getUserInfo.user_id,
           course_id
-        }
-        this.$http.delete("/favorites", {data: params}).then(res => {
+        };
+        let data = params;
+        console.log(params)
+        this.$http({
+          url:"/favorites",
+          data,
+          method:'delete',
+          headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+          transformRequest: [function (data) {
+            let ret = ''
+            for (let it in data) {
+              ret += encodeURIComponent(it) + '=' + encodeURIComponent(data[it]) + '&'
+            }
+            return ret
+          }]
+        }).then(res => {
           console.log(res.data);
           if(parseInt(res.data.state.code) === 0){
+            console.log('lalala')
             _this.getFavorites();
           }
-        })
+        });
       }
     },
     beforeMount() {
       let _this = this;
-      console.log(_this.getUserInfo.user_id)
-      this.$http({
-        method: 'get',
-        url: '/users/courses?user_id=' + _this.getUserInfo.user_id,
-      }).then(res => {
-        console.log(res.data)
-        _this.lessonList = res.data.data;
-        console.log(_this.lessonList)
-      })
+      if(_this.getIsLogin){
+        this.$http({
+          method: 'get',
+          url: '/users/courses?user_id=' + _this.getUserInfo.user_id,
+        }).then(res => {
+          console.log(res.data)
+          _this.lessonList = res.data.data;
+          console.log(_this.lessonList)
+        })
+      }else{
+        this.$router.replace({ name: 'login'});
+      }
     },
     computed: {
-      // 使用对象展开运算符将 getter 混入 computed 对象中
       ...mapGetters([
         'getIsLogin',
         'getUserInfo'

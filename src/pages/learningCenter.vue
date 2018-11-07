@@ -1,20 +1,20 @@
 <template>
-  <div class="classroom" style="background-color: #eff1f2;" :class="classRoomActive?'active':''">
+  <div class="classroom" style="background-color: #eff1f2;" :class="classRoomActive?'active':''" v-if="courses">
     <div class="header">
       <div class="icon">
         <img src="../assets/img/Berklee_Logo_Square.svg" alt="">
         <span>Sample Lessons</span>
       </div>
-      <div class="title" v-if="lessonContent">
-        {{lessonContent.title}}
+      <div class="title" v-if="courses">
+        {{courses.name}}
       </div>
       <div class="avatar">
         <img src="../assets/img/avatar.png" alt="">
       </div>
 
     </div>
-    <div class="little-header">
-      Lesson 1 - Introduction
+    <div class="little-header" v-if="courses">
+      {{courses.name}}
     </div>
     <div class="little-header-toggle-btn navbar-light" @click="toggleClassRoomActive">
       <span class="navbar-toggler-icon"></span>
@@ -38,12 +38,12 @@
           </div>
         </div>
         <div class="aside-detail" :class="asideDetailActive?'active':''" v-if="courses">
-          <div v-if="courses.courseCatalog.length>0">
+          <div v-if="courses.lessons.length>0">
             <h2 class="select-prompt">
               Select a Lesson
             </h2>
-            <template v-for="(lesson,index) in courses.courseCatalog">
-              <div class="select-item" @click="getLessonContent(lesson.id)">
+            <template v-for="(lesson,index) in courses.lessons">
+              <div class="select-item" @click="getLesson(lesson.id)">
                 {{lesson.title}}
               </div>
             </template>
@@ -52,22 +52,42 @@
         </div>
       </div>
 
-      <div class="lesson-topics" v-if="lessonContent">
+      <div class="lesson-topics" v-if="lesson">
         <div class="lesson-topic" >
           <div class="topic-divider" >
-            {{lessonContent.title}}
+            {{lesson.title}}
           </div>
           <div class="lesson-content">
             <table></table>
-            <!--<div v-html="lessonContent.abstract"></div>-->
-            <div v-if="lessonContent.video">
-              <video :src="lessonContent.video" controls="controls"></video>
+            <!--<div v-html="lesson.abstract"></div>-->
+            <div v-if="lesson.video">
+              <video :src="lesson.video" controls="controls"></video>
             </div>
-            <div>
-              {{lessonContent.content}}
+            <div v-html="lesson.abstract"></div>
+            <div v-html="lesson.content" @click="getPronunciation"></div>
+          </div>
+        </div>
+      </div>
+      <audio :src="audioUrl" id="audio" autoplay>
+        您的浏览器不支持 audio 标签。
+      </audio>
+      <!-- tips -->
+      <div class="modal fade" id="audioErr" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">找不到音频</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
             </div>
-
-
+            <div class="modal-body">
+              {{$t('common.supportHotline')}}:400-882-3823
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <!--<button type="button" class="btn btn-primary">Save changes</button>-->
+            </div>
           </div>
         </div>
       </div>
@@ -75,14 +95,17 @@
   </div>
 </template>
 <script>
+  import {mapGetters} from 'vuex'
   export default {
-    name: 'userLesson',
+    name: 'LearningCenter',
     data(){
       return {
         classRoomActive:false,
         asideDetailActive:true,
         courses:null,
-        lessonContent:null
+        lesson:null,
+        lessonList:null,
+        audioUrl:''
       }
     },
     methods:{
@@ -104,31 +127,68 @@
       },
       getUserCourses(){
         let _this = this;
+        let num = this.$route.params.num;
         this.$http({
           method:'get',
-          url:'/users/courses?user_id=2',
+          url:'/courses/'+ num,
         }).then(res=>{
           console.log(res.data)
-          _this.courses=res.data.data.items[0].course
-          ;
+          _this.courses=res.data.data;
           console.log(_this.courses)
         })
       },
-      getLessonContent(id){
+      getLesson(id){
         let _this = this;
         this.$http({
           method:'get',
           url:'/courses/lessons/'+id,
         }).then(res=>{
           console.log(res.data)
-          _this.lessonContent=res.data.data;
-          console.log(_this.lessonContent)
+          _this.lesson=res.data.data;
+          let content = _this.lesson.content;
+          let html = ''
+          if(content && content.length>0){
+            html = content.replace(/\b[a-zA-Z]+\b/g,function (world) {
+              return '<span class="pronunciation">'+world+'</span>'
+            })
+          }
+          _this.lesson.content = html;
         })
+      },
+      getPronunciation(e){
+        let target = e.target || e.srcElement;
+        console.log(target.tagName);
+        if(target.tagName == 'SPAN'){
+          let html = target.innerHTML.toLowerCase();
+          let _this = this;
+          _this.$http({
+            method: 'get',
+            url: '/medias/pronunciations/'+html,
+          }).then((res)=>{
+              console.log(res);
+              if(res.data.state.code === 0){
+                _this.audioUrl = res.data.data.audio;
+              }else{
+                $('#audioErr').modal('show')
+              }
+          })
+        }
       }
     },
     beforeMount(){
-      this.getUserCourses();
-    }
+      if(this.getIsLogin){
+        this.getUserCourses();
+      }else{
+        this.$router.replace({ name: 'login'});
+      }
+
+    },
+  computed: {
+  ...mapGetters([
+      'getIsLogin',
+      'getUserInfo'
+    ])
+  }
   }
 </script>
 
@@ -159,6 +219,7 @@
     left: 0;
     width: 60px;
     color: #fff;
+    z-index: 1;
   }
   .classroom .content-container .aside-detail{
     background-color: #fff;
@@ -412,4 +473,8 @@
   .lesson-topics .lesson-content>div{
     margin: 40px 0;
   }
+  #audio{
+    visibility: hidden;
+  }
+
 </style>

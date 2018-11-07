@@ -306,11 +306,18 @@
           let _this = this;
           this.$http({
             method: 'post',
-            url: '/users/favorites/',
-            params:{
+            url: '/favorites',
+            data:{
               user_id:_this.getUserInfo.user_id,
               course_id:_this.courses.id
-            }
+            },
+            transformRequest: [function (data) {
+              let ret = ''
+              for (let it in data) {
+                ret += encodeURIComponent(it) + '=' + encodeURIComponent(data[it]) + '&'
+              }
+              return ret
+            }]
           }).then(res => {
             console.log(res.data)
             _this.$router.push({ name: 'userCenter'})

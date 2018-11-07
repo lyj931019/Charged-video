@@ -21,9 +21,9 @@ export default [
   //   component: Pages.Detail
   // },
   {
-    path: '/userLesson',
-    name: 'userLesson',
-    component: Pages.UserLesson
+    path: '/learningCenter',
+    name: 'learningCenter',
+    component: Pages.LearningCenter
   },
   {
     path: '/userCourse',

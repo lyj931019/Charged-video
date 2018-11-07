@@ -113,7 +113,7 @@
     },
     methods:{
       goToStudyPage(){
-        this.$router.push({ name: 'userLesson'})
+        this.$router.push({ name: 'learningCenter'})
       }
     },
     computed: {
