@@ -6,6 +6,8 @@ const state = {
     user_nickname: "",
     user_sex: 1,
     user_avatar: "",
+    user_phone: "",
+    user_adderss:""
   }
 }
 export default state;

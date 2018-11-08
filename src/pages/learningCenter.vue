@@ -169,7 +169,7 @@
               if(res.data.state.code === 0){
                 _this.audioUrl = res.data.data.audio;
               }else{
-                $('#audioErr').modal('show')
+                $('#audioErr').modal('show');
               }
           })
         }

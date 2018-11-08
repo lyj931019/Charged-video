@@ -203,11 +203,11 @@
     </div>
 
     <MyFooter/>
-    <div class="d-block d-lg-none course-footer">
-      <a href="#" class="box">{{$t('header.userCenter')}}</a>
-      <a href="#" class="box">{{$t('detail.tryCourse')}}</a>
-      <a href="#" class="box">{{$t('detail.favoritesCourse')}}</a>
-      <a href="#" class="box">{{$t('detail.buyCourse')}}</a>
+    <div class="d-lg-none course-footer">
+      <!--<a href="#" class="box">{{$t('header.userCenter')}}</a>-->
+      <a href="#" class="box" @click.prevent="tryCourse">{{$t('detail.tryCourse')}}</a>
+      <a href="#" class="box" @click.prevent="favoritesCourse">{{$t('detail.favoritesCourse')}}</a>
+      <a href="#" class="box" @click.prevent="buyCourse">{{$t('detail.buyCourse')}}</a>
     </div>
     <div class="courser-footer-margin d-block d-lg-none">
 
@@ -614,6 +614,9 @@
     box-shadow: 0em 0em 2rem rgba(0,0,0,0.45);
     background-color: #fff;
     text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
   .course-footer .box{
     padding: 1rem;
@@ -623,6 +626,7 @@
     display: inline-block;
     width: 24%;
     box-sizing: border-box;
+    flex: auto;
   }
   .course-footer .box:last-child{
     border:none;
