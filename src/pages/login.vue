@@ -21,7 +21,7 @@
               <input type="password" :placeholder="$t('common.pwd')" v-model="userPwd">
             </p>
             <p class="btn-con">
-              <button class="loginBtn" @click="login">$t('header.login')</button>
+              <button class="loginBtn" @click="login">{{$t('header.login')}}</button>
             </p>
           </div>
         </div>

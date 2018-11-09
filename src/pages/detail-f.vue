@@ -212,8 +212,21 @@
       <!--<a href="#" class="box" @click.prevent="buyCoursenpm">{{$t('detail.buyCourse')}}</a>-->
       <a href="#" class="box" @click.prevent="buyCoursenpm"><img src="../assets/img/buy.png" alt=""></a>
     </div>
-    <div class="courser-footer-margin d-block d-lg-none">
-
+    <div class="modal fade" id="detailTips" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="detailTipsTitle">{{tips}}</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <!--<div class="modal-footer">-->
+          <!--<button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>-->
+          <!--<button type="button" class="btn btn-primary" @click="deleteFavorites(deleteCourse.id)">确定</button>-->
+          <!--</div>-->
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -240,6 +253,7 @@
         requireH:0,
         authorH:0,
         windowScrollTop:0,
+        tips:''
       }
     },
     computed: {
@@ -277,7 +291,13 @@
               course_id:_this.courses.id
             }
           }).then(res => {
-            _this.$router.push({ name: 'userCenter'})
+            if(res.data.state.code  == 0){
+              _this.tips = _this.$t('common.success');
+            }else{
+              _this.tips = _this.$t('common.fail');
+            }
+            $('#detailTips').modal('show');
+//            _this.$router.push({ name: 'userCenter'})
           })
         }else{
           this.gotoLogin();
@@ -294,7 +314,12 @@
               course_id:_this.courses.id
             }
           }).then(res => {
-            _this.$router.push({ name: 'userCenter'})
+            if(res.data.state.code == 0){
+              _this.tips = _this.$t('common.success');
+            }else{
+              _this.tips = _this.$t('common.fail');
+            }
+            $('#detailTips').modal('show');
           })
         }else{
           this.gotoLogin();
@@ -318,7 +343,12 @@
               return ret
             }]
           }).then(res => {
-            _this.$router.push({ name: 'userCenter'})
+            if(res.data.state.code  == 0){
+              _this.tips = _this.$t('common.success');
+            }else{
+              _this.tips = _this.$t('detail.collected');
+            }
+            $('#detailTips').modal('show');
           })
         }else{
           this.gotoLogin();

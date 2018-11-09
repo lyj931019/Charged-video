@@ -34,6 +34,7 @@ module.exports = {
     software:'Software requirements',
     hardware:'Hardware requirements',
     lecturer:'Lecturer',
+    collected:'Collected',
   },
   userCenter:{
     tryCourse:'try',
@@ -56,6 +57,12 @@ module.exports = {
     phone:'Phone',
     address:'Address',
     deleteCollection:'Whether to cancel the collection',
+    schoolLink:'School link',
+    schoolCalendar:'School calendar',
+    academicPolicy:'Academic policy',
+    frequentlyAskedQuestions:'Common problem',
+    taxInformation:'Tax information',
+    technicalAssistance:'Technical assistance',
   },
   learningCenter:{
     lessonList:'Lesson list',
@@ -80,6 +87,7 @@ module.exports = {
     signUp:'Sign up',
     password: 'Password',
     email:'Email',
+    fail:'Fail',
   },
   placeholder: {
     phone:'Please enter your phone number',

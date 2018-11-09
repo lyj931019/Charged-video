@@ -60,7 +60,7 @@
       <div class="body">
         <div class="container-fluid">
           <div class="row">
-            <div class="col-12 col-lg-8 tab-container"  :class="{active:active=='course'}">
+            <div class="col-12 col-lg-7 tab-container"  :class="{active:active=='course'}">
               <template v-if="lessonList">
                 <template v-for="(item,index) in lessonList">
                   <div class="courseItem">
@@ -73,7 +73,7 @@
                 </template>
               </template>
             </div>
-            <div class="col-12 col-lg-8 tab-container"
+            <div class="col-12 col-lg-7 tab-container"
                  :class="{active:active=='favorites'}">
               <template v-if="favoritesList">
                 <template v-for="(item,index) in favoritesList">
@@ -86,7 +86,7 @@
                 </template>
               </template>
             </div>
-            <div class="col-12 col-lg-8 tab-container"  :class="{active:active=='account'}">
+            <div class="col-12 col-lg-7 tab-container"  :class="{active:active=='account'}">
               <div class="courseItem">
                 <a class="nav-link" href="#" @click.prevent="changeTab('changeInfo')">
                   {{$t('userCenter.editDetails')}}
@@ -98,7 +98,7 @@
                 </a>
               </div>
             </div>
-            <div class="col-12 col-lg-8 tab-container change-container"  :class="{active:active=='changePwd'}">
+            <div class="col-12 col-lg-7 tab-container change-container"  :class="{active:active=='changePwd'}">
               <h3 class="change-title">{{$t('userCenter.changeThePassword')}}</h3>
               <p class="alert alert-danger" v-if="isPwdChangeErr">{{PwdChangeErrTips}}</p>
               <form class="change-content">
@@ -121,7 +121,7 @@
               </form>
 
             </div>
-            <div class="col-12 col-lg-8 tab-container"  :class="{active:active=='changeInfo'}">
+            <div class="col-12 col-lg-7 tab-container"  :class="{active:active=='changeInfo'}">
               <h3 class="change-title">{{$t('userCenter.editDetails')}}</h3>
 
               <form class="change-content">
@@ -156,15 +156,15 @@
             </div>
 
             <div class="col-12 col-lg-1"></div>
-            <div class="col-12 col-lg-3">
+            <div class="col-12 col-lg-4">
               <div class="courseInfo">
                 <div>
-                  <h4>学校链接</h4>
-                  <p><a href="#">学校日历</a></p>
-                  <p><a href="#">学术政策</a></p>
-                  <p><a href="#">常见问题解答</a></p>
-                  <p><a href="#">税务信息</a></p>
-                  <p><a href="#">技术援助</a></p>
+                  <h4>{{$t('userCenter.schoolLink')}}</h4>
+                  <p><a href="#">{{$t('userCenter.schoolLink')}}</a></p>
+                  <p><a href="#">{{$t('userCenter.academicPolicy')}}</a></p>
+                  <p><a href="#">{{$t('userCenter.frequentlyAskedQuestions')}}</a></p>
+                  <p><a href="#">{{$t('userCenter.taxInformation')}}</a></p>
+                  <p><a href="#">{{$t('userCenter.technicalAssistance')}}</a></p>
                 </div>
               </div>
             </div>

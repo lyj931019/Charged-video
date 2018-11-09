@@ -34,6 +34,7 @@ module.exports = {
     software: '软件要求',
     hardware: '硬件要求',
     lecturer: '讲师',
+    collected:'已收藏',
   },
   userCenter: {
     tryCourse: '试用',
@@ -56,6 +57,12 @@ module.exports = {
     phone: '电话',
     address: '地址',
     deleteCollection: '是否取消收藏',
+    schoolLink:'学校链接',
+    schoolCalendar:'学校日历',
+    academicPolicy:'学术政策',
+    frequentlyAskedQuestions:'常见问题解答',
+    taxInformation:'税务信息',
+    technicalAssistance:'技术援助',
   },
   learningCenter:{
     lessonList:'章节列表',
@@ -80,6 +87,7 @@ module.exports = {
     signUp:'注册',
     password: '密码',
     email:'邮箱',
+    fail:'失败',
   },
   placeholder: {
     phone: '请输入电话号码',
