@@ -205,9 +205,12 @@
     <MyFooter/>
     <div class="d-lg-none course-footer">
       <!--<a href="#" class="box">{{$t('header.userCenter')}}</a>-->
-      <a href="#" class="box" @click.prevent="tryCourse">{{$t('detail.tryCourse')}}</a>
-      <a href="#" class="box" @click.prevent="favoritesCourse">{{$t('detail.favoritesCourse')}}</a>
-      <a href="#" class="box" @click.prevent="buyCourse">{{$t('detail.buyCourse')}}</a>
+      <!--<a href="#" class="box" @click.prevent="tryCourse">{{$t('detail.tryCourse')}}</a>-->
+      <a href="#" class="box" @click.prevent="tryCourse"><img src="../assets/img/try.png" alt=""></a>
+      <!--<a href="#" class="box" @click.prevent="favoritesCourse">{{$t('detail.favoritesCourse')}}</a>-->
+      <a href="#" class="box" @click.prevent="favoritesCourse"><img src="../assets/img/fav.png" alt=""></a>
+      <!--<a href="#" class="box" @click.prevent="buyCoursenpm">{{$t('detail.buyCourse')}}</a>-->
+      <a href="#" class="box" @click.prevent="buyCoursenpm"><img src="../assets/img/buy.png" alt=""></a>
     </div>
     <div class="courser-footer-margin d-block d-lg-none">
 
@@ -274,9 +277,7 @@
               course_id:_this.courses.id
             }
           }).then(res => {
-            console.log(res.data)
             _this.$router.push({ name: 'userCenter'})
-            console.log(_this.courses)
           })
         }else{
           this.gotoLogin();
@@ -293,9 +294,7 @@
               course_id:_this.courses.id
             }
           }).then(res => {
-            console.log(res.data)
             _this.$router.push({ name: 'userCenter'})
-            console.log(_this.courses)
           })
         }else{
           this.gotoLogin();
@@ -319,9 +318,7 @@
               return ret
             }]
           }).then(res => {
-            console.log(res.data)
             _this.$router.push({ name: 'userCenter'})
-            console.log(_this.courses)
           })
         }else{
           this.gotoLogin();
@@ -331,10 +328,7 @@
         this.$router.push({ name: 'login'})
       },
       gotoSection(top){
-//        console.log('top'+top)
         let _this = this;
-//        console.log( _this.windowScrollTop);
-//        console.log(top)
         $('html,body').animate({
           scrollTop: top
         }, 500);
@@ -347,7 +341,6 @@
         method: 'get',
         url: '/courses/' + num,
       }).then(res => {
-        console.log(res.data.data)
         for (let obj of res.data.data.lessons) {
           _this.lessonActive.push(false);
         }

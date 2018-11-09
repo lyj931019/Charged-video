@@ -430,24 +430,19 @@
             course_id:2
           }
         }).then(res => {
-          console.log(res.data)
 //          _this.courses = res.data.data;
           _this.$router.push({ name: 'userCenter'})
-          console.log(_this.courses)
         })
       }
     },
     beforeMount() {
-      console.log(12312)
       let num = this.$route.params.num;
       let _this = this;
       this.$http({
         method: 'get',
         url: '/courses/' + num,
       }).then(res => {
-        console.log(res.data)
         _this.courses = res.data.data;
-        console.log(_this.courses)
       })
     },
     mounted() {
@@ -455,7 +450,6 @@
       $('#readmore').on('hidden.bs.collapse', function () {
         // do something…
         _this.readTips = 'more'
-//        console.log('dsadw')
       });
       $('#readmore').on('show.bs.collapse', function () {
         // do something…

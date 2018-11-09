@@ -121,13 +121,10 @@
     methods: {
       getCourseList(key,value){
         let _this = this;
-        console.log(key)
-        console.log(value)
         let params = JSON.parse(JSON.stringify(_this.params));
         if(key && value){
           params[key]=value;
         }
-        console.log(params)
         this.$http({
           method:'get',
           url:'/courses',

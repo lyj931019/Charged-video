@@ -10,9 +10,9 @@
           <div class="row">
             <div class="col-12">
               <h1>
-                个人中心
+                {{$t('userCenter.userCenter')}}
               </h1>
-              <h4>继续我的学习之旅</h4>
+              <h4>{{$t('userCenter.userCenterContent')}}</h4>
             </div>
           </div>
         </div>
@@ -23,7 +23,7 @@
         <div class="container-fluid">
           <div class="row">
             <div class="col-12 text-center">
-              <p>点击此处了解更多</p>
+              <p>{{$t('userCenter.knowMore')}}</p>
             </div>
           </div>
         </div>
@@ -35,19 +35,19 @@
           <div class="row">
             <div class="col-12 col-md-3">
               <p :class="{active:active=='course'}" @click="changeTab('course')">
-                我的课程
+                {{$t('userCenter.myCourse')}}
                 <span class="triangle"></span>
               </p>
             </div>
             <div class="col-12 col-md-3">
               <p :class="{active:active=='favorites'}" @click="changeTab('favorites')">
-                我的收藏
+                {{$t('userCenter.myFavorites')}}
                 <span class="triangle"></span>
               </p>
             </div>
             <div class="col-12 col-md-3">
               <p :class="{active:active=='account' || active=='changeInfo' || active=='changePwd' }" @click="changeTab('account')">
-                我的账户
+                {{$t('userCenter.myAccount')}}
                 <span class="triangle"></span>
               </p>
             </div>
@@ -66,7 +66,7 @@
                   <div class="courseItem">
                     <router-link :to="{ name: 'learningCenter',params: {num:item.course.num}}">
                       {{item.course.name}}
-                      <span class="try" v-if="item.course.try">(试用)</span>
+                      <span class="try" v-if="item.course.try">({{$t('userCenter.tryCourse')}})</span>
                     </router-link>
                     <img v-if="item.course.try" src="../assets/img/buy.png" class="delete" alt="">
                   </div>
@@ -89,68 +89,68 @@
             <div class="col-12 col-lg-8 tab-container"  :class="{active:active=='account'}">
               <div class="courseItem">
                 <a class="nav-link" href="#" @click.prevent="changeTab('changeInfo')">
-                  编辑详细信息
+                  {{$t('userCenter.editDetails')}}
                 </a>
               </div>
               <div class="courseItem">
                 <a class="nav-link" href="#" @click.prevent="changeTab('changePwd')">
-                  更改密码
+                  {{$t('userCenter.changeThePassword')}}
                 </a>
               </div>
             </div>
             <div class="col-12 col-lg-8 tab-container change-container"  :class="{active:active=='changePwd'}">
-              <h3 class="change-title">修改密码</h3>
-
+              <h3 class="change-title">{{$t('userCenter.changeThePassword')}}</h3>
+              <p class="alert alert-danger" v-if="isPwdChangeErr">{{PwdChangeErrTips}}</p>
               <form class="change-content">
                 <div class="form-group">
-                  <label for="oldpwd">原密码:</label>
-                  <input type="password" v-model="oldPwd" class="form-control" id="oldpwd" aria-describedby="emailHelp" placeholder="请输入原密码">
+                  <label for="oldpwd">{{$t('userCenter.old')}}{{$t('userCenter.password')}}:</label>
+                  <input type="password" v-model="oldPwd" class="form-control" id="oldpwd" aria-describedby="emailHelp" :placeholder="$t('placeholder.pwd_old')">
                 </div>
                 <div class="form-group">
-                  <label for="newpwd">新密码</label>
-                  <input type="password" v-model="newPwd" class="form-control" id="newpwd" placeholder="请输入新密码">
+                  <label for="newpwd">{{$t('userCenter.fresh')}}{{$t('userCenter.password')}}:</label>
+                  <input type="password" v-model="newPwd" class="form-control" id="newpwd" :placeholder="$t('placeholder.pwd')">
                 </div>
                 <div class="form-group">
-                  <label for="confirmpwd">确认密码</label>
-                  <input type="password" v-model="confirmPwd" class="form-control" id="confirmpwd" placeholder="请再次输入新密码">
+                  <label for="confirmpwd">{{$t('userCenter.confirm')}}{{$t('userCenter.password')}}:</label>
+                  <input type="password" v-model="confirmPwd" class="form-control" id="confirmpwd" :placeholder="$t('placeholder.pwd_again')">
                 </div>
                 <div class="btns">
-                  <button class="btn btn-outline-secondary" type="button" @click="changeTab('account')">取消</button>
-                  <button class="btn btn-outline-primary" type="button">确定</button>
+                  <button class="btn btn-outline-secondary" type="button" @click="changeTab('account')">{{$t('common.cancel')}}</button>
+                  <button class="btn btn-outline-primary" type="button" @click="changUserPwd()">{{$t('common.sure')}}</button>
                 </div>
               </form>
 
             </div>
             <div class="col-12 col-lg-8 tab-container"  :class="{active:active=='changeInfo'}">
-              <h3 class="change-title">修改详细信息</h3>
+              <h3 class="change-title">{{$t('userCenter.editDetails')}}</h3>
 
               <form class="change-content">
                 <div class="form-group">
-                  <label for="nickname">昵称:</label>
-                  <input type="text" v-model="nickName" class="form-control" id="nickname" aria-describedby="emailHelp" placeholder="请输入新的昵称">
+                  <label for="nickname">{{$t('userCenter.nickname')}}:</label>
+                  <input type="text" v-model="nickName" class="form-control" id="nickname" aria-describedby="emailHelp" :placeholder="$t('placeholder.nickname')">
                 </div>
                 <div class="form-group">
-                  <span style="margin-right: 1rem;">性别:</span>
+                  <span style="margin-right: 1rem;">{{$t('userCenter.sex')}}:</span>
                   <div class="custom-control custom-radio custom-control-inline">
-                    <input type="radio" id="sex1" name="sex" class="custom-control-input">
-                    <label class="custom-control-label" for="sex1" v-model="sex" value="1">男</label>
+                    <input type="radio" id="sex1" name="sex" v-model="sex" class="custom-control-input" value="1">
+                    <label class="custom-control-label" for="sex1">{{$t('userCenter.male')}}</label>
                   </div>
                   <div class="custom-control custom-radio custom-control-inline">
-                    <input type="radio" id="sex2" name="sex" class="custom-control-input">
-                    <label class="custom-control-label" for="sex2" v-model="sex" value="0">女</label>
+                    <input type="radio" id="sex2" name="sex" v-model="sex" class="custom-control-input" value="0">
+                    <label class="custom-control-label" for="sex2">{{$t('userCenter.female')}}</label>
                   </div>
                 </div>
                 <div class="form-group">
-                  <label for="phone">电话:</label>
-                  <input type="text" v-model="phone" class="form-control" id="phone" placeholder="请输入电话号码">
+                  <label for="phone">{{$t('userCenter.phone')}}:</label>
+                  <input type="text" v-model="phone" class="form-control" id="phone" :placeholder="$t('placeholder.phone')">
                 </div>
                 <div class="form-group">
-                  <label for="adderss1">地址:</label>
-                  <input type="text" v-model="adderss" class="form-control" id="adderss1" placeholder="请输入地址">
+                  <label for="adderss1">{{$t('userCenter.address')}}:</label>
+                  <input type="text" v-model="adderss" class="form-control" id="adderss1" :placeholder="$t('placeholder.address')">
                 </div>
                 <div class="btns">
-                  <button class="btn btn-outline-secondary" type="button" @click="changeTab('account')">取消</button>
-                  <button class="btn btn-outline-primary" type="button">确定</button>
+                  <button class="btn btn-outline-secondary" type="button" @click="changeTab('account')">{{$t('common.cancel')}}</button>
+                  <button class="btn btn-outline-primary" type="button" @click="changeUseInfo">{{$t('common.sure')}}</button>
                 </div>
               </form>
             </div>
@@ -177,27 +177,46 @@
       <MyFooter/>
     <div class="d-md-none course-footer">
       <!--<a href="#" class="box">{{$t('header.userCenter')}}</a>-->
-      <a href="#" class="box" @click.prevent="changeTab('course')">我的课程</a>
-      <a href="#" class="box" @click.prevent="changeTab('favorites')">我的收藏</a>
-      <a href="#" class="box" @click.prevent="changeTab('account')">我的账户</a>
+      <!--<a href="#" class="box" @click.prevent="changeTab('course')">我的课程</a>-->
+      <a href="#" class="box" @click.prevent="changeTab('course')"><img src="../assets/img/course.png" alt=""></a>
+      <!--<a href="#" class="box" @click.prevent="changeTab('favorites')">我的收藏</a>-->
+      <a href="#" class="box" @click.prevent="changeTab('favorites')"><img src="../assets/img/fav.png" alt=""></a>
+      <!--<a href="#" class="box" @click.prevent="changeTab('account')">我的账户</a>-->
+      <a href="#" class="box" @click.prevent="changeTab('account')"><img src="../assets/img/user.png" alt=""></a>
     </div>
     <!--</div>-->
     <div class="modal fade" id="deleteConfirm" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content" v-if="deleteCourse">
           <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">警告</h5>
+            <h5 class="modal-title" id="exampleModalLabel">{{$t('common.warning')}}</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
           <div class="modal-body">
-            是否删除:{{deleteCourse.name}}
+            {{$t('userCenter.deleteCollection')}}:{{deleteCourse.name}}
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
-            <button type="button" class="btn btn-primary" @click="deleteFavorites(deleteCourse.id)">确定</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">{{$t('common.cancel')}}</button>
+            <button type="button" class="btn btn-primary" @click="deleteFavorites(deleteCourse.id)">{{$t('common.sure')}}</button>
           </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal fade" id="changeSuccess" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="changeSuccessTitle">{{$t('common.success')}}</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <!--<div class="modal-footer">-->
+            <!--<button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>-->
+            <!--<button type="button" class="btn btn-primary" @click="deleteFavorites(deleteCourse.id)">确定</button>-->
+          <!--</div>-->
         </div>
       </div>
     </div>
@@ -207,7 +226,7 @@
 <script>
   import {mapGetters} from 'vuex'
   import Components from '../components/index'
-
+  import { mapMutations } from 'vuex'
   export default {
     name: 'userCenter',
     components: Components,
@@ -223,10 +242,16 @@
         nickName:'',
         sex:'1',
         phone:'',
-        adderss:''
+        adderss:'',
+        isPwdChangeErr:false,
+        PwdChangeErrTips:''
       }
     },
     methods: {
+      ...mapMutations([
+        'changeLoginStatus', // 将 `this.increment()` 映射为 `this.$store.commit('increment')`
+        'changeUserInfo' // 将 `this.incrementBy(amount)` 映射为 `this.$store.commit('incrementBy', amount)`
+      ]),
       goToStudyPage() {
 //        this.$router.push({name: 'learningCenter'})
       },
@@ -235,11 +260,13 @@
         if (tab == 'favorites' && !this.favoritesList) {
           this.getFavorites();
         }else if(tab == 'changeInfo'){
-          console.log(123);
-          this.nickName = this.getUserInfo.user_nickname;
+          this.nickName = this.getUserInfo.user_nickname || '';
           this.sex= this.getUserInfo.user_sex;
-          this.phone= this.getUserInfo.user_phone;
-          this.adderss= this.getUserInfo.user_adderss;
+          this.phone= this.getUserInfo.user_phone || '';
+          this.adderss= this.getUserInfo.user_adderss || '';
+        }else if(tab == 'changePwd'){
+          this.isPwdChangeErr = false;
+          this.PwdChangeErrTips = '';
         }
       },
       getFavorites() {
@@ -248,13 +275,11 @@
           method: 'get',
           url: '/favorites?user_id=' + _this.getUserInfo.user_id,
         }).then(res => {
-          console.log(res.data)
           _this.favoritesList = res.data.data;
         })
       },
       confirmDelete(course){
         this.deleteCourse = course;
-        console.log(this.deleteCourse);
         $('#deleteConfirm').modal('show');
       },
       deleteFavorites(course_id) {
@@ -264,7 +289,6 @@
           course_id
         };
         let data = params;
-        console.log(params)
         this.$http({
           url: "/favorites",
           data,
@@ -278,14 +302,80 @@
             return ret
           }]
         }).then(res => {
-          console.log(res.data);
           if (parseInt(res.data.state.code) === 0) {
-            console.log('lalala');
             _this.getFavorites();
             $('#deleteConfirm').modal('hide');
             _this.deleteCourse = null;
           }
         });
+      },
+      changUserPwd(){
+        if(this.newPwd == this.confirmPwd){
+          let _this = this;
+          this.$http({
+            method: 'put',
+            url: '/users/modify-password',
+            data: {
+              email: _this.getUserInfo.user_email,
+              password: _this.oldPwd,
+              password_new: _this.newPwd,
+              password_again: _this.confirmPwd,
+            },
+            transformRequest: [function (data) {
+              let ret = ''
+              for (let it in data) {
+                ret += encodeURIComponent(it) + '=' + encodeURIComponent(data[it]) + '&'
+              }
+              return ret
+            }]
+          }).then(res => {
+            let code = res.data.state.code;
+            _this.oldPwd = _this.newPwd = _this.confirmPwd = '';
+            if(code == 0){
+              $('#changeSuccess').modal('show');
+            }else{
+              _this.isPwdChangeErr = true;
+              _this.PwdChangeErrTips = this.$t('common.pwdErr');
+            }
+          })
+        }else{
+          this.isPwdChangeErr = true;
+          this.PwdChangeErrTips = this.$t('common.twoPwdErr');
+        }
+
+      },
+      changeUseInfo(){
+        let _this = this;
+        this.$http({
+          method: 'put',
+          url: '/users/'+_this.getUserInfo.user_id,
+          data: {
+            id:_this.getUserInfo.user_id,
+            nickname: _this.nickName,
+            sex: _this.sex,
+            phone: _this.phone,
+            adderss: _this.adderss,
+          },
+          transformRequest: [function (data) {
+            let ret = '';
+            for (let it in data) {
+              ret += encodeURIComponent(it) + '=' + encodeURIComponent(data[it]) + '&'
+            }
+            return ret
+          }]
+        }).then(res => {
+          let code = res.data.state.code;
+          if(code == 0){
+            $('#changeSuccess').modal('show');
+            _this.changeUserInfo(res.data.data);
+            _this.nickName = _this.getUserInfo.user_nickname;
+            _this.sex= _this.getUserInfo.user_sex;
+            _this.phone= _this.getUserInfo.user_phone;
+            _this.adderss= _this.getUserInfo.user_adderss;
+          }else{
+            $('#changeSuccess').modal('show');
+          }
+        })
       }
     },
     beforeMount() {
@@ -295,9 +385,7 @@
           method: 'get',
           url: '/users/courses?user_id=' + _this.getUserInfo.user_id,
         }).then(res => {
-          console.log(res.data)
           _this.lessonList = res.data.data;
-          console.log(_this.lessonList)
         })
       } else {
         this.$router.replace({name: 'login'});

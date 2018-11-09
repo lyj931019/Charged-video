@@ -13,22 +13,22 @@
         <div class="col-12 col-md-7">
           <div class="login-container">
             <p class="alert alert-danger" v-if="registerErr">{{errTips}}</p>
-            <h1>Sign Up</h1>
+            <h1>{{$t('common.signUp')}}</h1>
 
             <label>
-              <input type="text" placeholder="账号" v-model="userName">
+              <input type="text" :placeholder="$t('common.nickname')" v-model="userName">
             </label>
             <label>
-              <input type="password" placeholder="密码" v-model="userPwd">
+              <input type="password" :placeholder="$t('common.pwd')" v-model="userPwd">
             </label>
             <label>
-              <input type="email" placeholder="邮箱" v-model="userEmail">
+              <input type="email" :placeholder="$t('common.email')" v-model="userEmail">
             </label>
             <label>
-              <i>请在提交前删除特殊字符，例如：èüîñò。</i>
+              <i>{{$t('register.tips')}}</i>
             </label>
             <label class="btn-con">
-              <button class="loginBtn" @click="login">注册</button>
+              <button class="loginBtn" @click="login">{{$t('common.signUp')}}</button>
             </label>
           </div>
         </div>
@@ -59,17 +59,17 @@
         let _this = this;
         if(!(this.userName.length > 0 && /^[a-zA-Z][a-zA-Z0-9_]{4,15}$/.test(this.userName))){
           this.registerErr = true;
-          this.errTips = '请输入正确的用户名'
+          this.errTips = this.$t('register.correct')+this.$t('common.account');
           return ;
         }
         if(!(this.userPwd.length > 0 && /^([a-zA-Z0-9]|[._]){4,19}$/.test(this.userPwd))){
           this.registerErr = true;
-          this.errTips = '请输入正确的密码'
+          this.errTips = this.$t('register.correct')+this.$t('common.password');
           return ;
         }
         if(!(this.userEmail.length > 0 && /^[A-Za-z\d]+([-_.][A-Za-z\d]+)*@([A-Za-z\d]+[-.])+[A-Za-z\d]{2,4}$/.test(this.userEmail))){
           this.registerErr = true;
-          this.errTips = '请输入正确的邮箱'
+          this.errTips = this.$t('register.correct')+this.$t('common.email');
           return ;
         }
         if ( this.userPwd.length > 0) {
@@ -91,10 +91,8 @@
               return ret
             }],
           }).then(res => {
-            console.log(res)
             if (res.data.state.code == 0) {
 //              _this.changeLoginStatus(true);
-////              console.log(res.data.data)
 //              _this.changeUserInfo(res.data.data);
               _this.$router.push({name: 'login'});
             }else{

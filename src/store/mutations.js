@@ -1,6 +1,5 @@
 const muntation = {
   changeLoginStatus(state,isLogin){
-    console.log(isLogin);
     state.isLogin = isLogin;
   },
   changeUserInfo(state,userInfo){

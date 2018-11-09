@@ -13,15 +13,15 @@
         <div class="col-12 col-sm-8 col-md-5">
           <div class="login-container">
             <h1>Log In</h1>
-            <p class="alert alert-danger" v-if="loginErr">用户名或密码错误</p>
+            <p class="alert alert-danger" v-if="loginErr">{{$t('common.wrongNamePwd')}}</p>
             <p>
-              <input type="text" placeholder="账号" v-model="userName">
+              <input type="text" :placeholder="$t('common.account')" v-model="userName">
             </p>
             <p>
-              <input type="password" placeholder="密码" v-model="userPwd">
+              <input type="password" :placeholder="$t('common.pwd')" v-model="userPwd">
             </p>
             <p class="btn-con">
-              <button class="loginBtn" @click="login">登 陆</button>
+              <button class="loginBtn" @click="login">$t('header.login')</button>
             </p>
           </div>
         </div>
@@ -66,10 +66,8 @@
               return ret
             }],
           }).then(res => {
-            console.log(res)
             if (res.data.state.code == 0) {
               _this.changeLoginStatus(true);
-//              console.log(res.data.data)
               _this.changeUserInfo(res.data.data);
               _this.$router.push({name: 'userCenter'});
             }else{

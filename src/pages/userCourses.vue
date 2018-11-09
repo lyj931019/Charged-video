@@ -125,15 +125,11 @@
     },
     beforeMount(){
       let _this = this;
-      console.log(321)
-      console.log(_this.getUserInfo.user_id)
       this.$http({
         method:'get',
         url:'/users/courses?user_id='+_this.getUserInfo.user_id,
       }).then(res=>{
-        console.log(res.data)
         _this.lessonList=res.data.data.items;
-        console.log(_this.lessonList)
       })
     }
 

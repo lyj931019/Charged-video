@@ -185,9 +185,7 @@
             pageSize:20
           }
         }).then(res=>{
-//          console.log(res.data)
           _this.typeList=res.data.data.items;
-//          console.log(_this.lessonList)
         })
       },
       getLessionFromLevel(level){
@@ -202,9 +200,7 @@
             level
           }
         }).then(res=>{
-          console.log(res.data)
           _this.lessonList=res.data.data.items;
-          console.log(_this.lessonList)
         })
       },
       getLessionFromType(type_id){
@@ -220,9 +216,7 @@
             type_id
           }
         }).then(res=>{
-          console.log(res.data)
           _this.lessonList=res.data.data.items;
-          console.log(_this.lessonList)
         })
       },
       goToDetail(num){

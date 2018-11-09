@@ -33,25 +33,28 @@
               </router-link>
 
             </li>
+            <li v-if="getIsLogin" class="text-center" >
+              <span id="avatarDropDown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="button">
+                 <Avatar :src="getUserInfo.user_avatar"/>
+              </span>
+              <br>
+              <div class="dropdown-menu" style="float: right;right: 2px;left: auto" aria-labelledby="avatarDropDown">
+                <router-link class="dropdown-item" href="#" :to="{ name: 'userCenter'}">
+                  {{$t('header.userCenter')}}
+                </router-link>
+                <a class="dropdown-item" href="#" @click.prevent="loginOut">{{$t('header.logout')}}</a>
+              </div>
+            </li>
+
           </ul>
-          <form class="form-inline my-2 my-lg-0" style="margin:0 1.3rem">
+          <form class="form-inline my-2 my-lg-0 justify-content-center" style="margin:0 1.3rem">
             <router-link :to="{ name: 'login'}" v-if="!getIsLogin">
               <a class="btn-login nav-link" href="#" id="login" rel="nofollow">{{$t('header.login')}}</a>
             </router-link>
             <router-link :to="{ name: 'register'}" v-if="!getIsLogin">
               <a class="btn-login nav-link" style="margin-left: 1rem;" href="#" id="register" rel="nofollow">{{$t('header.register')}}</a>
             </router-link>
-            <template v-if="getIsLogin">
-              <span id="avatarDropDown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="button">
-                 <Avatar :src="getUserInfo.user_avatar"/>
-              </span>
-            </template>
-            <div class="dropdown-menu" style="float: right;right: 2px;left: auto" aria-labelledby="avatarDropDown">
-              <router-link class="dropdown-item" href="#" :to="{ name: 'userCenter'}">
-                {{$t('header.userCenter')}}
-              </router-link>
-              <a class="dropdown-item" href="#">{{$t('header.logout')}}</a>
-            </div>
+
           </form>
         </div>
       </nav>
@@ -61,6 +64,7 @@
 
 <script>
   import { mapGetters } from 'vuex'
+  import { mapMutations } from 'vuex'
   import Avatar from './avatar.vue'
   export default {
     name: 'MyHeader',
@@ -68,6 +72,25 @@
     data() {
       return {
         header: 'MyHeader'
+      }
+    },
+    methods:{
+      ...mapMutations([
+        'changeLoginStatus', // 将 `this.increment()` 映射为 `this.$store.commit('increment')`
+        'changeUserInfo' // 将 `this.incrementBy(amount)` 映射为 `this.$store.commit('incrementBy', amount)`
+      ]),
+      loginOut(){
+        this.changeLoginStatus(false);
+        let userInfo = {
+          id:'',
+          email:'',
+          nickname:'',
+          sex:'',
+          avatar:'',
+          phone:'',
+          adderss:''
+        }
+        this.changeUserInfo(userInfo);
       }
     },
     computed: {

@@ -9,7 +9,7 @@
         {{courses.name}}
       </div>
       <div class="avatar">
-        <img src="../assets/img/avatar.png" alt="">
+        <Avatar :src="getUserInfo.user_avatar"/>
       </div>
 
     </div>
@@ -29,12 +29,12 @@
           <div class="aside-item" @click="toggleAsideDetailActive">
             <img src="../assets/img/book.png" alt="">
             <br>
-            章节列表
+            {{$t('learningCenter.lessonList')}}
           </div>
           <div class="aside-item" @click="goback">
             <img src="../assets/img/goback.png" alt="">
             <br>
-            返回
+            {{$t('learningCenter.goBack')}}
           </div>
         </div>
         <div class="aside-detail" :class="asideDetailActive?'active':''" v-if="courses">
@@ -53,8 +53,8 @@
       </div>
 
       <div class="lesson-topics" v-if="lesson">
-        <div class="lesson-topic" >
-          <div class="topic-divider" >
+        <div class="lesson-topic">
+          <div class="topic-divider">
             {{lesson.title}}
           </div>
           <div class="lesson-content">
@@ -72,11 +72,12 @@
         您的浏览器不支持 audio 标签。
       </audio>
       <!-- tips -->
-      <div class="modal fade" id="audioErr" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal fade" id="audioErr" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+           aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">找不到音频</h5>
+              <h5 class="modal-title" id="exampleModalLabel">{{$t('learningCenter.audioErr')}}</h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
@@ -96,99 +97,95 @@
 </template>
 <script>
   import {mapGetters} from 'vuex'
+  import Avatar from '../components/avatar.vue'
+
   export default {
     name: 'LearningCenter',
-    data(){
+    components: {Avatar},
+    data() {
       return {
-        classRoomActive:false,
-        asideDetailActive:true,
-        courses:null,
-        lesson:null,
-        lessonList:null,
-        audioUrl:''
+        classRoomActive: false,
+        asideDetailActive: true,
+        courses: null,
+        lesson: null,
+        lessonList: null,
+        audioUrl: ''
       }
     },
-    methods:{
-      goback(){
+    methods: {
+      goback() {
         this.$router.go(-1);
       },
-      toggleClassRoomActive(){
+      toggleClassRoomActive() {
         this.classRoomActive = !this.classRoomActive;
       },
-      toggleAsideDetailActive(){
+      toggleAsideDetailActive() {
         let w = document.body.clientWidth;
-//        console.log(w)
-        if(w>=1034){
+        if (w >= 1280) {
           this.asideDetailActive = !this.asideDetailActive;
-        }else{
+        } else {
           this.classRoomActive = !this.classRoomActive;
-//          console.log(this.asideDetailActive)
         }
       },
-      getUserCourses(){
+      getUserCourses() {
         let _this = this;
         let num = this.$route.params.num;
         this.$http({
-          method:'get',
-          url:'/courses/'+ num,
-        }).then(res=>{
-          console.log(res.data)
-          _this.courses=res.data.data;
-          console.log(_this.courses)
+          method: 'get',
+          url: '/courses/' + num,
+        }).then(res => {
+          _this.courses = res.data.data;
         })
       },
-      getLesson(id){
+      getLesson(id) {
         let _this = this;
         this.$http({
-          method:'get',
-          url:'/courses/lessons/'+id,
-        }).then(res=>{
-          console.log(res.data)
-          _this.lesson=res.data.data;
+          method: 'get',
+          url: '/courses/lessons/' + id,
+        }).then(res => {
+          _this.lesson = res.data.data;
           let content = _this.lesson.content;
           let html = ''
-          if(content && content.length>0){
-            html = content.replace(/\b[a-zA-Z]+\b/g,function (world) {
-              return '<span class="pronunciation">'+world+'</span>'
+          if (content && content.length > 0) {
+            html = content.replace(/\b[a-zA-Z]+\b/g, function (world) {
+              return '<span class="pronunciation">' + world + '</span>'
             })
           }
           _this.lesson.content = html;
         })
       },
-      getPronunciation(e){
+      getPronunciation(e) {
         let target = e.target || e.srcElement;
-        console.log(target.tagName);
-        if(target.tagName == 'SPAN'){
+        if (target.tagName == 'SPAN') {
           let html = target.innerHTML.toLowerCase();
           let _this = this;
           _this.$http({
             method: 'get',
-            url: '/medias/pronunciations/'+html,
-          }).then((res)=>{
-              console.log(res);
-              if(res.data.state.code === 0){
-                _this.audioUrl = res.data.data.audio;
-              }else{
-                $('#audioErr').modal('show');
-              }
+            url: '/medias/pronunciations/' + html,
+          }).then((res) => {
+            if (res.data.state.code === 0) {
+              _this.audioUrl = res.data.data.audio;
+            } else {
+              $('#audioErr').modal('show');
+            }
           })
         }
       }
     },
-    beforeMount(){
-      if(this.getIsLogin){
+    beforeMount() {
+      if (this.getIsLogin) {
         this.getUserCourses();
-      }else{
-        this.$router.replace({ name: 'login'});
+      } else {
+        this.$router.replace({name: 'login'});
       }
 
     },
-  computed: {
-  ...mapGetters([
-      'getIsLogin',
-      'getUserInfo'
-    ])
-  }
+    computed: {
+      ...mapGetters([
+        'getIsLogin',
+        'getUserInfo'
+      ])
+    }
   }
 </script>
 
@@ -206,12 +203,14 @@
     justify-content: space-between;
     align-items: center;
   }
-  .classroom .content-container{
+
+  .classroom .content-container {
     margin-top: 60px;
     width: 100%;
     overflow: hidden;
   }
-  .classroom .content-container .aside-container{
+
+  .classroom .content-container .aside-container {
     background: rgba(86, 96, 104, 1);
     position: fixed;
     top: 60px;
@@ -221,7 +220,8 @@
     color: #fff;
     z-index: 1;
   }
-  .classroom .content-container .aside-detail{
+
+  .classroom .content-container .aside-detail {
     background-color: #fff;
     position: absolute;
     top: 0px;
@@ -231,36 +231,40 @@
     color: #000;
     overflow: auto;
     display: none;
-    border-right:1px solid #ccc;
+    border-right: 1px solid #ccc;
   }
-  .classroom .content-container .aside-detail.active{
+
+  .classroom .content-container .aside-detail.active {
     display: block;
   }
 
-
-  @media (max-width: 1034px) {
+  @media (max-width: 1280px) {
     .classroom .header {
       left: -100%;
       right: 100%;
     }
+
     .classroom.active .header {
       left: 0%;
       right: 0%;
     }
+
     .header .title {
       display: none;
     }
-    .classroom .content-container .aside-container{
+
+    .classroom .content-container .aside-container {
       left: -100%;
     }
-    .classroom.active .content-container .aside-container{
+
+    .classroom.active .content-container .aside-container {
       left: 0;
     }
-    .classroom.active .content-container .aside-detail{
+
+    .classroom.active .content-container .aside-detail {
       left: 60px;
     }
   }
-
 
   .header .icon {
     height: 60px;
@@ -339,11 +343,13 @@
     background-color: #fff;
     z-index: 301;
   }
-  @media (min-width: 1034px){
-    .little-header-toggle-btn{
+
+  @media (min-width: 1280px) {
+    .little-header-toggle-btn {
       display: none;
     }
   }
+
   .little-header-avatar {
     position: fixed;
     right: 0;
@@ -355,28 +361,33 @@
     border-radius: 25px;
     margin: 5px 29px 0 0;
   }
-  .aside-list{
+
+  .aside-list {
     padding-top: 2rem;
   }
-  .aside-item{
+
+  .aside-item {
     text-align: center;
     width: 60px;
-    padding:6px 0;
+    padding: 6px 0;
     cursor: pointer;
     text-align: center;
     font-size: 0.8rem;
     margin-bottom: 1rem;
   }
-  .aside-item img{
+
+  .aside-item img {
     width: 36px;
   }
-  .aside-detail>*{
+
+  .aside-detail > * {
     cursor: pointer;
   }
+
   .aside-detail h2.select-prompt {
     text-align: left;
     padding: 16px 24px;
-    font-size:1.3rem;
+    font-size: 1.3rem;
     cursor: pointer;
     -webkit-transition: color 0.25s;
     transition: color 0.25s;
@@ -385,23 +396,26 @@
     margin-bottom: 0;
     /*padding-bottom: 15px;*/
   }
-  .aside-detail h2.select-prompt:hover{
+
+  .aside-detail h2.select-prompt:hover {
     color: rgb(240, 32, 46);
   }
-  .select-item{
+
+  .select-item {
     color: #222;
     margin-bottom: 0;
     padding: 10px 0 10px 20px;
     border-bottom: 1px solid rgba(212, 212, 208, .45);
     font-size: 15px;
   }
-  .select-item:hover{
+
+  .select-item:hover {
     background: #EFF1F2;
   }
-  .select-item.active{
+
+  .select-item.active {
     color: rgb(240, 32, 46);
   }
-
 
   @media (max-width: 800px) {
     .lesson-topics .lesson-topic {
@@ -423,7 +437,6 @@
       padding: 0;
     }
   }
-
 
   .lesson-topics .topic-divider {
     background-color: rgb(255, 255, 255);
@@ -456,6 +469,18 @@
     max-width: 760px;
   }
 
+  @media (min-width: 1280px) {
+    .lesson-topics .lesson-topic {
+      margin: 0px 60px 20px auto;
+    }
+  }
+
+  @media (min-width: 1480px) {
+    .lesson-topics .lesson-topic {
+      margin: 0px auto 20px 632px;
+    }
+  }
+
   .lesson-topics .lesson-content {
     margin-bottom: 40px;
     min-height: 800px;
@@ -470,10 +495,12 @@
     line-height: 1.3em;
     font-size: 21px !important;
   }
-  .lesson-topics .lesson-content>div{
+
+  .lesson-topics .lesson-content > div {
     margin: 40px 0;
   }
-  #audio{
+
+  #audio {
     visibility: hidden;
   }
 
