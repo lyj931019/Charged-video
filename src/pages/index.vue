@@ -1,817 +1,541 @@
 <template>
-  <div class="body">
+  <div>
     <MyHeader/>
-    <div class="home_page">
-      <div class="content-wrap" id="main-content">
-        <section class="primary-slot" id="rtp-hero">
-          <div class="container-fluid">
-            <div class="row">
-              <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-5 column-left">
-                <div id="rtp-top-two">
-                  <div class="top-block" id="rtp-mission">
-                    <h1>Learn Music Online with Berklee</h1>
-                    <ul class="offerings-list">
-                      <li>
-                        <a href="#">
-                          <h3 class="no-underline">
-                            <span class="underline">Master's Degrees</span>
-                            <span class="new">New!</span>
-                          </h3>
-                          <div class="txt-sm">
-<span class="timing">
-<span class="date">Nov. 19</span> - application deadline for Jan. 2019 term start
-</span>
-                          </div>
-                        </a>
-                      </li>
-                      <li>
-                        <a class="action clearfix" href="#" itemprop="url">
-                          <h3>Bachelor's Degrees</h3>
-                          <div class="txt-sm">
-<span class="timing">
-<span class="date">Nov. 19</span> - application deadline for Jan. 2019 term start
-</span>
-                          </div>
-                        </a>
-                      </li>
-                      <li>
-                        <a class="action clearfix" href="#" itemprop="url">
-                          <h3>Multi-Course Certificates</h3>
-                          <div class="txt-sm">
-<span class="timing">
-<span class="date">January 14</span> - next term starts, no application required
-</span>
-                          </div>
-                        </a>
-                      </li>
-                      <li>
-                        <a class="action clearfix" href="#" itemprop="url">
-                          <h3>12-Week Courses</h3>
-                          <div class="txt-sm">
-<span class="timing">
-<span class="date">January 14</span> - next term starts, no application required
-</span>
-                          </div>
-                        </a>
-                      </li>
-                      <li>
-                        <a class="txt-md compare" href="#">Compare Our Offerings</a>
-                      </li>
-                    </ul>
-                    <div class="column-left-cta">
-                      <a href="#footer-form">Request Info</a>
-                      <a class="hidden-md-down" href="#" itemprop="url">Sample a Lesson</a>
-                    </div>
-                  </div>
-                  <div class="timing-message-box">
-                    <div id="green-block-content">
-                      <h3 style="margin-bottom: 0">Now Accepting Degree Applications for Winter 2019</h3>
-                      <p>Deadline is November 19, 2018</p>
-                    </div>
-
-
-                    <div id="green-block-content-cta">
-                      <a class="action bo-button" href="#">Apply Now</a>
-                    </div>
-                  </div>
-                </div>
-                <div id="rtp-contact">
-                  <div class="advisor-contact-block">
-                    <p class="guidance">Need guidance?</p>
-                    <a class="tel-main" href="#">1-866-BERKLEE</a>
-                    <a class="tel-intl" href="#">Int'l: +1-617-747-2146</a>
-                    <p class="call-text"><a href="#">Call</a>,&nbsp;<a href="sms:18662375533">Text</a>,&nbsp;or&nbsp;<a
-                      href="#">Email us</a></p>
-                  </div>
-                </div>
-
-                <div class="white-space"></div>
-              </div>
-              <div class="hidden-sm-down col-md-6 col-lg-6 col-xl-7 column-right">
-                <div class="bo-tabs">
-                  <ul class="nav nav-tabs" role="tablist">
-                    <li class="nav-item hidden-sm-down">
-                      <a class="nav-link txt-lg"  href="#interests" id="rtp-tab-label" :class="isInterests?'active':''" @click="changeActive(true)">
-                        Interests
-                      </a>
-                    </li>
-                    <li class="nav-item hidden-sm-down">
-                      <a class="nav-link txt-lg" href="#coming-soon" :class="isInterests?'':'active'" @click="changeActive(false)">
-                        New Courses
-                      </a>
-                    </li>
-                    <li class="nav-item dropdown hidden-md-up">
-                      <a class="nav-link txt-lg dropdown-toggle" data-toggle="dropdown" href="#" rel="nofollow"
-                         role="tab">
-                        Explore More
-                        <b class="caret"></b>
-                      </a>
-                      <ul class="dropdown-menu">
-                        <li>
-                          <a data-toggle="tab" href="#interests" rel="nofollow">
-                            Interest Areas
-                          </a>
-                        </li>
-                        <li>
-                          <a data-toggle="tab" href="#coming-soon" rel="nofollow">
-                            New Courses <span class="hidden-tablet hidden-phone hidden-md-down">Enrolling Now</span>
-                          </a>
-                        </li>
-                      </ul>
-                    </li>
-                  </ul>
-                  <div class="tab-content">
-                    <div class="tab-pane" id="interests" role="tabpanel" aria-expanded="true" :class="isInterests?'active':''">
-                      <p class="hidden-sm-down">
-                        With our degree programs, certificate programs, and more than 150 courses led by Berklee faculty and industry experts, it's easy to find the offering that's right for you.
-                      </p>
-                      <ul class="interest-list listToggle">
-                        <li>
-                          <a href="#" itemprop="url">Music Production</a>
-                        </li>
-                        <li>
-                          <a href="#" itemprop="url">Guitar</a>
-                        </li>
-                        <li>
-                          <a href="#">Music Theory, Harmony, and Ear Training</a>
-                        </li>
-                        <li>
-                          <a href="#" itemprop="url">Songwriting</a>
-                        </li>
-                        <li>
-                          <a href="#" itemprop="url">Music Business</a>
-                        </li>
-                        <li>
-                          <a href="#">Voice</a>
-                        </li>
-                        <li>
-                          <a href="#">Piano and Keyboard</a>
-                        </li>
-                        <li>
-                          <a href="#">Arranging</a>
-                        </li>
-                        <li>
-                          <a href="#">Bass</a>
-                        </li>
-                        <li>
-                          <a href="#">Orchestration</a>
-                        </li>
-                        <li>
-                          <a href="#">Drums</a>
-                        </li>
-                        <li>
-                          <a href="#">Music History and Liberal Arts</a>
-                        </li>
-                        <li>
-                          <a href="#" itemprop="url">Music for Film, TV, and Games</a>
-                        </li>
-                        <li>
-                          <a href="#">Improvisation</a>
-                        </li>
-
-                      </ul>
-                    </div>
-                    <div class="coming-soon tab-pane" id="coming-soon" role="tabpanel" aria-expanded="false" :class="isInterests?'':'active'">
-
-                      <br>
-                      <div class="row">
-                        <div class="col-12">
-                          <ul>
-
-                            <li class="clearfix">
-                              <a href="#">
-                                <img class="float-left img-circle fr-dii fr-fil fr-draggable" src="../assets/img/avatar.png">
-                                <h5>Ableton Live Techniques: Non-Linear Creative Strategies and Composition</h5>
-                                <span style="font-size: 1.2rem;">by Erin Barra and Loudon Stearns</span>
-                              </a>
-                            </li>
-                            <li class="clearfix">
-                              <a href="#">
-                                <img class="img-circle float-left" src="../assets/img/avatar.png">
-                                <h5>Ear Training 2</h5>
-                                <span style="font-size: 1.2rem;">by Gaye Tolan Hatfield</span>
-
-                              </a>
-                            </li>
-
-
-                            <li class="clearfix">
-                              <a href="#">
-                                <img class="img-circle float-left" src="../assets/img/avatar.png">
-                                <h5>Solo Guitar: Performance, Accompaniment, and Arranging</h5>
-                                <span style="font-size: 1.2rem;">by John Baboian</span>
-                              </a>
-                            </li>
-
-
-
-                          </ul>
-                        </div>
-                        <div class="col-12">
-                          <ul>
-
-                          </ul>
-                        </div>
+    <div class="body">
+      <div class="bg">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-sm-12 col-md-6 col-lg-6 col-xl-5 ">
+              <div class="bg-grey">
+                <h1>Learn Music Online with Berklee</h1>
+                <ul class="offerings-list">
+                  <li>
+                    <a href="#">
+                      <h5 class="offerings-item-title">
+                        <span>Master's Degrees</span>
+                        <span>New!</span>
+                      </h5>
+                      <div class="txt-sm">
+                        <span class="date">Nov. 19</span>
+                        - application deadline for Jan. 2019 term start
                       </div>
-                      <div class="container-content">
-                        <div class="inner text-center">
-                          <a class="bo-button" href="#">
-                            See Full List
-                            <i class="icon-caret-right"></i>
-                          </a>
-                        </div>
-                      </div>
-
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-        <section class="section-news">
-          <div class="container-fluid home-thumbnails">
-            <div class="row">
-              <div class="col-12 col-md-8">
-                <div class="promo-box-first">
-                  <div class="responsive-media-container">
-                    <img src="../assets/img/home-masters-hero.jpg" class="img-responsive">
-                  </div>
-                  <div class="promo-block-first-text">
-                    <h2>
-                      Application Now Open for Graduate Degree Programs
-                    </h2>
-                    <p class="txt-lg">
-                      We designed our online graduate programs to be completed in one year, providing you with the most affordable and flexible option for earning your master's degree with Berklee College of Music. <a
-                      href="#" style="color: #FFF;">Apply today</a>.
-                    </p>
-                    <ul>
-                      <li class="txt-lg">
-                        <a href="#">
-                          Master of Music in <span>Music Production</span>
-                        </a>
-                      </li>
-                      <li class="txt-lg">
-                        <a href="#">
-                          Master of Arts in <span>Music Business</span>
-                        </a>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-              <div class="col-12 col-md-4 top-promos">
-                <div id="rtp-small-promo-1">
-                  <a href="#" class="thumb-container" target="_blank">
-                    <div class="thumb-flex">
-                      <img alt="Military Student Andrew Bonica, wearing camo, on a Jeep, with a pink guitar"
-                           src="../assets/img/homepage_military.jpg" style="max-width: 416px;">
-                      <h4>U.S. Military Saves Big on Tuition</h4>
-                      <p>
-                        See how active duty, veterans, and military families are saving at least 30% with Berklee Online's Military Benefits.
-                      </p>
-                    </div>
-                  </a>
-                </div>
-                <div id="rtp-small-promo-2">
-                  <a href="#"
-                     class="thumb-container" target="_blank">
-                    <div class="thumb-flex">
-                      <img alt="Several Berklee students in a classroom" src="../assets/img/student_satisfaction.jpg"
-                           style="max-width: 416px;">
-                      <h4>97% Student Satisfaction Rate at Berklee Online</h4>
-                      <p>
-                        A brand new exit survey of 2018 grads reveals that nearly all of our graduating students were satisfied with their Berklee Online experience.
-                      </p>
-                    </div>
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-        <hr>
-        <section class="section-sample">
-          <div class="container-fluid">
-            <div class="row">
-              <div class="col-12">
-                <div id="rtp-full-width-promo">
-                  <h2>
-                    Discover Why Musicians Succeed at Berklee Online
-                  </h2>
-                </div>
-              </div>
-              <div class="col-12">
-                <div class="row">
-                  <div class="col-12 col-md-6 col-lg-5">
-                    <p class="txt-lg">
-                      Curious about how online learning works? Explore our unique learning environment in one of 12 free sample lessons.
-                    </p>
-                    <a class="bo-button-alt" href="#">
-                      Try It Now
                     </a>
-                  </div>
-                  <div class="col-12 col-md-6 col-lg-7" style="padding-top: 1rem;">
-                    <img class="img-cross-media" src="../assets/img/boccealldevice_min.png" style="max-width: 100%;">
-                  </div>
+                  </li>
+                  <li>
+                    <a href="#">
+                      <h5 class="offerings-item-title">Bachelor's Degrees</h5>
+                      <div class="txt-sm">
+                        <span class="date">Nov. 19</span>
+                        - application deadline for Jan. 2019 term start
+                      </div>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#">
+                      <h5 class="offerings-item-title">Multi-Course Certificates</h5>
+                      <div class="txt-sm">
+                        <span class="date">January 14</span>
+                        - next term starts, no application required
+                      </div>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#">
+                      <h5 class="offerings-item-title">12-Week Courses</h5>
+                      <div class="txt-sm">
+                        <span class="date">January 14</span>
+                        - next term starts, no application required
+                      </div>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#">
+                      <h6 class="offerings-item-title">Compare Our Offerings</h6>
+                    </a>
+                  </li>
+                </ul>
+                <div class="cta">
+                  <a href="#">
+                    Request Info
+                  </a>
                 </div>
               </div>
+              <div class="bg-green">
+                <h5>Now Accepting Degree Applications for Winter 2019</h5>
+                <p>Deadline is November 19, 2018</p>
+                <div class="cta">
+                  <a href="#">Apply Now</a></div>
+              </div>
+              <div class="bg-dark text-white">
+                <h6>咨询热线</h6>
+                <h4>400-882-3823</h4>
+              </div>
+            </div>
+            <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6 d-sm-none d-none d-md-block column-right">
+              <div class="bo-tabs">
+                <div class="tabs-nav">
+                  <a href="#" :class="[{active:active}]" @click.prevent="changeActive(true)">Interests</a>
+                  <a href="#" :class="[{active:!active}]" @click.prevent="changeActive(false)">New Courses</a>
+                </div>
+                <div class="tab-content">
+                  <div :class="[{active:active}]" class="tab-item">
+                    <p>
+                      With our degree programs, certificate programs, and more than 150 courses led by Berklee faculty and industry experts, it's easy to find the offering that's right for you.
+                    </p>
+                    <div class="intersts-list">
+                      <div class="intersts-item">
+                        Music Production
+                      </div>
+                      <div class="intersts-item">
+                        Guitar
+                      </div>
+                      <div class="intersts-item">
+                        Music Theory, Harmony, and Ear Training
+                      </div>
+                      <div class="intersts-item">
+                        Songwriting
+                      </div>
+                      <div class="intersts-item">
+                        Music Business
+                      </div>
+                      <div class="intersts-item">
+                        Voice
+                      </div>
+                      <div class="intersts-item">
+                        Piano and Keyboard
+                      </div>
+                      <div class="intersts-item">
+                        Arranging
+                      </div>
+                      <div class="intersts-item">
+                        Bass
+                      </div>
+                      <div class="intersts-item">
+                        Orchestration
+                      </div>
+                      <div class="intersts-item">
+                        Drums
+                      </div>
+                      <div class="intersts-item">
+                        Music History and Liberal Arts
+                      </div>
+                      <div class="intersts-item">
+                        Music for Film, TV, and Games
+                      </div>
+                      <div class="intersts-item">
+                        Improvisation
+                      </div>
+                    </div>
+                  </div>
+                  <div :class="[{active:!active}]" class="tab-item">
+                    <div class="course-list">
+                      <div class="course-item">
+                        <div class="avatar">
+                          <img src="../assets/img/avatar.png" alt="">
+                        </div>
+                        <div>
+                          <div class="title">
+                            Arranging for Songwriters: Instrumentation and Production in Songwriting
+                          </div>
+                          <p>by Sarah Brindell and Bonnie Hayes</p>
+                        </div>
+                      </div>
+                      <div class="course-item">
+                        <div class="avatar">
+                          <img src="../assets/img/avatar.png" alt="">
+                        </div>
+                        <div>
+                          <div class="title">
+                            Ableton Live Techniques: Non-Linear Creative Strategies and Composition
+                          </div>
+                          <p>by Erin Barra and Loudon Stearns</p>
+                        </div>
+                      </div>
+                      <div class="course-item">
+                        <div class="avatar">
+                          <img src="../assets/img/avatar.png" alt="">
+                        </div>
+                        <div>
+                          <div class="title">
+                            Ear Training 2
+                          </div>
+                          <p>by Gaye Tolan Hatfield</p>
+                        </div>
+                      </div>
+                    </div>
+                    <div style="text-align: center;">
+                      <div class="btn btn-danger" style="font-weight: bold;">See Full List</div>
+                    </div>
 
+                  </div>
+
+                </div>
+              </div>
             </div>
           </div>
-        </section>
+        </div>
+      </div>
+      <div class="container thumbnails">
+        <div class="row">
+          <div class="col-12 col-md-8 middle-left">
+            <img src="../assets/img/home-masters-hero.jpg" alt="">
+            <div class="thumbnails-left">
+              <h2>
+                Application Now Open for Graduate Degree Programs
+              </h2>
+              <p>
+                We designed our online graduate programs to be completed in one year, providing you with the most affordable and flexible option for earning your master's degree with Berklee College of Music. <a href="#">Apply today</a>
+              </p>
+              <ul>
+                <li>
+                  Master of Music in <a href="#">Music Production</a>
+                </li>
+                <li>
+                  Master of Arts in  <a href="#">Music Business</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-12 col-md-4 thumbnails-right">
+              <div class="row">
+                <div class="col-6 col-md-12">
+                  <img src="../assets/img/homepage_military.jpg" alt="">
+                  <h4>U.S. Military Saves Big on Tuition</h4>
+                  <p>
+                    See how active duty, veterans, and military families are saving at least 30% with Berklee Online's Military Benefits.
+                  </p>
+                </div>
+                <div class="col-6 col-md-12">
+                  <img src="../assets/img/homepage_military.jpg" alt="">
+                  <h4>U.S. Military Saves Big on Tuition</h4>
+                  <p>
+                    See how active duty, veterans, and military families are saving at least 30% with Berklee Online's Military Benefits.
+                  </p>
+                </div>
+              </div>
+          </div>
+        </div>
+      </div>
+
+      <hr style="margin-top: 30px;">
+
+      <div class="container-fluid sample">
+        <h2 class="title">
+          Discover Why Musicians Succeed at Berklee Online
+        </h2>
+        <div class="row">
+          <div class="col-12 col-md-6 col-lg-5">
+            <p class="txt-lg">
+              Curious about how online learning works? Explore our unique learning environment in one of 12 free sample lessons.
+            </p>
+            <div>
+              <a class="bo-button-alt" href="/sample-a-lesson">
+                Try It Now
+              </a>
+            </div>
+          </div>
+          <div class="col-12 col-md-6 col-lg-7">
+            <img src="../assets/img/boccealldevice_min.png" alt="">
+          </div>
+        </div>
       </div>
     </div>
     <MyFooter/>
   </div>
-
-
 </template>
 
 <script>
-  import Components from '../components'
+  import Common from '../components/common'
+
   export default {
-    name: 'Index',
-    components:Components,
+    name: 'index-f',
+    components: Common,
     data(){
       return {
-        isInterests:true
+        active:true
       }
     },
     methods:{
       changeActive(bool){
-        this.isInterests = bool
+        this.active = bool;
       }
     }
   }
 </script>
 
-
 <style scoped>
-
-  .home_page .primary-slot {
-    background: url(../assets/img/home_bg_grad_2_color.jpg) no-repeat top left;
-    background-size: 100% auto;
+  .bg {
+    background: url(../assets/img/home_bg_grad_2_color.jpg) 0 1rem no-repeat;
+    -webkit-background-size: 100%;
+    background-size: 100%;
   }
 
-  .home_page .column-left {
-    background-color: #eff1f3;
-    color: #25353c;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
+  .row > div {
     padding-left: 0;
     padding-right: 0;
-    padding: 0;
+  }
+
+  .bg-grey {
+    background-color: #eff1f3;
+    padding: 45px 30px 60px 30px;
     margin-top: -25px;
   }
 
-  .home_page .column-left .top-block {
-    background-color: #eff1f3;
-    padding: 45px 30px 60px 30px;
+  @media (max-width: 768px) {
+    .bg-grey {
+      margin-top: 300px;
+    }
   }
 
-  .home_page .column-left .offerings-list {
-    list-style-type: none;
-    padding-left: 0;
+  .bg-grey > h1 {
+    font-size: 3.2rem;
+    font-weight: bold;
   }
 
-  .home_page .column-left .offerings-list li {
+  .offerings-list {
+    list-style: none;
+    padding: 0;
+  }
+
+  .offerings-list a {
+    color: #000;
+  }
+
+  .offerings-list a:hover {
+    text-decoration: none;
+  }
+
+  .offerings-list li {
     margin-bottom: 2rem;
   }
 
-  .home_page .column-left .offerings-list a, .home_page .column-left .offerings-list a:hover, .home_page .column-left .offerings-list a:focus {
-    color: #25353c;
-    text-decoration: none;
-  }
-
-  .home_page .column-left .offerings-list h3.no-underline {
-    text-decoration: none;
-  }
-
-  .home_page .column-left .offerings-list h3 {
+  .offerings-list li .offerings-item-title {
     text-decoration: underline;
     margin-bottom: 0;
+    font-weight: bold;
   }
 
-  .home_page .column-left .offerings-list h3 span.underline {
+  .offerings-list .txt-sm {
+    color: #888;
+  }
+
+  .offerings-list .txt-sm .date {
+    font-weight: bold;
+    color: #25353c;
+  }
+
+  .offerings-list li:nth-child(1) .offerings-item-title {
+    text-decoration: none;
+  }
+
+  .offerings-list li:nth-child(1) .offerings-item-title > span:nth-child(1) {
     text-decoration: underline;
   }
 
-  .home_page .column-left .offerings-list h3 span.new {
-    text-decoration: none;
+  .offerings-list li:nth-child(1) .offerings-item-title > span:nth-child(2) {
     color: #ee243c;
   }
 
-  .home_page .column-left .offerings-list span.timing, .home_page .column-left .offerings-list span.timing span.date {
-    font-family: "Avenir Next Cyr W00 Light", Helvetica, Arial, sans-serif;
-  }
-
-  .home_page .column-left .offerings-list a.compare {
-    display: block;
-    font-family: "Avenir Next Cyr W00 Bold", Helvetica, Arial, sans-serif;
-    margin: 2.5rem 0;
-    text-decoration: underline;
-  }
-
-  .home_page .column-left .column-left-cta {
-    display: flex;
-    justify-content: space-between;
-  }
-
-  .home_page .column-left .column-left-cta a:first-child {
-    margin-right: 10px;
-  }
-
-  .home_page .column-left .column-left-cta a {
-    font-family: "Avenir Next Cyr W00 Bold", Helvetica, Arial, sans-serif;
-    font-size: 1.33rem;
-    line-height: 2.2rem;
-    text-decoration: underline;
-    background: #eff1f3;
-    border: 0;
-    color: #25353c;
+  .bg-grey .cta a {
     display: inline-block;
-    margin: 0px;
-    outline: 0;
-    padding: 10px;
-    text-align: center;
-    text-decoration: none;
-    transition: background 0.3s ease;
-    white-space: nowrap;
-    font-family: "Avenir Next Cyr W00 Bold", Helvetica, Arial, sans-serif;
-    font-size: 1.16rem;
-    line-height: 1.5rem;
     border: 3px solid #25353c;
     padding: 7px;
+    text-decoration: none;
+    color: #25353c;
+    font-weight: bold;
+    font-size: 0.9rem;
     width: 100%;
+    text-align: center;
   }
 
-  .home_page .timing-message-box {
+  .bg-green {
     background-color: #16ac96;
     color: white;
     padding: 30px;
   }
 
-  .home_page .timing-message-box .bo-button {
-    font-family: "Avenir Next Cyr W00 Bold", Helvetica, Arial, sans-serif;
-    font-size: 1.33rem;
-    line-height: 2.2rem;
-    text-decoration: underline;
-    background: #16ac96;
-    border: 0;
-    color: white;
+  .bg-green h5 {
+    font-weight: bold;
+  }
+
+  .bg-green p {
+    font-size: 0.92rem;
+  }
+
+  .bg-green .cta a {
     display: inline-block;
-    margin: 0px;
-    outline: 0;
-    padding: 10px;
-    text-align: center;
-    text-decoration: none;
-    transition: background 0.3s ease;
-    white-space: nowrap;
-    font-family: "Avenir Next Cyr W00 Bold", Helvetica, Arial, sans-serif;
-    font-size: 1.16rem;
-    line-height: 1.5rem;
-    border: 3px solid white;
+    border: 3px solid #fff;
     padding: 7px;
-    width: 100%;
-  }
-
-  .bo-button, .bo-button-primary {
-    font-family: "Avenir Next Cyr W00 Bold", Helvetica, Arial, sans-serif;
-    font-size: 1.33rem;
-    line-height: 2.2rem;
-    text-decoration: underline;
-    background: #ee243c;
-    border: 0;
-    color: white;
-    display: inline-block;
-    margin: 0px;
-    outline: 0;
-    padding: 10px;
-    text-align: center;
     text-decoration: none;
-    transition: background 0.3s ease;
-    white-space: nowrap;
+    color: #fff;
+    font-weight: bold;
+    font-size: 0.9rem;
+    width: 100%;
+    text-align: center;
   }
 
-  .home_page #main-content .advisor-contact-block {
-    background-color: #25353c;
-    color: white;
+  .bg-dark {
     padding: 30px;
     text-align: center;
   }
 
-  #main-content .advisor-contact-block {
-    background-color: #0e1416;
-    color: white;
-    font-family: "Avenir Next Cyr W00 Bold", Helvetica, Arial, sans-serif;
-    margin: 0;
-    padding: 20px 15px;
-    text-align: center;
+  .bg-dark h6 {
+    /*margin-bottom: 1rem;*/
   }
 
-  #main-content .advisor-contact-block .guidance {
-    margin-bottom: .3rem;
-  }
-
-  .home_page #main-content .advisor-contact-block .tel-main {
-    font-family: "Avenir Next Cyr W00 Bold", Helvetica, Arial, sans-serif;
-    font-size: 1.67rem;
-    line-height: 2.25rem;
-    -webkit-box-shadow: none;
-    box-shadow: none;
-  }
-
-  .home_page #main-content .advisor-contact-block a, .home_page #main-content .advisor-contact-block a:hover, .home_page #main-content .advisor-contact-block a:active {
-    color: #25353c;
-    text-decoration: none;
-    -webkit-box-shadow: inset 0 -1px 0 #ee243c;
-    box-shadow: inset 0 -1px 0 #ee243c;
-    transition: all ease .2s;
-    color: white;
-  }
-
-  #main-content .advisor-contact-block .call-text {
-    margin: .5rem auto 0;
-  }
-
-  .home_page #main-content .advisor-contact-block .tel-intl {
-    font-family: "Avenir Next Cyr W00 Regular", Helvetica, Arial, sans-serif;
-    font-size: 1.33rem;
-    line-height: 2.2rem;
-    -webkit-box-shadow: none;
-    box-shadow: none;
-  }
-
-  #main-content .advisor-contact-block .tel-intl {
-    font-family: "Avenir Next Cyr W00 Regular", Helvetica, Arial, sans-serif;
-    font-size: 1rem;
-    line-height: 1.5rem;
-    display: block;
-  }
-
-  .home_page .column-left .white-space {
-    background-color: white;
-    -webkit-flex-grow: 1;
-    flex-grow: 1;
-    height: 100%;
-  }
-
-  /**/
-
-  .home_page .column-right {
+  .column-right {
     margin-top: 575px;
     padding-left: 0;
   }
 
-  .bo-tabs {
-    background-color: white;
-    border-bottom: 0;
-    position: relative;
+  @media (max-width: 1200px) {
+    .column-right {
+      margin-top: 400px;
+    }
   }
 
-  .bo-tabs .nav-tabs {
-    border-bottom: 1px solid #4c5960;
+  @media (max-width: 992px) {
+    .column-right {
+      margin-top: 350px;
+    }
+  }
+
+  .column-right {
+    background-color: #fff;
+  }
+
+  .tabs-nav {
+    border-bottom: 1px solid #25353c;
     display: flex;
     justify-content: flex-start;
   }
 
-  .bo-tabs .nav-item:first-child {
-    padding-left: 0;
-  }
-
-  .bo-tabs .nav-tabs .nav-item {
-    margin-bottom: 0;
-  }
-
-  .bo-tabs .nav-item {
-    background: none;
-    padding: 0 3rem;
+  .tabs-nav a {
+    color: #25353c;
+    font-weight: bold;
+    font-size: 1.4rem;
+    font-weight: bold;
+    margin-right: 3rem;
     position: relative;
     top: 3px;
-  }
-
-  .bo-tabs .nav-tabs .nav-item + .nav-item {
-    margin-left: 0;
-  }
-
-  .bo-tabs .nav-tabs .nav-item {
-    margin-bottom: 0;
-  }
-
-
-  .home_page .nav-link {
     padding: 15px 30px;
-  }
-
-  .bo-tabs .nav-link {
-    border-bottom: 5px solid transparent;
-    color: black;
-    font-family: "Avenir Next Cyr W00 Bold", Helvetica, Arial, sans-serif;
-    font-size: 1.75rem;
-    height: 100%;
-    line-height: 1.75rem;
     text-decoration: none;
-    display: flex;
-    justify-content: space-around;
-    flex-direction: column;
-    padding: .5rem 0 2.3rem 0;
+    border-bottom: 5px solid;
+    border-bottom-color: transparent;
+    display: inline-block;
+    box-sizing: border-box;
   }
 
-  .bo-tabs .nav-link, .bo-tabs .nav-link{
-    border: none;
+  .tabs-nav a:hover {
+    border-bottom-color: #ccc;
   }
 
-  .home_page .nav-link {
-    padding: 15px 30px;
-    border-bottom: 5px solid transparent;
-  }
-  .home_page .nav-link:hover {
-    border-bottom: 5px solid #ddd;
-  }
-  .home_page .nav-link.active {
-    border-bottom: 5px solid #ee243c;
-  }
-  .home_page .coming-soon h5 {
-    margin-bottom: 0;
+  .tabs-nav a.active {
+    border-bottom-color: #ee243c;
   }
 
-  .tab-content .tab-pane.active {
-    display: block;
-  }
-  .tab-content .tab-pane {
-    display: none;
-  }
-  .home_page .tab-pane {
+  .tab-content {
     padding: 30px 30px 0 30px;
     min-height: 450px;
   }
-  .tab-content>.active {
-    display: block;
-  }
-  .tab-content>.tab-pane {
+
+  .tab-item {
     display: none;
   }
-  .home_page .interest-list {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    list-style-type: none;
-    margin-top: 40px;
-    padding: 0;
+
+  .tab-item.active {
+    display: block;
   }
-  .home_page .interest-list li {
+
+  .tab-item {
+    line-height: 2.2rem;
+  }
+
+  .intersts-list {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+
+  .intersts-item {
     width: 40%;
     margin-right: 10px;
     margin-bottom: 15px;
-  }
-  .home_page .interest-list a {
-    color: black;
-    font-family: "Avenir Next Cyr W00 Demi", Helvetica, Arial, sans-serif;
-  }
-  .home_page .coming-soon a, .home_page .coming-soon a:hover {
-    color: black;
-    text-decoration: none;
-  }
-  .home_page .coming-soon .img-circle {
-    float: left;
-    height: 60px;
-    width: 60px;
-    margin-bottom: 60px;
-    margin-right: 10px;
-  }
-  .img-circle {
-    border-radius: 50%;
-  }
-  .home_page .coming-soon h5 {
-    margin-bottom: 0;
-  }
-  .home_page .coming-soon h5 {
-    font-family: "Avenir Next Cyr W00 Regular", Helvetica, Arial, sans-serif;
-    font-size: 1.33rem;
-    line-height: 2.2rem;
-    font-family: "Avenir Next Cyr W00 Bold", Helvetica, Arial, sans-serif;
-  }
-  .home_page .coming-soon span {
-    font-family: "Avenir Next Cyr W00 Regular", Helvetica, Arial, sans-serif;
-    font-size: 1.16rem;
+    font-weight: bold;
+    font-size: 1rem;
     line-height: 1.5rem;
   }
-  .home_page .coming-soon .bo-button {
-    color: white;
-    margin-top: 10px;
-    text-align: center;
+  .course-list{
+    padding-top: 20px;
   }
-  .bo-button:hover, .bo-button-primary:hover {
-    background: #cf1027;
-    color: white;
-    cursor: pointer;
+  .course-item{
+    display: flex;
+    justify-content: flex-start;
+    margin-bottom: 40px;
   }
-  /**/
-  /**/
-  .home_page .promo-box-first {
-    background-color: #25353c;
-    color: white;
-    height: 100%;
+  .course-item .avatar{
+    width: 60px;
+
+  }
+  .course-item .title{
+    font-weight: bold;
+    font-size: 1rem;
+    line-height: 1.5rem;
+    margin-bottom: 0;
   }
 
-  .responsive-media-container, .about-vid-container, .course-video-container {
-    height: 0;
-    margin-bottom: 15px;
-    overflow: hidden;
-    padding-bottom: 56.25%;
-    padding-top: 0;
-    position: relative;
-  }
 
-  .home_page .promo-box-first .promo-block-first-text {
-    padding: 30px;
+  .thumbnails{
+    margin-top: 60px;
   }
-
-  .home_page .promo-box-first h2 {
-    margin-top: 0;
-  }
-
-  .home_page .promo-box-first ul {
-    margin-top: 30px;
-    margin-left: 0;
-    padding-left: 30px;
-  }
-
-  .home_page .promo-box-first ul li a {
-    color: #FFF;
-    text-decoration: underline;
-    font-family: "Avenir Next Cyr W00 Light", Helvetica, Arial, sans-serif;
-  }
-
-  .home_page .home-thumbnails img {
+  .thumbnails img{
     width: 100%;
   }
-
-  .home_page .home-thumbnails a.thumb-container h3, .home_page .home-thumbnails a.thumb-container h4 {
-    font-family: "Avenir Next Cyr W00 Bold", Helvetica, Arial, sans-serif;
-    font-size: 1.67rem;
-    line-height: 2.25rem;
-    margin-top: 10px;
+  .thumbnails-left{
+    background-color: #25353c;
+    color: #ffffff;
+    padding: 30px;
+    font-size: 1.2rem;
   }
-
-  .home_page .home-thumbnails a.thumb-container, .home_page .home-thumbnails a.thumb-container:hover, .home_page .home-thumbnails a.thumb-container:focus {
-    color: #0e1416;
-    text-decoration: none;
-  }
-
-  .home_page .home-thumbnails a.thumb-container {
-    margin-bottom: 30px;
-  }
-
-  @media (max-width: 768px) {
-    .home_page .top-promos, .home_page .bottom-promos {
-      display: flex;
-      justify-content: space-between;
-      margin-top: 30px;
-    }
-
-    #rtp-small-promo-1 {
-      margin-right: 30px;
-      max-width: 50%;
-    }
-
-    #rtp-small-promo-1 {
-      max-width: 50%;
-    }
-  }
-
-  .home_page section {
-    margin-top: 60px;
-    margin-bottom: 30px;
-  }
-
-  .home_page .section-sample h2 {
-    margin-bottom: 60px;
-    text-align: center;
-  }
-
-  .bo-button-alt, .bo-button-secondary {
-    font-family: "Avenir Next Cyr W00 Bold", Helvetica, Arial, sans-serif;
-    font-size: 1.33rem;
-    line-height: 2.2rem;
+  .thumbnails-left a{
+    color: #ffffff;
     text-decoration: underline;
-    background: white;
-    border: 0;
+    font-weight: bold;
+  }
+
+  .thumbnails-right .row{
+    margin-left: 15px;
+    margin-right: 0;
+  }
+  .thumbnails-right>.row>.col-6 {
+    padding:0 15px;
+  }
+
+  .sample{
+    margin-top: 30px;
+    margin-bottom: 60px;
+  }
+  .sample .title{
+    text-align: center;
+    margin-bottom: 60px;
+  }
+  .sample .bo-button-alt{
     color: #ee243c;
     display: inline-block;
     margin: 0px;
     outline: 0;
-    padding: 10px;
-    text-align: center;
-    text-decoration: none;
-    transition: background 0.3s ease;
-    white-space: nowrap;
-    font-family: "Avenir Next Cyr W00 Bold", Helvetica, Arial, sans-serif;
     font-size: 1.16rem;
     line-height: 1.5rem;
     border: 3px solid #ee243c;
     padding: 7px;
+  }
+  .sample .txt-lg{
+    font-size: 1.4rem;
+    line-height: 2.50rem;
+    color: #0e1416;
+    font-weight: 200;
+  }
+  .sample img{
+    width: 100%;
   }
 </style>

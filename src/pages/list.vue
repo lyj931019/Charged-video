@@ -1,489 +1,342 @@
 <template>
-  <div class="body">
+  <div>
     <MyHeader/>
-    <div>
-      <div class="feature feature-photo">
-        <div class="container-fluid">
+    <div class="body">
+      <div class="bg">
+        <div class="container">
           <div class="row">
-            <div class="col-12">
-              <div class="row">
-                <div class="feature-callout col-12 col-sm-12 col-md-8 col-lg-6">
-                  <h1 isrender="true">
-                    在线课程
-                  </h1>
-                  <p isrender="true">
-                    我们为期12周的在线课程由行业专家和各大名校的教授进行授课。
-                  </p>
-                  <ul>
-                    <li isrender="true">由新英格兰学校和学院协会认证</li>
-                    <li isrender="true">在线课程适用于各类证书和学位课程</li>
-                    <!--<li isrender="true">Many Berklee Online courses apply toward certificates and degree programs</li>-->
-                  </ul>
-                  <hr>
-                  <div class="interest-dates">
-                    <div class="cert-course-dates">
-                      <i>
-                        <svg class="svg-inline--fa fa-clock fa-w-16" aria-hidden="true" data-prefix="far"
-                             data-icon="clock" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"
-                             data-fa-i2svg="">
-                          <path fill="currentColor"
-                                d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm0 448c-110.5 0-200-89.5-200-200S145.5 56 256 56s200 89.5 200 200-89.5 200-200 200zm61.8-104.4l-84.9-61.7c-3.1-2.3-4.9-5.9-4.9-9.7V116c0-6.6 5.4-12 12-12h32c6.6 0 12 5.4 12 12v141.7l66.8 48.6c5.4 3.9 6.5 11.4 2.6 16.8L334.6 349c-3.9 5.3-11.4 6.5-16.8 2.6z"></path>
-                        </svg><!-- <div class="far fa-clock"></div> -->
-                      </i>
-                      <a href="/about/academic-calendar" target="blank" isrender="true">
-                        下一期将于1月14日开始
-                      </a>
-                    </div>
-                  </div>
-                </div>
+            <div class="col-12 col-md-6 content">
+              <h1>在线课程</h1>
+              <p>
+                我们为期12周的在线课程由行业专家和各大名校的教授进行授课。
+              </p>
+              <ul>
+                <li>
+                  由新英格兰学校和学院协会认证
+                </li>
+                <li>
+                  在线课程适用于各类证书和学位课程
+                </li>
+
+              </ul>
+              <hr>
+              <div>
+                <i class="svg">
+                  <svg aria-hidden="true" data-prefix="far" data-icon="clock" role="img"
+                       xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""
+                       class="svg-inline--fa fa-clock fa-w-16">
+                    <path fill="currentColor"
+                          d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm0 448c-110.5 0-200-89.5-200-200S145.5 56 256 56s200 89.5 200 200-89.5 200-200 200zm61.8-104.4l-84.9-61.7c-3.1-2.3-4.9-5.9-4.9-9.7V116c0-6.6 5.4-12 12-12h32c6.6 0 12 5.4 12 12v141.7l66.8 48.6c5.4 3.9 6.5 11.4 2.6 16.8L334.6 349c-3.9 5.3-11.4 6.5-16.8 2.6z"></path>
+                  </svg>
+                </i>
+                <span>
+                  下一期将于1月14日开始
+                </span>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <div class="list-container">
-        <div class="row ">
-          <div class="type-list col-12 col-lg-4">
-            <div class="inner-scroller">
-              <div class="filter form-group" id="filter_controls"></div>
-              <div class="filter level-filter-list">
-                <p>
-                  Level
-                </p>
-                <ul class="filter-level sidebar-filter filter-all">
-                  <li class="filter course-filter-all">
-                    <a class="level-filter all filter-on" data-filter-by="all" href="#" @click.prevent="getLessionFromLevel('')">All Levels</a>
-                  </li>
-                  <li class="filter">
-                    <a class="level-filter" data-filter-by="level-1" data-html="true" data-toggle="tooltip" href="#" title="" data-original-title="<p class='level-tip'>Foundational courses, no prerequisites required.</p>" @click.prevent="getLessionFromLevel(1)">
-                      <img alt="Level 1" src="../assets/img/skill-level-1.svg">
-                      Level 1
-                    </a>
-                  </li>
-                  <li class="filter">
-                    <a class="level-filter" data-filter-by="level-2" data-html="true" data-toggle="tooltip" href="#" title="" data-original-title="<p class='level-tip'>Intermediate courses, some prerequisites may be required.</p>" @click.prevent="getLessionFromLevel(2)">
-                      <img alt="Level 2" src="../assets/img/skill-level-2.svg">
-                      Level 2
-                    </a>
-                  </li>
-                  <li class="filter">
-                    <a class="level-filter" data-filter-by="level-3" data-html="true" data-toggle="tooltip" href="#" title="" data-original-title="<p class='level-tip'>Advanced intermediate courses, some prerequisites required.</p>" @click.prevent="getLessionFromLevel(3)">
-                      <img alt="Level 3" src="../assets/img/skill-level-3.svg">
-                      Level 3
-                    </a>
-                  </li>
-                  <li class="filter">
-                    <a class="level-filter" data-filter-by="level-4" data-html="true" data-toggle="tooltip" href="#" title="" data-original-title="<p class='level-tip'>Advanced courses, prerequisites required.</p>" @click.prevent="getLessionFromLevel(4)">
-                      <img alt="Level 4" src="../assets/img/skill-level-4.svg">
-                      Level 4
-                    </a>
-                  </li>
-                </ul>
-              </div>
-              <div class="filter filter-interest">
-                <hr>
-                <p>分类</p>
-                <ul class="interest-filter-list sidebar-filter expand-list filter-all">
-                  <li class="filter">
-                    <a class="all" data-filter-by="all" href="#" :class="type==0?'filter-on':''" @click.prevent="getLessionFromType('')">所有</a>
-                  </li>
-                  <template v-if="typeList.length>0">
-                    <li class="filter" v-for="(type_item,index) in typeList">
-                      <a class="all" data-filter-by="all" href="#" :class="type==type_item.id?'filter-on':''" @click.prevent="getLessionFromType(type_item.id)">{{type_item.name}}</a>
-                    </li>
-                  </template>
-
-                </ul>
-              </div>
+      <div class="course container-fluid">
+        <div class="row">
+          <div class="col-12 col-lg-4">
+            <div class="level">
+              <a href="#" @click.prevent="getCourseListFromLevel('')">All Level</a>
+              <p class="title">Level</p>
             </div>
+            <div class="level-list">
+              <a href="#" @click.prevent="getCourseListFromLevel(1)">
+                <Level :level="1"></Level>
+                <h6>Level 1</h6>
+              </a>
+              <a href="#" @click.prevent="getCourseListFromLevel(2)">
+                <Level :level="2"></Level>
+                <h6>Level 2</h6>
+              </a>
+              <a href="#" @click.prevent="getCourseListFromLevel(3)">
+                <Level :level="3"></Level>
+                <h6>Level 3</h6>
+              </a>
+              <a href="#" @click.prevent="getCourseListFromLevel(4)">
+                <Level :level="4"></Level>
+                <h6>Level 4</h6>
+              </a>
+            </div>
+            <hr>
+            <div class="sort">
+              <p class="title">分类</p>
+            </div>
+            <ul class="sort-list">
+              <li class="sort-item">
+                <a href="#"  :class="typeId==''?'filter-on':''"  @click.prevent="getCourseListFromSort('')">所有</a>
+              </li>
+              <template  v-if="sortList.length>0">
+                <li class="sort-item" v-for="(type_item,index) in sortList">
+                  <a href="#"  :class="typeId==type_item.id?'filter-on':''"  @click.prevent="getCourseListFromSort(type_item.id)">{{type_item.name}}</a>
+                </li>
+              </template>
+
+            </ul>
           </div>
-          <div class="lesson-list col-12 col-lg-8">
-            <div class="filtered-index row justify-content-center"  v-if="lessonList.length>0">
-              <div class="all item music-history-and-liberal-arts music-production col-12 col-lg-5" v-for="(item,index) in lessonList">
-                <div class="card-main">
-                  <div class="course-code hidden-sm-down">{{item.num}}</div>
-                  <a class="title" href="#" @click.prevent="goToDetail(item.num)">{{item.name}}</a>
-                  <div class="details">
-                    <div class="course-level">
-                      <div style="cursor:pointer;" class="course-level-icon offering-supporting-detail skill-level-3" data-toggle="popover" data-trigger="focus" tabindex="0" data-content="300 level course. Advanced Intermediate course material." data-placement="left" data-original-title="Level 3 Course" rel="nofollow">
-                        <!--<img :src="'../assets/img/skill-level-'+item.level+'.svg'" >-->
-                        <template v-if="item.level ==1">
-                          <img src="../assets/img/skill-level-1.svg">
-                        </template>
-                        <template v-else-if="item.level ==2">
-                          <img src="../assets/img/skill-level-2.svg">
-                        </template>
-                        <template v-else-if="item.level ==3">
-                          <img src="../assets/img/skill-level-3.svg">
-                        </template>
-                        <template v-else>
-                          <img src="../assets/img/skill-level-4.svg">
-                        </template>
-                      </div>
-                      <div class="key-course-text">
-                        <h4>Level {{item.level}}</h4>
-                      </div>
-                    </div>
-                    <div class="course-tuition">
-                      <div class="for-credit">
-                        课程价格:
-                        ${{item.price}}
-                      </div>
-                      <!--<div class="no-credit">-->
-                        <!--Non-credit:-->
-                        <!--${{item.price}}-->
-                      <!--</div>-->
-                    </div>
+          <div class="col-12 col-lg-8">
+            <div class="row course-list"  v-if="courseList.length>0">
+              <div class="col-11 col-lg-5 course-item" v-for="(item,index) in courseList">
+                <p class="course-id">{{item.num}}</p>
+                <h2 class="course-name" @click.prevent="goToDetail(item.num)">{{item.name}}</h2>
+                <div class="course-info">
+                  <div class="course-price">课程价格:${{item.price}}</div>
+                  <div class="course-level">
+                    <Level :level="item.level"></Level>
+                    <h6>Level {{item.level}}</h6>
                   </div>
-                  <div class="desc" v-html="item.synopsis"></div>
                 </div>
-                <div class="card-foot">
-
-                </div>
+                <div class="course-intr" v-html="item.synopsis"></div>
               </div>
-
             </div>
+            <nav aria-label="Page navigation example" v-if="pageCount>1">
+              <ul class="pagination justify-content-center">
+                <li class="page-item" :class="{disabled:page<=1}" @click="changePage(page-1)">
+                  <a class="page-link" href="#" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                    <span class="sr-only">Previous</span>
+                  </a>
+                </li>
+                <li class="page-item" v-for="item in pageCount" :class="{active:item == page}" @click="changePage(item)"><a class="page-link" href="#">{{item}}</a></li>
+                <li class="page-item" :class="{disabled:page>=pageCount}" @click="changePage(page+1)">
+                  <a class="page-link" href="#" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                    <span class="sr-only">Next</span>
+                  </a>
+                </li>
+              </ul>
+            </nav>
           </div>
         </div>
       </div>
     </div>
     <MyFooter/>
   </div>
-
 </template>
 
 <script>
-  import Components from '../components/index'
+  import Common from '../components/common'
+  import Level from '../components/level.vue'
   export default {
-    name: 'list',
-    components:Components,
-    data(){
+    name: 'listF',
+    components: {...Common,Level},
+    data() {
       return {
-        lessonList:[],
-        type:'0',
-        typeList:[]
+        courseList:[],
+        typeId:'',
+        sortList:[],
+        page:1,
+        pageCount:1,
+        pageSize:1,
+        totalCount:1
       }
     },
-    methods:{
-      getLessonList(){
+    methods: {
+      getCourseList(key,value,page=1){
         let _this = this;
+        let params =  {
+          page,
+          pageSize:10
+        };
+        if(key && value){
+          params[key]=value;
+        }
         this.$http({
           method:'get',
           url:'/courses',
-          params: {
-            page: 1,
-            pageSize:20
-          }
+          params
         }).then(res=>{
-          _this.lessonList=res.data.data.items;
+          let result = res.data.data
+          _this.courseList=result.items;
+          _this.page = result.page;
+          _this.pageCount = result.pageCount;
+          _this.pageSize = result.pageSize;
+          _this.totalCount = result.totalCount;
+          console.log(result)
         })
+      },
+      getSortList(){
+        let _this = this;
         this.$http({
           method:'get',
           url:'/types',
           params: {
             page: 1,
-            pageSize:20
+            pageSize:10
           }
         }).then(res=>{
-          _this.typeList=res.data.data.items;
-        })
-      },
-      getLessionFromLevel(level){
-        let _this = this;
-        this.type = 0;
-        this.$http({
-          method:'get',
-          url:'/courses',
-          params: {
-            page: 1,
-            pageSize:20,
-            level
-          }
-        }).then(res=>{
-          _this.lessonList=res.data.data.items;
-        })
-      },
-      getLessionFromType(type_id){
-        let _this = this;
-        this.type = type_id;
-//        type_id = type_id===0?'':type_id;
-        this.$http({
-          method:'get',
-          url:'/courses',
-          params: {
-            page: 1,
-            pageSize:20,
-            type_id
-          }
-        }).then(res=>{
-          _this.lessonList=res.data.data.items;
+          _this.sortList=res.data.data.items;
         })
       },
       goToDetail(num){
         this.$router.push({ name: 'detail', params: { num }})
+      },
+      getCourseListFromSort(typeId){
+        this.typeId = typeId;
+        this.getCourseList('type_id',typeId)
+      },
+      getCourseListFromLevel(level){
+        this.getCourseList('level',level)
+      },
+      changePage(page){
+        if(page == this.page){
+
+        }else{
+          if(page>=1 && page<=this.pageCount){
+            this.getCourseList('','',page);
+          }
+        }
+
       }
     },
     beforeMount:function(){
-      this.getLessonList();
+      this.getCourseList('','');
+      this.getSortList();
     }
   }
 </script>
 
 <style scoped>
-  @media (max-width: 767px){
-    .feature.feature-photo {
+  .body {
+    /*padding-top: 120px;*/
+  }
+
+  .bg {
+    padding: 90px 0px 30px;
+  }
+
+  @media (max-width: 767px) {
+    .bg {
       padding: 200px 30px 30px;
     }
   }
 
-  .feature.feature-photo {
-    background-color: #DEE2E5;
+  .bg {
+    background: url(../assets/img/courses.jpg) center center no-repeat;
+    -webkit-background-size: 100%;
     background-size: cover;
-    background-position: center center;
-    background-repeat: no-repeat;
-    width: 100%;
-  }
-  .feature {
-    padding: 75px 0;
-    color: #25353c;
-    background-color: #dee2e5;
     margin-bottom: 50px;
   }
-  .feature.feature-photo {
-    background-image: url(../assets/img/courses.jpg);
+
+  .bg .container {
+
   }
-  .feature .feature-callout {
-    background-color: #eff1f3;
-    padding: 40px;
-  }
-  .feature.feature-photo .feature-callout {
-    position: relative;
+
+  .bg .container .row .content {
+    margin-top: -120px;
     background: #25353C;
     color: #F2F2F2;
-    margin-top: -104px;
-    transition: all ease .2s;
+    padding: 40px;
   }
 
-  .feature.feature-photo .feature-callout h1 {
-    line-height: 120%;
-    font-size: 2.5rem;
-  }
-
-  .feature p {
-    font-family: "Avenir Next Cyr W00 Regular", Helvetica, Arial, sans-serif;
+  .bg .container .row .content p {
     font-size: 1.3rem;
-    line-height: 2.50rem;
+    font-weight: 500;
+    line-height: 2.5rem;
+
   }
 
-  .course_offering_index .feature ul li {
-    font-family: "Avenir Next Cyr W00 Light", Helvetica, Arial, sans-serif;
+  .bg .container .row .content li {
+    font-size: 1.1rem;
+    line-height: 2rem;
   }
 
-  .feature .cert-course-dates, .feature .cert-course-dates a {
-    color: #dee2e5;
-    margin-top: 1rem;
-    text-transform: uppercase;
-  }
-  .feature hr {
-    margin-top: .5rem;
-    margin-bottom: .5rem;
-    border-top: 1px solid #7b8b96;
-    color: #7b8b96;
+  .bg .container .row .content hr {
+    border-color: #7b8b96;
   }
 
-  svg:not(:root).svg-inline--fa {
-    overflow: visible;
+  .bg .container .row .content .svg {
+
   }
 
-  svg:not(:root).svg-inline--fa {
-    overflow: visible;
+  .bg .container .row .content .svg svg {
+    width: 1rem;
   }
 
-  .svg-inline--fa.fa-w-16 {
-    width: 1em;
+  .level a{
+    color: #25353c;
+    border-bottom: 1px solid #ee243c;
+    float: right;
+    font-size: 1.2rem;
   }
-
-  .svg-inline--fa.fa-w-16 {
-    width: 1em;
+  .level .title,.sort .title{
+    font-size: 1.3rem;
+    font-weight: 500;
+    line-height: 2rem;
   }
-
-  svg:not(:root) {
-    overflow: hidden;
-  }
-
-  .svg-inline--fa {
-    display: inline-block;
-    font-size: inherit;
-    height: 1em;
-    overflow: visible;
-    vertical-align: -.125em;
-  }
-
-  .svg-inline--fa {
-    display: inline-block;
-    font-size: inherit;
-    height: 1em;
-    overflow: visible;
-    vertical-align: -.125em;
-  }
-
-
-  /**/
-  /**/
-  .filtered-index {
-    /*display: grid;*/
-    /*grid-template-columns: 50% 50%;*/
-    margin-left: -15px;
-    margin-right: -15px;
-  }
-  .filtering-by {
-    display: block;
-    margin: 0px 0px 0px 15px;
-    padding: 0px;
-  }
-  .filtered-index {
-    /*display: grid;*/ /*css 的栅格系统*/
-    /*grid-template-columns: 50% 50%;*/
-    margin-left: -15px;
-    margin-right: -15px;
-  }
-  .filtered-index .item {
-    box-shadow: rgba(0, 0, 0, 0.22) 3px 3px 8px;
+  .level-list{
     display: flex;
-    flex-direction: column;
     justify-content: space-between;
-    border-width: 1px;
-    border-style: solid;
-    border-color: rgb(222, 226, 229);
-    border-image: initial;
+    align-items: center;
+  }
+  .level-list a{
+    text-align: center;
+    display: inline-block;
+    width: 60px;
+  }
+  .level-list a h6{
+    color: #25353c;
+    margin-top: 0.1rem;
+    font-weight: 600;
+  }
+
+  .course-item{
+    box-shadow: rgba(0, 0, 0, 0.22) 3px 3px 8px;
     margin: 15px;
     padding: 30px;
-  }
-  .filtered-index .course-code {
-    font-size: 1.16rem;
-    margin-top: 5px;
-  }
-  .filtered-index a.title {
-    color: rgb(37, 53, 60);
-    box-shadow: rgb(238, 36, 60) 0px -1px 0px inset;
-    font-family: "Avenir Next Cyr W00 Bold", Helvetica, Arial, sans-serif;
-    font-size: 1.67rem;
-    line-height: 2.25rem;
-    text-decoration: none;
-    transition: all 0.2s ease;
-  }
-  .filtered-index .details {
-    font-family: "Avenir Next Cyr W00 Demi", Helvetica, Arial, sans-serif;
-    font-size: 1.33rem;
-    line-height: 1.7rem;
-    margin: 10px 0px;
-  }
-  .filtered-index .course-level {
-    float: right;
-  }
-  .filtered-index .course-level-icon > img {
-    height: 20px;
-    margin-left: 7px;
-  }
-  .filtered-index .course-level h4 {
-    font-size: 1rem;
-    line-height: 1rem;
-    margin-top: 5px;
-  }
-  .filtered-index .desc {
-    margin-bottom: 15px;
-    font-size: 1.1rem;
+    border:1px solid rgb(222, 226, 229);
   }
 
-  .inner-scroller {
-    padding-top: 15px;
-    padding-bottom: 30px;
-  }
-  .filter {
-    margin-bottom: 15px;
-  }
-  .form-group {
-    margin-bottom: 1rem;
-  }
-  .level-filter-list {
-    position: relative;
-  }
-  .filters p, .filter .col-form-label {
-    font-family: "Avenir Next Cyr W00 Demi", Helvetica, Arial, sans-serif;
-    font-size: 1.4rem;
-    margin-bottom: 15px;
-  }
-  .sidebar-filter.filter-level {
-    margin: 0;
-    padding: 0;
-    -webkit-display: flex;
-    display: flex;
-    -webkit-flex-direction: row;
-    flex-direction: row;
-    -webkit-justify-content: space-around;
-    justify-content: space-between;
-  }
-  .sidebar-filter.filter-level li.course-filter-all {
-    font-family: "Avenir Next Cyr W00 Light", Helvetica, Arial, sans-serif;
-    font-size: 1.2rem;
-    line-height: 1.2rem;
-    position: absolute;
-    top: 3px;
-    right: 0;
-    z-index: 1;
-  }
-  .sidebar-filter.filter-level li {
-    list-style-type: none;
+  .course-id{
     margin-bottom: 0;
+    font-size: 1.15rem;
   }
-  .sidebar-filter.filter-level li.course-filter-all a.filter-on {
-    background: none;
+  .course-name{
+    box-shadow: rgb(238, 36, 60) 0px -1px 0px inset;
+    display: inline-block;
+    font-weight: 500;
   }
-  .sidebar-filter.filter-level li a.filter-on {
-    background: #EFF1F3;
-    border-bottom: 1px solid #ee243c;
+  .course-info{
+    text-align: right;
   }
-  .sidebar-filter.filter-level li.course-filter-all a {
-    padding: 0 0 2px 0;
+  .course-price{
+    float: left;
+    font-size: 1.2rem;
   }
-  .sidebar-filter.filter-level li a {
-    border: 2px solid #FFF;
-    color: black;
-    -webkit-display: flex;
-    display: flex;
-    -webkit-flex-direction: column;
-    flex-direction: column;
-    font-family: "Avenir Next Cyr W00 Regular", Helvetica, Arial, sans-serif;
-    font-size: 1.1rem;
-    padding: 10px 8px 2px 8px;
-    position: relative;
+  .course-level{
+    display: inline-block;
     text-align: center;
-    white-space: nowrap;
+    /*float: right;*/
   }
-  .sidebar-filter.filter-level li a img {
-    margin: auto;
-    width: 30px;
+  .course-intr{
+    font-size: 1.1rem;
   }
-  .sidebar-filter:not(.filter-level) li:not(.expand-section) {
+  .sort-list{
+    list-style: none;
+  }
+  .sort-list .sort-item a{
+    color: black;
+    font-family: "Avenir Next Cyr W00 Regular", Helvetica, Arial, sans-serif;
+    font-size: 1rem;
+    position: relative;
+  }
+  .sort-list .sort-item{
     list-style-type: none;
     margin-bottom: .28em;
     padding: 0.25em 0 0 2.5em;
   }
-  .sidebar-filter:not(.filter-level) li:not(.expand-section) a.filter-on {
+  .sort-list .sort-item a.filter-on{
     text-decoration: none;
     color: #25353c;
-    text-decoration: none;
     -webkit-box-shadow: inset 0 -1px 0 #ee243c;
     box-shadow: inset 0 -1px 0 #ee243c;
     transition: all ease .2s;
   }
-  .sidebar-filter:not(.filter-level) li:not(.expand-section) a {
-    color: black;
-    font-family: "Avenir Next Cyr W00 Regular", Helvetica, Arial, sans-serif;
-    font-size: 1rem;
-    position: relative;
-  }
-  .sidebar-filter:not(.filter-level) li:not(.expand-section) a:before {
+  .sort-list .sort-item a:before{
     content: " ";
     display: block;
     border: solid 0.8em #DEE2E5;
@@ -495,7 +348,7 @@
     top: 40%;
     margin-top: -0.75em;
   }
-  .sidebar-filter:not(.filter-level) li:not(.expand-section) a.filter-on:after {
+  .sort-list .sort-item a.filter-on:after {
     content: " ";
     display: block;
     width: 0.7em;

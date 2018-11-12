@@ -3,23 +3,18 @@ export default [
   {
     path: '/',
     name: 'index',
-    component: Pages.IndexF
+    component: Pages.Index
   },
   {
     path: '/list',
     name: 'list',
-    component: Pages.ListF
+    component: Pages.List
   },
   {
     path: '/detail/:num',
     name: 'detail',
-    component: Pages.DetailF
+    component: Pages.Detail
   },
-  // {
-  //   path: '/detail/:num',
-  //   name: 'detail',
-  //   component: Pages.Detail
-  // },
   {
     path: '/learningCenter',
     name: 'learningCenter',
