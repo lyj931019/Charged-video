@@ -16,7 +16,7 @@ export default [
     component: Pages.Detail
   },
   {
-    path: '/learningCenter',
+    path: '/learningCenter/:num',
     name: 'learningCenter',
     component: Pages.LearningCenter
   },
@@ -44,5 +44,10 @@ export default [
     path: '/about',
     name: 'about',
     component: Pages.About
+  },
+  {
+    path: '/pay/:num',
+    name: 'pay',
+    component: Pages.Pay
   }
 ]

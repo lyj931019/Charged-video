@@ -94,6 +94,9 @@
     justify-content: flex-start;
     flex-wrap: nowrap;
   }
+  .detail-level .line{
+    background-color: #eff1f3;
+  }
   .line{
     background-color: #fff;
     height: 100%;

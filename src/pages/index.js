@@ -8,6 +8,7 @@ import Login from './login.vue'
 
 import About from './about.vue'
 import Register from './register.vue'
+import Pay from './pay.vue'
 //
 
 
@@ -15,6 +16,6 @@ import Register from './register.vue'
 
 
 export default {
-  Index,List,Detail,LearningCenter,UserCourse,UserCenter,Login,About,Register,
+  Index,List,Detail,LearningCenter,UserCourse,UserCenter,Login,About,Register,Pay
 
 }

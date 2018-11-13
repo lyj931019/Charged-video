@@ -38,7 +38,7 @@
                       <span>2019/1/14</span>
 
                     </div>
-                    <div class="course-level">
+                    <div class="course-level detail-level">
                       <Level :level="courses.level"/>
                       <span>Level {{courses.level}}</span>
                     </div>
@@ -216,7 +216,7 @@
       <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="detailTipsTitle">{{tips}}</h5>
+            <h5 class="modal-title" id="detailTipsTitle"><Icon :type="icon_type"></Icon>{{tips}}</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
@@ -236,10 +236,11 @@
   import Level from '../components/level.vue'
   import Avatar from '../components/avatar.vue'
   import DownArrow from '../components/down-arrow.vue'
+  import Icon from '../components/icon.vue'
   import { mapGetters } from 'vuex'
   export default {
     name: 'detailF',
-    components: {...Common,Level,Avatar,DownArrow},
+    components: {...Common,Level,Avatar,DownArrow,Icon},
     data() {
       return {
         courses: null,
@@ -253,7 +254,8 @@
         requireH:0,
         authorH:0,
         windowScrollTop:0,
-        tips:''
+        tips:'',
+        icon_type:'success',
       }
     },
     computed: {
@@ -282,30 +284,33 @@
       },
       buyCourse(){
         if(this.getIsLogin){
-          let _this = this;
-          this.$http({
-            method: 'post',
-            url: '/courses/buy',
-            data:{
-              user_id:_this.getUserInfo.user_id,
-              course_id:_this.courses.id
-            },
-            transformRequest: [function (data) {
-            let ret = ''
-            for (let it in data) {
-              ret += encodeURIComponent(it) + '=' + encodeURIComponent(data[it]) + '&'
-            }
-            return ret
-          }],
-          }).then(res => {
-            if(res.data.state.code  == 0){
-              _this.tips = _this.$t('common.success');
-            }else{
-              _this.tips = _this.$t('common.fail');
-            }
-            $('#detailTips').modal('show');
-//            _this.$router.push({ name: 'userCenter'})
-          })
+//          let _this = this;
+//          this.$http({
+//            method: 'post',
+//            url: '/courses/buy',
+//            data:{
+//              user_id:_this.getUserInfo.user_id,
+//              course_id:_this.courses.id
+//            },
+//            transformRequest: [function (data) {
+//            let ret = ''
+//            for (let it in data) {
+//              ret += encodeURIComponent(it) + '=' + encodeURIComponent(data[it]) + '&'
+//            }
+//            return ret
+//          }],
+//          }).then(res => {
+//            if(res.data.state.code  == 0){
+//              _this.tips = _this.$t('common.success');
+//              _this.icon_type = 'success';
+//            }else{
+//              _this.tips = _this.$t('common.fail');
+//              _this.icon_type = 'fail';
+//            }
+//            $('#detailTips').modal('show');
+////            _this.$router.push({ name: 'userCenter'})
+//          })
+          this.$router.push({ name: 'pay',params:{num:this.$route.params.num}})
         }else{
           this.gotoLogin();
         }
@@ -330,8 +335,10 @@
           }).then(res => {
             if(res.data.state.code == 0){
               _this.tips = _this.$t('common.success');
+              _this.icon_type = 'success';
             }else{
               _this.tips = _this.$t('common.fail');
+              _this.icon_type = 'fail';
             }
             $('#detailTips').modal('show');
           })
@@ -359,8 +366,10 @@
           }).then(res => {
             if(res.data.state.code  == 0){
               _this.tips = _this.$t('common.success');
+              _this.icon_type = 'success';
             }else{
               _this.tips = _this.$t('detail.collected');
+              _this.icon_type = 'success';
             }
             $('#detailTips').modal('show');
           })

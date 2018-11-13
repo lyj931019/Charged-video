@@ -11,6 +11,10 @@ module.exports = {
   login:{
     noAccount:'没有账号'
   },
+  pay:{
+    total:'总价',
+    checkout:'支付购买'
+  },
   footer: {},
   about: {
     title: '学校信息，报名和政策',

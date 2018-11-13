@@ -32,7 +32,7 @@
                 {{$t('register.existingAccount')}}:&nbsp;<router-link :to="{ name: 'login'}">{{$t('header.login')}}</router-link>
               </div>
               <label class="btn-con">
-                <button class="loginBtn" @click="login">{{$t('common.signUp')}}</button>
+                <button class="loginBtn" @click="register">{{$t('common.signUp')}}</button>
               </label>
             </div>
 
@@ -57,11 +57,7 @@
       }
     },
     methods: {
-//      ...mapMutations([
-//        'changeLoginStatus', // 将 `this.increment()` 映射为 `this.$store.commit('increment')`
-//        'changeUserInfo' // 将 `this.incrementBy(amount)` 映射为 `this.$store.commit('incrementBy', amount)`
-//      ]),
-      login() {
+      register() {
         let _this = this;
         if(!(this.userName.length > 0 && /^[a-zA-Z][a-zA-Z0-9_]{4,15}$/.test(this.userName))){
           this.registerErr = true;

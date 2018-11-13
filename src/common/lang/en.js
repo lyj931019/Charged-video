@@ -11,6 +11,10 @@ module.exports = {
   login:{
     noAccount:'No Account'
   },
+  pay:{
+    total:'Total',
+    checkout:'Checkout'
+  },
   footer:{},
   about:{
     title:'School information, registration and policy',

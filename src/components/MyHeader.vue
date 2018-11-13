@@ -33,6 +33,16 @@
               </router-link>
 
             </li>
+            <li class="nav-item">
+              <div class="lang">
+                <span :class="{active:locale == 'en'}" @click="changeLang('en')">
+                  <span class="btn btn-primary" :class="{active:locale == 'en'}" >En</span>
+                </span><span :class="{active:locale == 'zh'}" @click="changeLang('zh')">
+                  <span class="btn btn-primary" :class="{active:locale == 'zh'}">Zh</span>
+                </span>
+              </div>
+
+            </li>
             <li v-if="getIsLogin" class="text-center" >
               <span id="avatarDropDown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="button">
                  <Avatar :src="getUserInfo.user_avatar"/>
@@ -71,7 +81,9 @@
     components:{Avatar},
     data() {
       return {
-        header: 'MyHeader'
+        header: 'MyHeader',
+        locale:'',
+        lang:''
       }
     },
     methods:{
@@ -93,6 +105,9 @@
         this.changeUserInfo(userInfo);
         localStorage.removeItem('isLogin');
         localStorage.removeItem('user_id');
+      },
+      changeLang(lang){
+        this.locale = lang
       }
     },
     computed: {
@@ -101,6 +116,22 @@
         'getIsLogin',
         'getUserInfo'
       ])
+    },
+    mounted() {
+      if(localStorage.getItem('locale') == 'zh'){
+        this.locale='en';
+        this.lang='ENG';
+      }else{
+        this.locale='zh';
+        this.lang='中文';
+      }
+      localStorage.setItem('lng', this.locale);
+    },
+    watch: {
+      locale (val) {
+        this.$i18n.locale = val;
+        console.log("locale",val);
+      }
     }
   }
 </script>
@@ -157,5 +188,15 @@
 
   #masthead .navbar .form-inline .btn-login{
     color: rgba(0,0,0,0.5);
+  }
+
+  .lang{
+    background-color: #007bff;
+  }
+  .lang>span:hover{
+    background-color: #005cbf;
+  }
+  .lang>span.active{
+    background-color: #005cbf;
   }
 </style>

@@ -166,6 +166,14 @@
           }).then((res) => {
             if (res.data.state.code === 0) {
               _this.audioUrl = res.data.data.audio;
+//              $('#audio')
+              setTimeout(()=>{
+                console.log(document.getElementById("audio").currentSrc)
+//                document.getElementById("audio").played;
+                document.getElementById("audio").load()
+                document.getElementById("audio").played()
+              },50)
+
             } else {
               $('#audioErr').modal('show');
             }
@@ -174,7 +182,7 @@
       }
     },
     beforeMount() {
-      if (this.getIsLogin) {
+      if (localStorage.getItem('isLogin')) {
         this.getUserCourses();
       } else {
         this.$router.replace({name: 'login'});
