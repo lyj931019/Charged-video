@@ -8,6 +8,9 @@ module.exports = {
     logout: '注销',
     userCenter: '个人中心'
   },
+  login:{
+    noAccount:'没有账号'
+  },
   footer: {},
   about: {
     title: '学校信息，报名和政策',
@@ -72,6 +75,7 @@ module.exports = {
   register:{
     tips:'请在提交前删除特殊字符，例如：èüîñò。',
     correct:'请输入正确的',
+    existingAccount:'已有账号',
   },
   common: {
     noContent: '未设置',

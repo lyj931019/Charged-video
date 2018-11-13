@@ -16,20 +16,26 @@
             <h1>{{$t('common.signUp')}}</h1>
 
             <label>
-              <input type="text" :placeholder="$t('common.nickname')" v-model="userName">
+              <input type="text" :placeholder="$t('placeholder.nickname')" v-model="userName">
             </label>
             <label>
-              <input type="password" :placeholder="$t('common.pwd')" v-model="userPwd">
+              <input type="password" :placeholder="$t('placeholder.pwd')" v-model="userPwd">
             </label>
             <label>
-              <input type="email" :placeholder="$t('common.email')" v-model="userEmail">
+              <input type="email" :placeholder="$t('placeholder.email')" v-model="userEmail">
             </label>
             <label>
               <i>{{$t('register.tips')}}</i>
             </label>
-            <label class="btn-con">
-              <button class="loginBtn" @click="login">{{$t('common.signUp')}}</button>
-            </label>
+            <div class="footer-btn">
+              <div>
+                {{$t('register.existingAccount')}}:&nbsp;<router-link :to="{ name: 'login'}">{{$t('header.login')}}</router-link>
+              </div>
+              <label class="btn-con">
+                <button class="loginBtn" @click="login">{{$t('common.signUp')}}</button>
+              </label>
+            </div>
+
           </div>
         </div>
 
@@ -133,6 +139,12 @@
   .login-container label.btn-con {
     /*margin-top: 30px;*/
     text-align: right;
+  }
+
+  .login-container .footer-btn{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
   }
 
   input[type="text"], input[type="email"], input[type="password"] {

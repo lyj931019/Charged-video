@@ -210,7 +210,7 @@
       <!--<a href="#" class="box" @click.prevent="favoritesCourse">{{$t('detail.favoritesCourse')}}</a>-->
       <a href="#" class="box" @click.prevent="favoritesCourse"><img src="../assets/img/fav.png" alt=""></a>
       <!--<a href="#" class="box" @click.prevent="buyCoursenpm">{{$t('detail.buyCourse')}}</a>-->
-      <a href="#" class="box" @click.prevent="buyCoursenpm"><img src="../assets/img/buy.png" alt=""></a>
+      <a href="#" class="box" @click.prevent="buyCourse"><img src="../assets/img/buy.png" alt=""></a>
     </div>
     <div class="modal fade" id="detailTips" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
@@ -285,11 +285,18 @@
           let _this = this;
           this.$http({
             method: 'post',
-            url: '/users/courses/',
-            params:{
+            url: '/courses/buy',
+            data:{
               user_id:_this.getUserInfo.user_id,
               course_id:_this.courses.id
+            },
+            transformRequest: [function (data) {
+            let ret = ''
+            for (let it in data) {
+              ret += encodeURIComponent(it) + '=' + encodeURIComponent(data[it]) + '&'
             }
+            return ret
+          }],
           }).then(res => {
             if(res.data.state.code  == 0){
               _this.tips = _this.$t('common.success');
@@ -308,11 +315,18 @@
           let _this = this;
           this.$http({
             method: 'post',
-            url: '/users/courses/',
-            params:{
+            url: '/courses/try',
+            data:{
               user_id:_this.getUserInfo.user_id,
               course_id:_this.courses.id
-            }
+            },
+            transformRequest: [function (data) {
+              let ret = ''
+              for (let it in data) {
+                ret += encodeURIComponent(it) + '=' + encodeURIComponent(data[it]) + '&'
+              }
+              return ret
+            }],
           }).then(res => {
             if(res.data.state.code == 0){
               _this.tips = _this.$t('common.success');

@@ -91,6 +91,8 @@
           adderss:''
         }
         this.changeUserInfo(userInfo);
+        localStorage.removeItem('isLogin');
+        localStorage.removeItem('user_id');
       }
     },
     computed: {

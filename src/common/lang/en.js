@@ -8,6 +8,9 @@ module.exports = {
     logout:'Login Out',
     userCenter:'User Center'
   },
+  login:{
+    noAccount:'No Account'
+  },
   footer:{},
   about:{
     title:'School information, registration and policy',
@@ -72,6 +75,7 @@ module.exports = {
   register:{
     tips:'Please remove special characters before submitting, for example: èüîñò.',
     correct:'Please enter the correct',
+    existingAccount:'Existing account',
   },
   common:{
     noContent:'No Content',

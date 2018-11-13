@@ -61,6 +61,10 @@
                 <Level :level="4"></Level>
                 <h6>Level 4</h6>
               </a>
+              <a href="#" @click.prevent="getCourseListFromLevel(5)">
+                <Level :level="5"></Level>
+                <h6>Level 5</h6>
+              </a>
             </div>
             <hr>
             <div class="sort">
@@ -101,7 +105,12 @@
                     <span class="sr-only">Previous</span>
                   </a>
                 </li>
-                <li class="page-item" v-for="item in pageCount" :class="{active:item == page}" @click="changePage(item)"><a class="page-link" href="#">{{item}}</a></li>
+                <template v-for="item in 9">
+                  <li class="page-item" v-if="(item-5+page>=1) && (item-5+page<=pageCount)" :class="{active:item == 5}" @click="changePage(page+item-5)">
+                    <a class="page-link" href="#">{{(item-5+page)}}</a>
+                  </li>
+                </template>
+
                 <li class="page-item" :class="{disabled:page>=pageCount}" @click="changePage(page+1)">
                   <a class="page-link" href="#" aria-label="Next">
                     <span aria-hidden="true">&raquo;</span>
@@ -156,7 +165,6 @@
           _this.pageCount = result.pageCount;
           _this.pageSize = result.pageSize;
           _this.totalCount = result.totalCount;
-          console.log(result)
         })
       },
       getSortList(){
@@ -262,6 +270,9 @@
     border-bottom: 1px solid #ee243c;
     float: right;
     font-size: 1.2rem;
+  }
+  .level a:hover{
+    text-decoration: none;
   }
   .level .title,.sort .title{
     font-size: 1.3rem;

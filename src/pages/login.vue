@@ -23,6 +23,9 @@
             <p class="btn-con">
               <button class="loginBtn" @click="login">{{$t('header.login')}}</button>
             </p>
+            <p style="margin-bottom: 0;">
+              {{$t('login.noAccount')}}:&nbsp;&nbsp;<router-link :to="{ name: 'register'}">{{$t('header.register')}}</router-link>
+            </p>
           </div>
         </div>
 
@@ -67,6 +70,8 @@
             }],
           }).then(res => {
             if (res.data.state.code == 0) {
+              localStorage.setItem('user_id',res.data.data.id);
+              localStorage.setItem('isLogin',true);
               _this.changeLoginStatus(true);
               _this.changeUserInfo(res.data.data);
               _this.$router.push({name: 'userCenter'});

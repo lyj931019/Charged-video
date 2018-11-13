@@ -378,12 +378,13 @@
         })
       }
     },
-    beforeMount() {
+    mounted() {
       let _this = this;
-      if (_this.getIsLogin) {
+      console.log(_this.getIsLogin);
+      if (localStorage.getItem('isLogin')) {
         this.$http({
           method: 'get',
-          url: '/users/courses?user_id=' + _this.getUserInfo.user_id,
+          url: '/users/courses?user_id=' + localStorage.getItem('user_id'),
         }).then(res => {
           _this.lessonList = res.data.data;
         })

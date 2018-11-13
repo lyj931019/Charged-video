@@ -20,7 +20,7 @@
       <span class="navbar-toggler-icon"></span>
     </div>
     <div class="little-header-avatar">
-      <img src="../assets/img/avatar.png" alt="">
+      <Avatar :src="getUserInfo.user_avatar"/>
     </div>
     <div class="content-container">
       <table></table>
@@ -37,7 +37,7 @@
             {{$t('learningCenter.goBack')}}
           </div>
         </div>
-        <div class="aside-detail" :class="asideDetailActive?'active':''" v-if="courses">
+        <div class="aside-detail active"  v-if="courses">
           <div v-if="courses.lessons.length>0">
             <h2 class="select-prompt">
               Select a Lesson
@@ -69,7 +69,7 @@
         </div>
       </div>
       <audio :src="audioUrl" id="audio" autoplay>
-        您的浏览器不支持 audio 标签。
+        <!--您的浏览器不支持 audio 标签。-->
       </audio>
       <!-- tips -->
       <div class="modal fade" id="audioErr" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
@@ -151,6 +151,7 @@
               return '<span class="pronunciation">' + world + '</span>'
             })
           }
+          _this.classRoomActive = false;
           _this.lesson.content = html;
         })
       },
@@ -227,16 +228,13 @@
     top: 0px;
     bottom: 0;
     left: 60px;
-    width: 360px;
+    width: 300px;
     color: #000;
     overflow: auto;
-    display: none;
+    /*display: none;*/
     border-right: 1px solid #ccc;
   }
 
-  .classroom .content-container .aside-detail.active {
-    display: block;
-  }
 
   @media (max-width: 1280px) {
     .classroom .header {
@@ -254,7 +252,7 @@
     }
 
     .classroom .content-container .aside-container {
-      left: -100%;
+      left: -1000%;
     }
 
     .classroom.active .content-container .aside-container {
@@ -262,9 +260,15 @@
     }
 
     .classroom.active .content-container .aside-detail {
+      display: none;
       left: 60px;
     }
   }
+  .classroom .content-container .aside-detail.active {
+    display: block;
+  }
+
+
 
   .header .icon {
     height: 60px;
@@ -287,6 +291,16 @@
     white-space: nowrap;
     text-overflow: ellipsis;
   }
+  @media (max-width: 314px) {
+    .header .icon img + span{
+      display: none;
+    }
+  }
+  @media (max-width:380px) {
+    .classroom .content-container .aside-detail{
+      width:140px;
+    }
+  }
 
   .header .title {
     width: 500px;
@@ -305,13 +319,15 @@
     color: rgb(255, 255, 255);
   }
 
-  .header avatar {
+  .header .avatar {
     border: none;
     border-radius: 0;
-    height: 50px;
-    width: 50px;
+    height: 60px;
+    width: 60px;
     border-radius: 25px;
-    margin: 5px 29px 0 0;
+    /*margin: 5px 29px 0 0;*/
+    line-height:60px;
+    text-align: center;
   }
 
   .little-header {
