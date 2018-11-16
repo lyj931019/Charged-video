@@ -34,7 +34,7 @@
 
             </li>
             <li class="nav-item">
-              <div class="lang">
+              <div class="lang nav-link">
                 <span :class="{active:locale == 'en'}" @click="changeLang('en')">
                   <span class="lang-btn" :class="{active:locale == 'en'}" >En</span>
                 </span>
@@ -46,9 +46,9 @@
 
             </li>
             <li v-if="getIsLogin" class="text-center" >
-              <span id="avatarDropDown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="button">
+              <a href="#" id="avatarDropDown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="button">
                  <Avatar :src="getUserInfo.user_avatar"/>
-              </span>
+              </a>
               <br>
               <div class="dropdown-menu" style="float: right;right: 2px;left: auto" aria-labelledby="avatarDropDown">
                 <router-link class="dropdown-item" href="#" :to="{ name: 'userCenter'}">

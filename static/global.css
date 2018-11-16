@@ -131,3 +131,12 @@ video{
   max-width: 100%;
   max-height: 100%;
 }
+
+/**/
+.modal-header{
+  border-radius: .3rem;
+}
+.modal-header .close {
+  padding: 1rem;
+  margin: -0.65rem -1rem -1rem auto;
+}

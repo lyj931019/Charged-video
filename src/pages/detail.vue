@@ -62,8 +62,11 @@
                   <div class="nav-scroll" :class="{active:windowScrollTop>=requireH && windowScrollTop<authorH}" @click="gotoSection(requireH+1)">{{$t('detail.learningRequirements')}}</div>
                   <div class="nav-scroll" :class="{active:windowScrollTop>authorH}" @click="gotoSection(authorH+1)">{{$t('detail.teacherProfile')}}</div>
                   <div class="buy" @click="buyCourse">{{$t('detail.buyCourse')}}</div>
+                  <div class="try" @click="tryCourse" v-if="courses && courses.try  && courses.try_day>0">
+                    {{$t('detail.tryCourse')}}
+                    <span>({{courses.try_day}}&nbsp;{{$t('detail.days')}})</span>
+                  </div>
                   <div class="collection" >
-                    <span @click="tryCourse" v-if="courses && courses.try  && courses.try_day>0">{{$t('detail.tryCourse')}}</span>
                     <span @click="favoritesCourse">{{$t('detail.favoritesCourse')}}</span>
                   </div>
                   <div class="phone">
@@ -284,32 +287,6 @@
       },
       buyCourse(){
         if(this.getIsLogin){
-//          let _this = this;
-//          this.$http({
-//            method: 'post',
-//            url: '/courses/buy',
-//            data:{
-//              user_id:_this.getUserInfo.user_id,
-//              course_id:_this.courses.id
-//            },
-//            transformRequest: [function (data) {
-//            let ret = ''
-//            for (let it in data) {
-//              ret += encodeURIComponent(it) + '=' + encodeURIComponent(data[it]) + '&'
-//            }
-//            return ret
-//          }],
-//          }).then(res => {
-//            if(res.data.state.code  == 0){
-//              _this.tips = _this.$t('common.success');
-//              _this.icon_type = 'success';
-//            }else{
-//              _this.tips = _this.$t('common.fail');
-//              _this.icon_type = 'fail';
-//            }
-//            $('#detailTips').modal('show');
-////            _this.$router.push({ name: 'userCenter'})
-//          })
           this.$router.push({ name: 'pay',params:{num:this.$route.params.num}})
         }else{
           this.gotoLogin();
@@ -337,7 +314,7 @@
               _this.tips = _this.$t('common.success');
               _this.icon_type = 'success';
             }else{
-              _this.tips = _this.$t('detail.collected');
+              _this.tips = _this.$t('common.exist');
               _this.icon_type = 'success';
             }
             $('#detailTips').modal('show');
@@ -612,26 +589,38 @@
     width: 0;
     height: 0;
     margin-top: -10px;
-    border-top: calc(.875rem + 12px) solid transparent;
-    border-bottom: calc(.875rem + 12px) solid transparent;
+    border-top: calc(.875rem + 14px) solid transparent;
+    border-bottom: calc(.875rem + 14px) solid transparent;
     border-right: 1.7rem solid #7ea0af;
   }
   .buy{
-    font-size: 1.16rem;
+    font-size: 1.32rem;
+    line-height: 1.5rem;
+    padding: 18px 0px;
+    color: #fff;
+    background-color: #ee243c;
+    margin: 1rem 1rem 0.5rem;
+    text-align: center;
+    cursor: pointer;
+  }
+  .try{
+    font-size: 1.08rem;
     line-height: 1.5rem;
     border: 3px solid #ee243c;
     padding: 7px;
     color: #ee243c;
-    margin: 1rem;
+    margin: 0.5rem 1rem;
     text-align: center;
     cursor: pointer;
   }
+  .try>span{
+    font-size: 1rem;
+  }
   .collection{
-    margin: 1rem;
-    font-size: 1.16rem;
+    margin: 0.5rem 1rem 1rem;
+    font-size: 1rem;
     line-height: 1.5rem;
     text-align: center;
-
     font-weight: 400;
   }
   .collection>span{
@@ -640,9 +629,8 @@
     white-space: nowrap;
     display: inline-block;
   }
-  .collection>span:nth-child(1){
-    margin-right: 2rem;
-    margin-bottom: 1rem;
+  .collection>span{
+
   }
   .phone{
     background-color: #25353c;

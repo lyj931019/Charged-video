@@ -111,7 +111,7 @@
               _this.tips = _this.$t('common.success');
               _this.icon_type = 'success';
             } else {
-              _this.tips = _this.$t('common.fail');
+              _this.tips = _this.$t('common.bought');
               _this.icon_type = 'fail';
             }
             $('#payTips').modal('show');

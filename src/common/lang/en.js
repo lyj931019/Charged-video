@@ -31,10 +31,10 @@ module.exports = {
     coursePrice:'Course Price',
     overview:'Overview',
     syllabus:'Syllabus',
-    learningRequirements:'Learning Requirements',
+    learningRequirements:'Requirements',
     teacherProfile:'Teacher Profile',
     buyCourse:'Buy Course',
-    tryCourse:'Trial course',
+    tryCourse:'Try the course',
     favoritesCourse:'Add to favorites',
     prerequisites:'Prerequisites',
     textbooks:'Textbooks',
@@ -42,6 +42,7 @@ module.exports = {
     hardware:'Hardware requirements',
     lecturer:'Lecturer',
     collected:'Collected',
+    days:'days'
   },
   userCenter:{
     tryCourse:'try',
@@ -96,6 +97,8 @@ module.exports = {
     password: 'Password',
     email:'Email',
     fail:'Fail',
+    exist:'Exist',
+    bought:'Bought',
   },
   placeholder: {
     phone:'Please enter your phone number',

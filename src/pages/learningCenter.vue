@@ -3,15 +3,20 @@
     <div class="header">
       <div class="icon">
         <img src="../assets/img/Berklee_Logo_Square.svg" alt="">
-        <span>Sample Lessons</span>
+        <!--<span>Sample Lessons</span>-->
+        <span>{{courses.name}}</span>
       </div>
-      <div class="title" v-if="courses">
-        {{courses.name}}
+      <div class="title" v-if="lesson">
+        {{lesson.title}}
       </div>
-      <div class="avatar">
+      <div class="avatar" id="avatarDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         <Avatar :src="getUserInfo.user_avatar"/>
       </div>
-
+      <div class="dropdown-menu" aria-labelledby="avatarDropdown">
+        <router-link class="dropdown-item text-center" href="#" :to="{ name: 'userCenter'}">
+          {{$t('header.userCenter')}}
+        </router-link>
+      </div>
     </div>
     <div class="little-header" v-if="courses">
       {{courses.name}}
@@ -19,9 +24,9 @@
     <div class="little-header-toggle-btn navbar-light" @click="toggleClassRoomActive">
       <span class="navbar-toggler-icon"></span>
     </div>
-    <div class="little-header-avatar">
-      <Avatar :src="getUserInfo.user_avatar"/>
-    </div>
+    <!--<div class="little-header-avatar">-->
+      <!--<Avatar :src="getUserInfo.user_avatar"/>-->
+    <!--</div>-->
     <div class="content-container">
       <table></table>
       <div class="aside-container">
@@ -295,21 +300,37 @@
     cursor: pointer;
     max-width: 400px;
     overflow: hidden;
-    padding: 11px 20px;
+    padding: 0px 20px;
     white-space: nowrap;
     text-overflow: ellipsis;
+    display: inline-block;
+    vertical-align: middle;
+    box-sizing: border-box;
   }
-  @media (max-width: 314px) {
+  @media (max-width: 330px) {
     .header .icon img + span{
       display: none;
     }
   }
-  @media (max-width:380px) {
-    .classroom .content-container .aside-detail{
-      width:140px;
+  @media (max-width: 550px) {
+    .header .icon img + span{
+      max-width: 180px;
     }
   }
-
+  @media (max-width:380px) {
+    .classroom .content-container .aside-detail{
+      /*width:140px;*/
+      width:calc(100% - 60px);
+    }
+    .classroom.active .content-container .aside-container {
+      width: 100%;
+    }
+  }
+  @media (max-width:186px) {
+    .dropdown-menu{
+      min-width:100px;
+    }
+  }
   .header .title {
     width: 500px;
     overflow: hidden;

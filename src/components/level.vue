@@ -57,7 +57,7 @@
   }
   .signal-container{
     width: 30px;
-    height: 30px;
+    height: 22px;
     overflow: hidden;
     display: inline-block;
     background-color: #c5ccd2;
@@ -65,7 +65,7 @@
   }
   .cable{
     width: 30px;
-    height: 30px;
+    height: 22px;
     overflow: hidden;
     text-align: center;
   }

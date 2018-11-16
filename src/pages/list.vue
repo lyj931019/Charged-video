@@ -83,21 +83,21 @@
             </ul>
           </div>
           <div class="col-12 col-lg-8">
-            <div class="row course-list"  v-if="courseList.length>0">
+            <div class="row course-list justify-content-center"  v-if="courseList.length>0">
               <div class="col-11 col-lg-5 course-item" v-for="(item,index) in courseList">
                 <p class="course-id">{{item.num}}</p>
-                <h2 class="course-name" @click.prevent="goToDetail(item.num)">{{item.name}}</h2>
+                <h4 class="course-name" @click.prevent="goToDetail(item.num)">{{item.name}}</h4>
                 <div class="course-info">
-                  <div class="course-price">课程价格:${{item.price}}</div>
+                  <div class="course-price">{{$t('detail.coursePrice')}}&nbsp;:&nbsp;${{item.price}}</div>
                   <div class="course-level">
                     <Level :level="item.level"></Level>
-                    <h6>Level {{item.level}}</h6>
+                    <p>Level {{item.level}}</p>
                   </div>
                 </div>
                 <div class="course-intr" v-html="item.synopsis"></div>
               </div>
             </div>
-            <nav aria-label="Page navigation example" v-if="pageCount>1">
+            <nav aria-label="Page navigation example" v-if="pageCount>1" class="page-navigation">
               <ul class="pagination justify-content-center">
                 <li class="page-item" :class="{disabled:page<=1}" @click="changePage(page-1)">
                   <a class="page-link" href="#" aria-label="Previous">
@@ -304,27 +304,39 @@
 
   .course-id{
     margin-bottom: 0;
-    font-size: 1.15rem;
+    font-size: 0.9rem;
   }
   .course-name{
     box-shadow: rgb(238, 36, 60) 0px -1px 0px inset;
     display: inline-block;
-    font-weight: 500;
+    font-weight: 700;
+    font-size: 1.3rem;
+    cursor: pointer;
+  }
+  .course-name:hover{
+    background-color: rgba(238,36,60,0.2);
   }
   .course-info{
     text-align: right;
   }
   .course-price{
     float: left;
-    font-size: 1.2rem;
+    font-size: 1rem;
+    font-weight: 550;
   }
   .course-level{
     display: inline-block;
     text-align: center;
     /*float: right;*/
+    font-size: 0.8rem;
+    font-weight:900;
+    vertical-align: top;
+  }
+  .course-level p{
+    margin: 0;
   }
   .course-intr{
-    font-size: 1.1rem;
+    font-size: 0.9rem;
   }
   .sort-list{
     list-style: none;
@@ -374,5 +386,9 @@
     -moz-transform: rotate(45deg);
     -o-transform: rotate(45deg);
     transform: rotate(45deg);
+  }
+
+  nav.page-navigation{
+    margin-top: 2rem;
   }
 </style>

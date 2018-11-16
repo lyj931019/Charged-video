@@ -42,6 +42,7 @@ module.exports = {
     hardware: '硬件要求',
     lecturer: '讲师',
     collected:'已收藏',
+    days:'天'
   },
   userCenter: {
     tryCourse: '试用',
@@ -96,6 +97,8 @@ module.exports = {
     password: '密码',
     email:'邮箱',
     fail:'失败',
+    exist:'已存在',
+    bought:'已购买',
   },
   placeholder: {
     phone: '请输入电话号码',
