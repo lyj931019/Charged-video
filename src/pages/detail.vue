@@ -63,7 +63,7 @@
                   <div class="nav-scroll" :class="{active:windowScrollTop>authorH}" @click="gotoSection(authorH+1)">{{$t('detail.teacherProfile')}}</div>
                   <div class="buy" @click="buyCourse">{{$t('detail.buyCourse')}}</div>
                   <div class="collection" >
-                    <span @click="tryCourse">{{$t('detail.tryCourse')}}</span>
+                    <span @click="tryCourse" v-if="courses && courses.try  && courses.try_day>0">{{$t('detail.tryCourse')}}</span>
                     <span @click="favoritesCourse">{{$t('detail.favoritesCourse')}}</span>
                   </div>
                   <div class="phone">
@@ -206,7 +206,7 @@
     <div class="d-lg-none course-footer">
       <!--<a href="#" class="box">{{$t('header.userCenter')}}</a>-->
       <!--<a href="#" class="box" @click.prevent="tryCourse">{{$t('detail.tryCourse')}}</a>-->
-      <a href="#" class="box" @click.prevent="tryCourse"><img src="../assets/img/try.png" alt=""></a>
+      <a href="#" class="box" @click.prevent="tryCourse" v-if="courses && courses.try  && courses.try_day>0"><img src="../assets/img/try.png" alt=""></a>
       <!--<a href="#" class="box" @click.prevent="favoritesCourse">{{$t('detail.favoritesCourse')}}</a>-->
       <a href="#" class="box" @click.prevent="favoritesCourse"><img src="../assets/img/fav.png" alt=""></a>
       <!--<a href="#" class="box" @click.prevent="buyCoursenpm">{{$t('detail.buyCourse')}}</a>-->
@@ -337,8 +337,8 @@
               _this.tips = _this.$t('common.success');
               _this.icon_type = 'success';
             }else{
-              _this.tips = _this.$t('common.fail');
-              _this.icon_type = 'fail';
+              _this.tips = _this.$t('detail.collected');
+              _this.icon_type = 'success';
             }
             $('#detailTips').modal('show');
           })
@@ -624,6 +624,7 @@
     color: #ee243c;
     margin: 1rem;
     text-align: center;
+    cursor: pointer;
   }
   .collection{
     margin: 1rem;
@@ -635,9 +636,13 @@
   }
   .collection>span{
     text-decoration: underline;
+    cursor: pointer;
+    white-space: nowrap;
+    display: inline-block;
   }
   .collection>span:nth-child(1){
     margin-right: 2rem;
+    margin-bottom: 1rem;
   }
   .phone{
     background-color: #25353c;

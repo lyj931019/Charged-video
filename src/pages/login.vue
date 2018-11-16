@@ -10,15 +10,15 @@
     </div>
     <div class="container">
       <div class="row justify-content-center">
-        <div class="col-12 col-sm-8 col-md-5">
+        <div class="col-12 col-sm-8 col-lg-5">
           <div class="login-container">
             <h1>Log In</h1>
             <p class="alert alert-danger" v-if="loginErr">{{$t('common.wrongNamePwd')}}</p>
             <p>
-              <input type="text" :placeholder="$t('common.account')" v-model="userName">
+              <input type="text" :placeholder="$t('placeholder.email')" v-model="userName">
             </p>
             <p>
-              <input type="password" :placeholder="$t('common.pwd')" v-model="userPwd">
+              <input type="password" :placeholder="$t('placeholder.pwd')" v-model="userPwd">
             </p>
             <p class="btn-con">
               <button class="loginBtn" @click="login">{{$t('header.login')}}</button>
@@ -126,17 +126,27 @@
   }
 
   .loginBtn {
-    background: #ed2024;
     border: none;
     color: #FFF;
     cursor: pointer;
     font-size: 16px;
-    font-weight: normal;
-    display: block;
-    margin: 45px auto 0 auto;
-    padding: 5px 75px;
+    display: inline-block;
+    padding: 12px 18px;
     -webkit-appearance: none;
     text-align: center;
+    background: rgb(216, 17, 24);
+    color: rgba(255,255,255, 1);
+    box-shadow: 0 2px 0 rgb(176,13,19);
+    text-decoration: none;
+    font-weight: 900;
+    text-transform: uppercase;
+    border-radius: 3px;
+  }
+  .loginBtn:hover{
+    background: rgb(176,13,19);
+    color: rgba(255,255,255, 1);
+    box-shadow: 0 2px 0 rgb(176,13,19);
+    text-decoration: none;
   }
 
   .row {

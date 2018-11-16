@@ -36,9 +36,11 @@
             <li class="nav-item">
               <div class="lang">
                 <span :class="{active:locale == 'en'}" @click="changeLang('en')">
-                  <span class="btn btn-primary" :class="{active:locale == 'en'}" >En</span>
-                </span><span :class="{active:locale == 'zh'}" @click="changeLang('zh')">
-                  <span class="btn btn-primary" :class="{active:locale == 'zh'}">Zh</span>
+                  <span class="lang-btn" :class="{active:locale == 'en'}" >En</span>
+                </span>
+                <i>|</i>
+                <span :class="{active:locale == 'zh'}" @click="changeLang('zh')">
+                  <span class="lang-btn" :class="{active:locale == 'zh'}">中</span>
                 </span>
               </div>
 
@@ -118,18 +120,19 @@
       ])
     },
     mounted() {
-      if(localStorage.getItem('locale') == 'zh'){
+      if(localStorage.getItem('locale') == 'en'){
         this.locale='en';
         this.lang='ENG';
       }else{
         this.locale='zh';
         this.lang='中文';
       }
-      localStorage.setItem('lng', this.locale);
+//      localStorage.setItem('lng', this.locale);
     },
     watch: {
       locale (val) {
         this.$i18n.locale = val;
+        localStorage.setItem('locale', val);
         console.log("locale",val);
       }
     }
@@ -191,12 +194,18 @@
   }
 
   .lang{
-    background-color: #007bff;
+    /*background-color: #007bff;*/
+    color: rgba(0,0,0,.7)
+  }
+  .lang>span{
+    cursor: pointer;
   }
   .lang>span:hover{
-    background-color: #005cbf;
+    /*background-color: #005cbf;*/
+    color: #007bff;
   }
   .lang>span.active{
-    background-color: #005cbf;
+    /*background-color: #005cbf;*/
+    color: #007bff;
   }
 </style>

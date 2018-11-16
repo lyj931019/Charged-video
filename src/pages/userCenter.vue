@@ -66,7 +66,7 @@
                   <div class="courseItem">
                     <router-link :to="{ name: 'learningCenter',params: {num:item.course.num}}">
                       {{item.course.name}}
-                      <span class="try" v-if="item.course.try">({{$t('userCenter.tryCourse')}})</span>
+                      <span class="try" v-if="item.try">({{$t('userCenter.tryCourse')}})</span>
                     </router-link>
                     <img v-if="item.course.try" src="../assets/img/buy.png" class="delete" alt="">
                   </div>
@@ -129,6 +129,8 @@
                   <label for="nickname">{{$t('userCenter.nickname')}}:</label>
                   <input type="text" v-model="nickName" class="form-control" id="nickname" aria-describedby="emailHelp" :placeholder="$t('placeholder.nickname')">
                 </div>
+
+
                 <div class="form-group">
                   <span style="margin-right: 1rem;">{{$t('userCenter.sex')}}:</span>
                   <div class="custom-control custom-radio custom-control-inline">
@@ -140,14 +142,21 @@
                     <label class="custom-control-label" for="sex2">{{$t('userCenter.female')}}</label>
                   </div>
                 </div>
+
+                <hr>
+
                 <div class="form-group">
                   <label for="phone">{{$t('userCenter.phone')}}:</label>
                   <input type="text" v-model="phone" class="form-control" id="phone" :placeholder="$t('placeholder.phone')">
                 </div>
+
+
                 <div class="form-group">
                   <label for="adderss1">{{$t('userCenter.address')}}:</label>
                   <input type="text" v-model="adderss" class="form-control" id="adderss1" :placeholder="$t('placeholder.address')">
                 </div>
+
+
                 <div class="btns">
                   <button class="btn btn-outline-secondary" type="button" @click="changeTab('account')">{{$t('common.cancel')}}</button>
                   <button class="btn btn-outline-primary" type="button" @click="changeUseInfo">{{$t('common.sure')}}</button>
