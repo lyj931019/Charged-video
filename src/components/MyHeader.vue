@@ -133,7 +133,6 @@
       locale (val) {
         this.$i18n.locale = val;
         localStorage.setItem('locale', val);
-        console.log("locale",val);
       }
     }
   }

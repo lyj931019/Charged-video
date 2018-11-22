@@ -3,38 +3,101 @@
     <MyHeader/>
     <div class="jumbotron">
       <div class="container-fluid">
-        <div class="row justify-content-center">
-          <div class="col-12 col-md-8 section p-5" v-if="courses">
-            <h1>{{courses.name}}</h1>
-            <div class="course-author">
-              <Avatar :src="courses.instructor.avatar"/>
-              <span>
-                  {{$t('detail.author')}}:
-                  <a class="a-body-link" href="#">{{courses.instructor.name}}</a>
-                </span>
-              <i>|</i>
-              <span>
-                  {{$t('detail.courseNum')}}:{{courses.num}}
-                </span>
+        <div class="row">
+          <div class="col-12 col-md-8 p-2" v-if="courses">
+            <div class="section">
+              <p class="course-tips">您正准备购买</p>
+              <h2 class="course-title">{{courses.name}}</h2>
+              <p class="course-time">Fall Term Starts September 24,2018/Duration,12 Weeks</p>
             </div>
-            <!--<div class="col-12 col-lg-8 order-lg-1 order-2 mt-5" v-html="courses.abstract"></div>-->
-            <div class="mt-5">
-              <div  v-for="(lesson,index) in courses.lessons">
-                <p class="lesson-title">
-                <span>
-                    Lesson {{lesson.lesson}}
-                  </span>
-                  <strong>{{lesson.title}}&nbsp;</strong>
-                </p>
+            <div class="section">
+              <div class="choose-title">
+                <img src="../assets/img/right.png" alt="">Choose Payment Method
+              </div>
+              <div class="form-group">
+                <div class="custom-control custom-radio pay-type p-2 m-4">
+                  <input type="radio" id="pay" name="sex" v-model="payType" class="custom-control-input" value="1" checked>
+                  <label class="custom-control-label" for="pay">Wechat Pay</label>
+                </div>
               </div>
             </div>
+            <div class="section p-4">
+              <form>
+                <div class="form-group">
+                  <label for="name" class="label">First and Last Name *</label>
+                  <input type="email" class="form-control" id="name" >
+                </div>
+                <div class="row">
+                  <div class="col-12 col-md-6">
+                    <div class="form-group">
+                      <label for="addr" class="label">Address Line 1*</label>
+                      <input type="text" class="form-control" id="addr" >
+                    </div>
+                  </div>
+                  <div class="col-12 col-md-6">
+                    <div class="form-group">
+                      <label for="addr2" class="label">Address Line 2</label>
+                      <input type="text" class="form-control" id="addr2" >
+                    </div>
+                  </div>
 
-            <hr class="mt-5">
-            <h3>
-              {{$t('pay.total')}}&nbsp;&nbsp;:&nbsp;&nbsp;¥{{courses.price}}
-            </h3>
-            <div class="text-center">
-              <span class="loginBtn" @click="buyCourse">{{$t('pay.checkout')}}</span>
+                  <div class="col-12 col-md-6">
+                    <div class="form-group">
+                      <label for="country" class="label">Country *</label>
+                      <input type="text" class="form-control" id="country" >
+                    </div>
+                  </div>
+                  <div class="col-12 col-md-6">
+                    <div class="form-group">
+                      <label for="city" class="label">City *</label>
+                      <input type="text" class="form-control" id="city" >
+                    </div>
+                  </div>
+                  <div class="col-12 col-md-6">
+                    <div class="form-group">
+                      <label for="state" class="label">State/Province *</label>
+                      <input type="text" class="form-control" id="state" >
+                    </div>
+                  </div>
+                  <div class="col-12 col-md-6">
+                    <div class="form-group">
+                      <label for="code" class="label">Postal Code *</label>
+                      <input type="text" class="form-control" id="code" >
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="phone" class="label">Phone *</label>
+                  <input type="email" class="form-control" id="phone" >
+                  <div id="emailHelp" class="form-text text-muted">Used only in event of question about order</div>
+                </div>
+              </form>
+            </div>
+          </div>
+          <div class="col-12 col-md-4 p-2">
+            <div class="section">
+              <div class="choose-title mb-2">
+                <img src="../assets/img/right.png" alt="">Review Cart and Checkout
+              </div>
+              <div class="checkout-course">
+                <div class="checkout-course-title">
+                  <span>1 Olart-310 3D Design with </span>
+                  <span>$1,572.00</span>
+                </div>
+                <div>
+                  (3 Credits)<a href="#">Remove</a>
+                </div>
+              </div>
+              <hr>
+              <div class="checkout">
+                <span class="check-price">
+                  <b>Total</b> $1,572.00
+                </span>
+                <br>
+                <button class="checkout-btn btn">
+                  Checkout
+                </button>
+              </div>
             </div>
           </div>
         </div>
@@ -79,6 +142,7 @@
         courses: null,
         tips: '',
         icon_type: 'success',
+        payType: '1'
       }
     },
     computed: {
@@ -133,37 +197,83 @@
         url: '/courses/' + num,
       }).then(res => {
         _this.courses = res.data.data;
+        console.log(res.data);
       })
     },
   }
 </script>
 <style scoped>
+  .jumbotron{
+    border-top: 2px solid #d2d2d2;
+  }
   .section {
     background-color: #fff;
+    margin-bottom: .5rem;
+    padding: 1rem;
   }
 
-  .loginBtn {
-    border: none;
-    color: #FFF;
-    cursor: pointer;
-    font-size: 16px;
+  .course-tips{
+    margin-bottom: 0.5rem;
+    font-size: 1.3rem;
+    font-weight: bold;
+  }
+  .course-title{
+    font-weight: bold;
+  }
+  .course-time{
+    font-size: 1.05rem;
+  }
+  .choose-title{
+    font-weight: bold;
+    font-size: 1.2rem;
+  }
+  .choose-title img{
+    width: 1.2rem;
+    vertical-align: top;
+    margin-right: 0.5rem;
+    margin-top: 1.5px;
+  }
+
+  .pay-type{
+    font-size: 1rem;
+  }
+  .pay-type:hover{
+    background-color: #eee;
+  }
+  .label{
+    margin-bottom: 0;
+    font-weight: bold;
+    font-size: 1.1rem;
+    line-height: 1.1rem;
+  }
+  .checkout{
+    text-align: right;
+    font-size: 1.3rem;
+  }
+  .check-price{
     display: inline-block;
-    padding: 15px;
-    -webkit-appearance: none;
+    padding: 0.5rem 1rem;
     text-align: center;
-    background: rgb(216, 17, 24);
-    color: rgba(255, 255, 255, 1);
-    box-shadow: 0 2px 0 rgb(176, 13, 19);
-    text-decoration: none;
-    font-weight: 900;
-    text-transform: uppercase;
-    border-radius: 3px;
   }
-
-  .loginBtn:hover {
-    background: rgb(176, 13, 19);
-    color: rgba(255, 255, 255, 1);
-    box-shadow: 0 2px 0 rgb(176, 13, 19);
-    text-decoration: none;
+  .checkout-btn{
+    font-size: 1.2rem;
+    padding: 0.5rem 3rem;
+    background-color: #d81e06;
+    color: #ffffff;
+  }
+  .checkout-course{
+    background-color: #e8e8e8;
+    padding: 1rem;
+  }
+  .checkout-course-title{
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+  }
+  .checkout-course-title>span:nth-child(1){
+    max-width: 60%;
+    font-weight: bold;
   }
 </style>

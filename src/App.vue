@@ -21,8 +21,6 @@
     beforeCreate(){
       let user_id = localStorage.getItem('user_id');
       let isLogin = localStorage.getItem('isLogin');
-      console.log(isLogin);
-      console.log(user_id);
       if(user_id){
         let _this = this;
         this.$http({
