@@ -7,7 +7,10 @@ const state = {
     user_sex: 1,
     user_avatar: "",
     user_phone: "",
-    user_adderss:""
+    user_adderss:"",
+    user_adderss2:"",
+    user_city:'',
+    user_country:''
   }
 }
 export default state;

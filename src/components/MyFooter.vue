@@ -42,7 +42,7 @@
                     <input type="email" class="form-control" :placeholder="$t('placeholder.email')" v-model="userEmail">
                   </div>
                   <div class="form-group">
-                    <button class="btn btn-danger" type="button" @click="register">{{$t('common.signUp')}}</button>
+                    <span class="footer-register" @click="register">{{$t('common.signUp')}}</span>
                   </div>
                 </form>
                 <h6>
@@ -283,5 +283,12 @@
   a.foot-btn {
     color: #dee2e5;
     box-shadow: inset 0 -1px 0 #ee243c;
+  }
+  .footer-register{
+    background: #ee243c;
+    padding: 10px 20px;
+    margin-right: 10px;
+    color: #ffffff;
+    border:none;
   }
 </style>

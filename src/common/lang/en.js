@@ -13,7 +13,12 @@ module.exports = {
   },
   pay:{
     total:'Total',
-    checkout:'Checkout'
+    checkout:'Checkout',
+    preparing:'You are preparing to buy',
+    payment:'Choose Payment Method',
+    wechat:'Wechat Pay',
+    questionOrder:'Used only in event of question about order',
+    review:'Review Cart and Checkout',
   },
   footer:{},
   about:{
@@ -76,6 +81,8 @@ module.exports = {
     frequentlyAskedQuestions:'Common problem',
     taxInformation:'Tax information',
     technicalAssistance:'Technical assistance',
+    city:'City',
+    country:'Country'
   },
   learningCenter:{
     lessonList:'Lesson list',

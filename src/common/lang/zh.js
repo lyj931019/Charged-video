@@ -13,7 +13,12 @@ module.exports = {
   },
   pay:{
     total:'总价',
-    checkout:'支付购买'
+    checkout:'支付购买',
+    preparing:'您正准备购买',
+    payment:'选择支付方式',
+    wechat:'微信支付',
+    questionOrder:'仅在有关订单的问题时使用',
+    review:'查看购物车和结帐',
   },
   footer: {},
   about: {
@@ -76,6 +81,8 @@ module.exports = {
     frequentlyAskedQuestions:'常见问题解答',
     taxInformation:'税务信息',
     technicalAssistance:'技术援助',
+    city:'城市',
+    country:'国家'
   },
   learningCenter:{
     lessonList:'章节列表',

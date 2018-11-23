@@ -1,106 +1,106 @@
 <template>
   <div>
     <MyHeader/>
-    <div class="jumbotron">
+    <div class="jumbotron mb-0">
       <div class="container-fluid">
         <div class="row">
           <div class="col-12 col-md-8 p-2" v-if="courses">
             <div class="section">
-              <p class="course-tips">您正准备购买</p>
+              <p class="course-tips">{{$t('pay.preparing')}}</p>
               <h2 class="course-title">{{courses.name}}</h2>
               <p class="course-time">Fall Term Starts September 24,2018/Duration,12 Weeks</p>
             </div>
             <div class="section">
               <div class="choose-title">
-                <img src="../assets/img/right.png" alt="">Choose Payment Method
+                <img src="../assets/img/right.png" alt="">{{$t('pay.payment')}}
               </div>
               <div class="form-group">
                 <div class="custom-control custom-radio pay-type p-2 m-4">
                   <input type="radio" id="pay" name="sex" v-model="payType" class="custom-control-input" value="1" checked>
-                  <label class="custom-control-label" for="pay">Wechat Pay</label>
+                  <label class="custom-control-label" for="pay">{{$t('pay.wechat')}}</label>
                 </div>
               </div>
             </div>
             <div class="section p-4">
               <form>
                 <div class="form-group">
-                  <label for="name" class="label">First and Last Name *</label>
-                  <input type="email" class="form-control" id="name" >
+                  <label for="name" class="label">{{$t('userCenter.nickname')}} *</label>
+                  <input type="email" v-model="name" class="form-control" id="name" >
                 </div>
                 <div class="row">
                   <div class="col-12 col-md-6">
                     <div class="form-group">
-                      <label for="addr" class="label">Address Line 1*</label>
-                      <input type="text" class="form-control" id="addr" >
+                      <label for="addr" class="label">{{$t('userCenter.address')}} 1 *</label>
+                      <input type="text"  v-model="addr1" class="form-control" id="addr" >
                     </div>
                   </div>
                   <div class="col-12 col-md-6">
                     <div class="form-group">
-                      <label for="addr2" class="label">Address Line 2</label>
-                      <input type="text" class="form-control" id="addr2" >
+                      <label for="addr2" class="label">{{$t('userCenter.address')}} 2</label>
+                      <input type="text" v-model="addr2" class="form-control" id="addr2" >
                     </div>
                   </div>
 
                   <div class="col-12 col-md-6">
                     <div class="form-group">
-                      <label for="country" class="label">Country *</label>
-                      <input type="text" class="form-control" id="country" >
+                      <label for="country" class="label">{{$t('userCenter.country')}} *</label>
+                      <input type="text" v-model="country" class="form-control" id="country" >
                     </div>
                   </div>
                   <div class="col-12 col-md-6">
                     <div class="form-group">
-                      <label for="city" class="label">City *</label>
-                      <input type="text" class="form-control" id="city" >
+                      <label for="city"  class="label">{{$t('userCenter.city')}} *</label>
+                      <input type="text" v-model="city" class="form-control" id="city" >
                     </div>
                   </div>
                   <div class="col-12 col-md-6">
                     <div class="form-group">
                       <label for="state" class="label">State/Province *</label>
-                      <input type="text" class="form-control" id="state" >
+                      <input type="text" v-model="state" class="form-control" id="state" >
                     </div>
                   </div>
                   <div class="col-12 col-md-6">
                     <div class="form-group">
                       <label for="code" class="label">Postal Code *</label>
-                      <input type="text" class="form-control" id="code" >
+                      <input type="text" v-model="code" class="form-control" id="code" >
                     </div>
                   </div>
                 </div>
                 <div class="form-group">
-                  <label for="phone" class="label">Phone *</label>
-                  <input type="email" class="form-control" id="phone" >
-                  <div id="emailHelp" class="form-text text-muted">Used only in event of question about order</div>
+                  <label for="phone" class="label">{{$t('userCenter.phone')}} *</label>
+                  <input type="text" v-model="phone" class="form-control" id="phone" >
+                  <div id="emailHelp" class="form-text text-muted">{{$t('pay.questionOrder')}}</div>
                 </div>
               </form>
             </div>
           </div>
-          <div class="col-12 col-md-4 p-2">
+          <div class="col-12 col-md-4 p-2"  v-if="courses">
             <div class="section">
               <div class="choose-title mb-2">
-                <img src="../assets/img/right.png" alt="">Review Cart and Checkout
+                <img src="../assets/img/right.png" alt="">{{$t('pay.review')}}
               </div>
               <div class="checkout-course">
                 <div class="checkout-course-title">
-                  <span>1 Olart-310 3D Design with </span>
-                  <span>$1,572.00</span>
+                  <span>{{courses.name}}</span>
+                  <span>${{courses.price}}</span>
                 </div>
                 <div>
-                  (3 Credits)<a href="#">Remove</a>
+                  <!--(3 Credits)<a href="#">Remove</a>-->
                 </div>
               </div>
-              <div class="checkout-member">
-                <div>
-                  Non-Refundable,Non-Transferable Online Course Registration Fee
-                </div>
-              </div>
+              <!--<div class="checkout-member">-->
+                <!--<h6>-->
+                  <!--Non-Refundable,Non-Transferable Online Course Registration Fee-->
+                <!--</h6>-->
+              <!--</div>-->
               <hr>
               <div class="checkout">
                 <span class="check-price">
-                  <b>Total</b> $1,572.00
+                  <b>{{$t('pay.total')}}</b> ${{courses.price}}
                 </span>
                 <br>
-                <button class="checkout-btn btn">
-                  Checkout
+                <button class="checkout-btn btn" @click="buyCourse">
+                  {{$t('pay.checkout')}}
                 </button>
               </div>
             </div>
@@ -147,7 +147,16 @@
         courses: null,
         tips: '',
         icon_type: 'success',
-        payType: '1'
+        payType: '1',
+        email:'',
+        name:'',
+        addr1:'',
+        addr2:'',
+        country:'',
+        city:'',
+        state:'',
+        code:'',
+        phone:''
       }
     },
     computed: {
@@ -202,8 +211,13 @@
         url: '/courses/' + num,
       }).then(res => {
         _this.courses = res.data.data;
-        console.log(res.data);
-      })
+      });
+      this.name = this.getUserInfo.user_nickname;
+      this.addr1 = this.getUserInfo.user_adderss;
+      this.addr2 = this.getUserInfo.user_adderss2;
+      this.country = this.getUserInfo.user_country;
+      this.city = this.getUserInfo.user_city;
+      this.phone = this.getUserInfo.user_phone;
     },
   }
 </script>
@@ -286,5 +300,8 @@
     border-top:2px solid #666;
     padding-top: 0.4rem;
     margin-top:0.2rem;
+  }
+  .checkout-member h6{
+    font-weight: bold;
   }
 </style>

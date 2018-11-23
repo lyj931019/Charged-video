@@ -9,7 +9,10 @@ const muntation = {
     state.user.user_sex = userInfo.sex;
     state.user.user_avatar = userInfo.avatar;
     state.user.user_phone = userInfo.phone;
-    state.user.user_adderss = userInfo.adderss;
+    state.user.user_adderss = userInfo.adderss_1;
+    state.user.user_adderss2 = userInfo.adderss_2;
+    state.user.user_city = userInfo.city;
+    state.user.user_country = userInfo.country;
   }
 };
 export default muntation;

@@ -8,7 +8,7 @@
         <router-link :to="{ name: 'index'}"><a class="navbar-brand" href="#"><img src="../assets/img/berklee-online-logo-red-gray.png" alt=""></a></router-link>
 
         <div class="collapse navbar-collapse " id="navbarTogglerDemo03">
-          <ul class="navbar-nav mr-auto mt-2 mt-lg-0 center justify-content-end">
+          <ul class="navbar-nav mr-auto mt-2 mt-lg-0 center justify-content-center">
             <li class="nav-item">
               <router-link :to="{ name: 'index'}">
                 <a class="nav-link" href="#">
@@ -45,9 +45,19 @@
               </div>
 
             </li>
-            <li v-if="getIsLogin" class="text-center" >
+
+
+          </ul>
+          <form class="form-inline my-2 my-lg-0 justify-content-center" style="margin:0 1.3rem">
+            <router-link :to="{ name: 'login'}" v-if="!getIsLogin">
+              <a class="nav-link btn-apply" href="#" id="login" rel="nofollow">{{$t('header.login')}}</a>
+            </router-link>
+            <router-link :to="{ name: 'register'}" v-if="!getIsLogin">
+              <a class="btn-login nav-link" style="margin-left: 1rem;" href="#" id="register" rel="nofollow">{{$t('header.register')}}</a>
+            </router-link>
+            <div v-if="getIsLogin" class="text-center" >
               <a href="#" id="avatarDropDown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="button">
-                 <Avatar :src="getUserInfo.user_avatar"/>
+                <Avatar :src="getUserInfo.user_avatar"/>
               </a>
               <br>
               <div class="dropdown-menu" style="float: right;right: 2px;left: auto" aria-labelledby="avatarDropDown">
@@ -56,17 +66,7 @@
                 </router-link>
                 <a class="dropdown-item" href="#" @click.prevent="loginOut">{{$t('header.logout')}}</a>
               </div>
-            </li>
-
-          </ul>
-          <form class="form-inline my-2 my-lg-0 justify-content-center" style="margin:0 1.3rem">
-            <router-link :to="{ name: 'login'}" v-if="!getIsLogin">
-              <a class="btn-login nav-link" href="#" id="login" rel="nofollow">{{$t('header.login')}}</a>
-            </router-link>
-            <router-link :to="{ name: 'register'}" v-if="!getIsLogin">
-              <a class="btn-login nav-link" style="margin-left: 1rem;" href="#" id="register" rel="nofollow">{{$t('header.register')}}</a>
-            </router-link>
-
+            </div>
           </form>
         </div>
       </nav>
@@ -206,5 +206,13 @@
   .lang>span.active{
     /*background-color: #005cbf;*/
     color: #007bff;
+  }
+
+  .btn-apply {
+    background: #ee243c;
+    padding: 7px 20px;
+    margin-right: 10px;
+    transition: all ease .2s;
+    color: #ffffff;
   }
 </style>

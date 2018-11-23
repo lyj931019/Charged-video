@@ -68,7 +68,9 @@
                       {{item.course.name}}
                       <span class="try" v-if="item.try">({{$t('userCenter.tryCourse')}})</span>
                     </router-link>
-                    <img v-if="item.course.try" src="../assets/img/buy.png" class="delete" alt="">
+                    <router-link class="delete" :to="{ name: 'pay',params: {num:item.course.num}}">
+                      <img v-if="item.course.try" src="../assets/img/buy.png" alt="">
+                    </router-link>
                   </div>
                 </template>
               </template>
@@ -152,11 +154,22 @@
 
 
                 <div class="form-group">
-                  <label for="adderss1">{{$t('userCenter.address')}}:</label>
+                  <label for="adderss1">{{$t('userCenter.address')}} 1:</label>
                   <input type="text" v-model="adderss" class="form-control" id="adderss1" :placeholder="$t('placeholder.address')">
                 </div>
+                <div class="form-group">
+                  <label for="adderss2">{{$t('userCenter.address')}} 2:</label>
+                  <input type="text" v-model="adderss2" class="form-control" id="adderss2" :placeholder="$t('placeholder.address')">
+                </div>
 
-
+                <div class="form-group">
+                  <label for="country">{{$t('userCenter.country')}}:</label>
+                  <input type="text" v-model="country" class="form-control" id="country" :placeholder="$t('placeholder.address')">
+                </div>
+                <div class="form-group">
+                  <label for="city">{{$t('userCenter.city')}}:</label>
+                  <input type="text" v-model="city" class="form-control" id="city" :placeholder="$t('placeholder.address')">
+                </div>
                 <div class="btns">
                   <button class="btn btn-outline-secondary" type="button" @click="changeTab('account')">{{$t('common.cancel')}}</button>
                   <button class="btn btn-outline-primary" type="button" @click="changeUseInfo">{{$t('common.sure')}}</button>
@@ -198,7 +211,10 @@
       <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content" v-if="deleteCourse">
           <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">{{$t('common.warning')}}</h5>
+            <h5 class="modal-title" id="exampleModalLabel">
+              <Icon :type="'error'"></Icon>
+              {{$t('common.warning')}}
+            </h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
@@ -217,7 +233,10 @@
       <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="changeSuccessTitle">{{$t('common.success')}}</h5>
+            <h5 class="modal-title" id="changeSuccessTitle">
+              <Icon :type="'success'"></Icon>
+              {{$t('common.success')}}
+            </h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
@@ -233,12 +252,13 @@
 </template>
 
 <script>
+  import Icon from '../components/icon.vue'
   import {mapGetters} from 'vuex'
   import Components from '../components/index'
   import { mapMutations } from 'vuex'
   export default {
     name: 'userCenter',
-    components: Components,
+    components: {...Components,Icon},
     data() {
       return {
         lessonList: null,
@@ -253,7 +273,10 @@
         phone:'',
         adderss:'',
         isPwdChangeErr:false,
-        PwdChangeErrTips:''
+        PwdChangeErrTips:'',
+        adderss2:'',
+        city:'',
+        country:''
       }
     },
     methods: {
@@ -273,6 +296,9 @@
           this.sex= this.getUserInfo.user_sex;
           this.phone= this.getUserInfo.user_phone || '';
           this.adderss= this.getUserInfo.user_adderss || '';
+          this.adderss2= this.getUserInfo.user_adderss2 || '';
+          this.city= this.getUserInfo.user_city || '';
+          this.country= this.getUserInfo.user_country || '';
         }else if(tab == 'changePwd'){
           this.isPwdChangeErr = false;
           this.PwdChangeErrTips = '';
@@ -363,7 +389,10 @@
             nickname: _this.nickName,
             sex: _this.sex,
             phone: _this.phone,
-            adderss: _this.adderss,
+            adderss_1: _this.adderss,
+            adderss_2: _this.adderss2,
+            city:_this.city,
+            country:_this.country
           },
           transformRequest: [function (data) {
             let ret = '';
@@ -381,6 +410,9 @@
             _this.sex= _this.getUserInfo.user_sex;
             _this.phone= _this.getUserInfo.user_phone;
             _this.adderss= _this.getUserInfo.user_adderss;
+            _this.adderss2= _this.getUserInfo.user_adderss2;
+            _this.city= _this.getUserInfo.user_city;
+            _this.country= _this.getUserInfo.user_country;
           }else{
             $('#changeSuccess').modal('show');
           }
@@ -527,7 +559,9 @@
     z-index: 20;
     right: 2rem;
   }
-
+  .course .delete img{
+    width: 1.8rem;
+  }
   .courseItem:hover {
     /*background-color: #ccc;*/
   }
