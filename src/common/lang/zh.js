@@ -24,6 +24,11 @@ module.exports = {
     paymentAgreement: '支付协议',
     aboutUs: '关于我们',
   },
+  list:{
+    courseName:'课程名称',
+    academicHour:'课时',
+    tuition:'学费',
+  },
   detail: {
     onlineCourse: '在线课程',
     author: '作者',

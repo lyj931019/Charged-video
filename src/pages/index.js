@@ -11,11 +11,12 @@ import Register from './register.vue'
 import Pay from './pay.vue'
 //
 
+import ListOld from './listOld.vue'
 
 
 
 
 export default {
-  Index,List,Detail,LearningCenter,UserCourse,UserCenter,Login,About,Register,Pay
+  Index,List,Detail,LearningCenter,UserCourse,UserCenter,Login,About,Register,Pay,ListOld
 
 }

@@ -55,12 +55,12 @@
               </div>
             </div>
             <div class="col-12 col-lg-3 d-none d-lg-block">
-              <div class="side-nav">
+              <div class="side-nav" id="side-nav" :style="{ top: windowScrollTop>=bottomH? 270 - (windowScrollTop - bottomH)+'px' : '270px'  }">
                 <div class="side-nav-main">
                   <div class="nav-scroll" :class="{active:windowScrollTop<lessonH}" @click="gotoSection(absH)">{{$t('detail.overview')}}</div>
                   <div class="nav-scroll" :class="{active:windowScrollTop>=lessonH && windowScrollTop<requireH}" @click="gotoSection(lessonH+1)">{{$t('detail.syllabus')}}</div>
                   <div class="nav-scroll" :class="{active:windowScrollTop>=requireH && windowScrollTop<authorH}" @click="gotoSection(requireH+1)">{{$t('detail.learningRequirements')}}</div>
-                  <div class="nav-scroll" :class="{active:windowScrollTop>authorH}" @click="gotoSection(authorH+1)">{{$t('detail.teacherProfile')}}</div>
+                  <div class="nav-scroll" :class="{active:windowScrollTop>=authorH && windowScrollTop<questionH}" @click="gotoSection(authorH+1)">{{$t('detail.teacherProfile')}}</div>
                   <div class="buy" @click="buyCourse">{{$t('detail.buyCourse')}}</div>
                   <div class="try" @click="tryCourse" v-if="courses && courses.try  && courses.try_day>0">
                     {{$t('detail.tryCourse')}}
@@ -203,6 +203,29 @@
         </div>
 
       </div>
+      <div id="question" class="question">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-12 col-lg-7">
+              <div class="advisors content-section">
+                <h2>Questions?</h2>
+                <p class="txt-lg">Contact our Academic Advisors by phone at 1-866-BERKLEE (U.S.), 1-617-747-2146 (INT'L), or by email at <a href="#">advisors@online.berklee.edu</a>.</p>
+                <p class="txt-lg">We can also answer basic questions in the comments below. Please note that all comments are public.</p>
+                <a class="read-more bo-button-tertiary" href="#" style="background: none;">Comments</a>
+                <div class="comments readmore-hidden" id="comments">
+                  <div id="fb-root">
+                    <div class="fb-comments" data-href="#" data-num-posts="10" data-width="100%" id="fb-container"></div>
+                  </div>
+                  <br>
+                  <br>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="bottom"></div>
     </div>
 
     <MyFooter/>
@@ -259,6 +282,8 @@
         windowScrollTop:0,
         tips:'',
         icon_type:'success',
+        questionH:0,
+        bottomH:0
       }
     },
     computed: {
@@ -383,7 +408,8 @@
       _this.lessonH = parseInt($('#lesson').offset().top)-(270-27.5+55);
       _this.requireH = parseInt($('#require').offset().top)-(270-27.5+55*2);
       _this.authorH = parseInt($('#author').offset().top)-(270-27.5+55*3);
-
+      _this.questionH = parseInt($('#question').offset().top)-(270-27.5+55*3);
+      _this.bottomH = parseInt($('#bottom').offset().top)-(531+270);
 
       window.onscroll = function () {
 //        _this.windowScrollTop = document.documentElement.scrollTop || document.body.scrollTop
@@ -669,5 +695,48 @@
   }
   .course-footer .box:last-child{
     border:none;
+  }
+
+  .question{
+    background: #eff1f3;
+  }
+  .question .content-section {
+    padding-top: 60px;
+    padding-bottom: 60px;
+  }
+
+  .question .content-section h2{
+    font-family: "Avenir Next Cyr W00 Bold", Helvetica, Arial, sans-serif;
+    font-size: 2.4rem;
+    line-height: 3.17rem;
+    margin-bottom: 1rem;
+    font-weight: bold;
+  }
+  .question .content-section p.txt-lg, .txt-lg {
+    font-family: "Avenir Next Cyr W00 Regular", Helvetica, Arial, sans-serif;
+    font-size: 1.2rem;
+    line-height: 2.50rem;
+  }
+  .question .bo-button-tertiary {
+    font-family: "Avenir Next Cyr W00 Bold", Helvetica, Arial, sans-serif;
+    font-size: 1.2rem;
+    line-height: 2.2rem;
+    text-decoration: underline;
+    background: white;
+    border: 0;
+    color: #0e1416;
+    display: inline-block;
+    margin: 0px;
+    outline: 0;
+    padding: 10px;
+    text-align: center;
+    text-decoration: none;
+    transition: background 0.3s ease;
+    white-space: nowrap;
+    font-family: "Avenir Next Cyr W00 Bold", Helvetica, Arial, sans-serif;
+    font-size: 1.16rem;
+    line-height: 1.5rem;
+    border: 3px solid #0e1416;
+    padding: 7px;
   }
 </style>

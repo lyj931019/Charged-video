@@ -98,7 +98,7 @@
 //              _this.changeUserInfo(res.data.data);
               _this.$router.push({name: 'login'});
             }else{
-              _this.loginErr = true;
+              _this.registerErr = true;
             }
           })
 
@@ -107,9 +107,10 @@
       }
     },
     beforeMount() {
-      this.loginErr = false;
+      this.registerErr = false;
       this.userName = '';
       this.userPwd = '';
+      this.userEmail = '';
     }
   }
 </script>

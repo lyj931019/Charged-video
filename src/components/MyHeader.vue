@@ -38,9 +38,9 @@
                 <span :class="{active:locale == 'en'}" @click="changeLang('en')">
                   <span class="lang-btn" :class="{active:locale == 'en'}" >En</span>
                 </span>
-                <i>|</i>
+                <i>/</i>
                 <span :class="{active:locale == 'zh'}" @click="changeLang('zh')">
-                  <span class="lang-btn" :class="{active:locale == 'zh'}">中</span>
+                  <span class="lang-btn" :class="{active:locale == 'zh'}">中文</span>
                 </span>
               </div>
 

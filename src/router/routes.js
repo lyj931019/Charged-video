@@ -8,7 +8,7 @@ export default [
   {
     path: '/list',
     name: 'list',
-    component: Pages.List
+    component: Pages.ListOld
   },
   {
     path: '/detail/:num',

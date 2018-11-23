@@ -24,11 +24,16 @@ module.exports = {
     paymentAgreement:'Payment agreement',
     aboutUs:'About Us',
   },
+  list:{
+    courseName:'Course Name',
+    academicHour:'Academic Hour',
+    tuition:'Tuition',
+  },
   detail:{
     onlineCourse:'Online Course',
     author:'Author',
     courseNum:'Course Number',
-    coursePrice:'Course Price',
+    coursePrice:'Price',
     overview:'Overview',
     syllabus:'Syllabus',
     learningRequirements:'Requirements',

@@ -88,6 +88,11 @@
                   (3 Credits)<a href="#">Remove</a>
                 </div>
               </div>
+              <div class="checkout-member">
+                <div>
+                  Non-Refundable,Non-Transferable Online Course Registration Fee
+                </div>
+              </div>
               <hr>
               <div class="checkout">
                 <span class="check-price">
@@ -275,5 +280,11 @@
   .checkout-course-title>span:nth-child(1){
     max-width: 60%;
     font-weight: bold;
+  }
+
+  .checkout-member{
+    border-top:2px solid #666;
+    padding-top: 0.4rem;
+    margin-top:0.2rem;
   }
 </style>
