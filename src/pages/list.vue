@@ -68,11 +68,11 @@
             </div>
             <hr>
             <div class="sort">
-              <p class="title">分类</p>
+              <p class="title">{{$t('list.classification')}}</p>
             </div>
             <ul class="sort-list">
               <li class="sort-item">
-                <a href="#"  :class="typeId==''?'filter-on':''"  @click.prevent="getCourseListFromSort('')">所有</a>
+                <a href="#"  :class="typeId==''?'filter-on':''"  @click.prevent="getCourseListFromSort('')">{{$t('list.all')}}</a>
               </li>
               <template  v-if="sortList.length>0">
                 <li class="sort-item" v-for="(type_item,index) in sortList">

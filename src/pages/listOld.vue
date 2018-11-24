@@ -39,57 +39,49 @@
       </div>
       <div class="course container-fluid">
         <div class="row">
-          <div class="col-12 col-lg-4">
-            <div class="level">
-              <a href="#" @click.prevent="getCourseListFromLevel('')">All Level</a>
-              <p class="title">Level</p>
-            </div>
-            <div class="level-list">
-              <a href="#" @click.prevent="getCourseListFromLevel(1)">
-                <Level :level="1"></Level>
-                <h6>Level 1</h6>
-              </a>
-              <a href="#" @click.prevent="getCourseListFromLevel(2)">
-                <Level :level="2"></Level>
-                <h6>Level 2</h6>
-              </a>
-              <a href="#" @click.prevent="getCourseListFromLevel(3)">
-                <Level :level="3"></Level>
-                <h6>Level 3</h6>
-              </a>
-              <a href="#" @click.prevent="getCourseListFromLevel(4)">
-                <Level :level="4"></Level>
-                <h6>Level 4</h6>
-              </a>
-              <a href="#" @click.prevent="getCourseListFromLevel(5)">
-                <Level :level="5"></Level>
-                <h6>Level 5</h6>
-              </a>
-            </div>
-            <hr>
+          <div class="col-12">
             <div class="sort">
-              <p class="title">分类</p>
-            </div>
-            <ul class="sort-list">
-              <li class="sort-item">
-                <a href="#" :class="typeId==''?'filter-on':''" @click.prevent="getCourseListFromSort('')">所有</a>
-              </li>
-              <template v-if="sortList.length>0">
-                <li class="sort-item" v-for="(type_item,index) in sortList">
-                  <a href="#" :class="typeId==type_item.id?'filter-on':''"
-                     @click.prevent="getCourseListFromSort(type_item.id)">{{type_item.name}}</a>
-                </li>
-              </template>
+              <span class="title" @click.prevent="getCourseListFromSort('')" :class="{'active':typeActive=='all'}">{{$t('list.all')}}</span>
+              <span class="title dropdown-toggle" :class="{'active':typeActive=='sort'}" role="button" id="classification" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{$t('list.classification')}}</span>
 
-            </ul>
+              <div class="dropdown-menu" aria-labelledby="classification" v-if="sortList.length>0">
+                <a class="dropdown-item" href="#" v-for="(type_item,index) in sortList" @click.prevent="getCourseListFromSort(type_item.id)" >{{type_item.name}}</a>
+              </div>
+            </div>
+
           </div>
 
         </div>
         <div class="row item-title d-none d-md-flex">
           <div class="col-12 col-md-5 mb-2 mb-md-0">{{$t('list.courseName')}}</div>
-          <div class="col-12 col-md-3 mb-2 mb-md-0">{{$t('list.academicHour')}}</div>
+          <div class="col-12 col-md-3 mb-2 mb-md-0 text-center">{{$t('list.academicHour')}}</div>
           <div class="col-6 col-md-2 text-md-center">{{$t('list.tuition')}}</div>
-          <div class="col-6 col-md-2 text-md-center">Level: <span>All</span></div>
+          <div class="col-6 col-md-2 text-md-center">
+            Level:
+            <span class="dropdown-toggle" role="button" id="level" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{levelActive}}</span>
+            <div class="dropdown-menu" aria-labelledby="level" v-if="sortList.length>0">
+              <a href="#" @click.prevent="getCourseListFromLevel(1)">
+              <Level :level="1"></Level>
+              <h6>Level 1</h6>
+              </a>
+              <a href="#" @click.prevent="getCourseListFromLevel(2)">
+              <Level :level="2"></Level>
+              <h6>Level 2</h6>
+              </a>
+              <a href="#" @click.prevent="getCourseListFromLevel(3)">
+              <Level :level="3"></Level>
+              <h6>Level 3</h6>
+              </a>
+              <a href="#" @click.prevent="getCourseListFromLevel(4)">
+              <Level :level="4"></Level>
+              <h6>Level 4</h6>
+              </a>
+              <a href="#" @click.prevent="getCourseListFromLevel(5)">
+              <Level :level="5"></Level>
+              <h6>Level 5</h6>
+              </a>
+            </div>
+          </div>
         </div>
         <template v-if="courseList.length>0">
           <div class="course-item row" v-for="(item,index) in courseList">
@@ -100,7 +92,7 @@
               </h4>
 
             </div>
-            <div class="course-time col-12 col-md-3 mb-2 mb-md-0">12weeks</div>
+            <div class="course-time col-12 col-md-3 mb-2 mb-md-0 text-center">{{item.period}}{{$t('detail.days')}}</div>
             <div class="course-price col-6 col-md-2 text-md-center">{{$t('detail.coursePrice')}}&nbsp;:&nbsp;${{item.price}}</div>
             <div class="course-level col-6 col-md-2">
               <Level :level="item.level"></Level>
@@ -153,7 +145,9 @@
         page: 1,
         pageCount: 1,
         pageSize: 1,
-        totalCount: 1
+        totalCount: 1,
+        typeActive:'all',
+        levelActive:'All',
       }
     },
     methods: {
@@ -197,9 +191,21 @@
       },
       getCourseListFromSort(typeId) {
         this.typeId = typeId;
+        if(typeId.length<=0){
+          this.typeActive = 'all';
+        }else{
+          this.typeActive = 'sort';
+        }
+        this.levelActive = 'All';
         this.getCourseList('type_id', typeId)
       },
       getCourseListFromLevel(level) {
+        if(level.length<=0){
+          this.levelActive = 'All';
+        }else{
+          this.levelActive = level;
+        }
+        this.typeActive = 'level';
         this.getCourseList('level', level)
       },
       changePage(page) {
@@ -288,12 +294,42 @@
     text-decoration: none;
   }
 
+  .sort{
+    margin-bottom: 3rem;
+    border-bottom:2px solid #aaa;
+    padding-bottom: 1px;
+  }
   .level .title, .sort .title {
     font-size: 1.3rem;
-    font-weight: 500;
     line-height: 2rem;
+    font-weight: bold;
+    margin-right: 4rem;
+    display: inline-block;
+    padding-bottom: 1.8rem;
+    cursor: pointer;
+  }
+  .title:hover{
+    box-shadow: 0px 4px 0px 0px #ee243c;
+  }
+  .title.active{
+    box-shadow: 0px 4px 0px 0px #ee243c;
   }
 
+  #classification+.dropdown-menu{
+    top: -20px !important;
+    left: -20px !important;
+  }
+  #level+.dropdown-menu{
+    left: -86px !important;
+    text-align: center;
+  }
+  #level+.dropdown-menu a{
+    font-weight: bold;
+    color: #000000;
+  }
+  #level+.dropdown-menu a h6{
+    font-weight: bold;
+  }
   .level-list {
     display: flex;
     justify-content: space-between;
@@ -309,7 +345,6 @@
   .level-list a h6 {
     color: #25353c;
     margin-top: 0.1rem;
-    font-weight: 600;
   }
 
 

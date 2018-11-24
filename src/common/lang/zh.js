@@ -33,6 +33,8 @@ module.exports = {
     courseName:'课程名称',
     academicHour:'课时',
     tuition:'学费',
+    classification:'分类',
+    all:'所有'
   },
   detail: {
     onlineCourse: '在线课程',
@@ -88,6 +90,7 @@ module.exports = {
     lessonList:'章节列表',
     goBack:'返回',
     audioErr:'Audio not found',
+    homework:'作业',
   },
   register:{
     tips:'请在提交前删除特殊字符，例如：èüîñò。',

@@ -31,8 +31,13 @@
       <table></table>
       <div class="aside-container">
         <div class="aside-list">
-          <div class="aside-item" @click="toggleAsideDetailActive">
+          <div class="aside-item" @click="toggleAsideDetailActive('lesson')">
             <img src="../assets/img/book.png" alt="">
+            <br>
+            {{$t('learningCenter.lessonList')}}
+          </div>
+          <div class="aside-item" @click="toggleAsideDetailActive('homework')">
+            <img src="../assets/img/homework.png" alt="">
             <br>
             {{$t('learningCenter.lessonList')}}
           </div>
@@ -43,60 +48,75 @@
           </div>
         </div>
         <div class="aside-detail active"  v-if="courses">
-          <div v-if="courses.lessons.length>0">
-            <h2 class="select-prompt">
-              Select a Lesson
-            </h2>
-            <template v-for="(lesson,index) in courses.lessons">
-              <div class="select-item" @click="getLesson(lesson.id)">
-                {{lesson.title}}
+          <div class="aside-content" :class="{'active':asideActive == 'lesson'}">
+            <div v-if="courses.lessons.length>0">
+              <h2 class="select-prompt">
+                Select a Lesson
+              </h2>
+              <template v-for="(lesson,index) in courses.lessons">
+                <div class="select-item" @click="getLesson(lesson.id)">
+                  {{lesson.title}}
+                </div>
+              </template>
+
+            </div>
+          </div>
+          <div class="aside-content" :class="{'active':asideActive == 'homework'}">
+            <div v-if="courses.lessons.length>0">
+              <h2 class="select-prompt">
+                To-Do
+              </h2>
+              <div class="select-item" >
+                AAAAAAAAA
               </div>
-            </template>
 
+            </div>
           </div>
         </div>
       </div>
-
-      <div class="lesson-topics" v-if="lesson">
-        <div class="lesson-topic">
-          <div class="topic-divider">
-            {{lesson.title}}
-          </div>
-          <div class="lesson-content">
-            <table></table>
+      <keep-alive>
+        <router-view></router-view>
+      </keep-alive>
+      <!--<div class="lesson-topics" v-if="lesson">-->
+        <!--<div class="lesson-topic">-->
+          <!--<div class="topic-divider">-->
+            <!--{{lesson.title}}-->
+          <!--</div>-->
+          <!--<div class="lesson-content">-->
+            <!--<table></table>-->
+            <!--&lt;!&ndash;<div v-html="lesson.abstract"></div>&ndash;&gt;-->
+            <!--<div v-if="lesson.video">-->
+              <!--<video :src="lesson.video" controls="controls"></video>-->
+            <!--</div>-->
             <!--<div v-html="lesson.abstract"></div>-->
-            <div v-if="lesson.video">
-              <video :src="lesson.video" controls="controls"></video>
-            </div>
-            <div v-html="lesson.abstract"></div>
-            <div v-html="lesson.content" @click="getPronunciation"></div>
-          </div>
-        </div>
-      </div>
-      <audio :src="audioUrl" id="audio" autoplay>
-        <!--您的浏览器不支持 audio 标签。-->
-      </audio>
-      <!-- tips -->
-      <div class="modal fade" id="audioErr" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-           aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">{{$t('learningCenter.audioErr')}}</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-              {{$t('common.supportHotline')}}:400-882-3823
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              <!--<button type="button" class="btn btn-primary">Save changes</button>-->
-            </div>
-          </div>
-        </div>
-      </div>
+            <!--<div v-html="lesson.content" @click="getPronunciation"></div>-->
+          <!--</div>-->
+        <!--</div>-->
+      <!--</div>-->
+      <!--<audio :src="audioUrl" id="audio" autoplay>-->
+        <!--&lt;!&ndash;您的浏览器不支持 audio 标签。&ndash;&gt;-->
+      <!--</audio>-->
+      <!--&lt;!&ndash; tips &ndash;&gt;-->
+      <!--<div class="modal fade" id="audioErr" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"-->
+           <!--aria-hidden="true">-->
+        <!--<div class="modal-dialog modal-dialog-centered" role="document">-->
+          <!--<div class="modal-content">-->
+            <!--<div class="modal-header">-->
+              <!--<h5 class="modal-title" id="exampleModalLabel">{{$t('learningCenter.audioErr')}}</h5>-->
+              <!--<button type="button" class="close" data-dismiss="modal" aria-label="Close">-->
+                <!--<span aria-hidden="true">&times;</span>-->
+              <!--</button>-->
+            <!--</div>-->
+            <!--<div class="modal-body">-->
+              <!--{{$t('common.supportHotline')}}:400-882-3823-->
+            <!--</div>-->
+            <!--<div class="modal-footer">-->
+              <!--<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>-->
+              <!--&lt;!&ndash;<button type="button" class="btn btn-primary">Save changes</button>&ndash;&gt;-->
+            <!--</div>-->
+          <!--</div>-->
+        <!--</div>-->
+      <!--</div>-->
     </div>
   </div>
 </template>
@@ -114,7 +134,8 @@
         courses: null,
         lesson: null,
         lessonList: null,
-        audioUrl: ''
+        audioUrl: '',
+        asideActive:'lesson'
       }
     },
     methods: {
@@ -124,17 +145,22 @@
       toggleClassRoomActive() {
         this.classRoomActive = !this.classRoomActive;
       },
-      toggleAsideDetailActive() {
+      toggleAsideDetailActive(content) {
         let w = document.body.clientWidth;
         if (w >= 1280) {
           this.asideDetailActive = !this.asideDetailActive;
         } else {
           this.classRoomActive = !this.classRoomActive;
         }
+        this.asideActive = content;
       },
       getUserCourses() {
         let _this = this;
-        let num = this.$route.params.num;
+        let num = this.getLearningNum;
+        if(num.length<=0){
+          this.$router.replace({name: 'userCenter'});
+          return false;
+        }
         this.$http({
           method: 'get',
           url: '/courses/' + num,
@@ -143,22 +169,7 @@
         })
       },
       getLesson(id) {
-        let _this = this;
-        this.$http({
-          method: 'get',
-          url: '/courses/lessons/' + id,
-        }).then(res => {
-          _this.lesson = res.data.data;
-          let content = _this.lesson.content;
-          let html = ''
-          if (content && content.length > 0) {
-            html = content.replace(/\b[a-zA-Z]+\b/g, function (world) {
-              return '<span class="pronunciation">' + world + '</span>'
-            })
-          }
-          _this.classRoomActive = false;
-          _this.lesson.content = html;
-        })
+        this.$router.push({ name: 'learningContent', params: { id:id}})
       },
       getPronunciation(e) {
         let target = e.target || e.srcElement;
@@ -192,18 +203,24 @@
       } else {
         this.$router.replace({name: 'login'});
       }
-
     },
     computed: {
       ...mapGetters([
         'getIsLogin',
-        'getUserInfo'
+        'getUserInfo',
+        'getLearningNum'
       ])
     }
   }
 </script>
 
 <style scoped>
+  .aside-content{
+    display: none;
+  }
+  .aside-content.active{
+    display: block;
+  }
   .header {
     background: rgba(86, 96, 104, 1);
     height: 60px;

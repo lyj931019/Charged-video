@@ -14,14 +14,93 @@
                 <a class="nav-link" href="#">
                   {{$t("header.home")}}
                 </a>
+                <span class="line"></span>
+                <div class="header-down sub-nav">
+                  <div class="container">
+                    <div class="row">
+                      <div class="col-7">
+                        <ul class="sub-nav-group courses">
+                          <li>
+                            <a href="#" itemprop="url" class="" isrender="true">All Courses</a>
+                          </li>
+                          <li>
+                            <a href="#" isrender="true">
+                              Course Payment Options
+                            </a>
+                          </li>
+                          <li>
+                            <a href="#" isrender="true">
+                              Tuition and Fees for Courses
+                            </a>
+                          </li>
+                          <li>
+                            <a href="#" isrender="true">
+                              Academic Calendar
+                            </a>
+                          </li>
+                          <li>
+                            <a href="#" isrender="true">
+                              Scholarships
+                            </a>
+                          </li>
+                        </ul>
+                      </div>
+                      <div class="col-5">
+                        <div class="drop-info">
+                          <p>{{$t('common.supportHotline')}}</p>
+                          <h4>400-882-3823</h4>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </router-link>
-
             </li>
             <li class="nav-item">
               <router-link :to="{ name: 'list'}">
                 <a class="nav-link" href="#">
                   {{$t("header.courses")}}
                 </a>
+                <span class="line"></span>
+                <div class="header-down sub-nav">
+                  <div class="container">
+                    <div class="row">
+                      <div class="col-7">
+                        <ul class="sub-nav-group courses">
+                          <li>
+                            <a href="#" itemprop="url" class="" isrender="true">All Courses</a>
+                          </li>
+                          <li>
+                            <a href="#" isrender="true">
+                              Course Payment Options
+                            </a>
+                          </li>
+                          <li>
+                            <a href="#" isrender="true">
+                              Tuition and Fees for Courses
+                            </a>
+                          </li>
+                          <li>
+                            <a href="#" isrender="true">
+                              Academic Calendar
+                            </a>
+                          </li>
+                          <li>
+                            <a href="#" isrender="true">
+                              Scholarships
+                            </a>
+                          </li>
+                        </ul>
+                      </div>
+                      <div class="col-5">
+                        <div class="drop-info">
+                          <p>{{$t('common.supportHotline')}}</p>
+                          <h4>400-882-3823</h4>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </router-link>
 
             </li>
@@ -30,6 +109,46 @@
                 <a class="nav-link" href="#">
                   {{$t("header.aboutUs")}}
                 </a>
+                <span class="line"></span>
+                <div class="header-down sub-nav">
+                  <div class="container">
+                    <div class="row">
+                      <div class="col-7">
+                        <ul class="sub-nav-group courses">
+                          <li>
+                            <a href="#" itemprop="url" class="" isrender="true">All Courses</a>
+                          </li>
+                          <li>
+                            <a href="#" isrender="true">
+                              Course Payment Options
+                            </a>
+                          </li>
+                          <li>
+                            <a href="#" isrender="true">
+                              Tuition and Fees for Courses
+                            </a>
+                          </li>
+                          <li>
+                            <a href="#" isrender="true">
+                              Academic Calendar
+                            </a>
+                          </li>
+                          <li>
+                            <a href="#" isrender="true">
+                              Scholarships
+                            </a>
+                          </li>
+                        </ul>
+                      </div>
+                      <div class="col-5">
+                        <div class="drop-info">
+                          <p>{{$t('common.supportHotline')}}</p>
+                          <h4>400-882-3823</h4>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </router-link>
 
             </li>
@@ -215,4 +334,92 @@
     transition: all ease .2s;
     color: #ffffff;
   }
+
+  .nav-item a:hover{
+    text-decoration: none;
+  }
+  .nav-item{
+    position: relative;
+  }
+  .nav-item>a{
+    padding-bottom: 0.2rem;
+  }
+  .nav-item>a span.line{
+    display: inline-block;
+    width: 0;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    left: auto;
+    height: 3px;
+    transition: width 0.2s linear;
+    background-color: #666;
+  }
+  .nav-item>a:hover span.line{
+    left: 0;
+    right:auto;
+    width: 100%;
+    background-color: #ee243c;
+  }
+
+
+  .nav-item>a .header-down{
+    display: none;
+    width: 100vw;
+    position: fixed;
+    left: 0;
+    top: 60px;
+    background-color: #fff;
+    padding: 2rem;
+  }
+  .nav-item>a .header-down .container{
+    max-width: 800px;
+  }
+  .nav-item>a .header-down .drop-info {
+    -webkit-align-items: center;
+    align-items: center;
+    background: none;
+    box-shadow: 0 0 3px rgba(0,0,0,0.6);
+    box-sizing: border-box;
+    color: rgba(0,0,0,0.67);
+    padding: 3rem 3rem 2.5rem 3rem;
+    -webkit-justify-content: center;
+    justify-content: center;
+    text-align: center;
+  }
+  .nav-item>a .header-down .drop-info p{
+    font-size: 1rem;
+  }
+  .sub-nav ul.courses {
+    margin-left: 80px;
+  }
+
+  .sub-nav ul {
+    display: inline-block;
+    margin: 0 2em 0 0;
+    padding: 0;
+    vertical-align: top;
+    margin-left: 95px;
+  }
+  .sub-nav ul li {
+    display: block;
+    line-height: 1.5;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+  .sub-nav ul li a {
+    color: black;
+    line-height: 2.2;
+    list-style-type: none;
+    margin: 0;
+    padding: 4px 10px;
+    text-shadow: 0.03em 0 #fff, -0.03em 0 #fff, 0 0.03em #fff, 0 -0.03em #fff, 0.06em 0 #fff, -0.06em 0 #fff, 0.09em 0 #fff, -0.09em 0 #fff, 0.12em 0 #fff, -0.12em 0 #fff, 0.15em 0 #fff, -0.15em 0 #fff;
+  }
+  @media (min-width: 992px) {
+    .nav-item>a:hover .header-down{
+      display: block;
+    }
+  }
+
 </style>

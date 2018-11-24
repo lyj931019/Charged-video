@@ -13,6 +13,9 @@ const muntation = {
     state.user.user_adderss2 = userInfo.adderss_2;
     state.user.user_city = userInfo.city;
     state.user.user_country = userInfo.country;
+  },
+  changelearningNum(state,learningNum){
+    state.learningNum = learningNum;
   }
 };
 export default muntation;

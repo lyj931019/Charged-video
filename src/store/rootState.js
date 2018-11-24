@@ -11,6 +11,7 @@ const state = {
     user_adderss2:"",
     user_city:'',
     user_country:''
-  }
+  },
+  learningNum:'',
 }
 export default state;

@@ -4,5 +4,8 @@ export default {
   },
   getUserInfo: state => {
     return state.user;
+  },
+  getLearningNum: state => {
+    return state.learningNum;
   }
 }

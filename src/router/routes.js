@@ -1,4 +1,5 @@
 import Pages from '../pages'
+import LearningContent from '../components/learningContent.vue'
 export default [
   {
     path: '/',
@@ -16,9 +17,16 @@ export default [
     component: Pages.Detail
   },
   {
-    path: '/learningCenter/:num',
+    path: '/learningCenter',
     name: 'learningCenter',
-    component: Pages.LearningCenter
+    component: Pages.LearningCenter,
+    children:[
+      {
+        path:"learningContent/:id",
+        name: 'learningContent',
+        component:LearningContent
+      },
+    ]
   },
   {
     path: '/userCourse',

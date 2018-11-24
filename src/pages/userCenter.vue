@@ -64,10 +64,10 @@
               <template v-if="lessonList">
                 <template v-for="(item,index) in lessonList">
                   <div class="courseItem">
-                    <router-link :to="{ name: 'learningCenter',params: {num:item.course.num}}">
+                    <a href="#" @click.prevent="goToStudyPage(item.course.num)">
                       {{item.course.name}}
                       <span class="try" v-if="item.try">({{$t('userCenter.tryCourse')}})</span>
-                    </router-link>
+                    </a>
                     <router-link class="delete" :to="{ name: 'pay',params: {num:item.course.num}}">
                       <img v-if="item.course.try" src="../assets/img/buy.png" alt="">
                     </router-link>
@@ -282,10 +282,12 @@
     methods: {
       ...mapMutations([
         'changeLoginStatus', // 将 `this.increment()` 映射为 `this.$store.commit('increment')`
-        'changeUserInfo' // 将 `this.incrementBy(amount)` 映射为 `this.$store.commit('incrementBy', amount)`
+        'changeUserInfo', // 将 `this.incrementBy(amount)` 映射为 `this.$store.commit('incrementBy', amount)`
+        'changelearningNum' // 将 `this.incrementBy(amount)` 映射为 `this.$store.commit('incrementBy', amount)`
       ]),
-      goToStudyPage() {
-//        this.$router.push({name: 'learningCenter'})
+      goToStudyPage(num) {
+        this.changelearningNum(num);
+        this.$router.push({name: 'learningCenter'})
       },
       changeTab(tab) {
         this.active = tab;

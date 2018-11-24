@@ -33,6 +33,8 @@ module.exports = {
     courseName:'Course Name',
     academicHour:'Academic Hour',
     tuition:'Tuition',
+    classification:'Classification',
+    all:'All'
   },
   detail:{
     onlineCourse:'Online Course',
@@ -87,7 +89,8 @@ module.exports = {
   learningCenter:{
     lessonList:'Lesson list',
     goBack:'Go back',
-    audioErr:'找不到音频',
+    audioErr:'Audio not found',
+    homework:'Homework',
   },
   register:{
     tips:'Please remove special characters before submitting, for example: èüîñò.',
