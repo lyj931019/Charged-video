@@ -1,6 +1,5 @@
 <template>
-  <i class="down-arrow" :class="{active:active}">
-    <svg class="svg-inline--fa fa-caret-right fa-w-6" aria-hidden="true" data-prefix="fa"
+  <i class="down-arrow" :class="{active:active}"><svg class="svg-inline--fa fa-caret-right fa-w-6" aria-hidden="true" data-prefix="fa"
          data-icon="caret-right" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 512"
          data-fa-i2svg="">
       <path fill="currentColor"
@@ -21,10 +20,16 @@
 <style>
   i.down-arrow{
     display: inline-block;
-    width: .6rem;
+    width: .73rem;
+    height: 1.3rem;
     transition: transform .2s linear;
+    vertical-align: top;
+  }
+  i.down-arrow svg{
+    width: 100%;
+    height: 100%;
   }
   i.down-arrow.active{
-    transform:rotate(90deg);
+    transform:rotate(90deg) translate(.5rem,0);
   }
 </style>

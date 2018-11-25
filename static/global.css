@@ -11,6 +11,7 @@ body {
   padding-right: 60px;
   font-size: 0.9rem;
   max-width:1920px;
+  color: #0e1416;
 }
 @media (max-width: 992px){
   .body {
@@ -118,6 +119,13 @@ hr {
     margin-right: auto;
     padding-right: 15px;
     padding-left: 15px;
+  }
+}
+
+@media (min-width: 1200px){
+  .container-fluid {
+    padding-right: 45px;
+    padding-left: 45px;
   }
 }
 

@@ -66,10 +66,7 @@
                 <div class="cta">
                   <a href="#">Apply Now</a></div>
               </div>
-              <div class="bg-dark text-white">
-                <h6>咨询热线</h6>
-                <h4>400-882-3823</h4>
-              </div>
+              <Guidance></Guidance>
             </div>
             <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6 d-sm-none d-none d-md-block column-right">
               <div class="bo-tabs">
@@ -164,7 +161,7 @@
                       </div>
                     </div>
                     <div style="text-align: center;">
-                      <div class="btn btn-danger" style="font-weight: bold;">See Full List</div>
+                      <div class="bo-button" style="font-weight: bold;">See Full List</div>
                     </div>
 
                   </div>
@@ -175,7 +172,7 @@
           </div>
         </div>
       </div>
-      <div class="container thumbnails">
+      <div class="container-fluid thumbnails">
         <div class="row">
           <div class="col-12 col-md-8 middle-left">
             <img src="../assets/img/home-masters-hero.jpg" alt="">
@@ -198,18 +195,18 @@
           </div>
           <div class="col-12 col-md-4 thumbnails-right">
               <div class="row">
-                <div class="col-6 col-md-12">
+                <div class="col-6 col-md-12 right-item">
                   <img src="../assets/img/homepage_military.jpg" alt="">
                   <h4>U.S. Military Saves Big on Tuition</h4>
                   <p>
                     See how active duty, veterans, and military families are saving at least 30% with Berklee Online's Military Benefits.
                   </p>
                 </div>
-                <div class="col-6 col-md-12">
-                  <img src="../assets/img/homepage_military.jpg" alt="">
-                  <h4>U.S. Military Saves Big on Tuition</h4>
+                <div class="col-6 col-md-12 right-item">
+                  <img src="../assets/img/student_satisfaction.jpg" alt="">
+                  <h4>97% Student Satisfaction Rate at Berklee Online</h4>
                   <p>
-                    See how active duty, veterans, and military families are saving at least 30% with Berklee Online's Military Benefits.
+                    A brand new exit survey of 2018 grads reveals that nearly all of our graduating students were satisfied with their Berklee Online experience.
                   </p>
                 </div>
               </div>
@@ -224,15 +221,13 @@
           Discover Why Musicians Succeed at Berklee Online
         </h2>
         <div class="row">
-          <div class="col-12 col-md-6 col-lg-5">
+          <div class="col-12 col-md-5 col-lg-4">
             <p class="txt-lg">
               Curious about how online learning works? Explore our unique learning environment in one of 12 free sample lessons.
             </p>
-            <div>
-              <a class="bo-button-alt" href="/sample-a-lesson">
-                Try It Now
-              </a>
-            </div>
+            <a class="bo-button-alt" href="/sample-a-lesson">
+              Try It Now
+            </a>
           </div>
           <div class="col-12 col-md-6 col-lg-7">
             <img src="../assets/img/boccealldevice_min.png" alt="">
@@ -246,10 +241,10 @@
 
 <script>
   import Common from '../components/common'
-
+  import Guidance from '../common/guidance.vue'
   export default {
     name: 'index-f',
-    components: Common,
+    components: {...Common,Guidance},
     data(){
       return {
         active:true
@@ -494,8 +489,18 @@
   .thumbnails-left{
     background-color: #25353c;
     color: #ffffff;
-    padding: 30px;
+    padding: 45px 30px;
     font-size: 1.2rem;
+  }
+  .thumbnails-left h2{
+    font-size: 2.38rem;
+    line-height: 2.38rem;
+    margin-bottom: .75rem;
+    font-weight: bold;
+  }
+  .thumbnails-left p{
+    margin-bottom: .75rem;
+    font-size: 1.25rem;
   }
   .thumbnails-left a{
     color: #ffffff;
@@ -511,31 +516,75 @@
     padding:0 15px;
   }
 
+  .thumbnails-right .right-item h4{
+    font-family: "Avenir Next Cyr W00 Bold", Helvetica, Arial, sans-serif;
+    font-size: 1.25rem;
+    line-height: 1.69rem;
+    margin-top: 10px;
+    margin-bottom: .38rem;
+    font-weight: bold;
+  }
+  .thumbnails-right .right-item p{
+    font-family: "Avenir Next Cyr W00 Regular", Helvetica, Arial, sans-serif;
+    font-size: 1rem;
+    line-height: 1.65rem;
+    margin-bottom: .75rem;
+  }
   .sample{
-    margin-top: 30px;
-    margin-bottom: 60px;
+    margin-top: 60px;
+    margin-bottom: 30px;
   }
   .sample .title{
     text-align: center;
+    font-weight: bold;
+    font-family: "Avenir Next Cyr W00 Bold", Helvetica, Arial, sans-serif;
+    font-size: 2.38rem;
+    line-height: 2.38rem;
     margin-bottom: 60px;
   }
   .sample .bo-button-alt{
+    background: white;
     color: #ee243c;
     display: inline-block;
     margin: 0px;
     outline: 0;
-    font-size: 1.16rem;
-    line-height: 1.5rem;
+    text-align: center;
+    text-decoration: none;
+    transition: background 0.3s ease;
+    white-space: nowrap;
+    font-family: "Avenir Next Cyr W00 Bold", Helvetica, Arial, sans-serif;
+    font-size: 0.85rem;
+    line-height: 1.13rem;
     border: 3px solid #ee243c;
     padding: 7px;
+    font-weight: bold;
   }
   .sample .txt-lg{
-    font-size: 1.4rem;
-    line-height: 2.50rem;
+    font-family: "Avenir Next Cyr W00 Regular", Helvetica, Arial, sans-serif;
+    font-size: 1.25rem;
+    line-height: 1.89rem;
     color: #0e1416;
+    margin-bottom: 0.8rem;
     font-weight: 200;
   }
   .sample img{
     width: 100%;
+  }
+  .bo-button{
+    font-family: "Avenir Next Cyr W00 Bold", Helvetica, Arial, sans-serif;
+    font-size: 1rem;
+    line-height: 2.2rem;
+    text-decoration: underline;
+    background: #ee243c;
+    border: 0;
+    color: white;
+    display: inline-block;
+    margin: 0px;
+    outline: 0;
+    padding: 6px;
+    text-align: center;
+    text-decoration: none;
+    transition: background 0.3s ease;
+    white-space: nowrap;
   }
 </style>

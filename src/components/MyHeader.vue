@@ -368,7 +368,7 @@
     width: 100vw;
     position: fixed;
     left: 0;
-    top: 60px;
+    top: 54px;
     background-color: #fff;
     padding: 2rem;
   }

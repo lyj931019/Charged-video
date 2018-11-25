@@ -10,7 +10,7 @@
         {{lesson.title}}
       </div>
       <div class="avatar" id="avatarDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        <Avatar :src="getUserInfo.user_avatar"/>
+        <Avatar :src="getUserInfo.user_avatar"/><span class="lt"><img src="../assets/img/down.png" alt=""></span>
       </div>
       <div class="dropdown-menu" aria-labelledby="avatarDropdown">
         <router-link class="dropdown-item text-center" href="#" :to="{ name: 'userCenter'}">
@@ -31,12 +31,12 @@
       <table></table>
       <div class="aside-container">
         <div class="aside-list">
-          <div class="aside-item" @click="toggleAsideDetailActive('lesson')">
+          <div class="aside-item" :class="{'active':asideItemActive == 'lesson'}" @click="toggleAsideDetailActive('lesson')">
             <img src="../assets/img/book.png" alt="">
             <br>
             {{$t('learningCenter.lessonList')}}
           </div>
-          <div class="aside-item" @click="toggleAsideDetailActive('homework')">
+          <div class="aside-item" :class="{'active':asideItemActive == 'homework'}"  @click="toggleAsideDetailActive('homework')">
             <img src="../assets/img/homework.png" alt="">
             <br>
             {{$t('learningCenter.lessonList')}}
@@ -55,7 +55,7 @@
               </h2>
               <template v-for="(lesson,index) in courses.lessons">
                 <div class="select-item" @click="getLesson(lesson.id)">
-                  {{lesson.title}}
+                  {{index}}&nbsp;-&nbsp;{{lesson.title}}
                 </div>
               </template>
 
@@ -63,7 +63,7 @@
           </div>
           <div class="aside-content" :class="{'active':asideActive == 'homework'}">
             <div v-if="courses.lessons.length>0">
-              <h2 class="select-prompt">
+              <h2 class="select-prompt homework">
                 To-Do
               </h2>
               <div class="select-item" >
@@ -74,49 +74,12 @@
           </div>
         </div>
       </div>
-      <keep-alive>
-        <router-view></router-view>
-      </keep-alive>
-      <!--<div class="lesson-topics" v-if="lesson">-->
-        <!--<div class="lesson-topic">-->
-          <!--<div class="topic-divider">-->
-            <!--{{lesson.title}}-->
-          <!--</div>-->
-          <!--<div class="lesson-content">-->
-            <!--<table></table>-->
-            <!--&lt;!&ndash;<div v-html="lesson.abstract"></div>&ndash;&gt;-->
-            <!--<div v-if="lesson.video">-->
-              <!--<video :src="lesson.video" controls="controls"></video>-->
-            <!--</div>-->
-            <!--<div v-html="lesson.abstract"></div>-->
-            <!--<div v-html="lesson.content" @click="getPronunciation"></div>-->
-          <!--</div>-->
-        <!--</div>-->
-      <!--</div>-->
-      <!--<audio :src="audioUrl" id="audio" autoplay>-->
-        <!--&lt;!&ndash;您的浏览器不支持 audio 标签。&ndash;&gt;-->
-      <!--</audio>-->
-      <!--&lt;!&ndash; tips &ndash;&gt;-->
-      <!--<div class="modal fade" id="audioErr" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"-->
-           <!--aria-hidden="true">-->
-        <!--<div class="modal-dialog modal-dialog-centered" role="document">-->
-          <!--<div class="modal-content">-->
-            <!--<div class="modal-header">-->
-              <!--<h5 class="modal-title" id="exampleModalLabel">{{$t('learningCenter.audioErr')}}</h5>-->
-              <!--<button type="button" class="close" data-dismiss="modal" aria-label="Close">-->
-                <!--<span aria-hidden="true">&times;</span>-->
-              <!--</button>-->
-            <!--</div>-->
-            <!--<div class="modal-body">-->
-              <!--{{$t('common.supportHotline')}}:400-882-3823-->
-            <!--</div>-->
-            <!--<div class="modal-footer">-->
-              <!--<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>-->
-              <!--&lt;!&ndash;<button type="button" class="btn btn-primary">Save changes</button>&ndash;&gt;-->
-            <!--</div>-->
-          <!--</div>-->
-        <!--</div>-->
-      <!--</div>-->
+      <div class="lesson-topics" >
+        <keep-alive>
+          <router-view></router-view>
+        </keep-alive>
+      </div>
+
     </div>
   </div>
 </template>
@@ -135,17 +98,19 @@
         lesson: null,
         lessonList: null,
         audioUrl: '',
-        asideActive:'lesson'
+        asideActive:'lesson',
+        asideItemActive:'lesson',
       }
     },
     methods: {
       goback() {
-        this.$router.go(-1);
+        this.$router.replace({name: 'userCenter'});
       },
       toggleClassRoomActive() {
         this.classRoomActive = !this.classRoomActive;
       },
       toggleAsideDetailActive(content) {
+        this.asideItemActive = content;
         let w = document.body.clientWidth;
         if (w >= 1280) {
           this.asideDetailActive = !this.asideDetailActive;
@@ -369,13 +334,15 @@
     border: none;
     border-radius: 0;
     height: 60px;
-    width: 60px;
+    width: 86px;
     border-radius: 25px;
     /*margin: 5px 29px 0 0;*/
     line-height:60px;
     text-align: center;
   }
-
+  .header .avatar>.lt img{
+    width: 20px;
+  }
   .little-header {
     line-height: 40px;
     color: #777777;
@@ -410,8 +377,13 @@
     .little-header-toggle-btn {
       display: none;
     }
-  }
 
+  }
+  @media (min-width: 1460px){
+    .classroom .content-container  .aside-detail{
+      width: 530px;
+    }
+  }
   .little-header-avatar {
     position: fixed;
     right: 0;
@@ -425,21 +397,24 @@
   }
 
   .aside-list {
-    padding-top: 2rem;
+    /*padding-top: 2rem;*/
   }
 
   .aside-item {
     text-align: center;
     width: 60px;
-    padding: 6px 0;
+    padding: 12px 0;
     cursor: pointer;
-    text-align: center;
-    font-size: 0.8rem;
-    margin-bottom: 1rem;
+    font-size: 0.65rem;
+    line-height: 1.4rem;
   }
 
+  .aside-item.active{
+    background: #3f3f3f;
+    box-shadow: inset 2px 0px 5px #222;
+  }
   .aside-item img {
-    width: 36px;
+    width: 20px;
   }
 
   .aside-detail > * {
@@ -458,7 +433,11 @@
     margin-bottom: 0;
     /*padding-bottom: 15px;*/
   }
-
+  .aside-detail h2.select-prompt.homework{
+    background: #EFF1F2;
+    color: rgba(0,0,0,0.65);
+    font-size: .95rem;
+  }
   .aside-detail h2.select-prompt:hover {
     color: rgb(240, 32, 46);
   }
@@ -469,6 +448,7 @@
     padding: 10px 0 10px 20px;
     border-bottom: 1px solid rgba(212, 212, 208, .45);
     font-size: 15px;
+    line-height: 1rem;
   }
 
   .select-item:hover {
@@ -517,6 +497,7 @@
     line-height: 160%;
     padding: 5px;
     margin: 0;
+    height: calc(100vh - 60px);
   }
 
   .lesson-topics .lesson-topic {

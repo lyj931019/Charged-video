@@ -22,10 +22,7 @@
               {{$t('about.aboutUs')}}
             </li>
           </ul>
-          <div class="phone">
-            <p>{{$t('common.supportHotline')}}</p>
-            <h4>400-882-3823</h4>
-          </div>
+          <Guidance></Guidance>
         </div>
         <div class="col-12 col-md-8 col-lg-9 about-section">
           <div class="row">
@@ -58,9 +55,10 @@
 
 <script>
   import Common from '../components/common'
+  import Guidance from '../common/guidance.vue'
   export default {
     name:'about',
-    components:Common,
+    components:{...Common,Guidance},
     data(){
       return {
         active:'CompanyProfile',

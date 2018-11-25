@@ -13,8 +13,8 @@
 
 <style scoped>
   .avatar{
-    max-width: 52px;
-    max-height: 52px;
+    max-width: 48px;
+    max-height: 48px;
     display: inline-block;
     border-radius: 50%;
   }

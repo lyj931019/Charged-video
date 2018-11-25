@@ -5,6 +5,10 @@
       <div class="bg" id="abs">
         <div class="container-fluid">
           <h5 class="online-course">
+            <a href="#">Home</a>
+            <DownArrow class="bar"></DownArrow>
+            <a href="#">All course</a>
+            <DownArrow class="bar"></DownArrow>
             <a href="#">{{$t('detail.onlineCourse')}}</a>
           </h5>
           <div class="row">
@@ -24,8 +28,8 @@
               </div>
               <div class="row mt-5">
                 <div class="col-12 col-lg-4 order-1 order-lg-2">
-                  <div class="course-info">
-                    <div class="course-date">
+                  <div class="course-info row">
+                    <div class="course-date col-12 col-sm-6 col-lg-12">
                       <i>
                         <svg class="svg-inline--fa fa-calendar-alt fa-w-14" aria-hidden="true" data-prefix="far"
                              data-icon="calendar-alt" role="img" xmlns="http://www.w3.org/2000/svg"
@@ -35,14 +39,14 @@
                                 d="M148 288h-40c-6.6 0-12-5.4-12-12v-40c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12zm108-12v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm96 0v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm-96 96v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm-96 0v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm192 0v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm96-260v352c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V112c0-26.5 21.5-48 48-48h48V12c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v52h128V12c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v52h48c26.5 0 48 21.5 48 48zm-48 346V160H48v298c0 3.3 2.7 6 6 6h340c3.3 0 6-2.7 6-6z"></path>
                         </svg><!-- <div class="far fa-calendar-alt"></div> -->
                       </i>
-                      <span>2019/1/14</span>
+                      <span>2019年1月14日</span>
 
                     </div>
-                    <div class="course-level detail-level">
+                    <div class="course-level detail-level col-12 col-sm-6 col-lg-12">
                       <Level :level="courses.level"/>
                       <span>Level {{courses.level}}</span>
                     </div>
-                    <div class="course-price">
+                    <div class="course-price col-12 col-sm-6 col-lg-12">
                       <p>{{$t('detail.coursePrice')}}</p>
                       <p>¥{{courses.price}}</p>
                     </div>
@@ -69,10 +73,11 @@
                   <div class="collection" >
                     <span @click="favoritesCourse">{{$t('detail.favoritesCourse')}}</span>
                   </div>
-                  <div class="phone">
-                    <p>{{$t('common.supportHotline')}}</p>
-                    <h4>400-882-3823</h4>
-                  </div>
+                  <Guidance class="detail-guidance d-guidance"></Guidance>
+                  <!--<div class="phone">-->
+                    <!--<p>{{$t('common.supportHotline')}}</p>-->
+                    <!--<h4>400-882-3823</h4>-->
+                  <!--</div>-->
                 </div>
               </div>
             </div>
@@ -86,18 +91,19 @@
             <div class="col-12 col-lg-9" v-if="courses">
               <h2>{{$t('detail.syllabus')}}</h2>
               <template v-for="(lesson,index) in courses.lessons">
-                <p class="lesson-title">
-                  <a href="#" @click.prevent="showLessonContent(index)">
-                    <DownArrow :active="lessonActive[index]"/>
-                    <span>
+                <div class="lesson-container">
+                  <div class="lesson-title">
+                    <a href="#" @click.prevent="showLessonContent(index)">
+                      <DownArrow :active="lessonActive[index]" class="lesson-i"/><span>
                       Lesson {{lesson.lesson}}
-                    </span>
-                    <strong>{{lesson.title}}&nbsp;</strong>
-                  </a>
-                </p>
-                <div class="lesson-content" :class="{active:lessonActive[index]}">
-                  <div v-html="lesson.abstract"></div>
+                    </span><strong>{{lesson.title}}&nbsp;</strong>
+                    </a>
+                  </div>
+                  <div class="lesson-content" :class="{active:lessonActive[index]}">
+                    <div v-html="lesson.abstract"></div>
+                  </div>
                 </div>
+
 
               </template>
             </div>
@@ -109,13 +115,12 @@
           <div class="row">
             <div class="col-12 col-lg-9">
               <h2>{{$t('detail.learningRequirements')}}</h2>
-              <div>
-                <p class="lesson-title">
+              <div class="lesson-container">
+                <div class="lesson-title">
                   <a href="#" @click.prevent="showPrerequisites">
-                    <DownArrow :active="prerequisites"/>
-                    <strong>{{$t('detail.prerequisites')}}</strong>
+                    <DownArrow :active="prerequisites" class="lesson-i"/><strong>{{$t('detail.prerequisites')}}</strong>
                   </a>
-                </p>
+                </div>
                 <div class="lesson-content" :class="{active:prerequisites}">
                   <template v-if="courses.requirements_prerequisites">
                     <div v-html="courses.requirements_prerequisites"></div>
@@ -125,13 +130,12 @@
                   </template>
                 </div>
               </div>
-              <div>
-                <p class="lesson-title">
+              <div class="lesson-container">
+                <div class="lesson-title">
                   <a href="#" @click.prevent="showTextbooks">
-                    <DownArrow :active="textbooks"/>
-                    <strong>{{$t('detail.textbooks')}}</strong>
+                    <DownArrow :active="textbooks" class="lesson-i"/><strong>{{$t('detail.textbooks')}}</strong>
                   </a>
-                </p>
+                </div>
                 <div class="lesson-content" :class="{active:textbooks}">
                   <template v-if="courses.requirements_textbooks">
                     <div v-html="courses.requirements_textbooks"></div>
@@ -142,13 +146,12 @@
                 </div>
 
               </div>
-              <div>
-                <p class="lesson-title">
+              <div class="lesson-container">
+                <div class="lesson-title">
                   <a href="#" @click.prevent="showSoftware">
-                    <DownArrow :active="software"/>
-                    <strong>{{$t('detail.software')}}</strong>
+                    <DownArrow :active="software" class="lesson-i"/><strong>{{$t('detail.software')}}</strong>
                   </a>
-                </p>
+                </div>
                 <div class="lesson-content" :class="{active:software}">
                   <template v-if="courses.requirements_software">
                     <div v-html="courses.requirements_software"></div>
@@ -159,13 +162,12 @@
                 </div>
 
               </div>
-              <div>
-                <p class="lesson-title">
+              <div class="lesson-container border-0">
+                <div class="lesson-title">
                   <a href="#" @click.prevent="showHardware">
-                    <DownArrow :active="hardware"/>
-                    <strong>{{$t('detail.hardware')}}</strong>
+                    <DownArrow :active="hardware" class="lesson-i"/><strong>{{$t('detail.hardware')}}</strong>
                   </a>
-                </p>
+                </div>
                 <div class="lesson-content" :class="{active:hardware}">
                   <template v-if="courses.requirements_hardware">
                     <div v-html="courses.requirements_hardware"></div>
@@ -263,10 +265,11 @@
   import Avatar from '../components/avatar.vue'
   import DownArrow from '../components/down-arrow.vue'
   import Icon from '../components/icon.vue'
+  import Guidance from '../common/guidance.vue'
   import { mapGetters } from 'vuex'
   export default {
     name: 'detailF',
-    components: {...Common,Level,Avatar,DownArrow,Icon},
+    components: {...Common,Level,Avatar,DownArrow,Icon,Guidance},
     data() {
       return {
         courses: null,
@@ -409,7 +412,7 @@
       _this.requireH = parseInt($('#require').offset().top)-(270-27.5+55*2);
       _this.authorH = parseInt($('#author').offset().top)-(270-27.5+55*3);
       _this.questionH = parseInt($('#question').offset().top)-(270-27.5+55*3);
-      _this.bottomH = parseInt($('#bottom').offset().top)-(531+270);
+      _this.bottomH = parseInt($('#bottom').offset().top)-(620+270);
 
       window.onscroll = function () {
 //        _this.windowScrollTop = document.documentElement.scrollTop || document.body.scrollTop
@@ -423,6 +426,13 @@
 </script>
 
 <style scoped>
+  .bar{
+    width: .4rem;
+  }
+  .d-guidance.detail-guidance{
+    background-color: #000000;
+    margin-bottom: 0;
+  }
   .bg {
     background-color: #eff1f3;
     padding-top: 75px;
@@ -433,12 +443,14 @@
     color: #25353c;
     font-weight: bold;
     text-decoration: underline;
-    line-height: 2.50rem;
+    line-height: 1.9rem;
   }
 
   .course-intr .title {
     font-weight: 700;
     font-size: 3.0rem;
+    line-height: 3.38rem;
+    margin-bottom: .75rem;
   }
 
   .course-author {
@@ -448,7 +460,9 @@
   }
 
   .course-author span {
-    margin: 1rem;
+    margin: .75rem;
+    font-size: .87rem;
+    line-height: 1.15rem;
   }
 
   .course-author span a {
@@ -466,13 +480,22 @@
   }
 
   .course-info {
-    border-left: 1px solid #7b8b96;
+    border-left: 0;
     padding-left: 30px;
   }
-
   .course-info > div {
-    margin-bottom: 3rem;
+    margin-bottom: .75rem;
   }
+  @media (min-width: 1200px) {
+    .course-info {
+      border-left: 2px solid #dee2e5;
+      padding-left: 30px;
+    }
+    .course-info > div {
+      margin-bottom: 3rem;
+    }
+  }
+
 
   .course-date {
     display: flex;
@@ -481,45 +504,55 @@
   }
 
   .course-date i {
-    width: 2rem;
+    width: 1.65rem;
     display: inline-block;
   }
 
   .course-date span {
-    font-weight: 400;
-    font-size: 1.1rem;
-    margin-left: 0.7rem;
+    font-size: 1rem;
+    margin-left: .66rem;
+    line-height: 1.35rem;
+    font-weight: bold;
   }
 
   .course-level span {
-    font-size: 1.1rem;
-    font-weight: 400;
+    font-size: 1rem;
     margin-left: 0.7rem;
+    font-weight: bold;
   }
 
   .course-price p {
     margin-bottom: 0;
-    font-size: 1.1rem;
+    font-size: 1rem;
+    font-weight: bold;
   }
 
   .lesson, .author {
-    padding-top: 75px;
+    padding-top: 60px;
     padding-bottom: 60px;
   }
 
   .lesson h2, .requirements h2,.author h2 {
-    margin-bottom: 2rem;
+    margin-bottom: .75rem;
+    font-weight: bold;
+    font-size: 2.38rem;
+    line-height: 2.38rem;
   }
-
-  .lesson-title {
-    font-size: 1.2rem;
+  .lesson-container{
     border-bottom: 1px solid #dee2e5;
-    padding: 1rem 0;
-    line-height: 2.5rem;
+  }
+  .lesson-title {
+    font-size: 1.25rem;
+
+    padding: 0.75rem 0;
+    line-height: 1.88rem;
   }
 
   .lesson-title a {
     color: #25353c;
+  }
+  .lesson-title a .lesson-i{
+    margin-top: -1px;
   }
 
   .lesson-title a:hover {
@@ -527,7 +560,10 @@
   }
 
   .lesson-title a span, .requirements strong {
-    margin: 0 2rem 0 1rem;
+    margin: 0 0 0 .8rem;
+    min-width: 6.8rem;
+    display: inline-block;
+    vertical-align: middle;
   }
 
   .lesson-content {
@@ -545,7 +581,9 @@
   .lesson-content {
     margin-left: 152px;
   }
-
+  .lesson-content>div{
+    padding-bottom: 0.8rem;
+  }
   @media (max-width: 768px) {
     .lesson-content {
       margin-left: 45px;
@@ -563,9 +601,13 @@
   }
   .author-name{
     font-weight: 600;
+    margin-bottom: .1rem;
   }
   .author-name>span{
     box-shadow: inset 0 -1px 0 #ee243c;
+  }
+  .author-name+p{
+    font-size: .85rem;
   }
   .author-content{
     font-size: 1rem;
@@ -707,36 +749,47 @@
 
   .question .content-section h2{
     font-family: "Avenir Next Cyr W00 Bold", Helvetica, Arial, sans-serif;
-    font-size: 2.4rem;
-    line-height: 3.17rem;
-    margin-bottom: 1rem;
+    font-size: 2.38rem;
+    line-height: 2.38rem;
+    margin-bottom: 0.75rem;
     font-weight: bold;
   }
   .question .content-section p.txt-lg, .txt-lg {
     font-family: "Avenir Next Cyr W00 Regular", Helvetica, Arial, sans-serif;
-    font-size: 1.2rem;
-    line-height: 2.50rem;
+    font-size: 1.25rem;
+    line-height: 1.88rem;
+    margin-bottom: .75rem;
+    font-weight: 200;
+  }
+  .question .content-section p.txt-lg a{
+    color: #25353c;
+    font-weight: bold;
+    box-shadow: inset 0 -1px 0 #ee243c;
+    transition: all ease .2s;
+    text-decoration: none;
+  }
+  .question .content-section p.txt-lg a:hover{
+    text-decoration: none;
+    background-color: rgba(238,36,60,0.2);
   }
   .question .bo-button-tertiary {
-    font-family: "Avenir Next Cyr W00 Bold", Helvetica, Arial, sans-serif;
-    font-size: 1.2rem;
-    line-height: 2.2rem;
-    text-decoration: underline;
+    font-family: "Avenir Next Cyr W00 Regular", Helvetica, Arial, sans-serif;
+    font-size: .87rem;
+    line-height: 1.15rem;
     background: white;
-    border: 0;
     color: #0e1416;
     display: inline-block;
     margin: 0px;
     outline: 0;
-    padding: 10px;
     text-align: center;
     text-decoration: none;
     transition: background 0.3s ease;
     white-space: nowrap;
-    font-family: "Avenir Next Cyr W00 Bold", Helvetica, Arial, sans-serif;
-    font-size: 1.16rem;
-    line-height: 1.5rem;
     border: 3px solid #0e1416;
     padding: 7px;
+    font-weight: bold;
+  }
+  .question .bo-button-tertiary:hover{
+    text-decoration: underline;
   }
 </style>

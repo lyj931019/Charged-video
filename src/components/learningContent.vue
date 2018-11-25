@@ -1,19 +1,16 @@
 <template>
-  <div>
-    <div class="lesson-topics" v-if="lesson">
-      <div class="lesson-topic">
-        <div class="topic-divider">
-          {{lesson.title}}
+  <div v-if="lesson">
+    <div class="lesson-topic">
+      <div class="topic-divider">
+        {{lesson.title}}
+      </div>
+      <div class="lesson-content">
+        <table></table>
+        <!--<div v-html="lesson.abstract"></div>-->
+        <div v-if="lesson.video">
+          <video :src="lesson.video" controls="controls"></video>
         </div>
-        <div class="lesson-content">
-          <table></table>
-          <!--<div v-html="lesson.abstract"></div>-->
-          <div v-if="lesson.video">
-            <video :src="lesson.video" controls="controls"></video>
-          </div>
-          <div v-html="lesson.abstract"></div>
-          <div v-html="lesson.content" @click="getPronunciation"></div>
-        </div>
+        <div v-html="lesson.content" @click="getPronunciation"></div>
       </div>
     </div>
     <audio :src="audioUrl" id="audio" autoplay>
@@ -174,7 +171,12 @@
 
   @media (min-width: 1480px) {
     .lesson-topics .lesson-topic {
-      margin: 0px auto 20px 632px;
+      margin: 0px auto 20px 700px;
+    }
+  }
+  @media (min-width: 1690px) {
+    .lesson-topics .lesson-topic {
+      margin: 0px auto 20px 860px;
     }
   }
 

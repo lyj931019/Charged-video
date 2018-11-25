@@ -30,7 +30,7 @@ module.exports = {
     aboutUs: '关于我们',
   },
   list:{
-    courseName:'课程名称',
+    courseName:'课程',
     academicHour:'课时',
     tuition:'学费',
     classification:'分类',

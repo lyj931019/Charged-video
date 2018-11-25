@@ -37,7 +37,7 @@
           </div>
         </div>
       </div>
-      <div class="course container-fluid">
+      <div class="course">
         <div class="row">
           <div class="col-12">
             <div class="sort">
@@ -53,10 +53,10 @@
 
         </div>
         <div class="row item-title d-none d-md-flex">
-          <div class="col-12 col-md-5 mb-2 mb-md-0">{{$t('list.courseName')}}</div>
-          <div class="col-12 col-md-3 mb-2 mb-md-0 text-center">{{$t('list.academicHour')}}</div>
-          <div class="col-6 col-md-2 text-md-center">{{$t('list.tuition')}}</div>
-          <div class="col-6 col-md-2 text-md-center">
+          <div class="col-12 col-md-4 mb-2 mb-md-0">{{$t('list.courseName')}}</div>
+          <div class="col-6 col-md-3 mb-2 mb-md-0">{{$t('list.academicHour')}}</div>
+          <div class="col-6 col-md-3 text-md-center">{{$t('list.tuition')}}</div>
+          <div class="col-6 col-md-2 text-right">
             Level:
             <span class="dropdown-toggle" role="button" id="level" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{levelActive}}</span>
             <div class="dropdown-menu" aria-labelledby="level" v-if="sortList.length>0">
@@ -85,18 +85,21 @@
         </div>
         <template v-if="courseList.length>0">
           <div class="course-item row" v-for="(item,index) in courseList">
-            <div class="course-info col-12 col-md-5 mb-2 mb-md-0">
+            <div class="course-info col-12 col-md-4 mb-2 mb-md-0">
               <h4 @click.prevent="goToDetail(item.num)">
                 <span  class="course-name">{{item.name}}</span>
                 <span class="course-id">({{item.num}})</span>
               </h4>
 
             </div>
-            <div class="course-time col-12 col-md-3 mb-2 mb-md-0 text-center">{{item.period}}{{$t('detail.days')}}</div>
-            <div class="course-price col-6 col-md-2 text-md-center">{{$t('detail.coursePrice')}}&nbsp;:&nbsp;${{item.price}}</div>
-            <div class="course-level col-6 col-md-2">
-              <Level :level="item.level"></Level>
-              <p>Level {{item.level}}</p>
+            <div class="course-time col-6 col-md-3 mb-2 mb-md-0">{{item.period}}{{$t('detail.days')}}</div>
+            <div class="course-price col-6 col-md-3 text-md-center">{{$t('detail.coursePrice')}}&nbsp;:&nbsp;${{item.price}}</div>
+            <div class="course-level col-6 col-md-2 text-md-right">
+              <div>
+                <Level :level="item.level"></Level>
+                <p>Level {{item.level}}</p>
+              </div>
+
             </div>
           </div>
         </template>
@@ -144,7 +147,7 @@
         sortList: [],
         page: 1,
         pageCount: 1,
-        pageSize: 1,
+        pageSize: 100,
         totalCount: 1,
         typeActive:'all',
         levelActive:'All',
@@ -155,7 +158,7 @@
         let _this = this;
         let params = {
           page,
-          pageSize: 10
+          pageSize: 100
         };
         if (key && value) {
           params[key] = value;
@@ -180,7 +183,7 @@
           url: '/types',
           params: {
             page: 1,
-            pageSize: 10
+            pageSize: 100
           }
         }).then(res => {
           _this.sortList = res.data.data.items;
@@ -354,7 +357,7 @@
   }
 
   .course-item {
-    padding: 2rem 0;
+    padding: 1.2rem 0 0.2rem;
     border-top: 1px solid rgb(222, 226, 229);
   }
   .course-item .course-info h4{
@@ -387,13 +390,14 @@
   }
 
   .course-level {
-    display: inline-block;
     font-size: 0.8rem;
     font-weight: 900;
     vertical-align: top;
+  }
+  .course-level>div{
+    display: inline-block;
     text-align: center;
   }
-
   .course-level p {
     margin: 0;
   }
