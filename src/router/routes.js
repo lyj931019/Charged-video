@@ -1,5 +1,6 @@
 import Pages from '../pages'
 import LearningContent from '../components/learningContent.vue'
+import Homework from '../components/homework.vue'
 export default [
   {
     path: '/',
@@ -25,6 +26,11 @@ export default [
         path:"learningContent/:id",
         name: 'learningContent',
         component:LearningContent
+      },
+      {
+        path:"homework",
+        name: 'homework',
+        component:Homework
       },
     ]
   },

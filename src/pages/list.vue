@@ -322,7 +322,7 @@
   .course-price{
     float: left;
     font-size: 1rem;
-    font-weight: 550;
+    font-weight: 600;
   }
   .course-level{
     display: inline-block;

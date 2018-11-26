@@ -37,16 +37,37 @@
           </div>
         </div>
       </div>
-      <div class="course">
+      <div class="course-mode" v-show="mode == 'orther'">
+        <img src="../assets/img/list.png" @click="changeMode('list')" alt="">
+      </div>
+      <div class="course-mode" v-show="mode == 'list'">
+        <img src="../assets/img/kuai.png" @click="changeMode('orther')" alt="">
+      </div>
+      <div class="course" v-show="mode == 'list'">
         <div class="row">
           <div class="col-12">
             <div class="sort">
-              <span class="title" @click.prevent="getCourseListFromSort('')" :class="{'active':typeActive=='all'}">{{$t('list.all')}}</span>
-              <span class="title dropdown-toggle" :class="{'active':typeActive=='sort'}" role="button" id="classification" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{$t('list.classification')}}</span>
-
-              <div class="dropdown-menu" aria-labelledby="classification" v-if="sortList.length>0">
-                <a class="dropdown-item" href="#" v-for="(type_item,index) in sortList" @click.prevent="getCourseListFromSort(type_item.id)" >{{type_item.name}}</a>
+              <span class="title" @click.prevent="getCourseListFromSort('')"
+                    :class="{'active':typeActive=='all'}">{{$t('list.all')}}</span>
+              <div class="dropdown title">
+                <span class="dropdown-toggle" :class="{'active':typeActive=='sort'}" role="button"
+                      id="classification" data-toggle="dropdown" aria-haspopup="true"
+                      aria-expanded="false" data-offset="10,20">{{$t('list.classification')}}</span>
+                <div class="dropdown-menu" aria-labelledby="classification" v-if="sortList.length>0">
+                  <a class="dropdown-item" href="#" v-for="(type_item,index) in sortList"
+                     @click.prevent="getCourseListFromSort(type_item.id)">{{type_item.name}}</a>
+                </div>
               </div>
+              <div class="dropdown title">
+                <span class="dropdown-toggle" :class="{'active':typeActive=='teacher'}" role="button"
+                      id="teacher" data-toggle="dropdown" aria-haspopup="true"
+                      aria-expanded="false">教师列表</span>
+                <div class="dropdown-menu" aria-labelledby="teacher" v-if="teacherList.length>0">
+                  <a class="dropdown-item" href="#" v-for="(type_item,index) in teacherList" @click.prevent="getCourseListFromTeacher(type_item.id)"
+                  >{{type_item.name}}</a>
+                </div>
+              </div>
+
             </div>
 
           </div>
@@ -58,27 +79,28 @@
           <div class="col-6 col-md-3 text-md-center">{{$t('list.tuition')}}</div>
           <div class="col-6 col-md-2 text-right">
             Level:
-            <span class="dropdown-toggle" role="button" id="level" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{levelActive}}</span>
+            <span class="dropdown-toggle" role="button" id="level" data-toggle="dropdown" aria-haspopup="true"
+                  aria-expanded="false">{{levelActive}}</span>
             <div class="dropdown-menu" aria-labelledby="level" v-if="sortList.length>0">
               <a href="#" @click.prevent="getCourseListFromLevel(1)">
-              <Level :level="1"></Level>
-              <h6>Level 1</h6>
+                <Level :level="1"></Level>
+                <h6>Level 1</h6>
               </a>
               <a href="#" @click.prevent="getCourseListFromLevel(2)">
-              <Level :level="2"></Level>
-              <h6>Level 2</h6>
+                <Level :level="2"></Level>
+                <h6>Level 2</h6>
               </a>
               <a href="#" @click.prevent="getCourseListFromLevel(3)">
-              <Level :level="3"></Level>
-              <h6>Level 3</h6>
+                <Level :level="3"></Level>
+                <h6>Level 3</h6>
               </a>
               <a href="#" @click.prevent="getCourseListFromLevel(4)">
-              <Level :level="4"></Level>
-              <h6>Level 4</h6>
+                <Level :level="4"></Level>
+                <h6>Level 4</h6>
               </a>
               <a href="#" @click.prevent="getCourseListFromLevel(5)">
-              <Level :level="5"></Level>
-              <h6>Level 5</h6>
+                <Level :level="5"></Level>
+                <h6>Level 5</h6>
               </a>
             </div>
           </div>
@@ -87,13 +109,15 @@
           <div class="course-item row" v-for="(item,index) in courseList">
             <div class="course-info col-12 col-md-4 mb-2 mb-md-0">
               <h4 @click.prevent="goToDetail(item.num)">
-                <span  class="course-name">{{item.name}}</span>
+                <span class="course-name">{{item.name}}</span>
                 <span class="course-id">({{item.num}})</span>
               </h4>
 
             </div>
             <div class="course-time col-6 col-md-3 mb-2 mb-md-0">{{item.period}}{{$t('detail.days')}}</div>
-            <div class="course-price col-6 col-md-3 text-md-center">{{$t('detail.coursePrice')}}&nbsp;:&nbsp;${{item.price}}</div>
+            <div class="course-price col-6 col-md-3 text-md-center">
+              {{$t('detail.coursePrice')}}&nbsp;:&nbsp;${{item.price}}
+            </div>
             <div class="course-level col-6 col-md-2 text-md-right">
               <div>
                 <Level :level="item.level"></Level>
@@ -104,7 +128,114 @@
           </div>
         </template>
       </div>
+      <div class="course new-list"  v-show="mode == 'orther'">
+        <div class="row">
+          <div class="col-12 col-lg-4">
+            <div class="level">
+              <a href="#" @click.prevent="getCourseListFromLevel('')">All Level</a>
+              <p class="title">Level</p>
+            </div>
+            <div class="level-list">
+              <a href="#" @click.prevent="getCourseListFromLevel(1)">
+                <Level :level="1"></Level>
+                <h6>Level 1</h6>
+              </a>
+              <a href="#" @click.prevent="getCourseListFromLevel(2)">
+                <Level :level="2"></Level>
+                <h6>Level 2</h6>
+              </a>
+              <a href="#" @click.prevent="getCourseListFromLevel(3)">
+                <Level :level="3"></Level>
+                <h6>Level 3</h6>
+              </a>
+              <a href="#" @click.prevent="getCourseListFromLevel(4)">
+                <Level :level="4"></Level>
+                <h6>Level 4</h6>
+              </a>
+              <a href="#" @click.prevent="getCourseListFromLevel(5)">
+                <Level :level="5"></Level>
+                <h6>Level 5</h6>
+              </a>
+            </div>
+            <hr>
+            <div class="sort">
+              <p class="title">{{$t('list.classification')}}</p>
+            </div>
+            <ul class="sort-list">
+              <li class="sort-item">
+                <a href="#" :class="typeId==''?'filter-on':''"
+                   @click.prevent="getCourseListFromSort('')">{{$t('list.all')}}</a>
+              </li>
+              <template v-if="sortList.length>0">
+                <li class="sort-item" v-for="(type_item,index) in sortList">
+                  <a href="#" :class="typeId==type_item.id?'filter-on':''"
+                     @click.prevent="getCourseListFromSort(type_item.id)">{{type_item.name}}</a>
+                </li>
+              </template>
 
+            </ul>
+            <hr>
+            <div class="sort">
+              <p class="title">教师列表</p>
+            </div>
+            <ul class="sort-list">
+              <li class="sort-item">
+                <a href="#" :class="teacherId==''?'filter-on':''"
+                   @click.prevent="getCourseListFromTeacher('')">{{$t('list.all')}}</a>
+              </li>
+              <template v-if="sortList.length>0">
+                <li class="sort-item" v-for="(type_item,index) in teacherList">
+                  <a href="#" :class="teacherId==(type_item.id+'')?'filter-on':''"
+                     @click.prevent="getCourseListFromTeacher(type_item.id+'')">{{type_item.name}}</a>
+                </li>
+              </template>
+
+            </ul>
+          </div>
+          <div class="col-12 col-lg-8">
+            <div class="row course-list justify-content-start" v-if="courseList.length>0">
+              <div class="col-12 col-lg-6" v-for="(item,index) in courseList">
+                <div class="course-item">
+                  <p class="course-id">{{item.num}}</p>
+                  <h4 class="course-name" @click.prevent="goToDetail(item.num)">{{item.name}}</h4>
+                  <div class="course-info">
+                    <div class="course-price">{{$t('detail.coursePrice')}}&nbsp;:&nbsp;${{item.price}}</div>
+                    <div class="course-level">
+                      <Level :level="item.level"></Level>
+                      <p>Level {{item.level}}</p>
+                    </div>
+                  </div>
+                  <!--<div class="course-intr" v-html="item.synopsis"></div>-->
+                </div>
+
+              </div>
+            </div>
+            <nav aria-label="Page navigation example" v-if="pageCount>1" class="page-navigation">
+              <ul class="pagination justify-content-center">
+                <li class="page-item" :class="{disabled:page<=1}" @click="changePage(page-1)">
+                  <a class="page-link" href="#" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                    <span class="sr-only">Previous</span>
+                  </a>
+                </li>
+                <template v-for="item in 9">
+                  <li class="page-item" v-if="(item-5+page>=1) && (item-5+page<=pageCount)" :class="{active:item == 5}"
+                      @click="changePage(page+item-5)">
+                    <a class="page-link" href="#">{{(item - 5 + page)}}</a>
+                  </li>
+                </template>
+
+                <li class="page-item" :class="{disabled:page>=pageCount}" @click="changePage(page+1)">
+                  <a class="page-link" href="#" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                    <span class="sr-only">Next</span>
+                  </a>
+                </li>
+              </ul>
+            </nav>
+          </div>
+        </div>
+      </div>
       <nav aria-label="Page navigation example" v-if="pageCount>1" class="page-navigation">
         <ul class="pagination justify-content-center">
           <li class="page-item" :class="{disabled:page<=1}" @click="changePage(page-1)">
@@ -149,11 +280,17 @@
         pageCount: 1,
         pageSize: 100,
         totalCount: 1,
-        typeActive:'all',
-        levelActive:'All',
+        typeActive: 'all',
+        levelActive: 'All',
+        teacherList:null,
+        teacherId:'',
+        mode:'list'
       }
     },
     methods: {
+      changeMode(mode){
+        this.mode = mode;
+      },
       getCourseList(key, value, page = 1) {
         let _this = this;
         let params = {
@@ -189,23 +326,49 @@
           _this.sortList = res.data.data.items;
         })
       },
+      getTeacherList() {
+        let _this = this;
+        this.$http({
+          method: 'get',
+          url: '/instructors',
+          params: {
+            page: 1,
+            pageSize: 100
+          }
+        }).then(res => {
+          _this.teacherList = res.data.data.items;
+        })
+      },
       goToDetail(num) {
         this.$router.push({name: 'detail', params: {num}})
       },
       getCourseListFromSort(typeId) {
         this.typeId = typeId;
-        if(typeId.length<=0){
+        this.teacherId = '';
+        if (typeId.length <= 0) {
           this.typeActive = 'all';
-        }else{
+        } else {
           this.typeActive = 'sort';
         }
         this.levelActive = 'All';
         this.getCourseList('type_id', typeId)
       },
+      getCourseListFromTeacher(id){
+        this.teacherId = id;
+        this.typeId = '';
+        if (id.length <= 0) {
+          this.typeActive = 'all';
+          this.getCourseList('', '');
+        } else {
+          this.typeActive = 'teacher';
+          this.getCourseList('instructor_id', id)
+        }
+        this.levelActive = 'All';
+      },
       getCourseListFromLevel(level) {
-        if(level.length<=0){
+        if (level.length <= 0) {
           this.levelActive = 'All';
-        }else{
+        } else {
           this.levelActive = level;
         }
         this.typeActive = 'level';
@@ -225,11 +388,19 @@
     beforeMount: function () {
       this.getCourseList('', '');
       this.getSortList();
+      this.getTeacherList();
     }
   }
 </script>
 
 <style scoped>
+  .course-mode {
+    text-align: right;
+  }
+  .course-mode img{
+    cursor: pointer;
+    width: 24px;
+  }
   .body {
     /*padding-top: 120px;*/
   }
@@ -297,42 +468,50 @@
     text-decoration: none;
   }
 
-  .sort{
+  .sort {
     margin-bottom: 3rem;
-    border-bottom:2px solid #aaa;
+    border-bottom: 2px solid #aaa;
     padding-bottom: 1px;
   }
+
   .level .title, .sort .title {
     font-size: 1.3rem;
     line-height: 2rem;
     font-weight: bold;
     margin-right: 4rem;
     display: inline-block;
-    padding-bottom: 1.8rem;
+    padding-bottom: 0.8rem;
     cursor: pointer;
+    position: relative;
   }
-  .title:hover{
-    box-shadow: 0px 4px 0px 0px #ee243c;
-  }
-  .title.active{
+
+  .title:hover {
     box-shadow: 0px 4px 0px 0px #ee243c;
   }
 
-  #classification+.dropdown-menu{
+  .title.active {
+    box-shadow: 0px 4px 0px 0px #ee243c;
+  }
+
+  #classification + .dropdown-menu {
     top: -20px !important;
     left: -20px !important;
   }
-  #level+.dropdown-menu{
+
+  #level + .dropdown-menu {
     left: -86px !important;
     text-align: center;
   }
-  #level+.dropdown-menu a{
+
+  #level + .dropdown-menu a {
     font-weight: bold;
     color: #000000;
   }
-  #level+.dropdown-menu a h6{
+
+  #level + .dropdown-menu a h6 {
     font-weight: bold;
   }
+
   .level-list {
     display: flex;
     justify-content: space-between;
@@ -350,8 +529,7 @@
     margin-top: 0.1rem;
   }
 
-
-  .item-title{
+  .item-title {
     font-weight: bold;
     font-size: 1rem;
   }
@@ -360,9 +538,43 @@
     padding: 1.2rem 0 0.2rem;
     border-top: 1px solid rgb(222, 226, 229);
   }
-  .course-item .course-info h4{
+
+  .new-list .course-item {
+    box-shadow: rgba(0, 0, 0, 0.22) 3px 3px 8px;
+    margin: 15px 0;
+    padding: 30px;
+    border: 1px solid rgb(222, 226, 229);
+  }
+
+  .new-list .sort{
+    margin-bottom: 1rem;
+    height: auto;
+  }
+  .new-list .sort .title{
+    font-size: 1.3rem;
+    line-height: 2rem;
+    font-weight: bold;
+    margin-right: 4rem;
+    display: inline-block;
+    padding-bottom: .2rem;
+    padding-top: .2rem;
+    cursor: pointer;
+  }
+  .new-list .course-info {
+    text-align: right;
+  }
+
+  .new-list .course-price {
+    float: left;
+    font-size: 1rem;
+    font-weight: 600;
+    margin-top: 0.5rem;
+  }
+
+  .course-item .course-info h4 {
     margin-bottom: 0.2rem;
   }
+
   .course-id {
     margin-bottom: 0;
     font-size: 1.2rem;
@@ -381,7 +593,8 @@
   .course-name:hover {
     background-color: rgba(238, 36, 60, 0.2);
   }
-  .course-time{
+
+  .course-time {
     font-size: 1.2rem;
   }
 
@@ -394,10 +607,12 @@
     font-weight: 900;
     vertical-align: top;
   }
-  .course-level>div{
+
+  .course-level > div {
     display: inline-block;
     text-align: center;
   }
+
   .course-level p {
     margin: 0;
   }

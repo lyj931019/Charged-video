@@ -39,7 +39,7 @@
           <div class="aside-item" :class="{'active':asideItemActive == 'homework'}"  @click="toggleAsideDetailActive('homework')">
             <img src="../assets/img/homework.png" alt="">
             <br>
-            {{$t('learningCenter.lessonList')}}
+            {{$t('learningCenter.homework')}}
           </div>
           <div class="aside-item" @click="goback">
             <img src="../assets/img/goback.png" alt="">
@@ -66,10 +66,24 @@
               <h2 class="select-prompt homework">
                 To-Do
               </h2>
-              <div class="select-item" >
+              <div class="homework-item" @click="getHomework">
+                <span class="pen">
+                  <img src="../assets/img/pen.png" alt="">
+                </span>
                 AAAAAAAAA
+                <span class="data">
+                  DUE NOV 11
+                </span>
               </div>
-
+              <div class="homework-item" @click="getHomework">
+                <span class="pen">
+                  <img src="../assets/img/pen.png" alt="">
+                </span>
+                AAAAAAAAA
+                <span class="data">
+                  DUE NOV 11
+                </span>
+              </div>
             </div>
           </div>
         </div>
@@ -135,6 +149,9 @@
       },
       getLesson(id) {
         this.$router.push({ name: 'learningContent', params: { id:id}})
+      },
+      getHomework() {
+        this.$router.push({ name: 'homework'})
       },
       getPronunciation(e) {
         let target = e.target || e.srcElement;
@@ -262,8 +279,6 @@
   .classroom .content-container .aside-detail.active {
     display: block;
   }
-
-
 
   .header .icon {
     height: 60px;
@@ -451,14 +466,46 @@
     line-height: 1rem;
   }
 
-  .select-item:hover {
+  .select-item:hover ,.homework-item:hover{
     background: #EFF1F2;
   }
 
-  .select-item.active {
+  .select-item.active ,.homework-item:active {
     color: rgb(240, 32, 46);
   }
 
+  .homework-item{
+    color: #222;
+    margin-bottom: 0;
+    padding: 15px 0 15px 20px;
+    border-bottom: 1px solid rgba(212, 212, 208, .45);
+    font-size: 16px;
+    line-height: 1rem;
+    position: relative;
+  }
+
+  .homework-item .pen{
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 50%;
+    padding: 6px;
+    margin-right: 8px;
+  }
+  .homework-item .pen img{
+    width: 20px;
+  }
+  .homework-item .data{
+    font-weight: bold;
+    color: #ee243c;
+    position: absolute;
+    right: 16px;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    font-size: 14px;
+    height: 14px;
+    line-height: 14px;
+  }
   @media (max-width: 800px) {
     .lesson-topics .lesson-topic {
       font-size: 1.2em;

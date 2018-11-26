@@ -18,43 +18,6 @@
                 </span>
                 <span class="line"></span>
                 <div class="header-down sub-nav">
-                  <!--<div class="container">-->
-                  <!--<div class="row">-->
-                  <!--<div class="col-7">-->
-                  <!--<ul class="sub-nav-group courses">-->
-                  <!--<li>-->
-                  <!--<a href="#" itemprop="url" class="" isrender="true">All Courses</a>-->
-                  <!--</li>-->
-                  <!--<li>-->
-                  <!--<a href="#" isrender="true">-->
-                  <!--Course Payment Options-->
-                  <!--</a>-->
-                  <!--</li>-->
-                  <!--<li>-->
-                  <!--<a href="#" isrender="true">-->
-                  <!--Tuition and Fees for Courses-->
-                  <!--</a>-->
-                  <!--</li>-->
-                  <!--<li>-->
-                  <!--<a href="#" isrender="true">-->
-                  <!--Academic Calendar-->
-                  <!--</a>-->
-                  <!--</li>-->
-                  <!--<li>-->
-                  <!--<a href="#" isrender="true">-->
-                  <!--Scholarships-->
-                  <!--</a>-->
-                  <!--</li>-->
-                  <!--</ul>-->
-                  <!--</div>-->
-                  <!--<div class="col-5">-->
-                  <!--<div class="drop-info">-->
-                  <!--<p>{{$t('common.supportHotline')}}</p>-->
-                  <!--<h4>400-882-3823</h4>-->
-                  <!--</div>-->
-                  <!--</div>-->
-                  <!--</div>-->
-                  <!--</div>-->
                   <ul class="sub-nav-group two-col no-margin">
                     <li class="header">
                       <h4>
@@ -130,36 +93,36 @@
 </span>
                       </h4>
                     </li>
-                    <li><a href="/music-degrees/undergraduate/overview">Overview</a></li>
-                    <li><a href="/music-degrees/undergraduate/music-production">Music Production</a></li>
-                    <li><a href="/music-degrees/undergraduate/guitar">Guitar</a></li>
-                    <li><a href="/music-degrees/undergraduate/music-business">Music Business</a></li>
-                    <li><a href="/music-degrees/undergraduate/songwriting">Songwriting</a></li>
-                    <li><a href="/music-degrees/undergraduate/interdisciplinary-music-studies-create-your-own-major">Interdisciplinary Music Studies (Create Your Own Major)</a>
+                    <li><a href="#">Overview</a></li>
+                    <li><a href="#">Music Production</a></li>
+                    <li><a href="#">Guitar</a></li>
+                    <li><a href="#">Music Business</a></li>
+                    <li><a href="#">Songwriting</a></li>
+                    <li><a href="#">Interdisciplinary Music Studies (Create Your Own Major)</a>
                     </li>
-                    <li><a href="/music-degrees/undergraduate/songwriting-and-producing-music">Songwriting and Producing Music</a>
+                    <li><a href="#">Songwriting and Producing Music</a>
                     </li>
-                    <li><a href="/music-degrees/undergraduate/electronic-music-production-and-sound-design">Electronic Music Production and Sound Design</a>
+                    <li><a href="#">Electronic Music Production and Sound Design</a>
                     </li>
-                    <li><a href="/music-degrees/undergraduate/music-composition-for-film-tv-and-games">Music Composition for Film, TV, and Games</a>
+                    <li><a href="#">Music Composition for Film, TV, and Games</a>
                     </li>
-                    <li><a href="/music-degrees/undergraduate/undeclared-option">Undeclared Option</a></li>
+                    <li><a href="#">Undeclared Option</a></li>
                   </ul>
                   <ul class="sub-nav-group">
                     <li>
                       <h4>
                         Graduate Degree Programs
                         <span>
-<a href="/apply" target="_blank">Apply</a> for Jan 14 Term Start&nbsp;•&nbsp;Get a decision within 2 weeks
+<a href="#" target="_blank">Apply</a> for Jan 14 Term Start&nbsp;•&nbsp;Get a decision within 2 weeks
 </span>
                       </h4>
                     </li>
-                    <li><a href="/music-degrees/graduate/overview">Overview</a></li>
-                    <li><a href="/music-degrees/graduate/music-production">Music Production</a></li>
-                    <li><a href="/music-degrees/graduate/music-business">Music Business</a></li>
+                    <li><a href="#">Overview</a></li>
+                    <li><a href="#">Music Production</a></li>
+                    <li><a href="#">Music Business</a></li>
                   </ul>
                   <div class="absolute-drop-footer">
-                    <a href="/music-degrees" itemprop="url">
+                    <a href="#" itemprop="url">
                       Degree Overview
                     </a>
                   </div>
@@ -173,90 +136,102 @@
                 </span>
                 <span class="line"></span>
                 <div class="header-down sub-nav">
-                  <div class="container">
-                    <div class="row">
-                      <div class="col-7">
-                        <ul class="sub-nav-group courses">
-                          <li>
-                            <a href="#" itemprop="url" class="" isrender="true">All Courses</a>
-                          </li>
-                          <li>
-                            <a href="#" isrender="true">
-                              Course Payment Options
-                            </a>
-                          </li>
-                          <li>
-                            <a href="#" isrender="true">
-                              Tuition and Fees for Courses
-                            </a>
-                          </li>
-                          <li>
-                            <a href="#" isrender="true">
-                              Academic Calendar
-                            </a>
-                          </li>
-                          <li>
-                            <a href="#" isrender="true">
-                              Scholarships
-                            </a>
-                          </li>
-                        </ul>
-                      </div>
-                      <div class="col-5">
-                        <div class="drop-info">
-                          <p>{{$t('common.supportHotline')}}</p>
-                          <h4>400-882-3823</h4>
+                  <ul class="sub-nav-group certificates">
+                    <li>
+                      <a href="#" itemprop="url">All Certificates</a>
+                    </li>
+                    <li>
+                      <a href="#">
+                        Certificate Payment Options
+                      </a>
+                    </li>
+                    <li>
+                      <a href="#">
+                        Tuition and Fees for Certificates
+                      </a>
+                    </li>
+                    <li>
+                      <a href="#">
+                        Academic Calendar
+                      </a>
+                    </li>
+                    <li>
+                      <a href="#">
+                        Scholarships
+                      </a>
+                    </li>
+                  </ul>
+                  <ul class="sub-nav-group">
+                    <li>
+                      <div class="drop-info">
+                        <h3>No application required</h3>
+                        <h5>to enroll in a certificate.</h5>
+                        <hr role="separator">
+                        <div class="cert-course-dates">
+                          <i>
+                            <svg class="svg-inline--fa fa-clock fa-w-16" aria-hidden="true" data-prefix="far" data-icon="clock" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm0 448c-110.5 0-200-89.5-200-200S145.5 56 256 56s200 89.5 200 200-89.5 200-200 200zm61.8-104.4l-84.9-61.7c-3.1-2.3-4.9-5.9-4.9-9.7V116c0-6.6 5.4-12 12-12h32c6.6 0 12 5.4 12 12v141.7l66.8 48.6c5.4 3.9 6.5 11.4 2.6 16.8L334.6 349c-3.9 5.3-11.4 6.5-16.8 2.6z"></path></svg><!-- <div class="far fa-clock"></div> -->
+                          </i>
+                          <a href="#" target="blank">
+                            Next Term Starts January 14
+                          </a>
                         </div>
+
                       </div>
-                    </div>
-                  </div>
+                    </li>
+                  </ul>
                 </div>
               </a>
             </li>
             <li class="nav-item">
               <a href="#">
-                <span>
+                <router-link style="color: rgba(0, 0, 0, 0.71);" :to="{ name: 'list'}" >
                   Courses
-                </span>
+                </router-link>
                 <span class="line"></span>
                 <div class="header-down sub-nav">
-                  <div class="container">
-                    <div class="row">
-                      <div class="col-7">
-                        <ul class="sub-nav-group courses">
-                          <li>
-                            <a href="#" itemprop="url" class="" isrender="true">All Courses</a>
-                          </li>
-                          <li>
-                            <a href="#" isrender="true">
-                              Course Payment Options
-                            </a>
-                          </li>
-                          <li>
-                            <a href="#" isrender="true">
-                              Tuition and Fees for Courses
-                            </a>
-                          </li>
-                          <li>
-                            <a href="#" isrender="true">
-                              Academic Calendar
-                            </a>
-                          </li>
-                          <li>
-                            <a href="#" isrender="true">
-                              Scholarships
-                            </a>
-                          </li>
-                        </ul>
-                      </div>
-                      <div class="col-5">
-                        <div class="drop-info">
-                          <p>{{$t('common.supportHotline')}}</p>
-                          <h4>400-882-3823</h4>
+                  <ul class="sub-nav-group courses">
+                    <li>
+                      <router-link  :to="{ name: 'list'}" itemprop="url">All Courses</router-link>
+                    </li>
+                    <li>
+                      <a href="#">
+                        Course Payment Options
+                      </a>
+                    </li>
+                    <li>
+                      <a href="#">
+                        Tuition and Fees for Courses
+                      </a>
+                    </li>
+                    <li>
+                      <a href="#">
+                        Academic Calendar
+                      </a>
+                    </li>
+                    <li>
+                      <a href="#">
+                        Scholarships
+                      </a>
+                    </li>
+                  </ul>
+                  <ul class="sub-nav-group">
+                    <li>
+                      <div class="drop-info">
+                        <h3>No application required</h3>
+                        <h5>to enroll in a course.</h5>
+                        <hr role="separator">
+                        <div class="cert-course-dates">
+                          <i>
+                            <svg class="svg-inline--fa fa-clock fa-w-16" aria-hidden="true" data-prefix="far" data-icon="clock" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm0 448c-110.5 0-200-89.5-200-200S145.5 56 256 56s200 89.5 200 200-89.5 200-200 200zm61.8-104.4l-84.9-61.7c-3.1-2.3-4.9-5.9-4.9-9.7V116c0-6.6 5.4-12 12-12h32c6.6 0 12 5.4 12 12v141.7l66.8 48.6c5.4 3.9 6.5 11.4 2.6 16.8L334.6 349c-3.9 5.3-11.4 6.5-16.8 2.6z"></path></svg><!-- <div class="far fa-clock"></div> -->
+                          </i>
+                          <a href="#" target="blank">
+                            Next Term Starts January 14
+                          </a>
                         </div>
+
                       </div>
-                    </div>
-                  </div>
+                    </li>
+                  </ul>
                 </div>
               </a>
             </li>
@@ -266,97 +241,134 @@
                   Admissions
                 </span>
                 <span class="line"></span>
-                <div class="header-down sub-nav">
-                  <div class="container">
-                    <div class="row">
-                      <div class="col-7">
-                        <ul class="sub-nav-group courses">
-                          <li>
-                            <a href="#" itemprop="url" class="" isrender="true">All Courses</a>
-                          </li>
-                          <li>
-                            <a href="#" isrender="true">
-                              Course Payment Options
-                            </a>
-                          </li>
-                          <li>
-                            <a href="#" isrender="true">
-                              Tuition and Fees for Courses
-                            </a>
-                          </li>
-                          <li>
-                            <a href="#" isrender="true">
-                              Academic Calendar
-                            </a>
-                          </li>
-                          <li>
-                            <a href="#" isrender="true">
-                              Scholarships
-                            </a>
-                          </li>
-                        </ul>
+                <div class="header-down sub-nav san">
+                  <ul class="sub-nav-group">
+                    <li>
+                      <h4>
+                        Undergraduate Admissions
+                      </h4>
+                    </li><li><a href="#">  Admissions Requirements</a></li><li><a href="#">  Tuition &amp; Financial Aid</a></li><li><a href="#">  Scholarships</a></li><li><a href="#">  Program Internships</a></li><li><a href="#">  Academic Calendar</a></li><li><a href="#">Degree Completion</a></li><li><a href="#"> Prior Learning Credit</a></li><li><a href="#">  Transfer Credits</a></li><li><a href="#">  Program Policies and Forms</a></li><li><a href="#">  Program FAQs</a></li>
+
+                  </ul>
+                  <ul class="sub-nav-group">
+                    <li>
+                      <h4>Graduate Admissions</h4>
+                    </li><li><a href="#">  Admissions Requirements</a></li><li><a href="#">  Tuition &amp; Financial Aid</a></li><li><a href="#">  Academic Calendar</a></li><li><a href="#">  Transfer Credits</a></li><li><a href="#">  Program Policies and Forms</a></li>
+
+                  </ul>
+                  <ul class="sub-nav-group">
+                    <li>
+                      <h4>Military Benefits</h4>
+                    </li>
+                    <li>
+                      <a href="#" itemprop="url">
+                        Overview of Benefits
+                      </a>
+                    </li>
+                    <li>
+                      <a href="#">
+                        Veterans
+                      </a>
+                    </li>
+                    <li>
+                      <a href="#">
+                        Active Duty
+                      </a>
+                    </li>
+                    <li>
+                      <a href="#">
+                        Spouses and Families
+                      </a>
+                    </li>
+                    <li>
+                      <a href="#">
+                        Additional Info
+                      </a>
+                    </li>
+                    <li class="degree-extras">
+                      <div class="drop-info">
+                        <h6>Degree Programs</h6>
+                        <h3>
+                          <a href="#">Apply</a> for Jan 14 Term Start
+                        </h3>
+                        <span>
+Get a decision within 2 weeks</span>
+
                       </div>
-                      <div class="col-5">
-                        <div class="drop-info">
-                          <p>{{$t('common.supportHotline')}}</p>
-                          <h4>400-882-3823</h4>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+                    </li>
+                  </ul>
                 </div>
               </a>
             </li>
             <li class="nav-item">
               <a href="#">
-                <span>
+                <router-link style="color: rgba(0, 0, 0, 0.71);" :to="{ name: 'about'}" >
                   About
-                </span>
+                </router-link>
                 <span class="line"></span>
                 <div class="header-down sub-nav">
-                  <div class="container">
-                    <div class="row">
-                      <div class="col-7">
-                        <ul class="sub-nav-group courses">
-                          <li>
-                            <a href="#" itemprop="url" class="" isrender="true">All Courses</a>
-                          </li>
-                          <li>
-                            <a href="#" isrender="true">
-                              Course Payment Options
-                            </a>
-                          </li>
-                          <li>
-                            <a href="#" isrender="true">
-                              Tuition and Fees for Courses
-                            </a>
-                          </li>
-                          <li>
-                            <a href="#" isrender="true">
-                              Academic Calendar
-                            </a>
-                          </li>
-                          <li>
-                            <a href="#" isrender="true">
-                              Scholarships
-                            </a>
-                          </li>
-                        </ul>
-                      </div>
-                      <div class="col-5">
-                        <div class="drop-info">
-                          <p>{{$t('common.supportHotline')}}</p>
-                          <h4>400-882-3823</h4>
+                  <ul class="sub-nav-group">
+                    <li>
+                      <div class="drop-info" style="font-size: 0.9rem;
+    font-weight: normal;">
+                        Need Guidance?<br>
+                        <h3 style="font-size: 1.2rem;">1-866-BERKLEE</h3>
+                        <h5 style="font-size: 0.8rem;">Int'l +1-617-747-2146</h5>
+                        <h5 style="margin-bottom: 2px;">
+                          <a href="#" style="font-weight: bold;text-transform: initial;">
+                            advisors@online.berklee.edu
+                          </a>
+                        </h5>
+                        <hr role="separator" style="margin: 5px 0 5px 0;">
+                        <div class="cert-course-dates">
+                          <i>
+                            <svg class="svg-inline--fa fa-clock fa-w-16" aria-hidden="true" data-prefix="far" data-icon="clock" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm0 448c-110.5 0-200-89.5-200-200S145.5 56 256 56s200 89.5 200 200-89.5 200-200 200zm61.8-104.4l-84.9-61.7c-3.1-2.3-4.9-5.9-4.9-9.7V116c0-6.6 5.4-12 12-12h32c6.6 0 12 5.4 12 12v141.7l66.8 48.6c5.4 3.9 6.5 11.4 2.6 16.8L334.6 349c-3.9 5.3-11.4 6.5-16.8 2.6z"></path></svg><!-- <div class="far fa-clock"></div> -->
+                          </i>
+                          <a href="#" target="blank">
+                            Next Term Starts January 14
+                          </a>
                         </div>
+
                       </div>
-                    </div>
-                  </div>
+                    </li>
+                  </ul>
+                  <ul class="sub-nav-group">
+                    <li>
+                      <router-link :to="{ name: 'about'}">About</router-link>
+                    </li>
+                    <li>
+                      <a href="#">Events</a>
+                    </li>
+                    <li>
+                      <a href="#">Leadership Team</a>
+                    </li>
+                    <li>
+                      <a href="#">Faculty Directory</a>
+                    </li>
+                    <li>
+                      <a href="#">Student Stories</a>
+                    </li>
+                    <li>
+                      <a href="#" style="white-space: nowrap;">School Info, Enrollment, and Policies</a>
+                    </li>
+                    <li>
+                      <a href="#" class="">Careers</a>
+                    </li>
+                    <li class="drop-footer">
+                      <a href="#" itemprop="url" class="">
+                        <i>
+                          <svg class="svg-inline--fa fa-phone fa-w-16" aria-hidden="true" data-prefix="fa" data-icon="phone" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M493.397 24.615l-104-23.997c-11.314-2.611-22.879 3.252-27.456 13.931l-48 111.997a24 24 0 0 0 6.862 28.029l60.617 49.596c-35.973 76.675-98.938 140.508-177.249 177.248l-49.596-60.616a24 24 0 0 0-28.029-6.862l-111.997 48C3.873 366.516-1.994 378.08.618 389.397l23.997 104C27.109 504.204 36.748 512 48 512c256.087 0 464-207.532 464-464 0-11.176-7.714-20.873-18.603-23.385z"></path></svg><!-- <div class="fa fa-phone"></div> -->
+                        </i>
+                        Contact / Help
+                      </a>
+                    </li>
+                  </ul>
                 </div>
               </a>
             </li>
             <li class="nav-item">
               <a href="#">
-                <i>
+                <i class="search">
                   <svg class="svg-inline--fa fa-search fa-w-16" aria-hidden="true" data-prefix="fa" data-icon="search"
                        role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">
                     <path fill="currentColor"
@@ -502,9 +514,7 @@
     margin-bottom: 6rem;
   }
 
-  #mast-simple .navbar-nav {
-    height: 66px;
-  }
+
 
   #masthead .navbar-brand img {
     width: 190px;
@@ -788,7 +798,7 @@
   }
   #mast-simple.navbar .navbar-nav .sub-nav-group h4 span {
     display: block;
-    font-size: 0.9rem;
+    font-size: 0.8rem;
     font-family: "Avenir Next Cyr W00 Light", Helvetica, Arial, sans-serif;
     margin-top: -2px;
     font-weight: normal;
@@ -808,24 +818,151 @@
     text-decoration: none;
     background-color: rgba(238,36,60,0.2);
   }
+
   .sub-nav .absolute-drop-footer {
     border-top: 1px solid #dee2e5;
-    bottom: 2rem;
-    left: 0;
-    right: 0;
     margin-left: auto;
     margin-right: auto;
     padding-top: 20px;
     padding-left: 125px;
-    position: absolute;
     text-align: center;
     width: 750px;
     z-index: 1001;
+  }
+  .sub-nav .absolute-drop-footer a {
+    border: 1px solid #2f434c;
+    color: black;
+    display: inline-block;
+    font-family: "Avenir Next Cyr W00 Demi", Helvetica, Arial, sans-serif;
+    padding: 3px 15px;
+    -webkit-appearance: none;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    text-shadow: none;
+  }
+  .sub-nav .absolute-drop-footer a:hover {
+    background: #4c5960;
+    color: #eff1f3;
+    transition: all 0.15s cubic-bezier(0.35, 0, 0.35, 1);
+    text-decoration: none;
+  }
+  @media (min-width: 992px) and (max-width: 1260px){
+    .sub-nav ul{
+      width: 350px;
+      margin-left: 30px;
+    }
+
+  }
+
+
+  .nav-item .header-down .drop-info{
+    -webkit-align-items: center;
+    align-items: center;
+    background: none;
+    box-shadow: 0 0 3px rgba(0,0,0,0.6);
+    box-sizing: border-box;
+    color: rgba(0,0,0,0.67);
+    padding: 36px 36px 30px 36px;
+    -webkit-justify-content: center;
+    justify-content: center;
+    text-align: left;
+  }
+  .drop-info h3{
+    font-size: 1rem;
+    font-weight: bold;
+  }
+  .drop-info h5{
+    font-size: .75rem;
+    font-weight: bold;
+  }
+  .drop-info hr {
+    margin: 15px 0 5px 0;
+  }
+  .cert-course-dates{
+
+  }
+  .cert-course-dates i{
+    display: inline-block;
+    vertical-align: middle;
+    height: 1rem;
+    line-height:1rem;
+    margin-top: -4px;
+  }
+  .cert-course-dates i svg{
+    width: 1rem;
+  }
+  #mast-simple.navbar .navbar-nav .sub-nav-group .drop-info .cert-course-dates a {
+    display: inline;
+    padding-left: 0;
+  }
+  .nav-item .header-down  .degree-extras .drop-info {
+    margin: 20px 0;
+    padding: 24px;
+  }
+  .nav-item .header-down .degree-extras .drop-info h6 {
+    text-transform: uppercase;
+    font-size: 12px;
+  }
+  .nav-item .header-down .degree-extras .drop-info h3{
+    font-weight: bold;
+    font-size: 1rem;
+  }
+  #mast-simple.navbar  .degree-extras .drop-info h3 a {
+    display: inline !important;
+    text-shadow: none;
+    color: #25353c;
+    text-decoration: none;
+    -webkit-box-shadow: inset 0 -1px 0 #ee243c;
+    box-shadow: inset 0 -1px 0 #ee243c;
+    transition: all ease .2s;
+    padding: 0;
+    font-size: 1rem;
+    font-weight: bold;
+  }
+  @media (min-width: 992px) and (max-width: 1260px){
+    .san.sub-nav ul{
+      width: 280px;
+      margin-left: 0px;
+    }
+    .nav-item .header-down .degree-extras .drop-info {
+      margin: 20px 0;
+      padding: 16px;
+    }
+
+  }
+  .sub-nav ul li.drop-footer {
+    clear: both;
+    border-top: 1px solid #dee2e5;
+    margin-top: 10px;
+    padding-top: 10px;
+  }
+  .drop-footer i{
+    display: inline-block;
+    vertical-align: middle;
+    height: 1rem;
+    line-height:1rem;
+    margin-top: -4px;
+    transform: rotate(90deg);
+  }
+  .drop-footer i svg{
+    width: 1rem;
+  }
+  .search{
+    display: inline-block;
+    vertical-align: middle;
+    margin-top: -8px;
+  }
+  .search svg{
+    width: 0.75rem;
   }
   @media (min-width: 992px) {
     .nav-item:hover .header-down {
       display: block;
     }
+    #mast-simple .navbar-nav {
+      height: 66px;
+    }
+
   }
 
 </style>
