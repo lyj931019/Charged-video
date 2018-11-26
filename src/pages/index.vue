@@ -174,7 +174,7 @@
       </div>
       <div class="container-fluid thumbnails">
         <div class="row">
-          <div class="col-12 col-md-8 middle-left">
+          <div class="col-12 col-md-8 middle-left mb-md-0 mb-4">
             <img src="../assets/img/home-masters-hero.jpg" alt="">
             <div class="thumbnails-left">
               <h2>

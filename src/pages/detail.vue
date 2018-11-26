@@ -234,11 +234,31 @@
     <div class="d-lg-none course-footer">
       <!--<a href="#" class="box">{{$t('header.userCenter')}}</a>-->
       <!--<a href="#" class="box" @click.prevent="tryCourse">{{$t('detail.tryCourse')}}</a>-->
-      <a href="#" class="box" @click.prevent="tryCourse" v-if="courses && courses.try  && courses.try_day>0"><img src="../assets/img/try.png" alt=""></a>
+      <a href="#" class="box" v-if="courses && courses.try  && courses.try_day>0">
+        <i>
+          <svg class="svg-inline--fa fa-info-circle fa-w-16" aria-hidden="true" data-prefix="fa" data-icon="info-circle" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M256 8C119.043 8 8 119.083 8 256c0 136.997 111.043 248 248 248s248-111.003 248-248C504 119.083 392.957 8 256 8zm0 110c23.196 0 42 18.804 42 42s-18.804 42-42 42-42-18.804-42-42 18.804-42 42-42zm56 254c0 6.627-5.373 12-12 12h-88c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h12v-64h-12c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h64c6.627 0 12 5.373 12 12v100h12c6.627 0 12 5.373 12 12v24z"></path></svg>
+        </i>
+        <div>Get info</div>
+      </a>
       <!--<a href="#" class="box" @click.prevent="favoritesCourse">{{$t('detail.favoritesCourse')}}</a>-->
-      <a href="#" class="box" @click.prevent="favoritesCourse"><img src="../assets/img/fav.png" alt=""></a>
+      <a href="#" class="box">
+        <i>
+          <svg class="svg-inline--fa fa-phone fa-w-16" aria-hidden="true" data-prefix="fa" data-icon="phone" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M493.397 24.615l-104-23.997c-11.314-2.611-22.879 3.252-27.456 13.931l-48 111.997a24 24 0 0 0 6.862 28.029l60.617 49.596c-35.973 76.675-98.938 140.508-177.249 177.248l-49.596-60.616a24 24 0 0 0-28.029-6.862l-111.997 48C3.873 366.516-1.994 378.08.618 389.397l23.997 104C27.109 504.204 36.748 512 48 512c256.087 0 464-207.532 464-464 0-11.176-7.714-20.873-18.603-23.385z"></path></svg>
+        </i>
+        <div>Call us</div>
+      </a>
       <!--<a href="#" class="box" @click.prevent="buyCoursenpm">{{$t('detail.buyCourse')}}</a>-->
-      <a href="#" class="box" @click.prevent="buyCourse"><img src="../assets/img/buy.png" alt=""></a>
+      <a href="#" class="box">
+        <i>
+          <svg class="svg-inline--fa fa-comments fa-w-18" aria-hidden="true" data-prefix="fa" data-icon="comments" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" data-fa-i2svg=""><path fill="currentColor" d="M224 358.857c-37.599 0-73.027-6.763-104.143-18.7-31.375 24.549-69.869 39.508-110.764 43.796a8.632 8.632 0 0 1-.89.047c-3.736 0-7.111-2.498-8.017-6.061-.98-3.961 2.088-6.399 5.126-9.305 15.017-14.439 33.222-25.79 40.342-74.297C17.015 266.886 0 232.622 0 195.429 0 105.16 100.297 32 224 32s224 73.159 224 163.429c-.001 90.332-100.297 163.428-224 163.428zm347.067 107.174c-13.944-13.127-30.849-23.446-37.46-67.543 68.808-64.568 52.171-156.935-37.674-207.065.031 1.334.066 2.667.066 4.006 0 122.493-129.583 216.394-284.252 211.222 38.121 30.961 93.989 50.492 156.252 50.492 34.914 0 67.811-6.148 96.704-17 29.134 22.317 64.878 35.916 102.853 39.814 3.786.395 7.363-1.973 8.27-5.467.911-3.601-1.938-5.817-4.759-8.459z"></path></svg>
+        </i>
+        <div>Text us</div>
+      </a>
+      <a href="#" class="box" @click.prevent="buyCourse">
+        <div>
+          {{$t('detail.buyCourse')}}
+        </div>
+      </a>
     </div>
     <div class="modal fade" id="detailTips" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
@@ -724,21 +744,48 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    height: 82px;
   }
-  .course-footer .box{
+  .course-footer a.box{
     padding: 1rem;
-    background-color: #fff;
     text-align: center;
     border-right: 2px solid #eff1f3;
     display: inline-block;
-    width: 24%;
+    width: 20%;
     box-sizing: border-box;
     flex: auto;
+    color: #000000;
+    background-color: white;
   }
-  .course-footer .box:last-child{
-    border:none;
+  .course-footer a.box>div{
+    font-size: 1rem;
+    line-height: 1.65rem;
   }
-
+  .course-footer a.box:last-child{
+    background: #ee243c;
+    width: 36%;
+    color: #fff;
+    font-size: 1.13em;
+    font-weight: bold;
+    line-height: 1.5rem;
+    padding: 1.8rem;
+    height: 100%;
+  }
+  .course-footer a.box:hover{
+    text-decoration: none;
+    background-color: #eff1f3;
+  }
+  .course-footer a.box:first-child{
+    width: 24%;
+  }
+  .course-footer .box i{
+    width: 1rem;
+    display: inline-block;
+  }
+  .course-footer .box i svg{
+    width: 100%;
+    height: 100%;
+  }
   .question{
     background: #eff1f3;
   }
