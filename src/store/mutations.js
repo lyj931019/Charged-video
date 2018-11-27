@@ -16,6 +16,9 @@ const muntation = {
   },
   changelearningNum(state,learningNum){
     state.learningNum = learningNum;
+  },
+  changeUserCourse(state,type,id){
+    state.userCourse[type].push(id);
   }
 };
 export default muntation;

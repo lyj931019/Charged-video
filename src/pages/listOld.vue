@@ -46,7 +46,7 @@
       <div class="course" v-show="mode == 'list'">
         <div class="row">
           <div class="col-12">
-            <div class="sort">
+            <div class="sort d-sm-block d-none">
               <span class="title" @click.prevent="getCourseListFromSort('')"
                     :class="{'active':typeActive=='all'}">{{$t('list.all')}}</span>
               <div class="dropdown title">
@@ -61,7 +61,7 @@
               <div class="dropdown title">
                 <span class="dropdown-toggle" :class="{'active':typeActive=='teacher'}" role="button"
                       id="teacher" data-toggle="dropdown" aria-haspopup="true"
-                      aria-expanded="false">教师列表</span>
+                      aria-expanded="false">{{$t('list.teachers')}}</span>
                 <div class="dropdown-menu" aria-labelledby="teacher" v-if="teacherList.length>0">
                   <a class="dropdown-item" href="#" v-for="(type_item,index) in teacherList" @click.prevent="getCourseListFromTeacher(type_item.id)"
                   >{{type_item.name}}</a>
@@ -69,7 +69,68 @@
               </div>
 
             </div>
+            <div class="d-block d-sm-none">
+              <div class="level">
+                <a href="#" @click.prevent="getCourseListFromLevel('')">{{$t('list.all')}} {{$t('detail.level')}}</a>
+                <p class="title">{{$t('detail.level')}}</p>
+              </div>
+              <div class="level-list">
+                <a href="#" @click.prevent="getCourseListFromLevel(1)">
+                  <Level :level="1"></Level>
+                  <h6>{{$t('detail.level')}} 1</h6>
+                </a>
+                <a href="#" @click.prevent="getCourseListFromLevel(2)">
+                  <Level :level="2"></Level>
+                  <h6>{{$t('detail.level')}} 2</h6>
+                </a>
+                <a href="#" @click.prevent="getCourseListFromLevel(3)">
+                  <Level :level="3"></Level>
+                  <h6>{{$t('detail.level')}} 3</h6>
+                </a>
+                <a href="#" @click.prevent="getCourseListFromLevel(4)">
+                  <Level :level="4"></Level>
+                  <h6>{{$t('detail.level')}} 4</h6>
+                </a>
+                <a href="#" @click.prevent="getCourseListFromLevel(5)">
+                  <Level :level="5"></Level>
+                  <h6>{{$t('detail.level')}} 5</h6>
+                </a>
+              </div>
+              <hr>
+              <div class="sort">
+                <p class="title">{{$t('list.classification')}}</p>
+              </div>
+              <ul class="sort-list">
+                <li class="sort-item">
+                  <a href="#" :class="typeId==''?'filter-on':''"
+                     @click.prevent="getCourseListFromSort('')">{{$t('list.all')}}</a>
+                </li>
+                <template v-if="sortList.length>0">
+                  <li class="sort-item" v-for="(type_item,index) in sortList">
+                    <a href="#" :class="typeId==type_item.id?'filter-on':''"
+                       @click.prevent="getCourseListFromSort(type_item.id)">{{type_item.name}}</a>
+                  </li>
+                </template>
 
+              </ul>
+              <hr>
+              <div class="sort">
+                <p class="title">{{$t('list.teachers')}}</p>
+              </div>
+              <ul class="sort-list">
+                <li class="sort-item">
+                  <a href="#" :class="teacherId==''?'filter-on':''"
+                     @click.prevent="getCourseListFromTeacher('')">{{$t('list.all')}}</a>
+                </li>
+                <template v-if="teacherList.length>0">
+                  <li class="sort-item" v-for="(type_item,index) in teacherList">
+                    <a href="#" :class="teacherId==(type_item.id+'')?'filter-on':''"
+                       @click.prevent="getCourseListFromTeacher(type_item.id+'')">{{type_item.name}}</a>
+                  </li>
+                </template>
+
+              </ul>
+            </div>
           </div>
 
         </div>
@@ -78,29 +139,29 @@
           <div class="col-6 col-md-3 mb-2 mb-md-0">{{$t('list.academicHour')}}</div>
           <div class="col-6 col-md-3 text-md-center">{{$t('list.tuition')}}</div>
           <div class="col-6 col-md-2 text-right">
-            Level:
-            <span class="dropdown-toggle" role="button" id="level" data-toggle="dropdown" aria-haspopup="true"
-                  aria-expanded="false">{{levelActive}}</span>
-            <div class="dropdown-menu" aria-labelledby="level" v-if="sortList.length>0">
+            {{$t('detail.level')}}:
+            <span class="dropdown-toggle " style="cursor: pointer;" role="button" id="level" data-toggle="dropdown" aria-haspopup="true"
+                  aria-expanded="false" data-offset="0,0">{{levelActive}}</span>
+            <div class="dropdown-menu level-all" aria-labelledby="level" v-if="sortList.length>0">
               <a href="#" @click.prevent="getCourseListFromLevel(1)">
                 <Level :level="1"></Level>
-                <h6>Level 1</h6>
+                <h6>{{$t('detail.level')}} 1</h6>
               </a>
               <a href="#" @click.prevent="getCourseListFromLevel(2)">
                 <Level :level="2"></Level>
-                <h6>Level 2</h6>
+                <h6>{{$t('detail.level')}} 2</h6>
               </a>
               <a href="#" @click.prevent="getCourseListFromLevel(3)">
                 <Level :level="3"></Level>
-                <h6>Level 3</h6>
+                <h6>{{$t('detail.level')}} 3</h6>
               </a>
               <a href="#" @click.prevent="getCourseListFromLevel(4)">
                 <Level :level="4"></Level>
-                <h6>Level 4</h6>
+                <h6>{{$t('detail.level')}} 4</h6>
               </a>
               <a href="#" @click.prevent="getCourseListFromLevel(5)">
                 <Level :level="5"></Level>
-                <h6>Level 5</h6>
+                <h6>{{$t('detail.level')}} 5</h6>
               </a>
             </div>
           </div>
@@ -114,14 +175,14 @@
               </h4>
 
             </div>
-            <div class="course-time col-6 col-md-3 mb-2 mb-md-0">{{item.period}}{{$t('detail.days')}}</div>
+            <div class="course-time col-6 col-md-3 mb-2 mb-md-0">{{item.period}}h</div>
             <div class="course-price col-6 col-md-3 text-md-center">
               {{$t('detail.coursePrice')}}&nbsp;:&nbsp;${{item.price}}
             </div>
             <div class="course-level col-6 col-md-2 text-md-right">
               <div>
                 <Level :level="item.level"></Level>
-                <p>Level {{item.level}}</p>
+                <p>{{$t('detail.level')}} {{item.level}}</p>
               </div>
 
             </div>
@@ -132,29 +193,29 @@
         <div class="row">
           <div class="col-12 col-lg-4">
             <div class="level">
-              <a href="#" @click.prevent="getCourseListFromLevel('')">All Level</a>
-              <p class="title">Level</p>
+              <a href="#" @click.prevent="getCourseListFromLevel('')">{{$t('list.all')}} {{$t('detail.level')}}</a>
+              <p class="title">{{$t('detail.level')}}</p>
             </div>
             <div class="level-list">
               <a href="#" @click.prevent="getCourseListFromLevel(1)">
                 <Level :level="1"></Level>
-                <h6>Level 1</h6>
+                <h6>{{$t('detail.level')}} 1</h6>
               </a>
               <a href="#" @click.prevent="getCourseListFromLevel(2)">
                 <Level :level="2"></Level>
-                <h6>Level 2</h6>
+                <h6>{{$t('detail.level')}} 2</h6>
               </a>
               <a href="#" @click.prevent="getCourseListFromLevel(3)">
                 <Level :level="3"></Level>
-                <h6>Level 3</h6>
+                <h6>{{$t('detail.level')}} 3</h6>
               </a>
               <a href="#" @click.prevent="getCourseListFromLevel(4)">
                 <Level :level="4"></Level>
-                <h6>Level 4</h6>
+                <h6>{{$t('detail.level')}} 4</h6>
               </a>
               <a href="#" @click.prevent="getCourseListFromLevel(5)">
                 <Level :level="5"></Level>
-                <h6>Level 5</h6>
+                <h6>{{$t('detail.level')}} 5</h6>
               </a>
             </div>
             <hr>
@@ -176,14 +237,14 @@
             </ul>
             <hr>
             <div class="sort">
-              <p class="title">教师列表</p>
+              <p class="title">{{$t('list.teachers')}}</p>
             </div>
             <ul class="sort-list">
               <li class="sort-item">
                 <a href="#" :class="teacherId==''?'filter-on':''"
                    @click.prevent="getCourseListFromTeacher('')">{{$t('list.all')}}</a>
               </li>
-              <template v-if="sortList.length>0">
+              <template v-if="teacherList.length>0">
                 <li class="sort-item" v-for="(type_item,index) in teacherList">
                   <a href="#" :class="teacherId==(type_item.id+'')?'filter-on':''"
                      @click.prevent="getCourseListFromTeacher(type_item.id+'')">{{type_item.name}}</a>
@@ -202,7 +263,7 @@
                     <div class="course-price">{{$t('detail.coursePrice')}}&nbsp;:&nbsp;${{item.price}}</div>
                     <div class="course-level">
                       <Level :level="item.level"></Level>
-                      <p>Level {{item.level}}</p>
+                      <p>{{$t('detail.level')}} {{item.level}}</p>
                     </div>
                   </div>
                   <!--<div class="course-intr" v-html="item.synopsis"></div>-->
@@ -282,7 +343,7 @@
         totalCount: 1,
         typeActive: 'all',
         levelActive: 'All',
-        teacherList:null,
+        teacherList:[],
         teacherId:'',
         mode:'list'
       }
@@ -350,7 +411,7 @@
         } else {
           this.typeActive = 'sort';
         }
-        this.levelActive = 'All';
+        this.levelActive = this.$t('list.all');
         this.getCourseList('type_id', typeId)
       },
       getCourseListFromTeacher(id){
@@ -363,11 +424,11 @@
           this.typeActive = 'teacher';
           this.getCourseList('instructor_id', id)
         }
-        this.levelActive = 'All';
+        this.levelActive = this.$t('list.all');
       },
       getCourseListFromLevel(level) {
         if (level.length <= 0) {
-          this.levelActive = 'All';
+          this.levelActive = this.$t('list.all');
         } else {
           this.levelActive = level;
         }
@@ -389,11 +450,20 @@
       this.getCourseList('', '');
       this.getSortList();
       this.getTeacherList();
+      this.levelActive = this.$t('list.all');
     }
   }
 </script>
 
 <style scoped>
+  #level +.dropdown-menu.level-all{
+    left: -30px !important;
+  }
+  @media (max-width: 991px) {
+    #level +.dropdown-menu.level-all{
+      left: -15px !important;
+    }
+  }
   .course-mode {
     text-align: right;
   }

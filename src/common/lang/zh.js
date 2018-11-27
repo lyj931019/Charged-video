@@ -2,11 +2,17 @@ module.exports = {
   header: {
     login: '登录',
     home: '首页',
-    courses: '所有课程',
+    courses: '课程',
     aboutUs: '关于我们',
     register: '注册',
     logout: '注销',
-    userCenter: '个人中心'
+    userCenter: '个人中心',
+    allPrograms:'所有项目',
+    degrees:'学位',
+    certificates:'证书',
+    admissions:'招生',
+    allCourses: '所有课程',
+    contact:'联系 / 帮助',
   },
   login:{
     noAccount:'没有账号'
@@ -34,7 +40,8 @@ module.exports = {
     academicHour:'课时',
     tuition:'学费',
     classification:'分类',
-    all:'所有'
+    all:'所有',
+    teachers:'教师',
   },
   detail: {
     onlineCourse: '在线课程',
@@ -54,7 +61,9 @@ module.exports = {
     hardware: '硬件要求',
     lecturer: '讲师',
     collected:'已收藏',
-    days:'天'
+    days:'天',
+    level:'难度',
+    bought:'已购买',
   },
   userCenter: {
     tryCourse: '试用',
@@ -63,7 +72,7 @@ module.exports = {
     knowMore: '点击此处了解更多',
     myCourse: '我的课程',
     myFavorites: '我的收藏',
-    myAccount: '我的账户',
+    myAccount: '个人信息',
     editDetails: '编辑详细信息',
     changeThePassword: '更改密码',
     password: '密码',

@@ -7,5 +7,8 @@ export default {
   },
   getLearningNum: state => {
     return state.learningNum;
+  },
+  getUserCourses: state => {
+    return state.userCourse;
   }
 }

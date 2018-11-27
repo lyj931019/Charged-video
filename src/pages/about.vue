@@ -3,7 +3,9 @@
     <MyHeader/>
     <div class="container-fluid">
       <h1 class="about-header">{{$t('about.title')}}</h1>
+
       <div class="row about-container">
+
         <div class="col-12 col-md-4 col-lg-3 about-aside">
           <ul class="aside-list">
             <li class="aside-item" :class="{active:active==='CompanyProfile'}" @click="changePage('CompanyProfile')">
@@ -22,12 +24,15 @@
               {{$t('about.aboutUs')}}
             </li>
           </ul>
-          <Guidance></Guidance>
+          <div class="d-none d-md-block">
+            <Guidance></Guidance>
+          </div>
+
         </div>
         <div class="col-12 col-md-8 col-lg-9 about-section">
           <div class="row">
-            <div class="col-2"></div>
-            <div class="col-8">
+            <div class="col-1"></div>
+            <div class="col-9">
               <template v-if="pages">
                 <div class="about-content" v-for="(page,index) in pages" :key="page.name">
                   <div :class="{active:active===page.name}">
@@ -49,7 +54,10 @@
         </div>
       </div>
     </div>
-    <MyFooter/>
+    <div class="d-block d-md-none">
+      <Guidance></Guidance>
+    </div>
+    <MyFooter class="pt-0 pt-md-4"/>
   </div>
 </template>
 
@@ -96,6 +104,14 @@
     padding-top: 2.5rem;
     padding-right: 0;
     border-right:1px solid #25353c;
+  }
+  @media (max-width: 768px) {
+    .about-aside{
+      border-bottom:1px solid #25353c;
+      border-right:none;
+      padding-right: 15px;
+
+    }
   }
   .about-aside .aside-list{
     list-style: none;

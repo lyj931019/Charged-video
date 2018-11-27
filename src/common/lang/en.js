@@ -6,7 +6,13 @@ module.exports = {
     aboutUs:'About us',
     register:'Register',
     logout:'Login Out',
-    userCenter:'User Center'
+    userCenter:'User Center',
+    allPrograms:'All Programs',
+    degrees:'Degrees',
+    certificates:'Certificates',
+    admissions:'Admissions',
+    allCourses: 'All Courses',
+    contact:'Contact / Help',
   },
   login:{
     noAccount:'No Account'
@@ -34,7 +40,8 @@ module.exports = {
     academicHour:'Academic Hour',
     tuition:'Tuition',
     classification:'Classification',
-    all:'All'
+    all:'All',
+    teachers:'Teachers',
   },
   detail:{
     onlineCourse:'Online Course',
@@ -54,7 +61,9 @@ module.exports = {
     hardware:'Hardware requirements',
     lecturer:'Lecturer',
     collected:'Collected',
-    days:'days'
+    days:'days',
+    level:'Level',
+    bought:'Bought',
   },
   userCenter:{
     tryCourse:'try',
@@ -63,7 +72,7 @@ module.exports = {
     knowMore:'Click here to find out more',
     myCourse:'My Course',
     myFavorites:'My Favorites',
-    myAccount:'My Account',
+    myAccount:'Personal information',
     editDetails:'Edit details',
     changeThePassword:'Change The Password',
     password:'password',

@@ -5,6 +5,9 @@
       <div class="bg">
         <div class="container-fluid">
           <div class="row">
+            <div class="col-sm-12 d-md-none d-block">
+              <img src="../assets/img/home_bg_grad_2_color.jpg" alt="" style="width: 100%;">
+            </div>
             <div class="col-sm-12 col-md-6 col-lg-6 col-xl-5 ">
               <div class="bg-grey">
                 <h1>Learn Music Online with Berklee</h1>
@@ -260,7 +263,7 @@
 
 <style scoped>
   .bg {
-    background: url(../assets/img/home_bg_grad_2_color.jpg) 0 1rem no-repeat;
+    background: url(../assets/img/home_bg_grad_2_color.jpg) 0 0 no-repeat;
     -webkit-background-size: 100%;
     background-size: 100%;
   }
@@ -278,7 +281,7 @@
 
   @media (max-width: 768px) {
     .bg-grey {
-      margin-top: 300px;
+      margin-top: 0rem;
     }
   }
 

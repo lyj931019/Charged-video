@@ -4,7 +4,8 @@
       <MyHeader/>
     </div>
 
-    <div style="background-color: #25353c;" class="centerTitle">
+    <div class="centerTitle">
+      <img src="../assets/img/student_satisfaction.jpg" alt="" class="bg-img">
       <div class="body">
         <div class="container-fluid">
           <div class="row">
@@ -18,17 +19,17 @@
         </div>
       </div>
     </div>
-    <div style="background-color: #cbf3eb;" class="knowMore">
-      <div class="body">
-        <div class="container-fluid">
-          <div class="row">
-            <div class="col-12 text-center">
-              <p>{{$t('userCenter.knowMore')}}</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+    <!--<div style="background-color: #cbf3eb;" class="knowMore">-->
+      <!--<div class="body">-->
+        <!--<div class="container-fluid">-->
+          <!--<div class="row">-->
+            <!--<div class="col-12 text-center">-->
+              <!--<p>{{$t('userCenter.knowMore')}}</p>-->
+            <!--</div>-->
+          <!--</div>-->
+        <!--</div>-->
+      <!--</div>-->
+    <!--</div>-->
     <div style="background-color: #e2e3e5;" class="userList  d-none d-md-block">
       <div class="body">
         <div class="container-fluid">
@@ -64,12 +65,12 @@
               <template v-if="lessonList">
                 <template v-for="(item,index) in lessonList">
                   <div class="courseItem">
-                    <a href="#" @click.prevent="goToStudyPage(item.course.num)">
+                    <a href="#" class="nav-link" @click.prevent="goToStudyPage(item.course.num)">
                       {{item.course.name}}
                       <span class="try" v-if="item.try">({{$t('userCenter.tryCourse')}})</span>
                     </a>
                     <router-link class="delete" :to="{ name: 'pay',params: {num:item.course.num}}">
-                      <img v-if="item.course.try" src="../assets/img/buy.png" alt="">
+                      <img v-if="item.try" src="../assets/img/buy.png" alt="">
                     </router-link>
                   </div>
                 </template>
@@ -80,7 +81,7 @@
               <template v-if="favoritesList">
                 <template v-for="(item,index) in favoritesList">
                   <div class="courseItem">
-                    <router-link :to="{name: 'detail', params: { num: item.course.num } }">
+                    <router-link class="nav-link" :to="{name: 'detail', params: { num: item.course.num } }">
                         {{item.course.name}}
                     </router-link>
                     <img src="../assets/img/delete.png" @click="confirmDelete(item.course)" class="delete" alt="">
@@ -180,7 +181,7 @@
             <div class="col-12 col-lg-1"></div>
             <div class="col-12 col-lg-4">
               <div class="courseInfo">
-                <div>
+                <div class="drop-info">
                   <h4>{{$t('userCenter.schoolLink')}}</h4>
                   <p><a href="#">{{$t('userCenter.schoolLink')}}</a></p>
                   <p><a href="#">{{$t('userCenter.academicPolicy')}}</a></p>
@@ -448,14 +449,27 @@
 <style scoped>
   .centerTitle {
     padding-top: 3rem;
+    /*background: url(../assets/img/home_bg_grad_2_color.jpg) 0 0 no-repeat;*/
+    -webkit-background-size: 100%;
+    background-size: 100%;
+    background-color: #25353c;
+    position: relative;
   }
-
+  .centerTitle>img.bg-img{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    filter: blur(15px);
+  }
   .centerTitle h1 {
     color: #ffffff;
   }
 
   .centerTitle h4 {
-    color: #f0202e;
+    /*color: #f0202e;*/
+    color: #dee2e5;
     margin-bottom: 5rem;
   }
 
@@ -551,6 +565,7 @@
     font-weight: bold;
     font-size: 1rem;
     /*margin-right: 4rem;*/
+    color: #25353c;
   }
 
   .course .delete {
@@ -558,7 +573,7 @@
     color: #f0202e;
     line-height: 2.4rem;
     cursor: pointer;
-    z-index: 20;
+    /*z-index: 20;*/
     right: 2rem;
   }
   .course .delete img{
@@ -620,7 +635,24 @@
     box-sizing: border-box;
     flex: auto;
   }
+  .course-footer .box img{
+    width: 28px;
+  }
   .course-footer .box:last-child{
     border:none;
+  }
+
+
+
+  .courseInfo div.drop-info {
+    -webkit-align-items: center;
+    align-items: center;
+    background: none;
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.6);
+    box-sizing: border-box;
+    color: rgba(0, 0, 0, 0.67);
+    padding: 2rem 2rem 1.5rem 2rem;
+    -webkit-justify-content: center;
+    justify-content: center;
   }
 </style>

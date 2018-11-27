@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div style="padding-top: 4rem;">
     <div class="footer-form" v-if="!getIsLogin">
       <div class="container-fluid">
         <div class="row">
@@ -315,6 +315,12 @@
   .footer-head-icons {
     float: right;
   }
+  @media (max-width: 496px) {
+    .footer-head-icons {
+      float: none;
+    }
+
+  }
   .footer-main a {
     color: #a6b0b8;
     font-family: "Avenir Next Cyr W00 Light", Helvetica, Arial, sans-serif;
@@ -324,7 +330,7 @@
     height: 26px;
   }
   .footer-head-icons .magazine {
-    padding: 2px 4px;
+    /*padding: 2px 4px;*/
     font-size: 20px;
     border-radius: 4px;
     display: inline-block;

@@ -13,5 +13,10 @@ const state = {
     user_country:''
   },
   learningNum:'',
+  userCourse:{
+    favorites:[],
+    buy:[],
+    try:[]
+  }
 }
 export default state;

@@ -1,12 +1,15 @@
 <template>
-  <img :src="src" alt="" class="avatar" onerror="this.src='./static/img/avatar.png';this.onerror=null">
+    <img v-if="src" :src="src" alt="" class="avatar">
+    <img v-else :src="'./static/img/avatar.png'" alt="" class="avatar">
 </template>
 
 <script>
   export default {
     name:'avatar',
     props:{
-      src:String
+      src:{
+        type:String
+      }
     }
   }
 </script>

@@ -25,10 +25,7 @@
         let _this = this;
         this.$http({
           method: 'get',
-          url: '/users/1',
-          params: {
-            id: user_id,
-          },
+          url: '/users/'+user_id,
         }).then(res => {
           if (res.data.state.code == 0) {
             _this.changeLoginStatus(true);

@@ -44,7 +44,7 @@
                     </div>
                     <div class="course-level detail-level col-12 col-sm-6 col-lg-12">
                       <Level :level="courses.level"/>
-                      <span>Level {{courses.level}}</span>
+                      <span>{{$t('detail.level')}} {{courses.level}}</span>
                     </div>
                     <div class="course-price col-12 col-sm-6 col-lg-12">
                       <p>{{$t('detail.coursePrice')}}</p>
@@ -65,13 +65,15 @@
                   <div class="nav-scroll" :class="{active:windowScrollTop>=lessonH && windowScrollTop<requireH}" @click="gotoSection(lessonH+1)">{{$t('detail.syllabus')}}</div>
                   <div class="nav-scroll" :class="{active:windowScrollTop>=requireH && windowScrollTop<authorH}" @click="gotoSection(requireH+1)">{{$t('detail.learningRequirements')}}</div>
                   <div class="nav-scroll" :class="{active:windowScrollTop>=authorH && windowScrollTop<questionH}" @click="gotoSection(authorH+1)">{{$t('detail.teacherProfile')}}</div>
-                  <div class="buy" @click="buyCourse">{{$t('detail.buyCourse')}}</div>
-                  <div class="try" @click="tryCourse" v-if="courses && courses.try  && courses.try_day>0">
+                  <div class="buy" @click="buyCourse" v-if="coursesHash!=2">{{$t('detail.buyCourse')}}</div>
+                  <div class="buy"  v-else>{{$t('detail.bought')}}</div>
+                  <div class="try" @click="tryCourse" v-if="courses && coursesHash==0 && courses.try  && courses.try_day>0">
                     {{$t('detail.tryCourse')}}
                     <span>({{courses.try_day}}&nbsp;{{$t('detail.days')}})</span>
                   </div>
                   <div class="collection" >
-                    <span @click="favoritesCourse">{{$t('detail.favoritesCourse')}}</span>
+                    <span @click="favoritesCourse" v-if="!favoritesHash">{{$t('detail.favoritesCourse')}}</span>
+                    <span v-else>{{$t('detail.collected')}}</span>
                   </div>
                   <Guidance class="detail-guidance d-guidance"></Guidance>
                   <!--<div class="phone">-->
@@ -306,7 +308,9 @@
         tips:'',
         icon_type:'success',
         questionH:0,
-        bottomH:0
+        bottomH:0,
+        coursesHash:0,
+        favoritesHash:false,
       }
     },
     computed: {
@@ -410,6 +414,31 @@
         $('html,body').animate({
           scrollTop: top
         }, 500);
+      },
+      getState(user_id){
+        let _this = this;
+        this.$http({
+          method: 'get',
+          url: '/courses/hash',
+          params:{
+            user_id,
+            course_id:_this.courses.id
+          }
+        }).then(res => {
+          _this.coursesHash = res.data.data;
+          console.log(_this.coursesHash)
+        });
+        this.$http({
+          method: 'get',
+          url: '/favorites/hash',
+          params:{
+            user_id,
+            course_id:_this.courses.id
+          }
+        }).then(res => {
+          _this.favoritesHash = res.data.data;
+          console.log(_this.favoritesHash)
+        })
       }
     },
     beforeMount() {
@@ -423,7 +452,12 @@
           _this.lessonActive.push(false);
         }
         _this.courses = res.data.data;
-      })
+        if(localStorage.getItem('user_id')){
+          let user_id = localStorage.getItem('user_id')
+          _this.getState(user_id)
+        }
+      });
+
     },
     updated(){
       let _this = this;

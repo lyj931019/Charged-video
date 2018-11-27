@@ -14,7 +14,7 @@
             <li class="nav-item">
               <a href="#">
                 <span>
-                  All Programs
+                  {{$t('header.allPrograms')}}
                 </span>
                 <span class="line"></span>
                 <div class="header-down sub-nav">
@@ -80,7 +80,7 @@
             <li class="nav-item">
               <a href="#">
                 <span>
-                  Degrees
+                  {{$t('header.degrees')}}
                 </span>
                 <span class="line"></span>
                 <div class="header-down sub-nav">
@@ -132,7 +132,7 @@
             <li class="nav-item">
               <a href="#">
                 <span>
-                  Certificates
+                  {{$t('header.certificates')}}
                 </span>
                 <span class="line"></span>
                 <div class="header-down sub-nav">
@@ -182,63 +182,11 @@
                 </div>
               </a>
             </li>
-            <li class="nav-item">
-              <a href="#">
-                <router-link style="color: rgba(0, 0, 0, 0.71);" :to="{ name: 'list'}" >
-                  Courses
-                </router-link>
-                <span class="line"></span>
-                <div class="header-down sub-nav">
-                  <ul class="sub-nav-group courses">
-                    <li>
-                      <router-link  :to="{ name: 'list'}" itemprop="url">All Courses</router-link>
-                    </li>
-                    <li>
-                      <a href="#">
-                        Course Payment Options
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#">
-                        Tuition and Fees for Courses
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#">
-                        Academic Calendar
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#">
-                        Scholarships
-                      </a>
-                    </li>
-                  </ul>
-                  <ul class="sub-nav-group">
-                    <li>
-                      <div class="drop-info">
-                        <h3>No application required</h3>
-                        <h5>to enroll in a course.</h5>
-                        <hr role="separator">
-                        <div class="cert-course-dates">
-                          <i>
-                            <svg class="svg-inline--fa fa-clock fa-w-16" aria-hidden="true" data-prefix="far" data-icon="clock" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm0 448c-110.5 0-200-89.5-200-200S145.5 56 256 56s200 89.5 200 200-89.5 200-200 200zm61.8-104.4l-84.9-61.7c-3.1-2.3-4.9-5.9-4.9-9.7V116c0-6.6 5.4-12 12-12h32c6.6 0 12 5.4 12 12v141.7l66.8 48.6c5.4 3.9 6.5 11.4 2.6 16.8L334.6 349c-3.9 5.3-11.4 6.5-16.8 2.6z"></path></svg><!-- <div class="far fa-clock"></div> -->
-                          </i>
-                          <a href="#" target="blank">
-                            Next Term Starts January 14
-                          </a>
-                        </div>
 
-                      </div>
-                    </li>
-                  </ul>
-                </div>
-              </a>
-            </li>
             <li class="nav-item">
               <a href="#">
                 <span>
-                  Admissions
+                  {{$t('header.admissions')}}
                 </span>
                 <span class="line"></span>
                 <div class="header-down sub-nav san">
@@ -302,8 +250,69 @@ Get a decision within 2 weeks</span>
             </li>
             <li class="nav-item">
               <a href="#">
+                <router-link style="color: rgba(0, 0, 0, 0.71);" :to="{ name: 'list'}" >
+                  {{$t('header.courses')}}
+                </router-link>
+                <span class="line"></span>
+                <div class="header-down sub-nav">
+                  <ul class="sub-nav-group courses">
+                    <li>
+                      <router-link  :to="{ name: 'list'}" itemprop="url">{{$t('header.allCourses')}}</router-link>
+                    </li>
+                    <template v-if="sortList && sortList.length>0">
+                      <li v-for="(type_item,index) in sortList">
+                        <router-link  :to="{ name: 'list'}" itemprop="url">
+                          {{type_item.name}}
+                        </router-link>
+                      </li>
+                    </template>
+
+                    <!--<li>-->
+                      <!--<a href="#">-->
+                        <!--Course Payment Options-->
+                      <!--</a>-->
+                    <!--</li>-->
+                    <!--<li>-->
+                      <!--<a href="#">-->
+                        <!--Tuition and Fees for Courses-->
+                      <!--</a>-->
+                    <!--</li>-->
+                    <!--<li>-->
+                      <!--<a href="#">-->
+                        <!--Academic Calendar-->
+                      <!--</a>-->
+                    <!--</li>-->
+                    <!--<li>-->
+                      <!--<a href="#">-->
+                        <!--Scholarships-->
+                      <!--</a>-->
+                    <!--</li>-->
+                  </ul>
+                  <ul class="sub-nav-group">
+                    <li>
+                      <div class="drop-info">
+                        <h3>No application required</h3>
+                        <h5>to enroll in a course.</h5>
+                        <hr role="separator">
+                        <div class="cert-course-dates">
+                          <i>
+                            <svg class="svg-inline--fa fa-clock fa-w-16" aria-hidden="true" data-prefix="far" data-icon="clock" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm0 448c-110.5 0-200-89.5-200-200S145.5 56 256 56s200 89.5 200 200-89.5 200-200 200zm61.8-104.4l-84.9-61.7c-3.1-2.3-4.9-5.9-4.9-9.7V116c0-6.6 5.4-12 12-12h32c6.6 0 12 5.4 12 12v141.7l66.8 48.6c5.4 3.9 6.5 11.4 2.6 16.8L334.6 349c-3.9 5.3-11.4 6.5-16.8 2.6z"></path></svg><!-- <div class="far fa-clock"></div> -->
+                          </i>
+                          <a href="#" target="blank">
+                            Next Term Starts January 14
+                          </a>
+                        </div>
+
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="#">
                 <router-link style="color: rgba(0, 0, 0, 0.71);" :to="{ name: 'about'}" >
-                  About
+                  {{$t('about.aboutUs')}}
                 </router-link>
                 <span class="line"></span>
                 <div class="header-down sub-nav">
@@ -334,37 +343,46 @@ Get a decision within 2 weeks</span>
                   </ul>
                   <ul class="sub-nav-group">
                     <li>
-                      <router-link :to="{ name: 'about'}">About</router-link>
+                      <router-link :to="{ name: 'about'}">{{$t('about.aboutUs')}}</router-link>
                     </li>
                     <li>
-                      <a href="#">Events</a>
+                      <router-link :to="{ name: 'about'}">{{$t('about.companyProfile')}}</router-link>
                     </li>
                     <li>
-                      <a href="#">Leadership Team</a>
+                      <router-link :to="{ name: 'about'}">{{$t('about.learningTutorial')}}</router-link>
                     </li>
                     <li>
-                      <a href="#">Faculty Directory</a>
+                      <router-link :to="{ name: 'about'}">{{$t('about.userAgreement')}}</router-link>
                     </li>
                     <li>
-                      <a href="#">Student Stories</a>
+                      <router-link :to="{ name: 'about'}">{{$t('about.paymentAgreement')}}</router-link>
                     </li>
-                    <li>
-                      <a href="#" style="white-space: nowrap;">School Info, Enrollment, and Policies</a>
-                    </li>
-                    <li>
-                      <a href="#" class="">Careers</a>
-                    </li>
+                    <!--<li>-->
+                      <!--<a href="#" style="white-space: nowrap;">School Info, Enrollment, and Policies</a>-->
+                    <!--</li>-->
+                    <!--<li>-->
+                      <!--<a href="#" class="">Careers</a>-->
+                    <!--</li>-->
                     <li class="drop-footer">
                       <a href="#" itemprop="url" class="">
                         <i>
                           <svg class="svg-inline--fa fa-phone fa-w-16" aria-hidden="true" data-prefix="fa" data-icon="phone" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M493.397 24.615l-104-23.997c-11.314-2.611-22.879 3.252-27.456 13.931l-48 111.997a24 24 0 0 0 6.862 28.029l60.617 49.596c-35.973 76.675-98.938 140.508-177.249 177.248l-49.596-60.616a24 24 0 0 0-28.029-6.862l-111.997 48C3.873 366.516-1.994 378.08.618 389.397l23.997 104C27.109 504.204 36.748 512 48 512c256.087 0 464-207.532 464-464 0-11.176-7.714-20.873-18.603-23.385z"></path></svg><!-- <div class="fa fa-phone"></div> -->
                         </i>
-                        Contact / Help
+                        {{$t('header.contact')}}
                       </a>
                     </li>
                   </ul>
                 </div>
               </a>
+            </li>
+            <li class="nav-item lang">
+              <span :class="{active:locale == 'en'}" @click="changeLang('en')">
+                <span class="lang-btn" :class="{active:locale == 'en'}">En</span>
+              </span>
+              <i>/</i>
+              <span :class="{active:locale == 'zh'}" @click="changeLang('zh')">
+              <span class="lang-btn" :class="{active:locale == 'zh'}">中文</span>
+            </span>
             </li>
             <li class="nav-item">
               <a href="#">
@@ -414,6 +432,18 @@ Get a decision within 2 weeks</span>
             </div>
           </form>
         </div>
+
+        <!--<div id="hover-header" class="d-none d-md-block">-->
+          <!--<div class="lang">-->
+            <!--<span :class="{active:locale == 'en'}" @click="changeLang('en')">-->
+              <!--<span class="lang-btn" :class="{active:locale == 'en'}">En</span>-->
+            <!--</span>-->
+            <!--<i>/</i>-->
+            <!--<span :class="{active:locale == 'zh'}" @click="changeLang('zh')">-->
+            <!--<span class="lang-btn" :class="{active:locale == 'zh'}">中文</span>-->
+            <!--</span>-->
+          <!--</div>-->
+        <!--</div>-->
       </nav>
     </header>
   </div>
@@ -431,7 +461,8 @@ Get a decision within 2 weeks</span>
       return {
         header: 'MyHeader',
         locale: '',
-        lang: ''
+        lang: '',
+        sortList:[]
       }
     },
     methods: {
@@ -439,6 +470,19 @@ Get a decision within 2 weeks</span>
         'changeLoginStatus', // 将 `this.increment()` 映射为 `this.$store.commit('increment')`
         'changeUserInfo' // 将 `this.incrementBy(amount)` 映射为 `this.$store.commit('incrementBy', amount)`
       ]),
+      getSortList() {
+        let _this = this;
+        this.$http({
+          method: 'get',
+          url: '/types',
+          params: {
+            page: 1,
+            pageSize: 100
+          }
+        }).then(res => {
+          _this.sortList = res.data.data.items;
+        })
+      },
       loginOut() {
         this.changeLoginStatus(false);
         let userInfo = {
@@ -465,6 +509,9 @@ Get a decision within 2 weeks</span>
         'getUserInfo'
       ])
     },
+    beforeCreate(){
+
+    },
     mounted() {
       if (localStorage.getItem('locale') == 'en') {
         this.locale = 'en';
@@ -474,6 +521,8 @@ Get a decision within 2 weeks</span>
         this.lang = '中文';
       }
 //      localStorage.setItem('lng', this.locale);
+      this.getSortList()
+//      console.log(this.sortList);
     },
     watch: {
       locale(val) {
@@ -485,6 +534,22 @@ Get a decision within 2 weeks</span>
 </script>
 
 <style scoped>
+  /*#hover-header{*/
+    /*position: absolute;*/
+    /*top: 0;*/
+    /*left: 0;*/
+    /*font-size: 12px;*/
+    /*height: 12px;*/
+    /*width: 100%;*/
+  /*}*/
+  .scroll{
+    margin-bottom: 7rem;
+  }
+  @media (max-width: 992px) {
+    .scroll{
+      margin-bottom: 5rem;
+    }
+  }
   .scroll #mast-simple.navbar {
     box-shadow: 0 -5px 25px #222;
     box-shadow: 0 2px 2px -2px rgba(0, 0, 0, 0.25);
@@ -529,8 +594,8 @@ Get a decision within 2 weeks</span>
   }
 
   #masthead .navbar .navbar-nav.center .nav-item {
-    padding-left: 0.75rem;
-    padding-right: 0.75rem;
+    padding-left: 0.7rem;
+    padding-right: 0.7rem;
 
   }
 
@@ -574,10 +639,7 @@ Get a decision within 2 weeks</span>
   }
 
   @media (min-width: 992px) and (max-width: 1160px) {
-    #masthead .navbar-brand img {
-      width: 140px;
-      margin-right: 5px;
-    }
+
 
     #masthead .btn-apply, #masthead .btn-login {
       padding: 4px 8px;
@@ -589,7 +651,17 @@ Get a decision within 2 weeks</span>
       margin-left: -80px;
     }
   }
-
+  @media (max-width: 1160px){
+    #masthead .navbar-brand img {
+      width: 140px;
+      margin-right: 5px;
+    }
+  }
+  @media (max-width: 991px){
+    .scroll #mast-simple.navbar{
+      padding: .38rem;
+    }
+  }
   @media (min-width: 1400px) {
     #masthead .btn-apply, #masthead .btn-login {
       padding: 7px 20px;
@@ -602,8 +674,12 @@ Get a decision within 2 weeks</span>
   }
 
   .lang {
-    /*background-color: #007bff;*/
-    color: rgba(0, 0, 0, .7)
+    /*position: absolute;*/
+    font-weight: bold;
+    /*right: 30px;*/
+    top: 0;
+    color: rgba(0, 0, 0, .7);
+    font-size: .75rem;
   }
 
   .lang > span {
@@ -612,12 +688,12 @@ Get a decision within 2 weeks</span>
 
   .lang > span:hover {
     /*background-color: #005cbf;*/
-    color: #007bff;
+    color: #ee243c;
   }
 
   .lang > span.active {
     /*background-color: #005cbf;*/
-    color: #007bff;
+    color: #ee243c;
   }
 
   .btn-apply {

@@ -145,6 +145,7 @@
           url: '/courses/' + num,
         }).then(res => {
           _this.courses = res.data.data;
+          _this.getLesson(_this.courses.lessons[0].id);
         })
       },
       getLesson(id) {
