@@ -55,7 +55,7 @@ export default [
     component: Pages.Register
   },
   {
-    path: '/about',
+    path: '/about/:item',
     name: 'about',
     component: Pages.About
   },

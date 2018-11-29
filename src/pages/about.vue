@@ -85,7 +85,12 @@
         url: '/pages',
       }).then(res => {
         _this.pages = res.data.data;
-      })
+      });
+      console.log(this.$route.params)
+      if(this.$route.params.item){
+        this.active = this.$route.params.item;
+      }
+
     }
   }
 </script>

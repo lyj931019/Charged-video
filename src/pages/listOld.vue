@@ -49,8 +49,8 @@
             <div class="sort d-sm-block d-none">
               <span class="title" @click.prevent="getCourseListFromSort('')"
                     :class="{'active':typeActive=='all'}">{{$t('list.all')}}</span>
-              <div class="dropdown title">
-                <span class="dropdown-toggle" :class="{'active':typeActive=='sort'}" role="button"
+              <div class="dropdown title" :class="{'active':typeActive=='sort'}" >
+                <span class="dropdown-toggle" role="button"
                       id="classification" data-toggle="dropdown" aria-haspopup="true"
                       aria-expanded="false" data-offset="10,20">{{$t('list.classification')}}</span>
                 <div class="dropdown-menu" aria-labelledby="classification" v-if="sortList.length>0">
@@ -58,8 +58,8 @@
                      @click.prevent="getCourseListFromSort(type_item.id)">{{type_item.name}}</a>
                 </div>
               </div>
-              <div class="dropdown title">
-                <span class="dropdown-toggle" :class="{'active':typeActive=='teacher'}" role="button"
+              <div class="dropdown title" :class="{'active':typeActive=='teacher'}">
+                <span class="dropdown-toggle"  role="button"
                       id="teacher" data-toggle="dropdown" aria-haspopup="true"
                       aria-expanded="false">{{$t('list.teachers')}}</span>
                 <div class="dropdown-menu" aria-labelledby="teacher" v-if="teacherList.length>0">
@@ -410,8 +410,9 @@
           this.typeActive = 'all';
         } else {
           this.typeActive = 'sort';
+          console.log(this.typeActive)
         }
-        this.levelActive = this.$t('list.all');
+        this.levelActive = "All";
         this.getCourseList('type_id', typeId)
       },
       getCourseListFromTeacher(id){
@@ -424,15 +425,15 @@
           this.typeActive = 'teacher';
           this.getCourseList('instructor_id', id)
         }
-        this.levelActive = this.$t('list.all');
+        this.levelActive = 'All';
       },
       getCourseListFromLevel(level) {
         if (level.length <= 0) {
-          this.levelActive = this.$t('list.all');
+          this.levelActive = 'All';
         } else {
           this.levelActive = level;
         }
-        this.typeActive = 'level';
+        this.typeActive = 'all';
         this.getCourseList('level', level)
       },
       changePage(page) {
@@ -450,7 +451,7 @@
       this.getCourseList('', '');
       this.getSortList();
       this.getTeacherList();
-      this.levelActive = this.$t('list.all');
+      this.levelActive = 'All';
     }
   }
 </script>

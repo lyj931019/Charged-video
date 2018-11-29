@@ -439,26 +439,33 @@
           _this.favoritesHash = res.data.data;
           console.log(_this.favoritesHash)
         })
+      },
+      getData(num){
+        let _this = this;
+        this.$http({
+          method: 'get',
+          url: '/courses/' + num,
+        }).then(res => {
+          for (let obj of res.data.data.lessons) {
+            _this.lessonActive.push(false);
+          }
+          _this.courses = res.data.data;
+          if(localStorage.getItem('user_id')){
+            let user_id = localStorage.getItem('user_id')
+            _this.getState(user_id)
+          }
+        });
       }
     },
     beforeMount() {
       let num = this.$route.params.num;
-      let _this = this;
-      this.$http({
-        method: 'get',
-        url: '/courses/' + num,
-      }).then(res => {
-        for (let obj of res.data.data.lessons) {
-          _this.lessonActive.push(false);
-        }
-        _this.courses = res.data.data;
-        if(localStorage.getItem('user_id')){
-          let user_id = localStorage.getItem('user_id')
-          _this.getState(user_id)
-        }
-      });
+      this.getData(num);
 
     },
+//    beforeRouteUpdate (to, from, next) {
+//      this.getData(to.params.num);
+//      next();
+//    },
     updated(){
       let _this = this;
       _this.absH = parseInt($('#abs').offset().top)-(270-27.5);

@@ -10,7 +10,7 @@
           src="../assets/img/berklee-online-logo-red-gray.png" alt=""></a></router-link>
 
         <div class="collapse navbar-collapse " id="navbarTogglerDemo03">
-          <ul class="navbar-nav center justify-content-center">
+          <ul class="navbar-nav center justify-content-center mask">
             <li class="nav-item">
               <a href="#">
                 <span>
@@ -257,7 +257,7 @@ Get a decision within 2 weeks</span>
                 <div class="header-down sub-nav">
                   <ul class="sub-nav-group courses">
                     <li>
-                      <router-link  :to="{ name: 'list'}" itemprop="url">{{$t('header.allCourses')}}</router-link>
+                      <router-link  :to="{ name: 'list'}" itemprop="url">All Courses</router-link>
                     </li>
                     <template v-if="sortList && sortList.length>0">
                       <li v-for="(type_item,index) in sortList">
@@ -311,7 +311,7 @@ Get a decision within 2 weeks</span>
             </li>
             <li class="nav-item">
               <a href="#">
-                <router-link style="color: rgba(0, 0, 0, 0.71);" :to="{ name: 'about'}" >
+                <router-link style="color: rgba(0, 0, 0, 0.71);" :to="{ name: 'about',params:{item:'AboutUs'}}" >
                   {{$t('about.aboutUs')}}
                 </router-link>
                 <span class="line"></span>
@@ -343,19 +343,19 @@ Get a decision within 2 weeks</span>
                   </ul>
                   <ul class="sub-nav-group">
                     <li>
-                      <router-link :to="{ name: 'about'}">{{$t('about.aboutUs')}}</router-link>
+                      <router-link :to="{ name: 'about',params:{item:'AboutUs'}}">{{$t('about.aboutUs')}}</router-link>
                     </li>
                     <li>
-                      <router-link :to="{ name: 'about'}">{{$t('about.companyProfile')}}</router-link>
+                      <router-link :to="{ name: 'about',params:{item:'CompanyProfile'}}">{{$t('about.companyProfile')}}</router-link>
                     </li>
                     <li>
-                      <router-link :to="{ name: 'about'}">{{$t('about.learningTutorial')}}</router-link>
+                      <router-link :to="{ name: 'about',params:{item:'Tutorial'}}">{{$t('about.learningTutorial')}}</router-link>
                     </li>
                     <li>
-                      <router-link :to="{ name: 'about'}">{{$t('about.userAgreement')}}</router-link>
+                      <router-link :to="{ name: 'about',params:{item:'UserAgreement'}}">{{$t('about.userAgreement')}}</router-link>
                     </li>
                     <li>
-                      <router-link :to="{ name: 'about'}">{{$t('about.paymentAgreement')}}</router-link>
+                      <router-link :to="{ name: 'about',params:{item:'PaymentAgreement'}}">{{$t('about.paymentAgreement')}}</router-link>
                     </li>
                     <!--<li>-->
                       <!--<a href="#" style="white-space: nowrap;">School Info, Enrollment, and Policies</a>-->
@@ -395,6 +395,7 @@ Get a decision within 2 weeks</span>
                 </i>
               </a>
             </li>
+            <li id="mask"></li>
             <!--<li class="nav-item">-->
             <!--<div class="lang nav-link">-->
             <!--<span :class="{active:locale == 'en'}" @click="changeLang('en')">-->
@@ -509,8 +510,8 @@ Get a decision within 2 weeks</span>
         'getUserInfo'
       ])
     },
-    beforeCreate(){
-
+    created(){
+      this.getSortList()
     },
     mounted() {
       if (localStorage.getItem('locale') == 'en') {
@@ -521,7 +522,7 @@ Get a decision within 2 weeks</span>
         this.lang = '中文';
       }
 //      localStorage.setItem('lng', this.locale);
-      this.getSortList()
+
 //      console.log(this.sortList);
     },
     watch: {
@@ -1031,6 +1032,18 @@ Get a decision within 2 weeks</span>
   .search svg{
     width: 0.75rem;
   }
+
+  #mask{
+    display: none;
+    background-color: rgba(0,0,0,.4);
+    position: fixed;
+    top: 650px;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+  }
+
   @media (min-width: 992px) {
     .nav-item:hover .header-down {
       display: block;
@@ -1038,7 +1051,12 @@ Get a decision within 2 weeks</span>
     #mast-simple .navbar-nav {
       height: 66px;
     }
-
+    .nav-item:hover~#mask{
+      display: block;
+    }
+    #mask{
+      top: 78px;
+    }
   }
 
 </style>
