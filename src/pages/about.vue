@@ -91,7 +91,11 @@
         this.active = this.$route.params.item;
       }
 
-    }
+    },
+    beforeRouteUpdate (to, from, next) {
+      this.active = to.params.item;
+      next();
+    },
   }
 </script>
 

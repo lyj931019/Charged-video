@@ -8,7 +8,7 @@ export default [
     component: Pages.Index
   },
   {
-    path: '/list',
+    path: '/list/:type',
     name: 'list',
     component: Pages.ListOld
   },

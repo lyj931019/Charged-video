@@ -201,10 +201,25 @@
 
       }
     },
-    beforeMount:function(){
-      this.getCourseList('','');
+    created(){
       this.getSortList();
-    }
+    },
+    beforeMount:function(){
+//      this.getCourseList('','');
+      if(this.$route.params.type === 'all'){
+        this.getCourseList('','');
+      }else{
+        this.getCourseListFromSort(next.params.type);
+      }
+    },
+    beforeRouteUpdate (to, from, next) {
+      if(next.params.type === 'all'){
+        this.getCourseList('','');
+      }else{
+        this.getCourseListFromSort(next.params.type);
+      }
+      next();
+    },
   }
 </script>
 

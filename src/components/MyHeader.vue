@@ -250,18 +250,18 @@ Get a decision within 2 weeks</span>
             </li>
             <li class="nav-item">
               <a href="#">
-                <router-link style="color: rgba(0, 0, 0, 0.71);" :to="{ name: 'list'}" >
+                <router-link style="color: rgba(0, 0, 0, 0.71);" :to="{ name: 'list',params:{type:'all'}}" >
                   {{$t('header.courses')}}
                 </router-link>
                 <span class="line"></span>
                 <div class="header-down sub-nav">
                   <ul class="sub-nav-group courses">
                     <li>
-                      <router-link  :to="{ name: 'list'}" itemprop="url">All Courses</router-link>
+                      <router-link  :to="{ name: 'list',params:{type:'all'}}" itemprop="url">All Courses</router-link>
                     </li>
                     <template v-if="sortList && sortList.length>0">
                       <li v-for="(type_item,index) in sortList">
-                        <router-link  :to="{ name: 'list'}" itemprop="url">
+                        <router-link  :to="{ name: 'list',params:{type:type_item.id}}" itemprop="url">
                           {{type_item.name}}
                         </router-link>
                       </li>
@@ -432,6 +432,9 @@ Get a decision within 2 weeks</span>
               </div>
             </div>
           </form>
+          <div id="mask-phone">
+
+          </div>
         </div>
 
         <!--<div id="hover-header" class="d-none d-md-block">-->
@@ -1043,7 +1046,15 @@ Get a decision within 2 weeks</span>
     height: 100vh;
     z-index: -1;
   }
+  #mask-phone{
+    position: fixed;
+    /*top: 650px;*/
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0,0,0,.4);
 
+  }
   @media (min-width: 992px) {
     .nav-item:hover .header-down {
       display: block;
@@ -1057,6 +1068,10 @@ Get a decision within 2 weeks</span>
     #mask{
       top: 78px;
     }
+    #mask-phone{
+      display: none;
+    }
   }
+
 
 </style>

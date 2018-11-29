@@ -410,7 +410,6 @@
           this.typeActive = 'all';
         } else {
           this.typeActive = 'sort';
-          console.log(this.typeActive)
         }
         this.levelActive = "All";
         this.getCourseList('type_id', typeId)
@@ -447,12 +446,27 @@
 
       }
     },
-    beforeMount: function () {
-      this.getCourseList('', '');
+    created(){
       this.getSortList();
       this.getTeacherList();
+    },
+    beforeMount:function(){
+      if(this.$route.params.type === 'all'){
+        this.getCourseList('','');
+      }else{
+        this.getCourseListFromSort(this.$route.params.type);
+      }
       this.levelActive = 'All';
-    }
+    },
+    beforeRouteUpdate (to, from, next) {
+      if(to.params.type === 'all'){
+        this.getCourseList('','');
+      }else{
+        this.getCourseListFromSort(to.params.type);
+      }
+      this.levelActive = 'All';
+      next();
+    },
   }
 </script>
 
