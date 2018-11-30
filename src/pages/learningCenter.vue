@@ -62,28 +62,22 @@
             </div>
           </div>
           <div class="aside-content" :class="{'active':asideActive == 'homework'}">
-            <div v-if="courses.lessons.length>0">
+            <div v-if="homeworkList">
               <h2 class="select-prompt homework">
                 To-Do
               </h2>
-              <div class="homework-item" @click="getHomework">
-                <span class="pen">
-                  <img src="../assets/img/pen.png" alt="">
-                </span>
-                AAAAAAAAA
-                <span class="data">
-                  DUE NOV 11
-                </span>
-              </div>
-              <div class="homework-item" @click="getHomework">
-                <span class="pen">
-                  <img src="../assets/img/pen.png" alt="">
-                </span>
-                AAAAAAAAA
-                <span class="data">
-                  DUE NOV 11
-                </span>
-              </div>
+              <template v-for="(homework,index) in homeworkList">
+                <div class="homework-item" @click="getHomework">
+                  <span class="pen">
+                    <img src="../assets/img/pen.png" alt="">
+                  </span>
+                    AAAAAAAAA
+                    <span class="data">
+                    DUE NOV 11
+                  </span>
+                </div>
+              </template>
+
             </div>
           </div>
         </div>
@@ -114,6 +108,7 @@
         audioUrl: '',
         asideActive:'lesson',
         asideItemActive:'lesson',
+        homeworkList:null
       }
     },
     methods: {
@@ -129,7 +124,7 @@
         if (w >= 1280) {
           this.asideDetailActive = !this.asideDetailActive;
         } else {
-          this.classRoomActive = !this.classRoomActive;
+//          this.classRoomActive = !this.classRoomActive;
         }
         this.asideActive = content;
       },
@@ -146,13 +141,34 @@
         }).then(res => {
           _this.courses = res.data.data;
           _this.getLesson(_this.courses.lessons[0].id);
-        })
+        });
+      },
+      getUserHomeworkList(){
+        let _this = this;
+        this.$http({
+          method: 'get',
+          url: '/courses/tasks',
+          params:{
+            user_id:_this.getUserInfo.user_id
+          }
+        }).then(res => {
+          _this.homeworkList = res.data.data;
+//          _this.getLesson(_this.courses.lessons[0].id);
+        });
       },
       getLesson(id) {
-        this.$router.push({ name: 'learningContent', params: { id:id}})
+        let w = document.body.clientWidth;
+        this.$router.push({ name: 'learningContent', params: { id:id}});
+        if (w < 1280){
+          this.classRoomActive = !this.classRoomActive;
+        }
       },
       getHomework() {
-        this.$router.push({ name: 'homework'})
+        let w = document.body.clientWidth;
+        this.$router.push({ name: 'homework'});
+        if (w < 1280){
+          this.classRoomActive = !this.classRoomActive;
+        }
       },
       getPronunciation(e) {
         let target = e.target || e.srcElement;
@@ -183,6 +199,7 @@
     beforeMount() {
       if (localStorage.getItem('isLogin')) {
         this.getUserCourses();
+        this.getUserHomeworkList();
       } else {
         this.$router.replace({name: 'login'});
       }

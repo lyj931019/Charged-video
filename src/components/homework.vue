@@ -21,7 +21,13 @@
           Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque cum cumque eligendi facere impedit in ipsam labore laboriosam laudantium nam natus odit officiis, quo quos rerum saepe totam! Libero, perferendis.
         </div>
         <div class="submit">
-
+          <!--<quill-editor-->
+            <!--v-model="content"-->
+            <!--ref="myQuillEditor"-->
+            <!--:config="editorOption"-->
+            <!--@blur="onEditorBlur($event)" @focus="onEditorFocus($event)"-->
+            <!--@change="onEditorChange($event)">-->
+          <!--</quill-editor>-->
         </div>
       </div>
     </div>
@@ -30,6 +36,7 @@
 </template>
 
 <script>
+  import { quillEditor } from 'vue-quill-editor'
   export default {
     name:'homework',
     data(){
@@ -37,11 +44,20 @@
 //        lesson:null,
 //        audioUrl:'',
 //        classRoomActive: false,
+        content:'',
+        editorOption:{
+          scrollingContainer: "ql-editor"
+        }
       }
     },
     methods:{
-
-
+      onEditorBlur(e){//失去焦点事件
+      },
+      onEditorFocus(e){//获得焦点事件
+      },
+      onEditorChange(e){//内容改变事件
+//        console.log(this.content)
+      }
     },
     beforeMount() {
 //      if (localStorage.getItem('isLogin')) {
@@ -140,11 +156,17 @@
   }
   .lesson-topics .lesson-content .content{
     padding: 4px 16px;
+    height: 438px;
+    overflow-y: auto;
+    overflow-x: hidden;
+
   }
   .submit{
-    background-color: #ccc;
     width: 100%;
-    height: 325px;
+    height: 300px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
   }
   @media (min-width: 1280px) {
     .lesson-topics .lesson-topic {
@@ -176,7 +198,9 @@
     cursor: text;
     line-height: 1.3em;
     font-size: 21px !important;
+    position: relative;
   }
+
 
   .lesson-topics .lesson-content > div {
     /*margin: 40px 0;*/
@@ -186,4 +210,9 @@
     visibility: hidden;
   }
 
+  .ql-editor{
+    height: 223px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+  }
 </style>
