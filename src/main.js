@@ -17,15 +17,11 @@ import 'bootstrap/dist/js/bootstrap.bundle.min'
 import '../static/global.css'
 
 
-//
-import VueQuillEditor from 'vue-quill-editor'
-
-// require styles
-import 'quill/dist/quill.core.css'
-import 'quill/dist/quill.snow.css'
-import 'quill/dist/quill.bubble.css'
-
-Vue.use(VueQuillEditor, /* { default global options } */)
+// import '../static/summernote/summernote-bs4.css';
+// import '../static/summernote/summernote-bs4.min';
+import 'summernote'
+import 'summernote/dist/lang/summernote-zh-CN'
+import 'summernote/dist/summernote.css'
 
 
 Vue.prototype._ = LYJ;
