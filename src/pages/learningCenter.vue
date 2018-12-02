@@ -249,7 +249,7 @@
     left: 0;
     width: 60px;
     color: #fff;
-    z-index: 1;
+    z-index: 1000;
   }
 
   .classroom .content-container .aside-detail {

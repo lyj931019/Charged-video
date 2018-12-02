@@ -21,23 +21,43 @@
           Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque cum cumque eligendi facere impedit in ipsam labore laboriosam laudantium nam natus odit officiis, quo quos rerum saepe totam! Libero, perferendis.
         </div>
         <div class="submit">
-          <div id="summernote"></div>
+          <!--<div id="summernote"></div>-->
+          <vue-ueditor-wrap v-model="msg" :config="myConfig"></vue-ueditor-wrap>
+
           <div class="submit-btn">
             <button class="btn btn-info" type="button"  @click="summernoteSubmit">submit</button>
           </div>
-
         </div>
+
       </div>
     </div>
+
     <!-- tips -->
   </div>
 </template>
 
 <script>
+  import VueUeditorWrap from 'vue-ueditor-wrap'
   export default {
     name:'homework',
+    components: {
+      VueUeditorWrap
+    },
     data(){
       return {
+        msg:'',
+        myConfig: {
+          // 编辑器不自动被内容撑高
+          autoHeightEnabled: false,
+          // 初始容器高度
+          initialFrameHeight: 140,
+          // 初始容器宽度
+          initialFrameWidth: '100%',
+          // 上传文件接口（这个地址是我为了方便各位体验文件上传功能搭建的临时接口，请勿在生产环境使用！！！）
+          serverUrl: 'http://35.201.165.105:8000/controller.php',
+          // UEditor 资源文件存放的根目录，如果你使用的是 vue-cli 3.x，设置为'/UEditor/'（参考下方的常见问题2）
+          UEDITOR_HOME_URL: '/static/UEditor/'
+        }
 //        lesson:null,
 //        audioUrl:'',
 //        classRoomActive: false,
@@ -59,16 +79,16 @@
 
     },
     mounted(){
-      console.log($('#summernote'));
-      $('#summernote').summernote({
-        height: 200,
-        minHeight: 200,
-        maxHeight: 200,
-//        focus: true,
-        disableDragAndDrop: true,
-        shortcuts: false,
-        popover: {}
-      });
+//      console.log($('#summernote'));
+//      $('#summernote').summernote({
+//        height: 200,
+//        minHeight: 200,
+//        maxHeight: 200,
+////        focus: true,
+//        disableDragAndDrop: true,
+//        shortcuts: false,
+//        popover: {}
+//      });
 
 
     },
@@ -159,14 +179,14 @@
   }
   .lesson-topics .lesson-content .content{
     padding: 4px 16px;
-    height: 438px;
+    height: 388px;
     overflow-y: auto;
     overflow-x: hidden;
 
   }
   .submit{
     width: 100%;
-    height: 300px;
+    height: 346px;
     position: absolute;
     bottom: 0;
     left: 0;

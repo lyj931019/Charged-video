@@ -19,9 +19,13 @@ import '../static/global.css'
 
 // import '../static/summernote/summernote-bs4.css';
 // import '../static/summernote/summernote-bs4.min';
-import 'summernote'
-import 'summernote/dist/lang/summernote-zh-CN'
-import 'summernote/dist/summernote.css'
+// import 'summernote'
+// import 'summernote/dist/lang/summernote-zh-CN'
+// import 'summernote/dist/summernote.css'
+//
+
+
+// import VueUeditorWrap from 'vue-ueditor-wrap'
 
 
 Vue.prototype._ = LYJ;
