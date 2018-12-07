@@ -2,71 +2,139 @@
   <div>
     <div class="lesson-topic">
       <div class="topic-divider">
-        Submit Your Assignment <span  class="close" aria-hidden="true">&times;</span>
+        Submit Your Assignment
+        <!--<span  class="close" aria-hidden="true">&times;</span>-->
       </div>
       <div class="lesson-content">
         <table></table>
         <!--<div v-html="lesson.abstract"></div>-->
-        <div class="title">
+        <div class="title" v-if="homework">
           <span class="pen">
             <img src="../assets/img/pen_w.png" alt="">
           </span>
-          Assignment 10: Co-Writh with/as an Artist
+          {{homework.title}}
         </div>
-        <div class="content">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque cum cumque eligendi facere impedit in ipsam labore laboriosam laudantium nam natus odit officiis, quo quos rerum saepe totam! Libero, perferendis.
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque cum cumque eligendi facere impedit in ipsam labore laboriosam laudantium nam natus odit officiis, quo quos rerum saepe totam! Libero, perferendis.
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque cum cumque eligendi facere impedit in ipsam labore laboriosam laudantium nam natus odit officiis, quo quos rerum saepe totam! Libero, perferendis.
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque cum cumque eligendi facere impedit in ipsam labore laboriosam laudantium nam natus odit officiis, quo quos rerum saepe totam! Libero, perferendis.
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque cum cumque eligendi facere impedit in ipsam labore laboriosam laudantium nam natus odit officiis, quo quos rerum saepe totam! Libero, perferendis.
-        </div>
-        <div class="submit">
-          <!--<div id="summernote"></div>-->
-          <vue-ueditor-wrap v-model="msg" :config="myConfig"></vue-ueditor-wrap>
+        <template v-if="homework">
+          <div class="content" v-html="homework.content"></div>
+        </template>
+
+        <div class="submit" v-if="!done">
+          <div id="summernote"></div>
+          <!--<vue-ueditor-wrap v-model="msg" :config="myConfig"></vue-ueditor-wrap>-->
 
           <div class="submit-btn">
-            <button class="btn btn-info" type="button"  @click="summernoteSubmit">submit</button>
+            <button class="btn btn-info" type="button" @click="summernoteSubmit">submit</button>
           </div>
         </div>
-
+        <div class="task" v-if="done && submits">
+          <div class="task-container">
+            <div class="task-date">
+              提交时间:8012-21-90
+            </div>
+            <div class="task-content" v-html="submits.submit_content"></div>
+          </div>
+        </div>
       </div>
-    </div>
 
-    <!-- tips -->
+      <!-- tips -->
+    </div>
   </div>
 </template>
 
 <script>
-  import VueUeditorWrap from 'vue-ueditor-wrap'
+  //  import VueUeditorWrap from 'vue-ueditor-wrap'
+  import {mapGetters} from 'vuex'
+
   export default {
-    name:'homework',
-    components: {
-      VueUeditorWrap
-    },
-    data(){
+    name: 'homework',
+//    components: {
+//      VueUeditorWrap
+//    },
+    data() {
       return {
-        msg:'',
-        myConfig: {
-          // 编辑器不自动被内容撑高
-          autoHeightEnabled: false,
-          // 初始容器高度
-          initialFrameHeight: 140,
-          // 初始容器宽度
-          initialFrameWidth: '100%',
-          // 上传文件接口（这个地址是我为了方便各位体验文件上传功能搭建的临时接口，请勿在生产环境使用！！！）
-          serverUrl: 'http://35.201.165.105:8000/controller.php',
-          // UEditor 资源文件存放的根目录，如果你使用的是 vue-cli 3.x，设置为'/UEditor/'（参考下方的常见问题2）
-          UEDITOR_HOME_URL: '/static/UEditor/'
-        }
-//        lesson:null,
-//        audioUrl:'',
-//        classRoomActive: false,
+        msg: '',
+        homework: null,
+        done: false,
+        submits: null,
       }
     },
-    methods:{
-      summernoteSubmit(){
+    computed: {
+      // 使用对象展开运算符将 getter 混入 computed 对象中
+      ...mapGetters([
+        'getIsLogin',
+        'getUserInfo'
+      ])
+    },
+    methods: {
+      summernoteSubmit() {
         let content = $('#summernote').summernote('code');
         console.log(content);
+        return content;
+      },
+      getHomework(id) {
+        let _this = this;
+        this.$http({
+          method: 'get',
+          url: '/tasks/' + id,
+        }).then(res => {
+          _this.homework = res.data.data;
+          _this.classRoomActive = false;
+          _this.getSubmit(id);
+        });
+      },
+      getSubmit(id) {
+        let _this = this;
+        this.$http({
+          method: 'get',
+          url: '/tasks/submits',
+          params: {
+            task_id: id,
+            user_id: _this.getUserInfo.user_id
+          }
+        }).then(res => {
+          if (res.data.state.code == 0) {
+            $('#summernote').summernote('destroy');
+            setTimeout(() => {
+              _this.done = true;
+              _this.submits = res.data.data;
+            }, 100);
+
+          } else {
+            _this.done = false;
+            _this.submits = null;
+            setTimeout(() => {
+              $('#summernote').summernote({
+                height: 240,
+                minHeight: 240,
+                maxHeight: 240,
+                disableDragAndDrop: true,
+                shortcuts: false,
+                popover: {}
+              });
+            }, 100)
+          }
+        });
+      },
+      submitHomework() {
+        let _this = this;
+        this.$http({
+          method: 'post',
+          url: '/courses/buy',
+          data: {
+            user_id: _this.getUserInfo.user_id,
+            task_id: _this.homework.id,
+            submit_content: _this.summernoteSubmit()
+          },
+          transformRequest: [function (data) {
+            let ret = ''
+            for (let it in data) {
+              ret += encodeURIComponent(it) + '=' + encodeURIComponent(data[it]) + '&'
+            }
+            return ret
+          }],
+        }).then(res => {
+
+        })
       }
     },
     beforeMount() {
@@ -78,21 +146,21 @@
 //      }
 
     },
-    mounted(){
-//      console.log($('#summernote'));
-//      $('#summernote').summernote({
-//        height: 200,
-//        minHeight: 200,
-//        maxHeight: 200,
-////        focus: true,
-//        disableDragAndDrop: true,
-//        shortcuts: false,
-//        popover: {}
-//      });
+    mounted() {
+      $('#summernote').summernote({
+        height: 240,
+        minHeight: 240,
+        maxHeight: 240,
+        disableDragAndDrop: true,
+        shortcuts: false,
+        popover: {}
+      });
 
-
+      let id = this.$route.params.id;
+      this.getHomework(id);
     },
-    beforeRouteUpdate (to, from, next) {
+    beforeRouteUpdate(to, from, next) {
+      this.getHomework(to.params.id);
       next();
     },
   }
@@ -134,9 +202,11 @@
     border-bottom: 1px solid #aaa;
 
   }
-  .lesson-topics .topic-divider .close{
+
+  .lesson-topics .topic-divider .close {
     float: right;
   }
+
   .lesson-topics {
     list-style: none;
     line-height: 160%;
@@ -156,12 +226,13 @@
     max-width: 760px;
   }
 
-  .lesson-topics .lesson-content div.title{
+  .lesson-topics .lesson-content div.title {
     font-size: 22px;
     font-weight: bold;
     margin: 16px 0 4px;
   }
-  .lesson-content .title .pen{
+
+  .lesson-content .title .pen {
     display: inline-block;
     border: 1px solid #ccc;
     border-radius: 50%;
@@ -174,23 +245,26 @@
     box-sizing: content-box;
     line-height: 24px;
   }
-  .lesson-content .title .pen img{
+
+  .lesson-content .title .pen img {
     width: 24px;
   }
-  .lesson-topics .lesson-content .content{
+
+  .lesson-topics .lesson-content .content {
     padding: 4px 16px;
-    height: 388px;
+    height: 400px;
     overflow-y: auto;
     overflow-x: hidden;
 
   }
-  .submit{
+
+  .submit, .task {
     width: 100%;
-    height: 346px;
-    position: absolute;
+    height: 338px;
     bottom: 0;
     left: 0;
   }
+
   @media (min-width: 1280px) {
     .lesson-topics .lesson-topic {
       margin: 0px 60px 20px auto;
@@ -202,6 +276,7 @@
       margin: 0px auto 20px 700px;
     }
   }
+
   @media (min-width: 1690px) {
     .lesson-topics .lesson-topic {
       margin: 0px auto 20px 860px;
@@ -224,14 +299,30 @@
     position: relative;
   }
 
-
   .lesson-topics .lesson-content > div {
     /*margin: 40px 0;*/
   }
 
-
-  .submit-btn{
+  .submit-btn {
     padding: 4px 20px;
     text-align: right;
+  }
+
+  .task {
+    border-top: 1px solid #ccc;
+    padding: 4px 20px;
+  }
+
+  .task-container .task-date {
+    border-bottom: 1px solid #ccc;
+    font-size: 1rem;
+    color: #aaaaaa;
+  }
+
+  .task-container > div.task-cotent {
+    height: 100px;
+    overflow-y: auto;
+    overflow-x: hidden;
+
   }
 </style>

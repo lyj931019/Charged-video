@@ -28,7 +28,7 @@ export default [
         component:LearningContent
       },
       {
-        path:"homework",
+        path:"homework/:id",
         name: 'homework',
         component:Homework
       },

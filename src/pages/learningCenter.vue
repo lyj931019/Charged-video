@@ -67,13 +67,13 @@
                 To-Do
               </h2>
               <template v-for="(homework,index) in homeworkList">
-                <div class="homework-item" @click="getHomework">
+                <div class="homework-item" @click="getHomework(homework.id)">
                   <span class="pen">
                     <img src="../assets/img/pen.png" alt="">
                   </span>
-                    AAAAAAAAA
+                    {{homework.title}}
                     <span class="data">
-                    DUE NOV 11
+                    {{homework.status==1?'Submitted':(homework.status==2?'Reviewed':'')}}
                   </span>
                 </div>
               </template>
@@ -140,6 +140,7 @@
           url: '/courses/' + num,
         }).then(res => {
           _this.courses = res.data.data;
+          _this.getUserHomeworkList();
           _this.getLesson(_this.courses.lessons[0].id);
         });
       },
@@ -147,9 +148,10 @@
         let _this = this;
         this.$http({
           method: 'get',
-          url: '/courses/tasks',
+          url: '/tasks/user',
           params:{
-            user_id:_this.getUserInfo.user_id
+            user_id:_this.getUserInfo.user_id,
+            course_id:_this.courses.id
           }
         }).then(res => {
           _this.homeworkList = res.data.data;
@@ -163,9 +165,9 @@
           this.classRoomActive = !this.classRoomActive;
         }
       },
-      getHomework() {
+      getHomework(id) {
         let w = document.body.clientWidth;
-        this.$router.push({ name: 'homework'});
+        this.$router.push({ name: 'homework', params: { id:id}});
         if (w < 1280){
           this.classRoomActive = !this.classRoomActive;
         }
@@ -199,7 +201,7 @@
     beforeMount() {
       if (localStorage.getItem('isLogin')) {
         this.getUserCourses();
-        this.getUserHomeworkList();
+
       } else {
         this.$router.replace({name: 'login'});
       }

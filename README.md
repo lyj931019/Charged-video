@@ -96,3 +96,5 @@ https://www.processon.com/view/link/5badfb87e4b0d4d65c1b0025
 
 API
 http://dev2.people71.com/github/educate/advanced/backend/web/
+http://192.168.1.12/github/educate/advanced/api/web/swagger/
+http://47.244.63.58/educate/advanced/api/web
