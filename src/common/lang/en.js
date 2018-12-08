@@ -133,6 +133,15 @@ module.exports = {
     pwd_old:'Please enter the old password',
     email:'please input your email',
   },
+  task:{
+    title:'Submit Your Assignment',
+    yourAnswer:'Your answer',
+    teacherComment:'Teacher comment',
+    noContent:'No content',
+    fileName:'File name',
+    audioName:'Audio name',
+    audioErr:'The uploaded audio file format is incorrect. Please re-upload (support mp3, wav format).',
+  },
   brands: {
     nike: 'Nike',
     adi: 'Adidas',

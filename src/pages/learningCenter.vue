@@ -92,7 +92,7 @@
   </div>
 </template>
 <script>
-  import {mapGetters} from 'vuex'
+  import {mapGetters,mapState,mapMutations} from 'vuex'
   import Avatar from '../components/avatar.vue'
 
   export default {
@@ -112,6 +112,9 @@
       }
     },
     methods: {
+      ...mapMutations([
+        'changeHomeworkList'
+      ]),
       goback() {
         this.$router.replace({name: 'userCenter'});
       },
@@ -210,8 +213,19 @@
       ...mapGetters([
         'getIsLogin',
         'getUserInfo',
-        'getLearningNum'
+        'getLearningNum',
+      ]),
+      ...mapState([
+        'homeworkListChange'
       ])
+    },
+    watch:{
+      homeworkListChange(val) {
+        if(val){
+          this.getUserHomeworkList();
+          this.changeHomeworkList(false);
+        }
+      }
     }
   }
 </script>
@@ -240,7 +254,7 @@
   .classroom .content-container {
     margin-top: 60px;
     width: 100%;
-    overflow: hidden;
+    overflow-y: auto;
   }
 
   .classroom .content-container .aside-container {

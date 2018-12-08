@@ -17,6 +17,8 @@ const state = {
     favorites:[],
     buy:[],
     try:[]
-  }
+  },
+  LOADING: false,
+  homeworkListChange:false,
 }
 export default state;

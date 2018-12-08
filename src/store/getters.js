@@ -10,5 +10,11 @@ export default {
   },
   getUserCourses: state => {
     return state.userCourse;
+  },
+  getLoading: state => {
+    return state.LOADING;
+  },
+  getHomeworkListChange: state => {
+    return state.userCourse;
   }
 }

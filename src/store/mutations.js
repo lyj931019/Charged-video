@@ -19,6 +19,15 @@ const muntation = {
   },
   changeUserCourse(state,type,id){
     state.userCourse[type].push(id);
+  },
+  showLoading(state){
+    state.LOADING = true;
+  },
+  hideLoading (state) {
+    state.LOADING = false;
+  },
+  changeHomeworkList(state,isChange){
+    state.homeworkListChange = isChange;
   }
 };
 export default muntation;

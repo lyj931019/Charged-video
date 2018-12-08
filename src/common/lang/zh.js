@@ -133,6 +133,15 @@ module.exports = {
     pwd_old: '请输入原密码',
     email:'请输入邮箱',
   },
+  task:{
+    title:'提交作业',
+    yourAnswer:'你的回答',
+    teacherComment:'教师评语',
+    noContent:'无内容',
+    fileName:'附件名称',
+    audioName:'音频名称',
+    audioErr:'上传的音频文件格式不正确，请重新上传(支持mp3，wav格式)。',
+  },
   brands: {
     nike: '耐克',
     adi: '阿迪达斯',

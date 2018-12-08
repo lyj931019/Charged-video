@@ -2,7 +2,7 @@
   <div>
     <div class="lesson-topic">
       <div class="topic-divider">
-        Submit Your Assignment
+        {{$t('task.title')}}
         <!--<span  class="close" aria-hidden="true">&times;</span>-->
       </div>
       <div class="lesson-content">
@@ -23,53 +23,204 @@
           <!--<vue-ueditor-wrap v-model="msg" :config="myConfig"></vue-ueditor-wrap>-->
 
           <div class="submit-btn">
-            <button class="btn btn-info" type="button" @click="summernoteSubmit">submit</button>
+            <span class="file-name" v-if="audioName">
+              <b>{{$t('task.audioName')}}</b>:{{audioName}}
+            </span>
+            <b v-if="audioName && fileName" style="margin: 0px 1rem">|</b>
+            <span class="file-name" v-if="fileName">
+              <b>{{$t('task.fileName')}}</b>:{{fileName}}
+            </span>
+            <label for="audio_file">
+              <span class="btn btn-primary">
+                <img :src="'./static/img/audio.png'" alt="" class="submit-btn-img">
+              </span>
+              <input type="file" id="audio_file" style="display: none;" name="file" accept="audio/*" @change="chooseAudio($event)">
+            </label>
+            <label for="file">
+              <span class="btn btn-info">
+                <img :src="'./static/img/file.png'" alt="" class="submit-btn-img">
+              </span>
+              <input type="file" id="file" style="display: none;" name="file" @change="chooseFile($event)">
+            </label>
+
+            <button class="btn btn-secondary" type="button" @click="submitHomework">
+              <img :src="'./static/img/submit.png'" alt="" class="submit-btn-img">
+            </button>
+
           </div>
         </div>
         <div class="task" v-if="done && submits">
-          <div class="task-container">
-            <div class="task-date">
-              提交时间:8012-21-90
+          <table></table>
+          <div>
+            <p>
+              {{$t('task.yourAnswer')}}:
+              <span v-if="submits.submitTime">{{submits.submitTime}}</span>
+            </p>
+            <div v-if="submits.submit_content" v-html="submits.submit_content"></div>
+            <div class="task-file" v-if="submits.submit_file||submits.submit_audio">
+              <a :href="submits.submit_audio" v-if="submits.submit_audio">
+                <img :src="'./static/img/audio-c.png'" alt="">
+              </a>
+              <a :href="submits.submit_file" v-if="submits.submit_file">
+                <img :src="'./static/img/file-c.png'" alt="">
+              </a>
             </div>
-            <div class="task-content" v-html="submits.submit_content"></div>
+          </div>
+          <div>
+            <p>
+              {{$t('task.teacherComment')}}:
+              <span v-if="submits.replyTime">{{submits.replyTime}}</span>
+            </p>
+            <div v-if="submits.reply_content" v-html="submits.reply_content"></div>
+            <div style="color:#d81e06;font-weight: bold;font-size: 0.8rem;" v-else>
+              {{$t('task.noContent')}}
+            </div>
+            <div class="task-file" v-if="submits.reply_file||submits.reply_audio">
+              <a :href="submits.reply_audio" v-if="submits.reply_audio">
+                <img :src="'./static/img/audio-c.png'" alt="">
+              </a>
+              <a :href="submits.reply_file" v-if="submits.reply_file">
+                <img :src="'./static/img/file-c.png'" alt="">
+              </a>
+            </div>
           </div>
         </div>
       </div>
 
       <!-- tips -->
     </div>
+    <div class="modal fade" id="submit_task" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="submit_task_title">
+              <Icon :type="icon_type"></Icon>
+              {{tips}}
+            </h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <!--<div class="modal-footer">-->
+          <!--<button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>-->
+          <!--<button type="button" class="btn btn-primary" @click="deleteFavorites(deleteCourse.id)">确定</button>-->
+          <!--</div>-->
+        </div>
+      </div>
+    </div>
+    <div class="modal fade" id="audio_err" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="audio_err_title">
+              <Icon :type="'fail'"></Icon>
+              {{$t('common.fail')}}
+            </h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p>{{$t('task.audioErr')}}</p>
+          </div>
+          <!--<div class="modal-footer">-->
+          <!--<button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>-->
+          <!--<button type="button" class="btn btn-primary" @click="deleteFavorites(deleteCourse.id)">确定</button>-->
+          <!--</div>-->
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
   //  import VueUeditorWrap from 'vue-ueditor-wrap'
-  import {mapGetters} from 'vuex'
+  import {mapGetters, mapMutations} from 'vuex'
+  import Icon from '../components/icon.vue'
 
   export default {
     name: 'homework',
-//    components: {
+    components: {
 //      VueUeditorWrap
-//    },
+      Icon
+    },
     data() {
       return {
         msg: '',
         homework: null,
         done: false,
         submits: null,
+        icon_type: 'success',
+        tips: '',
+        fileUrl: '',
+        audioUrl: '',
+        isSuccess:true,
+        fileName:null,
+        audioName:null,
+        typeErr:false,
       }
     },
     computed: {
       // 使用对象展开运算符将 getter 混入 computed 对象中
       ...mapGetters([
         'getIsLogin',
-        'getUserInfo'
+        'getUserInfo',
       ])
     },
     methods: {
+      ...mapMutations([
+        'changeHomeworkList',
+        'showLoading',
+        'hideLoading'
+      ]),
+      chooseFile(event){
+        this.fileName = event.target.files[0].name;
+
+      },
+      chooseAudio(event){
+        this.audioName = event.target.files[0].name;
+      },
       summernoteSubmit() {
         let content = $('#summernote').summernote('code');
         console.log(content);
         return content;
+      },
+      getTaskAllInfo(id) {
+        let _this = this;
+        this.$http({
+          method: 'get',
+          url: '/tasks/user/' + id + '?user_id=' + _this.getUserInfo.user_id,
+        }).then(res => {
+          if (res.data.state.code == 0) {
+            _this.homework = res.data.data.task;
+            _this.fileUrl = '';
+            _this.audioUrl = '';
+            if (res.data.data.submit) {
+              $('#summernote').summernote('destroy');
+              setTimeout(() => {
+                _this.done = true;
+                _this.submits = res.data.data;
+              }, 100);
+            } else {
+              _this.submits = null;
+              setTimeout(() => {
+                $('#summernote').summernote({
+                  height: 240,
+                  minHeight: 240,
+                  maxHeight: 240,
+                  disableDragAndDrop: true,
+                  shortcuts: false,
+                  popover: {}
+                });
+              }, 100);
+            }
+          }
+
+          _this.classRoomActive = false;
+          _this.getSubmit(id);
+        });
       },
       getHomework(id) {
         let _this = this;
@@ -115,16 +266,52 @@
           }
         });
       },
-      submitHomework() {
+      showFail(){
+        this.tips = this.$t('common.fail');
+        this.icon_type = 'fail';
+        if(!this.typeErr){
+          $('#submit_task').modal('show');
+        }
+        this.hideLoading();
+      },
+      async submitHomework() {
         let _this = this;
-        this.$http({
+        _this.isSuccess = true;
+        _this.typeErr = false;
+        let file_dom = document.getElementById('file');
+        let aduio_dom = document.getElementById('audio_file');
+        _this.showLoading();
+        if (aduio_dom.files[0]) {
+          await _this.uploadFile('audio',aduio_dom.files[0]);
+        }
+        if(!_this.isSuccess){
+          _this.showFail();
+          return false;
+        }
+        if (file_dom.files[0]) {
+         await _this.uploadFile('file',file_dom.files[0]);
+        }
+        if(!_this.isSuccess){
+          _this.showFail();
+          return false;
+        }
+
+        let data = {
+          user_id: _this.getUserInfo.user_id,
+          task_id: _this.homework.id,
+          submit_content: _this.summernoteSubmit()
+        };
+        if (_this.fileUrl.length > 0) {
+          data['submit_file'] = _this.fileUrl;
+        }
+        if (_this.audioUrl.length > 0) {
+          data['submit_audio'] = _this.audioUrl;
+        }
+        console.log('loading');
+        await this.$http({
           method: 'post',
-          url: '/courses/buy',
-          data: {
-            user_id: _this.getUserInfo.user_id,
-            task_id: _this.homework.id,
-            submit_content: _this.summernoteSubmit()
-          },
+          url: '/tasks/submits',
+          data: data,
           transformRequest: [function (data) {
             let ret = ''
             for (let it in data) {
@@ -133,17 +320,61 @@
             return ret
           }],
         }).then(res => {
+          if(res.data.state.code == 0){
+            this.tips = this.$t('common.success');
+            this.icon_type = 'success';
+            $('#submit_task').modal('show');
+            _this.changeList();
+            _this.getTaskAllInfo(_this.$route.params.id);
+          }else{
+            _this.showFail();
+          }
+          _this.hideLoading();
+        });
+        return true;
+      },
+      changeList() {
+        this.changeHomeworkList(true)
+      },
+      async uploadFile(type,file) {
+        let _this = this;
+        if(type=='audio'){
+          let AllImgExt=".wav|.mp3|";
+          let extName = file.name.substring(file.name.lastIndexOf(".")).toLowerCase();//（把路径中的所有字母全部转换为小写）
+          if(AllImgExt.indexOf(extName+"|")==-1) {
+            _this.typeErr = true;
+            $('#audio_err').modal('show');
+            _this.isSuccess = false;
+            return false;
+          }
+        }
+        let param = new FormData(); //创建form对象
+        param.append('file', file);
+        let config = {
+          headers: {'Content-Type': 'multipart/form-data'}
+        }; //添加请求头
 
-        })
+
+        await this.$http.post('upload/file', param, config).then(res => {
+          if(res.data.state.code == 0){
+            if(type=='file'){
+              _this.fileUrl = res.data.data;
+            }else{
+              _this.audioUrl = res.data.data;
+            }
+            _this.isSuccess = true;
+          }else{
+            _this.isSuccess = false;
+          }
+          return true;
+        },(err)=>{
+          _this.isSuccess = false;
+          return false;
+        });
+        return true;
       }
     },
     beforeMount() {
-//      if (localStorage.getItem('isLogin')) {
-//        let id = this.$route.params.id;
-//        this.getLesson(id);
-//      } else {
-//        this.$router.replace({name: 'login'});
-//      }
 
     },
     mounted() {
@@ -157,10 +388,10 @@
       });
 
       let id = this.$route.params.id;
-      this.getHomework(id);
+      this.getTaskAllInfo(id);
     },
     beforeRouteUpdate(to, from, next) {
-      this.getHomework(to.params.id);
+      this.getTaskAllInfo(to.params.id);
       next();
     },
   }
@@ -252,17 +483,19 @@
 
   .lesson-topics .lesson-content .content {
     padding: 4px 16px;
-    height: 400px;
-    overflow-y: auto;
-    overflow-x: hidden;
+    min-height: 380px;
+    /*overflow-y: auto;*/
+    /*overflow-x: hidden;*/
 
   }
 
   .submit, .task {
     width: 100%;
-    height: 338px;
+    min-height: 358px;
     bottom: 0;
     left: 0;
+    background-color: #e8e8e8;
+    padding: 4px 20px;
   }
 
   @media (min-width: 1280px) {
@@ -304,25 +537,47 @@
   }
 
   .submit-btn {
-    padding: 4px 20px;
+    padding: 4px 0px;
     text-align: right;
+  }
+  .submit-btn>*{
+
+  }
+  .submit-btn-img {
+    width: 20px;
   }
 
   .task {
-    border-top: 1px solid #ccc;
-    padding: 4px 20px;
   }
 
-  .task-container .task-date {
-    border-bottom: 1px solid #ccc;
+  .task > div {
+
+    margin: 24px 0;
+  }
+
+  .task > div > p:nth-child(1) {
     font-size: 1rem;
-    color: #aaaaaa;
+    color: #000;
+    margin-bottom: 0.1rem;
+    line-height: 1rem;
+    font-weight: bold;
   }
 
-  .task-container > div.task-cotent {
-    height: 100px;
-    overflow-y: auto;
-    overflow-x: hidden;
-
+  .task > div > div {
+    min-height: 120px;
+    padding: 6px 20px;
+    background-color: #fff;
+  }
+  .task > div > div.task-file{
+    text-align: right;
+    min-height: 24px;
+  }
+  .task > div > div.task-file img{
+    width: 24px;
+  }
+  .file-name{
+    font-size: 1rem;
+    display: inline-block;
+    max-width: 35%;
   }
 </style>

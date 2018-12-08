@@ -3,22 +3,29 @@
     <!--<MyHeader/>-->
     <!--<keep-alive>-->
       <router-view/>
+    <Loading v-if="LOADING"/>
     <!--</keep-alive>-->
     <!--<MyFooter/>-->
   </div>
 </template>
 
 <script>
-  import { mapMutations } from 'vuex'
+  import { mapMutations,mapState } from 'vuex'
+  import Loading from '@/common/loading.vue'
   import Components from '@/components/'
   export default {
     name: 'App',
-    components: Components,
+    components: {...Components,Loading},
     methods: {
       ...mapMutations([
         'changeLoginStatus', // 将 `this.increment()` 映射为 `this.$store.commit('increment')`
         'changeUserInfo' // 将 `this.incrementBy(amount)` 映射为 `this.$store.commit('incrementBy', amount)`
       ]),
+    },
+    computed:{
+      ...mapState([
+        'LOADING'
+      ])
     },
     beforeCreate(){
       let user_id = localStorage.getItem('user_id');
