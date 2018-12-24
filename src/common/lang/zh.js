@@ -52,7 +52,7 @@ module.exports = {
     syllabus: '教学大纲',
     learningRequirements: '学习要求',
     teacherProfile: '教师简介',
-    buyCourse: '购买课程',
+    buyCourse: '购买',
     tryCourse: '试用课程',
     favoritesCourse: '加入收藏',
     prerequisites: '先决条件',

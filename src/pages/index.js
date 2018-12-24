@@ -13,10 +13,12 @@ import Pay from './pay.vue'
 
 import ListOld from './listOld.vue'
 
+import Home from './home.vue'
+
 
 
 
 export default {
-  Index,List,Detail,LearningCenter,UserCourse,UserCenter,Login,About,Register,Pay,ListOld
+  Index,List,Detail,LearningCenter,UserCourse,UserCenter,Login,About,Register,Pay,ListOld,Home
 
 }

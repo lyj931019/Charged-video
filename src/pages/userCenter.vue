@@ -68,6 +68,7 @@
                     <a href="#" class="nav-link" @click.prevent="goToStudyPage(item.course.num)">
                       {{item.course.name}}
                       <span class="try" v-if="item.try">({{$t('userCenter.tryCourse')}})</span>
+                      <span style="color: #ee243c">({{item.used_at | formatDate}})</span>
                     </a>
                     <router-link class="delete" :to="{ name: 'pay',params: {num:item.course.num}}">
                       <img v-if="item.try" src="../assets/img/buy.png" alt="">
@@ -257,9 +258,16 @@
   import {mapGetters} from 'vuex'
   import Components from '../components/index'
   import { mapMutations } from 'vuex'
+  import {formatDate} from '../common/date'
   export default {
     name: 'userCenter',
     components: {...Components,Icon},
+    filters:{
+      formatDate(time){
+        let date = new Date(time);
+        return formatDate(date,'yyyy-MM-dd');
+      }
+    },
     data() {
       return {
         lessonList: null,

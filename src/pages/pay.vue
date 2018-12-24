@@ -6,7 +6,7 @@
         <div class="row">
           <div class="col-12 col-md-8 p-2" v-if="courses">
             <div class="section">
-              <p class="course-tips">{{$t('pay.preparing')}}</p>
+              <p class="course-tips">{{$t('pay.preparing')}}&nbsp;<span style="color:#ee243c;">({{courses.buy_day}}&nbsp;{{$t('detail.days')}})</span></p>
               <h2 class="course-title">{{courses.name}}</h2>
               <p class="course-time">Fall Term Starts September 24,2018/Duration,12 Weeks</p>
             </div>

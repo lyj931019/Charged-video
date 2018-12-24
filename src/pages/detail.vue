@@ -65,7 +65,7 @@
                   <div class="nav-scroll" :class="{active:windowScrollTop>=lessonH && windowScrollTop<requireH}" @click="gotoSection(lessonH+1)">{{$t('detail.syllabus')}}</div>
                   <div class="nav-scroll" :class="{active:windowScrollTop>=requireH && windowScrollTop<authorH}" @click="gotoSection(requireH+1)">{{$t('detail.learningRequirements')}}</div>
                   <div class="nav-scroll" :class="{active:windowScrollTop>=authorH && windowScrollTop<questionH}" @click="gotoSection(authorH+1)">{{$t('detail.teacherProfile')}}</div>
-                  <div class="buy" @click="buyCourse" v-if="coursesHash!=2">{{$t('detail.buyCourse')}}</div>
+                  <div class="buy" @click="buyCourse" v-if="coursesHash!=2">{{$t('detail.buyCourse')}}&nbsp;<span style="font-size: 1.1rem;">({{courses.buy_day}}&nbsp;{{$t('detail.days')}})</span>  </div>
                   <div class="buy"  v-else>{{$t('detail.bought')}}</div>
                   <div class="try" @click="tryCourse" v-if="courses && coursesHash==0 && courses.try  && courses.try_day>0">
                     {{$t('detail.tryCourse')}}
@@ -233,6 +233,7 @@
     </div>
 
     <MyFooter/>
+    <div class="container mb-lg-0 mb-5"></div>
     <div class="d-lg-none course-footer">
       <!--<a href="#" class="box">{{$t('header.userCenter')}}</a>-->
       <!--<a href="#" class="box" @click.prevent="tryCourse">{{$t('detail.tryCourse')}}</a>-->
@@ -256,9 +257,14 @@
         </i>
         <div>Text us</div>
       </a>
-      <a href="#" class="box" @click.prevent="buyCourse">
+      <a href="#" class="box footer-buy-btn" @click.prevent="buyCourse" v-if="coursesHash!=2">
         <div>
-          {{$t('detail.buyCourse')}}
+          {{$t('detail.buyCourse')}}&nbsp;<span style="font-size: 0.8rem;">({{courses.buy_day}}&nbsp;{{$t('detail.days')}})</span>
+        </div>
+      </a>
+      <a href="javascript:void(0);" class="box footer-buy-btn"  v-else>
+        <div>
+          {{$t('detail.bought')}}
         </div>
       </a>
     </div>
@@ -809,12 +815,16 @@
     font-size: 1.13em;
     font-weight: bold;
     line-height: 1.5rem;
-    padding: 1.8rem;
+    padding: 1.8rem 1rem;
     height: 100%;
   }
   .course-footer a.box:hover{
     text-decoration: none;
     background-color: #eff1f3;
+  }
+  .course-footer a.box.footer-buy-btn:hover{
+    text-decoration: none;
+    background-color: #ed2024;
   }
   .course-footer a.box:first-child{
     width: 24%;

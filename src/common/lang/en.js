@@ -52,7 +52,7 @@ module.exports = {
     syllabus:'Syllabus',
     learningRequirements:'Requirements',
     teacherProfile:'Teacher Profile',
-    buyCourse:'Buy Course',
+    buyCourse:'Buy',
     tryCourse:'Try the course',
     favoritesCourse:'Add to favorites',
     prerequisites:'Prerequisites',

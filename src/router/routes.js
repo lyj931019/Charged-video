@@ -5,7 +5,7 @@ export default [
   {
     path: '/',
     name: 'index',
-    component: Pages.Index
+    component: Pages.Home
   },
   {
     path: '/list/:type',
