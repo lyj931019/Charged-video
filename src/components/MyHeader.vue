@@ -454,8 +454,7 @@ Get a decision within 2 weeks</span>
 </template>
 
 <script>
-  import {mapGetters} from 'vuex'
-  import {mapMutations} from 'vuex'
+  import {mapMutations,mapGetters} from 'vuex'
   import Avatar from './avatar.vue'
 
   export default {

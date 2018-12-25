@@ -16,5 +16,8 @@ export default {
   },
   getHomeworkListChange: state => {
     return state.userCourse;
+  },
+  getHomepage: state => {
+    return state.homepage;
   }
 }

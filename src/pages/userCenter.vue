@@ -264,7 +264,7 @@
     components: {...Components,Icon},
     filters:{
       formatDate(time){
-        let date = new Date(time);
+        let date = new Date(time*1000);
         return formatDate(date,'yyyy-MM-dd');
       }
     },

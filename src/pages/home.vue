@@ -4,13 +4,14 @@
     <div class="home-body" v-if="homepage">
       <div class="banner">
         <img :src="homepage.image" alt="">
-        <div class="container banner-content">
-          <div class="banner-title"></div>
-          <div class="banner-abs"></div>
+        <div class="container banner-content pt-md-5 pt-sm-2 pt-0">
+          <table></table>
+          <div class="banner-title mt-md-5 mt-0 mt-sm-2 pt-md-5 pt-0">{{homepage.title}}</div>
+          <div class="banner-abs">{{homepage.abstract}}</div>
         </div>
 
       </div>
-      <div class="homepage-content">
+      <div class="homepage-content pt-5 pb-5">
         <div class="container">
           <div class="row justify-content-center">
             <div class="col-12" v-html="homepage.content">
@@ -19,14 +20,12 @@
         </div>
 
       </div>
-      <div class="floor">
+      <div class="floor pt-5 pb-5" v-for="(item,index) in homepage.items">
         <div class="container">
           <div class="row">
-            <div class="col-12 col-md-6">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores cum enim iste iusto non, perspiciatis recusandae rerum unde. Aliquam aut beatae corporis culpa dicta dolorum, error facere perferendis sit? Repudiandae.
-            </div>
-            <div class="col-12 col-md-6">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab deserunt ducimus maxime mollitia ut voluptas. Animi at dolorum, ducimus quo sed sequi voluptatum! Amet autem doloremque numquam quas quidem quod.
+            <div class="col-12 col-md-6" v-html="item.content"></div>
+            <div class="col-12 col-md-6 text-center">
+              <img :src="item.image" alt="">
             </div>
           </div>
         </div>
@@ -39,7 +38,7 @@
 <script>
   import Common from '../components/common'
   import Guidance from '../common/guidance.vue'
-
+  import {mapMutations,mapGetters} from 'vuex'
   export default {
     name: 'home',
     components: {...Common, Guidance},
@@ -50,7 +49,10 @@
       }
     },
     methods: {
-      getHomepage() {
+      ...mapMutations([
+        'changeHomepage',
+      ]),
+      getHomepageContent() {
         let _this = this;
         this.$http({
           method: 'get',
@@ -58,13 +60,24 @@
         }).then(res => {
           if (res.data.state.code === 0) {
             _this.homepage = res.data.data;
+            _this.changeHomepage(res.data.data);
             console.log(_this.homepage);
           }
         })
       },
     },
+    computed: {
+      ...mapGetters([
+        'getHomepage',
+      ])
+    },
     created() {
-      this.getHomepage();
+      if(this.getHomepage){
+        this.homepage = this.getHomepage;
+      }else{
+        this.getHomepageContent();
+      }
+
     }
   }
 </script>
@@ -82,6 +95,30 @@
   }
   .banner .banner-content{
     position: absolute;
-    top: 100px;
+    top: 0;
+    left:0;
+    right: 0;
+    margin: auto;
+    color: #ffffff;
+    font-weight: bold;
+    text-align: center;
+  }
+  .banner .banner-content .banner-title{
+    font-size: 3.5rem;
+  }
+  .banner .banner-content .banner-abs{
+    font-size: 1.7rem;
+  }
+  .homepage-content{
+    text-align: center;
+  }
+  .floor:nth-child(odd){
+    background-color: #eee;
+  }
+  .floor:nth-child(even) .row{
+    flex-direction: row-reverse;
+  }
+  .floor img{
+    width: 100%;
   }
 </style>

@@ -65,7 +65,7 @@
                   <div class="nav-scroll" :class="{active:windowScrollTop>=lessonH && windowScrollTop<requireH}" @click="gotoSection(lessonH+1)">{{$t('detail.syllabus')}}</div>
                   <div class="nav-scroll" :class="{active:windowScrollTop>=requireH && windowScrollTop<authorH}" @click="gotoSection(requireH+1)">{{$t('detail.learningRequirements')}}</div>
                   <div class="nav-scroll" :class="{active:windowScrollTop>=authorH && windowScrollTop<questionH}" @click="gotoSection(authorH+1)">{{$t('detail.teacherProfile')}}</div>
-                  <div class="buy" @click="buyCourse" v-if="coursesHash!=2">{{$t('detail.buyCourse')}}&nbsp;<span style="font-size: 1.1rem;">({{courses.buy_day}}&nbsp;{{$t('detail.days')}})</span>  </div>
+                  <div class="buy" @click="buyCourse" v-if="coursesHash!=2 ">{{$t('detail.buyCourse')}}&nbsp;<span style="font-size: 1.1rem;" v-if="courses">({{courses.buy_day}}&nbsp;{{$t('detail.days')}})</span>  </div>
                   <div class="buy"  v-else>{{$t('detail.bought')}}</div>
                   <div class="try" @click="tryCourse" v-if="courses && coursesHash==0 && courses.try  && courses.try_day>0">
                     {{$t('detail.tryCourse')}}
@@ -259,7 +259,7 @@
       </a>
       <a href="#" class="box footer-buy-btn" @click.prevent="buyCourse" v-if="coursesHash!=2">
         <div>
-          {{$t('detail.buyCourse')}}&nbsp;<span style="font-size: 0.8rem;">({{courses.buy_day}}&nbsp;{{$t('detail.days')}})</span>
+          {{$t('detail.buyCourse')}}&nbsp;<span style="font-size: 0.8rem;" v-if="courses">({{courses.buy_day}}&nbsp;{{$t('detail.days')}})</span>
         </div>
       </a>
       <a href="javascript:void(0);" class="box footer-buy-btn"  v-else>

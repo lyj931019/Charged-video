@@ -28,6 +28,9 @@ const muntation = {
   },
   changeHomeworkList(state,isChange){
     state.homeworkListChange = isChange;
+  },
+  changeHomepage(state,homepage){
+    state.homepage = homepage;
   }
 };
 export default muntation;

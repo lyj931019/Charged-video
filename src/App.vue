@@ -1,10 +1,11 @@
 <template>
   <div id="app">
     <!--<MyHeader/>-->
-    <!--<keep-alive>-->
-      <router-view/>
+    <keep-alive>
+      <router-view v-if="$route.meta.keepAlive"></router-view>
+    </keep-alive>
+    <router-view v-if="!$route.meta.keepAlive"></router-view>
     <Loading v-if="LOADING"/>
-    <!--</keep-alive>-->
     <!--<MyFooter/>-->
   </div>
 </template>
