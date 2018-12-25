@@ -423,7 +423,7 @@ Get a decision within 2 weeks</span>
               <a href="#" id="avatarDropDown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
                  role="button" class="drop-nickname">
                 <!--<Avatar :src="getUserInfo.user_avatar"/>-->
-                {{getUserInfo.user_nickname}}dsjaklfs
+                {{getUserInfo.user_nickname}}
               </a>
               <br>
               <div class="dropdown-menu" style="float: right;right: 2px;left: auto" aria-labelledby="avatarDropDown">
