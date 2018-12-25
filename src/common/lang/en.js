@@ -13,6 +13,7 @@ module.exports = {
     admissions:'Admissions',
     allCourses: 'All Courses',
     contact:'Contact / Help',
+    hello:'Hello'
   },
   login:{
     noAccount:'No Account'
@@ -93,7 +94,8 @@ module.exports = {
     taxInformation:'Tax information',
     technicalAssistance:'Technical assistance',
     city:'City',
-    country:'Country'
+    country:'Country',
+    cutoff:'Cutoff'
   },
   learningCenter:{
     lessonList:'Lesson list',

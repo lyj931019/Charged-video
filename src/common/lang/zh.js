@@ -13,6 +13,7 @@ module.exports = {
     admissions:'招生',
     allCourses: '所有课程',
     contact:'联系 / 帮助',
+    hello:'你好'
   },
   login:{
     noAccount:'没有账号'
@@ -93,7 +94,8 @@ module.exports = {
     taxInformation:'税务信息',
     technicalAssistance:'技术援助',
     city:'城市',
-    country:'国家'
+    country:'国家',
+    cutoff:'截止'
   },
   learningCenter:{
     lessonList:'章节列表',

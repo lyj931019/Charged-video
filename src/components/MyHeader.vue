@@ -418,10 +418,12 @@ Get a decision within 2 weeks</span>
             <router-link :to="{ name: 'register'}" v-if="!getIsLogin" class="btn-login ">
               {{$t('header.register')}}
             </router-link>
-            <div v-if="getIsLogin" class="text-center">
+            <div v-if="getIsLogin" class="text-center ">
+              <!--<span class="hello-nickname">{{$t('header.hello')}}&nbsp;,&nbsp;</span>-->
               <a href="#" id="avatarDropDown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-                 role="button">
-                <Avatar :src="getUserInfo.user_avatar"/>
+                 role="button" class="drop-nickname">
+                <!--<Avatar :src="getUserInfo.user_avatar"/>-->
+                {{getUserInfo.user_nickname}}dsjaklfs
               </a>
               <br>
               <div class="dropdown-menu" style="float: right;right: 2px;left: auto" aria-labelledby="avatarDropDown">
@@ -641,7 +643,7 @@ Get a decision within 2 weeks</span>
     line-height: normal;
   }
 
-  @media (min-width: 992px) and (max-width: 1160px) {
+  @media (min-width: 992px) and (max-width: 1260px) {
 
 
     #masthead .btn-apply, #masthead .btn-login {
@@ -654,12 +656,19 @@ Get a decision within 2 weeks</span>
       margin-left: -80px;
     }
   }
-  @media (max-width: 1160px){
+  @media (max-width: 1350px){
     #masthead .navbar-brand img {
       width: 140px;
       margin-right: 5px;
     }
   }
+  @media (max-width: 1080px){
+    #masthead .navbar-brand img {
+      width: 100px;
+      margin-right: 2px;
+    }
+  }
+
   @media (max-width: 991px){
     .scroll #mast-simple.navbar{
       padding: .38rem;
@@ -1072,5 +1081,12 @@ Get a decision within 2 weeks</span>
     }
   }
 
-
+  .drop-nickname,.hello-nickname{
+    font-size: 0.9rem;
+    color: rgba(0, 0, 0, 0.71);
+    font-weight: bold;
+  }
+  .drop-nickname:hover{
+    text-decoration: none;
+  }
 </style>

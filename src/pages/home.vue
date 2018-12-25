@@ -109,9 +109,6 @@
   .banner .banner-content .banner-abs{
     font-size: 1.7rem;
   }
-  .homepage-content{
-    text-align: center;
-  }
   .floor:nth-child(odd){
     background-color: #eee;
   }

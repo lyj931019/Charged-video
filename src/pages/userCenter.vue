@@ -68,7 +68,7 @@
                     <a href="#" class="nav-link" @click.prevent="goToStudyPage(item.course.num)">
                       {{item.course.name}}
                       <span class="try" v-if="item.try">({{$t('userCenter.tryCourse')}})</span>
-                      <span style="color: #ee243c">({{item.used_at | formatDate}})</span>
+                      <span style="color: #ee243c">({{$t('userCenter.cutoff')}}&nbsp;:&nbsp;{{item.used_at | formatDate}})</span>
                     </a>
                     <router-link class="delete" :to="{ name: 'pay',params: {num:item.course.num}}">
                       <img v-if="item.try" src="../assets/img/buy.png" alt="">
