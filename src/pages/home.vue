@@ -61,7 +61,6 @@
           if (res.data.state.code === 0) {
             _this.homepage = res.data.data;
             _this.changeHomepage(res.data.data);
-            console.log(_this.homepage);
           }
         })
       },

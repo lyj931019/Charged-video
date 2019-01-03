@@ -84,7 +84,7 @@ export default [
     name: 'about',
     component: Pages.About,
     meta: {
-      keepAlive: false
+      keepAlive: true
     }
   },
   {
@@ -93,6 +93,14 @@ export default [
     component: Pages.Pay,
     meta: {
       keepAlive: false
+    }
+  },
+  {
+    path: '/methods',
+    name: 'methods',
+    component: Pages.Methods,
+    meta: {
+      keepAlive: true
     }
   }
 ]

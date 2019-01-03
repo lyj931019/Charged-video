@@ -11,243 +11,251 @@
 
         <div class="collapse navbar-collapse " id="navbarTogglerDemo03">
           <ul class="navbar-nav center justify-content-center mask">
-            <li class="nav-item">
+            <li class="nav-item no-mask">
               <a href="#">
-                <span>
-                  {{$t('header.allPrograms')}}
-                </span>
+                <router-link style="color: rgba(0, 0, 0, 0.71);" :to="{ name: 'methods'}" >
+                  {{$t('about.methods')}}
+                </router-link>
                 <span class="line"></span>
-                <div class="header-down sub-nav">
-                  <ul class="sub-nav-group two-col no-margin">
-                    <li class="header">
-                      <h4>
-                        Degrees, Certificates, and Courses by Interest
-                      </h4>
-                    </li>
-                    <li>
-                      <a href="#" itemprop="url">Music Production</a>
-                    </li>
-                    <li>
-                      <a href="#" itemprop="url">Guitar</a>
-                    </li>
-                    <li>
-                      <a href="#">Music Theory, Harmony, and Ear Training</a>
-                    </li>
-                    <li>
-                      <a href="#" itemprop="url">Songwriting</a>
-                    </li>
-                    <li>
-                      <a href="#" itemprop="url">Music Business</a>
-                    </li>
-                    <li>
-                      <a href="#">Voice</a>
-                    </li>
-                    <li>
-                      <a href="#">Piano and Keyboard</a>
-                    </li>
-                    <li>
-                      <a href="#">Arranging</a>
-                    </li>
-                    <li>
-                      <a href="#">Bass</a>
-                    </li>
-                    <li>
-                      <a href="#">Orchestration</a>
-                    </li>
-                    <li>
-                      <a href="#">Drums</a>
-                    </li>
-                    <li>
-                      <a href="#">Music History and Liberal Arts</a>
-                    </li>
-                    <li>
-                      <a href="#" itemprop="url">Music for Film, TV, and Games</a>
-                    </li>
-                    <li>
-                      <a href="#">Improvisation</a>
-                    </li>
-
-                    <li class="footer">
-                      <a href="#">
-                        Compare Our Offerings
-                      </a>
-                    </li>
-                  </ul>
-                </div>
-              </a>
-
-            </li>
-            <li class="nav-item">
-              <a href="#">
-                <span>
-                  {{$t('header.degrees')}}
-                </span>
-                <span class="line"></span>
-                <div class="header-down sub-nav">
-                  <ul class="sub-nav-group">
-                    <li>
-                      <h4>
-                        Undergraduate Degree Program
-                        <span>
-<a href="/apply" target="_blank">Apply</a> for Jan 14 Term Start&nbsp;•&nbsp;Get a decision within 2 weeks
-</span>
-                      </h4>
-                    </li>
-                    <li><a href="#">Overview</a></li>
-                    <li><a href="#">Music Production</a></li>
-                    <li><a href="#">Guitar</a></li>
-                    <li><a href="#">Music Business</a></li>
-                    <li><a href="#">Songwriting</a></li>
-                    <li><a href="#">Interdisciplinary Music Studies (Create Your Own Major)</a>
-                    </li>
-                    <li><a href="#">Songwriting and Producing Music</a>
-                    </li>
-                    <li><a href="#">Electronic Music Production and Sound Design</a>
-                    </li>
-                    <li><a href="#">Music Composition for Film, TV, and Games</a>
-                    </li>
-                    <li><a href="#">Undeclared Option</a></li>
-                  </ul>
-                  <ul class="sub-nav-group">
-                    <li>
-                      <h4>
-                        Graduate Degree Programs
-                        <span>
-<a href="#" target="_blank">Apply</a> for Jan 14 Term Start&nbsp;•&nbsp;Get a decision within 2 weeks
-</span>
-                      </h4>
-                    </li>
-                    <li><a href="#">Overview</a></li>
-                    <li><a href="#">Music Production</a></li>
-                    <li><a href="#">Music Business</a></li>
-                  </ul>
-                  <div class="absolute-drop-footer">
-                    <a href="#" itemprop="url">
-                      Degree Overview
-                    </a>
-                  </div>
-                </div>
               </a>
             </li>
-            <li class="nav-item">
-              <a href="#">
-                <span>
-                  {{$t('header.certificates')}}
-                </span>
-                <span class="line"></span>
-                <div class="header-down sub-nav">
-                  <ul class="sub-nav-group certificates">
-                    <li>
-                      <a href="#" itemprop="url">All Certificates</a>
-                    </li>
-                    <li>
-                      <a href="#">
-                        Certificate Payment Options
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#">
-                        Tuition and Fees for Certificates
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#">
-                        Academic Calendar
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#">
-                        Scholarships
-                      </a>
-                    </li>
-                  </ul>
-                  <ul class="sub-nav-group">
-                    <li>
-                      <div class="drop-info">
-                        <h3>No application required</h3>
-                        <h5>to enroll in a certificate.</h5>
-                        <hr role="separator">
-                        <div class="cert-course-dates">
-                          <i>
-                            <svg class="svg-inline--fa fa-clock fa-w-16" aria-hidden="true" data-prefix="far" data-icon="clock" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm0 448c-110.5 0-200-89.5-200-200S145.5 56 256 56s200 89.5 200 200-89.5 200-200 200zm61.8-104.4l-84.9-61.7c-3.1-2.3-4.9-5.9-4.9-9.7V116c0-6.6 5.4-12 12-12h32c6.6 0 12 5.4 12 12v141.7l66.8 48.6c5.4 3.9 6.5 11.4 2.6 16.8L334.6 349c-3.9 5.3-11.4 6.5-16.8 2.6z"></path></svg><!-- <div class="far fa-clock"></div> -->
-                          </i>
-                          <a href="#" target="blank">
-                            Next Term Starts January 14
-                          </a>
-                        </div>
+            <!--<li class="nav-item">-->
+              <!--<a href="#">-->
+                <!--<span>-->
+                  <!--{{$t('header.allPrograms')}}-->
+                <!--</span>-->
+                <!--<span class="line"></span>-->
+                <!--<div class="header-down sub-nav">-->
+                  <!--<ul class="sub-nav-group two-col no-margin">-->
+                    <!--<li class="header">-->
+                      <!--<h4>-->
+                        <!--Degrees, Certificates, and Courses by Interest-->
+                      <!--</h4>-->
+                    <!--</li>-->
+                    <!--<li>-->
+                      <!--<a href="#" itemprop="url">Music Production</a>-->
+                    <!--</li>-->
+                    <!--<li>-->
+                      <!--<a href="#" itemprop="url">Guitar</a>-->
+                    <!--</li>-->
+                    <!--<li>-->
+                      <!--<a href="#">Music Theory, Harmony, and Ear Training</a>-->
+                    <!--</li>-->
+                    <!--<li>-->
+                      <!--<a href="#" itemprop="url">Songwriting</a>-->
+                    <!--</li>-->
+                    <!--<li>-->
+                      <!--<a href="#" itemprop="url">Music Business</a>-->
+                    <!--</li>-->
+                    <!--<li>-->
+                      <!--<a href="#">Voice</a>-->
+                    <!--</li>-->
+                    <!--<li>-->
+                      <!--<a href="#">Piano and Keyboard</a>-->
+                    <!--</li>-->
+                    <!--<li>-->
+                      <!--<a href="#">Arranging</a>-->
+                    <!--</li>-->
+                    <!--<li>-->
+                      <!--<a href="#">Bass</a>-->
+                    <!--</li>-->
+                    <!--<li>-->
+                      <!--<a href="#">Orchestration</a>-->
+                    <!--</li>-->
+                    <!--<li>-->
+                      <!--<a href="#">Drums</a>-->
+                    <!--</li>-->
+                    <!--<li>-->
+                      <!--<a href="#">Music History and Liberal Arts</a>-->
+                    <!--</li>-->
+                    <!--<li>-->
+                      <!--<a href="#" itemprop="url">Music for Film, TV, and Games</a>-->
+                    <!--</li>-->
+                    <!--<li>-->
+                      <!--<a href="#">Improvisation</a>-->
+                    <!--</li>-->
 
-                      </div>
-                    </li>
-                  </ul>
-                </div>
-              </a>
-            </li>
+                    <!--<li class="footer">-->
+                      <!--<a href="#">-->
+                        <!--Compare Our Offerings-->
+                      <!--</a>-->
+                    <!--</li>-->
+                  <!--</ul>-->
+                <!--</div>-->
+              <!--</a>-->
 
-            <li class="nav-item">
-              <a href="#">
-                <span>
-                  {{$t('header.admissions')}}
-                </span>
-                <span class="line"></span>
-                <div class="header-down sub-nav san">
-                  <ul class="sub-nav-group">
-                    <li>
-                      <h4>
-                        Undergraduate Admissions
-                      </h4>
-                    </li><li><a href="#">  Admissions Requirements</a></li><li><a href="#">  Tuition &amp; Financial Aid</a></li><li><a href="#">  Scholarships</a></li><li><a href="#">  Program Internships</a></li><li><a href="#">  Academic Calendar</a></li><li><a href="#">Degree Completion</a></li><li><a href="#"> Prior Learning Credit</a></li><li><a href="#">  Transfer Credits</a></li><li><a href="#">  Program Policies and Forms</a></li><li><a href="#">  Program FAQs</a></li>
+            <!--</li>-->
+            <!--<li class="nav-item">-->
+              <!--<a href="#">-->
+                <!--<span>-->
+                  <!--{{$t('header.degrees')}}-->
+                <!--</span>-->
+                <!--<span class="line"></span>-->
+                <!--<div class="header-down sub-nav">-->
+                  <!--<ul class="sub-nav-group">-->
+                    <!--<li>-->
+                      <!--<h4>-->
+                        <!--Undergraduate Degree Program-->
+                        <!--<span>-->
+<!--<a href="/apply" target="_blank">Apply</a> for Jan 14 Term Start&nbsp;•&nbsp;Get a decision within 2 weeks-->
+<!--</span>-->
+                      <!--</h4>-->
+                    <!--</li>-->
+                    <!--<li><a href="#">Overview</a></li>-->
+                    <!--<li><a href="#">Music Production</a></li>-->
+                    <!--<li><a href="#">Guitar</a></li>-->
+                    <!--<li><a href="#">Music Business</a></li>-->
+                    <!--<li><a href="#">Songwriting</a></li>-->
+                    <!--<li><a href="#">Interdisciplinary Music Studies (Create Your Own Major)</a>-->
+                    <!--</li>-->
+                    <!--<li><a href="#">Songwriting and Producing Music</a>-->
+                    <!--</li>-->
+                    <!--<li><a href="#">Electronic Music Production and Sound Design</a>-->
+                    <!--</li>-->
+                    <!--<li><a href="#">Music Composition for Film, TV, and Games</a>-->
+                    <!--</li>-->
+                    <!--<li><a href="#">Undeclared Option</a></li>-->
+                  <!--</ul>-->
+                  <!--<ul class="sub-nav-group">-->
+                    <!--<li>-->
+                      <!--<h4>-->
+                        <!--Graduate Degree Programs-->
+                        <!--<span>-->
+<!--<a href="#" target="_blank">Apply</a> for Jan 14 Term Start&nbsp;•&nbsp;Get a decision within 2 weeks-->
+<!--</span>-->
+                      <!--</h4>-->
+                    <!--</li>-->
+                    <!--<li><a href="#">Overview</a></li>-->
+                    <!--<li><a href="#">Music Production</a></li>-->
+                    <!--<li><a href="#">Music Business</a></li>-->
+                  <!--</ul>-->
+                  <!--<div class="absolute-drop-footer">-->
+                    <!--<a href="#" itemprop="url">-->
+                      <!--Degree Overview-->
+                    <!--</a>-->
+                  <!--</div>-->
+                <!--</div>-->
+              <!--</a>-->
+            <!--</li>-->
+            <!--<li class="nav-item">-->
+              <!--<a href="#">-->
+                <!--<span>-->
+                  <!--{{$t('header.certificates')}}-->
+                <!--</span>-->
+                <!--<span class="line"></span>-->
+                <!--<div class="header-down sub-nav">-->
+                  <!--<ul class="sub-nav-group certificates">-->
+                    <!--<li>-->
+                      <!--<a href="#" itemprop="url">All Certificates</a>-->
+                    <!--</li>-->
+                    <!--<li>-->
+                      <!--<a href="#">-->
+                        <!--Certificate Payment Options-->
+                      <!--</a>-->
+                    <!--</li>-->
+                    <!--<li>-->
+                      <!--<a href="#">-->
+                        <!--Tuition and Fees for Certificates-->
+                      <!--</a>-->
+                    <!--</li>-->
+                    <!--<li>-->
+                      <!--<a href="#">-->
+                        <!--Academic Calendar-->
+                      <!--</a>-->
+                    <!--</li>-->
+                    <!--<li>-->
+                      <!--<a href="#">-->
+                        <!--Scholarships-->
+                      <!--</a>-->
+                    <!--</li>-->
+                  <!--</ul>-->
+                  <!--<ul class="sub-nav-group">-->
+                    <!--<li>-->
+                      <!--<div class="drop-info">-->
+                        <!--<h3>No application required</h3>-->
+                        <!--<h5>to enroll in a certificate.</h5>-->
+                        <!--<hr role="separator">-->
+                        <!--<div class="cert-course-dates">-->
+                          <!--<i>-->
+                            <!--<svg class="svg-inline&#45;&#45;fa fa-clock fa-w-16" aria-hidden="true" data-prefix="far" data-icon="clock" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm0 448c-110.5 0-200-89.5-200-200S145.5 56 256 56s200 89.5 200 200-89.5 200-200 200zm61.8-104.4l-84.9-61.7c-3.1-2.3-4.9-5.9-4.9-9.7V116c0-6.6 5.4-12 12-12h32c6.6 0 12 5.4 12 12v141.7l66.8 48.6c5.4 3.9 6.5 11.4 2.6 16.8L334.6 349c-3.9 5.3-11.4 6.5-16.8 2.6z"></path></svg>&lt;!&ndash; <div class="far fa-clock"></div> &ndash;&gt;-->
+                          <!--</i>-->
+                          <!--<a href="#" target="blank">-->
+                            <!--Next Term Starts January 14-->
+                          <!--</a>-->
+                        <!--</div>-->
 
-                  </ul>
-                  <ul class="sub-nav-group">
-                    <li>
-                      <h4>Graduate Admissions</h4>
-                    </li><li><a href="#">  Admissions Requirements</a></li><li><a href="#">  Tuition &amp; Financial Aid</a></li><li><a href="#">  Academic Calendar</a></li><li><a href="#">  Transfer Credits</a></li><li><a href="#">  Program Policies and Forms</a></li>
+                      <!--</div>-->
+                    <!--</li>-->
+                  <!--</ul>-->
+                <!--</div>-->
+              <!--</a>-->
+            <!--</li>-->
 
-                  </ul>
-                  <ul class="sub-nav-group">
-                    <li>
-                      <h4>Military Benefits</h4>
-                    </li>
-                    <li>
-                      <a href="#" itemprop="url">
-                        Overview of Benefits
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#">
-                        Veterans
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#">
-                        Active Duty
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#">
-                        Spouses and Families
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#">
-                        Additional Info
-                      </a>
-                    </li>
-                    <li class="degree-extras">
-                      <div class="drop-info">
-                        <h6>Degree Programs</h6>
-                        <h3>
-                          <a href="#">Apply</a> for Jan 14 Term Start
-                        </h3>
-                        <span>
-Get a decision within 2 weeks</span>
+            <!--<li class="nav-item">-->
+              <!--<a href="#">-->
+                <!--<span>-->
+                  <!--{{$t('header.admissions')}}-->
+                <!--</span>-->
+                <!--<span class="line"></span>-->
+                <!--<div class="header-down sub-nav san">-->
+                  <!--<ul class="sub-nav-group">-->
+                    <!--<li>-->
+                      <!--<h4>-->
+                        <!--Undergraduate Admissions-->
+                      <!--</h4>-->
+                    <!--</li><li><a href="#">  Admissions Requirements</a></li><li><a href="#">  Tuition &amp; Financial Aid</a></li><li><a href="#">  Scholarships</a></li><li><a href="#">  Program Internships</a></li><li><a href="#">  Academic Calendar</a></li><li><a href="#">Degree Completion</a></li><li><a href="#"> Prior Learning Credit</a></li><li><a href="#">  Transfer Credits</a></li><li><a href="#">  Program Policies and Forms</a></li><li><a href="#">  Program FAQs</a></li>-->
 
-                      </div>
-                    </li>
-                  </ul>
-                </div>
-              </a>
-            </li>
+                  <!--</ul>-->
+                  <!--<ul class="sub-nav-group">-->
+                    <!--<li>-->
+                      <!--<h4>Graduate Admissions</h4>-->
+                    <!--</li><li><a href="#">  Admissions Requirements</a></li><li><a href="#">  Tuition &amp; Financial Aid</a></li><li><a href="#">  Academic Calendar</a></li><li><a href="#">  Transfer Credits</a></li><li><a href="#">  Program Policies and Forms</a></li>-->
+
+                  <!--</ul>-->
+                  <!--<ul class="sub-nav-group">-->
+                    <!--<li>-->
+                      <!--<h4>Military Benefits</h4>-->
+                    <!--</li>-->
+                    <!--<li>-->
+                      <!--<a href="#" itemprop="url">-->
+                        <!--Overview of Benefits-->
+                      <!--</a>-->
+                    <!--</li>-->
+                    <!--<li>-->
+                      <!--<a href="#">-->
+                        <!--Veterans-->
+                      <!--</a>-->
+                    <!--</li>-->
+                    <!--<li>-->
+                      <!--<a href="#">-->
+                        <!--Active Duty-->
+                      <!--</a>-->
+                    <!--</li>-->
+                    <!--<li>-->
+                      <!--<a href="#">-->
+                        <!--Spouses and Families-->
+                      <!--</a>-->
+                    <!--</li>-->
+                    <!--<li>-->
+                      <!--<a href="#">-->
+                        <!--Additional Info-->
+                      <!--</a>-->
+                    <!--</li>-->
+                    <!--<li class="degree-extras">-->
+                      <!--<div class="drop-info">-->
+                        <!--<h6>Degree Programs</h6>-->
+                        <!--<h3>-->
+                          <!--<a href="#">Apply</a> for Jan 14 Term Start-->
+                        <!--</h3>-->
+                        <!--<span>-->
+<!--Get a decision within 2 weeks</span>-->
+
+                      <!--</div>-->
+                    <!--</li>-->
+                  <!--</ul>-->
+                <!--</div>-->
+              <!--</a>-->
+            <!--</li>-->
             <li class="nav-item">
               <a href="#">
                 <router-link style="color: rgba(0, 0, 0, 0.71);" :to="{ name: 'list',params:{type:'all'}}" >
@@ -343,19 +351,19 @@ Get a decision within 2 weeks</span>
                   </ul>
                   <ul class="sub-nav-group">
                     <li>
+                      <router-link :to="{ name: 'about',params:{item:'Methods'}}">{{$t('about.methods')}}</router-link>
+                    </li>
+                    <li>
+                      <router-link :to="{ name: 'about',params:{item:'TermsOfUse'}}">{{$t('about.termsOfUse')}}</router-link>
+                    </li>
+                    <li>
+                      <router-link :to="{ name: 'about',params:{item:'Privacy'}}">{{$t('about.privacy')}}</router-link>
+                    </li>
+                    <li>
+                      <router-link :to="{ name: 'about',params:{item:'Support'}}">{{$t('about.support')}}</router-link>
+                    </li>
+                    <li>
                       <router-link :to="{ name: 'about',params:{item:'AboutUs'}}">{{$t('about.aboutUs')}}</router-link>
-                    </li>
-                    <li>
-                      <router-link :to="{ name: 'about',params:{item:'CompanyProfile'}}">{{$t('about.companyProfile')}}</router-link>
-                    </li>
-                    <li>
-                      <router-link :to="{ name: 'about',params:{item:'Tutorial'}}">{{$t('about.learningTutorial')}}</router-link>
-                    </li>
-                    <li>
-                      <router-link :to="{ name: 'about',params:{item:'UserAgreement'}}">{{$t('about.userAgreement')}}</router-link>
-                    </li>
-                    <li>
-                      <router-link :to="{ name: 'about',params:{item:'PaymentAgreement'}}">{{$t('about.paymentAgreement')}}</router-link>
                     </li>
                     <!--<li>-->
                       <!--<a href="#" style="white-space: nowrap;">School Info, Enrollment, and Policies</a>-->
@@ -375,7 +383,7 @@ Get a decision within 2 weeks</span>
                 </div>
               </a>
             </li>
-            <li class="nav-item lang">
+            <li class="nav-item lang no-mask">
               <span :class="{active:locale == 'en'}" @click="changeLang('en')">
                 <span class="lang-btn" :class="{active:locale == 'en'}">En</span>
               </span>
@@ -384,7 +392,7 @@ Get a decision within 2 weeks</span>
               <span class="lang-btn" :class="{active:locale == 'zh'}">中文</span>
             </span>
             </li>
-            <li class="nav-item">
+            <li class="nav-item no-mask">
               <a href="#">
                 <i class="search">
                   <svg class="svg-inline--fa fa-search fa-w-16" aria-hidden="true" data-prefix="fa" data-icon="search"
@@ -626,7 +634,7 @@ Get a decision within 2 weeks</span>
   #masthead .btn-apply {
     background: #ee243c;
     color: #FFF;
-    padding: 4px 10px;
+    padding: 8px 10px;
     margin-right: 10px;
     transition: all ease .2s;
     font-size: 1rem;
@@ -637,7 +645,7 @@ Get a decision within 2 weeks</span>
 
   #masthead .btn-login {
     border: 1px solid #888;
-    padding: 4px 10px;
+    padding: 8px 10px;
     font-size: 1rem;
     box-sizing: border-box;
     line-height: normal;
@@ -646,40 +654,45 @@ Get a decision within 2 weeks</span>
   @media (min-width: 992px) and (max-width: 1260px) {
 
 
-    #masthead .btn-apply, #masthead .btn-login {
-      padding: 4px 8px;
-      font-size: 0.9rem;
-    }
+    /*#masthead .btn-apply, #masthead .btn-login {*/
+      /*padding: 4px 8px;*/
+      /*font-size: 0.9rem;*/
+    /*}*/
 
     #mast-simple.navbar {
       margin-right: -100px;
       margin-left: -80px;
     }
   }
-  @media (max-width: 1350px){
+  /*@media (max-width: 1350px){*/
+    /*#masthead .navbar-brand img {*/
+      /*!*width: 140px;*!*/
+      /*margin-right: 5px;*/
+    /*}*/
+  /*}*/
+  /*@media (max-width: 1080px){*/
+    /*#masthead .navbar-brand img {*/
+      /*!*width: 100px;*!*/
+      /*margin-right: 2px;*/
+    /*}*/
+  /*}*/
+  @media (max-width: 350px){
     #masthead .navbar-brand img {
       width: 140px;
-      margin-right: 5px;
+      margin-right:0;
     }
   }
-  @media (max-width: 1080px){
-    #masthead .navbar-brand img {
-      width: 100px;
-      margin-right: 2px;
-    }
-  }
-
   @media (max-width: 991px){
     .scroll #mast-simple.navbar{
       padding: .38rem;
     }
   }
-  @media (min-width: 1400px) {
-    #masthead .btn-apply, #masthead .btn-login {
-      padding: 7px 20px;
-      font-size: 1rem;
-    }
-  }
+  /*@media (min-width: 1400px) {*/
+    /*#masthead .btn-apply, #masthead .btn-login {*/
+      /*padding: 7px 20px;*/
+      /*font-size: 1rem;*/
+    /*}*/
+  /*}*/
 
   #masthead .navbar .form-inline .btn-login {
     color: rgba(0, 0, 0, 0.5);
@@ -1072,6 +1085,9 @@ Get a decision within 2 weeks</span>
     }
     .nav-item:hover~#mask{
       display: block;
+    }
+    .nav-item.no-mask:hover~#mask{
+      display: none;
     }
     #mask{
       top: 78px;

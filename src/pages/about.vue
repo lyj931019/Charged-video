@@ -8,18 +8,33 @@
 
         <div class="col-12 col-md-4 col-lg-3 about-aside">
           <ul class="aside-list">
-            <li class="aside-item" :class="{active:active==='CompanyProfile'}" @click="changePage('CompanyProfile')">
-              {{$t('about.companyProfile')}}
+            <!--<li class="aside-item" :class="{active:active==='CompanyProfile'}" @click="changePage('CompanyProfile')">-->
+              <!--{{$t('about.companyProfile')}}-->
+            <!--</li>-->
+            <!--<li class="aside-item" :class="{active:active==='Tutorial'}" @click="changePage('Tutorial')">-->
+              <!--{{$t('about.learningTutorial')}}-->
+            <!--</li>-->
+            <!--<li class="aside-item" :class="{active:active==='UserAgreement'}" @click="changePage('UserAgreement')">-->
+              <!--{{$t('about.userAgreement')}}-->
+            <!--</li>-->
+            <!--<li class="aside-item" :class="{active:active==='PaymentAgreement'}" @click="changePage('PaymentAgreement')">-->
+              <!--{{$t('about.paymentAgreement')}}-->
+            <!--</li>-->
+            <li class="aside-item" :class="{active:active==='Methods'}" @click="changePage('Methods')">
+              {{$t('about.methods')}}
             </li>
-            <li class="aside-item" :class="{active:active==='Tutorial'}" @click="changePage('Tutorial')">
-              {{$t('about.learningTutorial')}}
+            <li class="aside-item" :class="{active:active==='TermsOfUse'}" @click="changePage('TermsOfUse')">
+              {{$t('about.termsOfUse')}}
             </li>
-            <li class="aside-item" :class="{active:active==='UserAgreement'}" @click="changePage('UserAgreement')">
-              {{$t('about.userAgreement')}}
+            <li class="aside-item" :class="{active:active==='Privacy'}" @click="changePage('Privacy')">
+              {{$t('about.privacy')}}
             </li>
-            <li class="aside-item" :class="{active:active==='PaymentAgreement'}" @click="changePage('PaymentAgreement')">
-              {{$t('about.paymentAgreement')}}
+            <li class="aside-item" :class="{active:active==='Support'}" @click="changePage('Support')">
+              {{$t('about.support')}}
             </li>
+            <!--<li class="aside-item" :class="{active:active==='CopyrightPolicy'}" @click="changePage('CopyrightPolicy')">-->
+              <!--{{$t('about.copyrightPolicy')}}-->
+            <!--</li>-->
             <li class="aside-item" :class="{active:active==='AboutUs'}" @click="changePage('AboutUs')">
               {{$t('about.aboutUs')}}
             </li>
@@ -85,8 +100,8 @@
         url: '/pages',
       }).then(res => {
         _this.pages = res.data.data;
+        console.log(_this.pages)
       });
-      console.log(this.$route.params)
       if(this.$route.params.item){
         this.active = this.$route.params.item;
       }

@@ -35,6 +35,11 @@ module.exports = {
     userAgreement: '用户协议',
     paymentAgreement: '支付协议',
     aboutUs: '关于我们',
+    methods: '学习模式',
+    termsOfUse: '使用条款',
+    privacy: '隐私',
+    support: '服务支持',
+    copyrightPolicy:'版权政策'
   },
   list:{
     courseName:'课程',

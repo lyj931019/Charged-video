@@ -35,6 +35,11 @@ module.exports = {
     userAgreement:'User Agreement',
     paymentAgreement:'Payment agreement',
     aboutUs:'About Us',
+    methods: 'Methods',
+    termsOfUse: 'Terms Of Use',
+    privacy: 'Privacy',
+    support: 'Support',
+    copyrightPolicy:'Copyright Policy'
   },
   list:{
     courseName:'Course Name',

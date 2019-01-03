@@ -9,6 +9,7 @@ import Login from './login.vue'
 import About from './about.vue'
 import Register from './register.vue'
 import Pay from './pay.vue'
+import Methods from './methods.vue'
 //
 
 import ListOld from './listOld.vue'
@@ -19,6 +20,6 @@ import Home from './home.vue'
 
 
 export default {
-  Index,List,Detail,LearningCenter,UserCourse,UserCenter,Login,About,Register,Pay,ListOld,Home
+  Index,List,Detail,LearningCenter,UserCourse,UserCenter,Login,About,Register,Pay,ListOld,Home,Methods
 
 }
