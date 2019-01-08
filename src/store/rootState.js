@@ -20,6 +20,7 @@ const state = {
   },
   LOADING: false,
   homeworkListChange:false,
-  homepage:null
+  homepage:null,
+  types:null
 }
 export default state;

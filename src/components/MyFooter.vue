@@ -178,6 +178,25 @@
       <!--</div>-->
     <!--</div>-->
     <div class="foot-bg">
+      <div class="container-fluid mb-3">
+        <div class="row" STYLE="font-size: 0.8rem;">
+          <div class="col-3">
+            GENERAL TERMS AND CONDITIONS
+          </div>
+          <div class="col-3">
+            PARTICULAR CONDITIONS AND TERMS
+          </div>
+          <div class="col-2">
+            PRIVACY POLICY
+          </div>
+          <div class="col-2">
+            LEGAL INFORMATION
+          </div>
+          <div class="col-2">
+            COOKIE POLICY
+          </div>
+        </div>
+      </div>
       <div class="container-fluid">
         <div class="row">
           <div class="col-12 foot-icons">

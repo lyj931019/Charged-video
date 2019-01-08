@@ -85,30 +85,54 @@
     data(){
       return {
         active:'CompanyProfile',
-        pages:null
+        pages:[]
       }
     },
     methods:{
       changePage(pageName){
         this.active = pageName;
+        let _this = this;
+        if(this.pages.find((value) => value.name == pageName) ){
+
+        }else{
+          var key = pageName.replace(/([A-Z])/g,"-$1").toLowerCase();
+          key = key.substring(1);
+          this.$http({
+            method: 'get',
+            url: '/pages/'+key,
+          }).then(res => {
+            if(res.data.state.code == 0){
+              _this.pages.push(res.data.data);
+            }else{
+            }
+            console.log(_this.pages)
+          });
+        }
+
       }
     },
     beforeMount() {
-      let _this = this;
-      this.$http({
-        method: 'get',
-        url: '/pages',
-      }).then(res => {
-        _this.pages = res.data.data;
-        console.log(_this.pages)
-      });
-      if(this.$route.params.item){
-        this.active = this.$route.params.item;
-      }
+//      let _this = this;
+//      this.$http({
+//        method: 'get',
+//        url: '/pages',
+//      }).then(res => {
+//        _this.pages = res.data.data;
+//        console.log(_this.pages)
+//      });
+//      if(this.$route.params.item){
+//        this.active = this.$route.params.item;
+//      }
 
     },
+    beforeRouteEnter (to, from, next) {
+      next(vm => {
+        vm.changePage(to.params.item);
+      })
+    },
     beforeRouteUpdate (to, from, next) {
-      this.active = to.params.item;
+//      this.active = to.params.item;
+      this.changePage(to.params.item);
       next();
     },
   }

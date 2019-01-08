@@ -5,7 +5,7 @@
         <div style="text-align: center;">
           <router-link :to="{ name: 'index'}">
             <a class="nav-link" href="#">
-              <img src="../assets/img/berklee-online-logo-red-gray.png" alt="" style="max-width: 222px;">
+              <img :src="'./static/img/logo.jpg'" alt="" style="max-width: 222px;">
             </a>
           </router-link>
         </div>

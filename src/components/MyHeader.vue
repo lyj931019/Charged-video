@@ -7,7 +7,7 @@
           <span class="navbar-toggler-icon"></span>
         </button>
         <router-link :to="{ name: 'index'}"><a class="navbar-brand" href="#"><img
-          src="../assets/img/berklee-online-logo-red-gray.png" alt=""></a></router-link>
+          :src="'./static/img/logo.jpg'" alt=""></a></router-link>
 
         <div class="collapse navbar-collapse " id="navbarTogglerDemo03">
           <ul class="navbar-nav center justify-content-center mask">
@@ -481,20 +481,26 @@
     methods: {
       ...mapMutations([
         'changeLoginStatus', // 将 `this.increment()` 映射为 `this.$store.commit('increment')`
-        'changeUserInfo' // 将 `this.incrementBy(amount)` 映射为 `this.$store.commit('incrementBy', amount)`
+        'changeUserInfo',
+        'changeTypes'
       ]),
       getSortList() {
         let _this = this;
-        this.$http({
-          method: 'get',
-          url: '/types',
-          params: {
-            page: 1,
-            pageSize: 100
-          }
-        }).then(res => {
-          _this.sortList = res.data.data.items;
-        })
+        if(_this.getTypes){
+          _this.sortList = _this.getTypes;
+        }else{
+          this.$http({
+            method: 'get',
+            url: '/types',
+            params: {
+              page: 1,
+              pageSize: 100
+            }
+          }).then(res => {
+            _this.sortList = res.data.data.items;
+            _this.changeTypes(res.data.data.items);
+          })
+        }
       },
       loginOut() {
         this.changeLoginStatus(false);
@@ -519,7 +525,8 @@
       // 使用对象展开运算符将 getter 混入 computed 对象中
       ...mapGetters([
         'getIsLogin',
-        'getUserInfo'
+        'getUserInfo',
+        'getTypes'
       ])
     },
     created(){

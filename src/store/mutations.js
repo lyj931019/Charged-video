@@ -31,6 +31,9 @@ const muntation = {
   },
   changeHomepage(state,homepage){
     state.homepage = homepage;
-  }
+  },
+  changeTypes(state,types){
+    state.types = types;
+  },
 };
 export default muntation;

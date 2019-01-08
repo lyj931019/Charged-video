@@ -19,5 +19,9 @@ export default {
   },
   getHomepage: state => {
     return state.homepage;
+  },
+  getTypes: state => {
+    return state.types;
   }
+
 }
