@@ -5,7 +5,6 @@ import mutations from './mutations';
 import getters from './getters';
 import actions from './actions'
 // modules
-import todo from './modules/todo'
 
 
 Vue.use(Vuex);
@@ -14,8 +13,5 @@ const store = new Vuex.Store({
   mutations,
   getters,
   actions,
-  modules:{
-    todo
-  }
 })
 export default store;

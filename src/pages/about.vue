@@ -46,8 +46,8 @@
         </div>
         <div class="col-12 col-md-8 col-lg-9 about-section">
           <div class="row">
-            <div class="col-1"></div>
-            <div class="col-9">
+            <div class="col-1 d-none d-md-block"></div>
+            <div class="col-12 col-md-11" style="overflow: auto">
               <template v-if="pages">
                 <div class="about-content" v-for="(page,index) in pages" :key="page.name">
                   <div :class="{active:active===page.name}">

@@ -5,7 +5,7 @@
       <!--<h1 class="about-header">{{$t('about.methods')}}</h1>-->
 
       <div class="row about-container">
-        <div class="col-12">
+        <div class="col-12" style="overflow: auto">
           <div class="about-content" v-if="content">
             <div class="active pt-3">
               <!--<h1>{{page.title}}</h1>-->

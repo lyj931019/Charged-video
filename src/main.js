@@ -33,9 +33,9 @@ Vue.prototype.$http = axios;
 // Vue.use(Vuex);
 Vue.config.productionTip = false
 // 获得权限
-Notification.requestPermission();
-Vue.prototype.$Message = myComponent.Message;
-Vue.prototype.$notification = myComponent.Lnotification;
+// Notification.requestPermission();
+// Vue.prototype.$Message = myComponent.Message;
+// Vue.prototype.$notification = myComponent.Lnotification;
 // import todo from '@/store/todo.js';
 /* eslint-disable no-new */
 
