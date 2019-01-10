@@ -180,48 +180,48 @@
     <div class="foot-bg">
       <div class="container-fluid mb-3">
         <div class="row" STYLE="font-size: 0.8rem;">
-          <div class="col-3">
+          <div class="col-12 col-md-3">
             GENERAL TERMS AND CONDITIONS
           </div>
-          <div class="col-3">
+          <div class="col-12 col-md-3">
             PARTICULAR CONDITIONS AND TERMS
           </div>
-          <div class="col-2">
+          <div class="col-12 col-md-2">
             PRIVACY POLICY
           </div>
-          <div class="col-2">
+          <div class="col-12 col-md-2">
             LEGAL INFORMATION
           </div>
-          <div class="col-2">
+          <div class="col-12 col-md-2">
             COOKIE POLICY
           </div>
         </div>
       </div>
       <div class="container-fluid">
-        <div class="row">
-          <div class="col-12 foot-icons">
-            <img src="../assets/img/footer_award_upcea.svg">
-            <img src="../assets/img/footer_logo.svg">
-            <img src="../assets/img/footer_award_QS_Stars.svg">
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-12">
-            <p>
-              <a href="#" style="color: #FFF;">
-                Berklee College of Music
-              </a>
-              &nbsp;is accredited by the New England Association of Schools and Colleges (NEASC)
-            </p>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-12">
-            <p>
-              Berklee Online is a University Professional and Continuing Education Association (UPCEA) award-winner twelve years in a row (2005-2017).</p>
-          </div>
-        </div>
-        <div class="row">
+        <!--<div class="row">-->
+          <!--<div class="col-12 foot-icons">-->
+            <!--<img src="../assets/img/footer_award_upcea.svg">-->
+            <!--<img src="../assets/img/footer_logo.svg">-->
+            <!--<img src="../assets/img/footer_award_QS_Stars.svg">-->
+          <!--</div>-->
+        <!--</div>-->
+        <!--<div class="row">-->
+          <!--<div class="col-12">-->
+            <!--<p>-->
+              <!--<a href="#" style="color: #FFF;">-->
+                <!--Berklee College of Music-->
+              <!--</a>-->
+              <!--&nbsp;is accredited by the New England Association of Schools and Colleges (NEASC)-->
+            <!--</p>-->
+          <!--</div>-->
+        <!--</div>-->
+        <!--<div class="row">-->
+          <!--<div class="col-12">-->
+            <!--<p>-->
+              <!--Berklee Online is a University Professional and Continuing Education Association (UPCEA) award-winner twelve years in a row (2005-2017).</p>-->
+          <!--</div>-->
+        <!--</div>-->
+        <div class="row pb-3 pt-4">
           <div class="col-12 center text-center">
             © Copyright 2001 - 2018
             <a href="#" class="foot-btn">Berklee College of Music</a>

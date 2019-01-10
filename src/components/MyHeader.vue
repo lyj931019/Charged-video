@@ -350,8 +350,11 @@
                     </li>
                   </ul>
                   <ul class="sub-nav-group">
+                    <!--<li>-->
+                      <!--<router-link :to="{ name: 'about',params:{item:'Methods'}}">{{$t('about.methods')}}</router-link>-->
+                    <!--</li>-->
                     <li>
-                      <router-link :to="{ name: 'about',params:{item:'Methods'}}">{{$t('about.methods')}}</router-link>
+                      <router-link :to="{ name: 'about',params:{item:'AboutUs'}}">{{$t('about.aboutUs')}}</router-link>
                     </li>
                     <li>
                       <router-link :to="{ name: 'about',params:{item:'TermsOfUse'}}">{{$t('about.termsOfUse')}}</router-link>
@@ -362,9 +365,7 @@
                     <li>
                       <router-link :to="{ name: 'about',params:{item:'Support'}}">{{$t('about.support')}}</router-link>
                     </li>
-                    <li>
-                      <router-link :to="{ name: 'about',params:{item:'AboutUs'}}">{{$t('about.aboutUs')}}</router-link>
-                    </li>
+
                     <!--<li>-->
                       <!--<a href="#" style="white-space: nowrap;">School Info, Enrollment, and Policies</a>-->
                     <!--</li>-->

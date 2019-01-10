@@ -9,8 +9,10 @@
       <div class="title" v-if="lesson">
         {{lesson.title}}
       </div>
-      <div class="avatar" id="avatarDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        <Avatar :src="getUserInfo.user_avatar"/><span class="lt"><img src="../assets/img/down.png" alt=""></span>
+      <div class="avatar" id="avatarDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
+        <!--<Avatar :src="getUserInfo.user_avatar"/>-->
+        {{getUserInfo.user_nickname}}
+        <span class="lt"><img src="../assets/img/down.png" alt=""></span>
       </div>
       <div class="dropdown-menu" aria-labelledby="avatarDropdown">
         <router-link class="dropdown-item text-center" href="#" :to="{ name: 'userCenter'}">
@@ -388,6 +390,7 @@
     /*margin: 5px 29px 0 0;*/
     line-height:60px;
     text-align: center;
+    color: #ffffff;
   }
   .header .avatar>.lt img{
     width: 20px;

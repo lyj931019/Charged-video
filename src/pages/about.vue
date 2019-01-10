@@ -2,7 +2,8 @@
   <div>
     <MyHeader/>
     <div class="container-fluid">
-      <h1 class="about-header">{{$t('about.title')}}</h1>
+      <!--<h1 class="about-header">{{$t('about.title')}}</h1>-->
+      <h1 class="about-header">{{$t('about.aboutUs')}}</h1>
 
       <div class="row about-container">
 
@@ -20,8 +21,11 @@
             <!--<li class="aside-item" :class="{active:active==='PaymentAgreement'}" @click="changePage('PaymentAgreement')">-->
               <!--{{$t('about.paymentAgreement')}}-->
             <!--</li>-->
-            <li class="aside-item" :class="{active:active==='Methods'}" @click="changePage('Methods')">
-              {{$t('about.methods')}}
+            <!--<li class="aside-item" :class="{active:active==='Methods'}" @click="changePage('Methods')">-->
+              <!--{{$t('about.methods')}}-->
+            <!--</li>-->
+            <li class="aside-item" :class="{active:active==='AboutUs'}" @click="changePage('AboutUs')">
+              {{$t('about.aboutUs')}}
             </li>
             <li class="aside-item" :class="{active:active==='TermsOfUse'}" @click="changePage('TermsOfUse')">
               {{$t('about.termsOfUse')}}
@@ -35,13 +39,11 @@
             <!--<li class="aside-item" :class="{active:active==='CopyrightPolicy'}" @click="changePage('CopyrightPolicy')">-->
               <!--{{$t('about.copyrightPolicy')}}-->
             <!--</li>-->
-            <li class="aside-item" :class="{active:active==='AboutUs'}" @click="changePage('AboutUs')">
-              {{$t('about.aboutUs')}}
-            </li>
+
           </ul>
-          <div class="d-none d-md-block">
-            <Guidance></Guidance>
-          </div>
+          <!--<div class="d-none d-md-block">-->
+            <!--<Guidance></Guidance>-->
+          <!--</div>-->
 
         </div>
         <div class="col-12 col-md-8 col-lg-9 about-section">
@@ -69,9 +71,9 @@
         </div>
       </div>
     </div>
-    <div class="d-block d-md-none">
-      <Guidance></Guidance>
-    </div>
+    <!--<div class="d-block d-md-none">-->
+      <!--<Guidance></Guidance>-->
+    <!--</div>-->
     <MyFooter class="pt-0 pt-md-4"/>
   </div>
 </template>
