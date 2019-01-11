@@ -430,7 +430,7 @@
             <div v-if="getIsLogin" class="text-center ">
               <!--<span class="hello-nickname">{{$t('header.hello')}}&nbsp;,&nbsp;</span>-->
               <a href="#" id="avatarDropDown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-                 role="button" class="drop-nickname">
+                 role="button" class="drop-nickname dropdown-toggle">
                 <!--<Avatar :src="getUserInfo.user_avatar"/>-->
                 {{getUserInfo.user_nickname}}
               </a>

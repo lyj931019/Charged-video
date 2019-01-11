@@ -9,10 +9,11 @@
       <div class="title" v-if="lesson">
         {{lesson.title}}
       </div>
-      <div class="avatar" id="avatarDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
+      <div class="avatar mr-3" id="avatarDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
         <!--<Avatar :src="getUserInfo.user_avatar"/>-->
-        {{getUserInfo.user_nickname}}
-        <span class="lt"><img src="../assets/img/down.png" alt=""></span>
+        <span style="display: inline-block;max-width: 100px;vertical-align: middle;" class="omit">
+          {{getUserInfo.user_nickname}}
+        </span><span class="lt"><img src="../assets/img/down.png" alt=""></span>
       </div>
       <div class="dropdown-menu" aria-labelledby="avatarDropdown">
         <router-link class="dropdown-item text-center" href="#" :to="{ name: 'userCenter'}">
@@ -340,7 +341,7 @@
     vertical-align: middle;
     box-sizing: border-box;
   }
-  @media (max-width: 330px) {
+  @media (max-width: 390px) {
     .header .icon img + span{
       display: none;
     }
@@ -385,12 +386,13 @@
     border: none;
     border-radius: 0;
     height: 60px;
-    width: 86px;
     border-radius: 25px;
+    width: auto;
     /*margin: 5px 29px 0 0;*/
     line-height:60px;
     text-align: center;
     color: #ffffff;
+    cursor: pointer;
   }
   .header .avatar>.lt img{
     width: 20px;

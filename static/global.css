@@ -148,3 +148,11 @@ video{
   padding: 1rem;
   margin: -0.65rem -1rem -1rem auto;
 }
+
+
+.omit {
+  /*文本超出时省略*/
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

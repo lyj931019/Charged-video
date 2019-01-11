@@ -3,7 +3,10 @@
     <MyHeader/>
     <div class="container-fluid">
       <!--<h1 class="about-header">{{$t('about.title')}}</h1>-->
-      <h1 class="about-header">{{$t('about.aboutUs')}}</h1>
+      <h1 class="about-header" v-show="active==='AboutUs'">{{$t('about.aboutUs')}}</h1>
+      <h1 class="about-header" v-show="active==='TermsOfUse'">{{$t('about.termsOfUse')}}</h1>
+      <h1 class="about-header" v-show="active==='Privacy'">{{$t('about.privacy')}}</h1>
+      <h1 class="about-header" v-show="active==='Support'">{{$t('about.support')}}</h1>
 
       <div class="row about-container">
 
@@ -86,7 +89,7 @@
     components:{...Common,Guidance},
     data(){
       return {
-        active:'CompanyProfile',
+        active:'AboutUs',
         pages:[]
       }
     },
