@@ -27,16 +27,16 @@
             <!--<li class="aside-item" :class="{active:active==='Methods'}" @click="changePage('Methods')">-->
               <!--{{$t('about.methods')}}-->
             <!--</li>-->
-            <li class="aside-item" :class="{active:active==='AboutUs'}" @click="changePage('AboutUs')">
+            <li class="aside-item" :class="{active:active==='AboutUs'}" @click="gotoPage('AboutUs')">
               {{$t('about.aboutUs')}}
             </li>
-            <li class="aside-item" :class="{active:active==='TermsOfUse'}" @click="changePage('TermsOfUse')">
+            <li class="aside-item" :class="{active:active==='TermsOfUse'}" @click="gotoPage('TermsOfUse')">
               {{$t('about.termsOfUse')}}
             </li>
-            <li class="aside-item" :class="{active:active==='Privacy'}" @click="changePage('Privacy')">
+            <li class="aside-item" :class="{active:active==='Privacy'}" @click="gotoPage('Privacy')">
               {{$t('about.privacy')}}
             </li>
-            <li class="aside-item" :class="{active:active==='Support'}" @click="changePage('Support')">
+            <li class="aside-item" :class="{active:active==='Support'}" @click="gotoPage('Support')">
               {{$t('about.support')}}
             </li>
             <!--<li class="aside-item" :class="{active:active==='CopyrightPolicy'}" @click="changePage('CopyrightPolicy')">-->
@@ -94,6 +94,9 @@
       }
     },
     methods:{
+      gotoPage(pageName){
+        this.$router.push({ name: 'about', params:{item:pageName}})
+      },
       changePage(pageName){
         this.active = pageName;
         let _this = this;
