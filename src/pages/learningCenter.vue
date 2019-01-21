@@ -2,7 +2,8 @@
   <div class="classroom" style="background-color: #eff1f2;" :class="classRoomActive?'active':''" v-if="courses">
     <div class="header">
       <div class="icon">
-        <img src="../assets/img/Berklee_Logo_Square.svg" alt="">
+        <!--<img src="../assets/img/Berklee_Logo_Square.svg" alt="">-->
+        <img :src="'./static/img/logo-min.png'" alt="">
         <!--<span>Sample Lessons</span>-->
         <span>{{courses.name}}</span>
       </div>
@@ -324,6 +325,7 @@
 
   .header .icon img {
     height: 60px;
+    background: #ccc;
     vertical-align: top;
   }
 

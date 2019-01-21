@@ -84,17 +84,8 @@ https://blog.csdn.net/zifeiyu130/article/details/78950244
 
 
 
-https://note.youdao.com/share/?id=b8ea907c83d5793c3411ee5f02b4600a&type=note#/
 
-
-https://online.berklee.edu/sample-a-lesson
-
-http://intro.online.berklee.edu/#/170/OSAMP-101.01/170/1/introduction
-
-https://www.processon.com/view/link/5badfb87e4b0d4d65c1b0025
-https://www.abaenglish.com/en/how-it-works/
 
 API
-http://dev2.people71.com/github/educate/advanced/backend/web/
 http://192.168.1.12/github/educate/advanced/api/web/swagger/
-http://47.244.63.58/educate/advanced/api/web
+

@@ -3,7 +3,7 @@
     <div style="text-align: center;margin: 2rem 0 1.88rem;">
       <router-link :to="{ name: 'index'}">
         <a class="nav-link" href="#">
-          <img :src="'./static/img/logo.jpg'" alt="" style="max-width: 222px;">
+          <img :src="'./static/img/logo-gray.jpg'" alt="" style="max-width: 222px;">
         </a>
       </router-link>
 
@@ -34,7 +34,7 @@
       </div>
     </div>
     <div id="footer">
-      <img src="../assets/img/footer_logo.gif" alt="Berklee College of Music">
+      <!--<img src="../assets/img/footer_logo.gif" alt="Berklee College of Music">-->
       <p id="footerArea">©2001-2018
         Berklee College of Music &nbsp;&nbsp;
         <span>
