@@ -58,7 +58,8 @@
                   <div :class="{active:active===page.name}">
                     <!--<h1>{{page.title}}</h1>-->
                     <template v-if="page.content">
-                      <div v-html="page.content"></div>
+                      <div v-html="page.content" v-show="getLang == 'zh'"></div>
+                      <div v-html="page.content_en" v-show="getLang == 'en'"></div>
                     </template>
                     <template v-else>
                       <div :class="{active:active===page.name}">{{$t('common.noContent')}}</div>
@@ -82,6 +83,7 @@
 </template>
 
 <script>
+  import {mapGetters} from 'vuex'
   import Common from '../components/common'
   import Guidance from '../common/guidance.vue'
   export default {
@@ -92,6 +94,11 @@
         active:'AboutUs',
         pages:[]
       }
+    },
+    computed: {
+      ...mapGetters([
+        'getLang'
+      ])
     },
     methods:{
       gotoPage(pageName){
@@ -111,9 +118,7 @@
           }).then(res => {
             if(res.data.state.code == 0){
               _this.pages.push(res.data.data);
-            }else{
-            }
-            console.log(_this.pages)
+            }else{}
           });
         }
 
@@ -126,7 +131,6 @@
 //        url: '/pages',
 //      }).then(res => {
 //        _this.pages = res.data.data;
-//        console.log(_this.pages)
 //      });
 //      if(this.$route.params.item){
 //        this.active = this.$route.params.item;

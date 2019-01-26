@@ -21,6 +21,7 @@ const state = {
   LOADING: false,
   homeworkListChange:false,
   homepage:null,
-  types:null
+  types:null,
+  lang:'zh'
 }
 export default state;

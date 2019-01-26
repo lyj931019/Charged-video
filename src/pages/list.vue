@@ -76,7 +76,8 @@
               </li>
               <template  v-if="sortList.length>0">
                 <li class="sort-item" v-for="(type_item,index) in sortList">
-                  <a href="#"  :class="typeId==type_item.id?'filter-on':''"  @click.prevent="getCourseListFromSort(type_item.id)">{{type_item.name}}</a>
+                  <a href="#"  :class="typeId==type_item.id?'filter-on':''"  @click.prevent="getCourseListFromSort(type_item.id)" v-show="getLang == 'zh'">{{type_item.name}}</a>
+                  <a href="#"  :class="typeId==type_item.id?'filter-on':''"  @click.prevent="getCourseListFromSort(type_item.id)" v-show="getLang == 'en'">{{type_item.name_en}}</a>
                 </li>
               </template>
 
@@ -128,6 +129,7 @@
 </template>
 
 <script>
+  import {mapGetters} from 'vuex'
   import Common from '../components/common'
   import Level from '../components/level.vue'
   export default {
@@ -143,6 +145,9 @@
         pageSize:1,
         totalCount:1
       }
+    },
+    computed: {
+      ...mapGetters(['getLang'])
     },
     methods: {
       getCourseList(key,value,page=1){

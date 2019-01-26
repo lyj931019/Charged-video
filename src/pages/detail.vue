@@ -5,16 +5,17 @@
       <div class="bg" id="abs">
         <div class="container-fluid">
           <h5 class="online-course">
-            <a href="#">Home</a>
+            <a href="#">{{$t('header.home')}}</a>
             <DownArrow class="bar"></DownArrow>
-            <a href="#">All course</a>
+            <a href="#">{{$t('header.allCourses')}}</a>
             <DownArrow class="bar"></DownArrow>
             <a href="#">{{$t('detail.onlineCourse')}}</a>
           </h5>
           <div class="row">
 
             <div class="col-12 col-lg-9 course-intr">
-              <h1 class="title">{{courses.name}}</h1>
+              <h1 class="title" v-show="getLang == 'zh'">{{courses.name}}</h1>
+              <h1 class="title" v-show="getLang == 'en'">{{courses.name_en}}</h1>
               <div class="course-author">
                 <Avatar :src="courses.instructor.avatar"/>
                 <span>
@@ -52,9 +53,8 @@
                     </div>
                   </div>
                 </div>
-                <div class="col-12 col-lg-8 order-lg-1 order-2" v-html="courses.abstract">
-
-                </div>
+                <div class="col-12 col-lg-8 order-lg-1 order-2" v-show="getLang == 'zh'" v-html="courses.abstract"></div>
+                <div class="col-12 col-lg-8 order-lg-1 order-2" v-show="getLang == 'en'" v-html="courses.abstract_en"></div>
 
               </div>
             </div>
@@ -125,7 +125,8 @@
                 </div>
                 <div class="lesson-content" :class="{active:prerequisites}">
                   <template v-if="courses.requirements_prerequisites">
-                    <div v-html="courses.requirements_prerequisites"></div>
+                    <div v-html="courses.requirements_prerequisites" v-show="getLang == 'zh'"></div>
+                    <div v-html="courses.requirements_prerequisites_en" v-show="getLang == 'en'"></div>
                   </template>
                   <template v-else>
                     <div>{{$t('common.noContent')}}</div>
@@ -140,7 +141,8 @@
                 </div>
                 <div class="lesson-content" :class="{active:textbooks}">
                   <template v-if="courses.requirements_textbooks">
-                    <div v-html="courses.requirements_textbooks"></div>
+                    <div v-html="courses.requirements_textbooks" v-show="getLang == 'zh'"></div>
+                    <div v-html="courses.requirements_textbooks_en" v-show="getLang == 'en'"></div>
                   </template>
                   <template v-else>
                     <div>{{$t('common.noContent')}}</div>
@@ -156,7 +158,8 @@
                 </div>
                 <div class="lesson-content" :class="{active:software}">
                   <template v-if="courses.requirements_software">
-                    <div v-html="courses.requirements_software"></div>
+                    <div v-html="courses.requirements_software" v-show="getLang == 'zh'"></div>
+                    <div v-html="courses.requirements_software_en" v-show="getLang == 'en'"></div>
                   </template>
                   <template v-else>
                     <div>{{$t('common.noContent')}}</div>
@@ -172,7 +175,8 @@
                 </div>
                 <div class="lesson-content" :class="{active:hardware}">
                   <template v-if="courses.requirements_hardware">
-                    <div v-html="courses.requirements_hardware"></div>
+                    <div v-html="courses.requirements_hardware" v-show="getLang == 'zh'"></div>
+                    <div v-html="courses.requirements_hardware_en" v-show="getLang == 'en'"></div>
                   </template>
                   <template v-else>
                     <div>{{$t('common.noContent')}}</div>
@@ -323,7 +327,8 @@
       // 使用对象展开运算符将 getter 混入 computed 对象中
       ...mapGetters([
         'getIsLogin',
-        'getUserInfo'
+        'getUserInfo',
+        'getLang'
       ])
     },
     methods: {

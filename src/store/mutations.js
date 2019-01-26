@@ -35,5 +35,8 @@ const muntation = {
   changeTypes(state,types){
     state.types = types;
   },
+  changeStateLang(state,lang){
+    state.lang = lang;
+  },
 };
 export default muntation;

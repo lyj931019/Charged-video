@@ -265,12 +265,15 @@
                 <div class="header-down sub-nav">
                   <ul class="sub-nav-group courses">
                     <li>
-                      <router-link  :to="{ name: 'list',params:{type:'all'}}" itemprop="url">All Courses</router-link>
+                      <router-link  :to="{ name: 'list',params:{type:'all'}}" itemprop="url">{{$t('header.allCourses')}}</router-link>
                     </li>
                     <template v-if="sortList && sortList.length>0">
                       <li v-for="(type_item,index) in sortList">
-                        <router-link  :to="{ name: 'list',params:{type:type_item.id}}" itemprop="url">
+                        <router-link  :to="{ name: 'list',params:{type:type_item.id}}" itemprop="url" v-show="getLang == 'zh'">
                           {{type_item.name}}
+                        </router-link>
+                        <router-link  :to="{ name: 'list',params:{type:type_item.id}}" itemprop="url" v-show="getLang == 'en'">
+                          {{type_item.name_en}}
                         </router-link>
                       </li>
                     </template>
@@ -483,7 +486,8 @@
       ...mapMutations([
         'changeLoginStatus', // 将 `this.increment()` 映射为 `this.$store.commit('increment')`
         'changeUserInfo',
-        'changeTypes'
+        'changeTypes',
+        'changeStateLang'
       ]),
       getSortList() {
         let _this = this;
@@ -519,7 +523,7 @@
         localStorage.removeItem('user_id');
       },
       changeLang(lang) {
-        this.locale = lang
+        this.locale = lang;
       }
     },
     computed: {
@@ -527,7 +531,8 @@
       ...mapGetters([
         'getIsLogin',
         'getUserInfo',
-        'getTypes'
+        'getTypes',
+        'getLang'
       ])
     },
     created(){
@@ -537,9 +542,11 @@
       if (localStorage.getItem('locale') == 'en') {
         this.locale = 'en';
         this.lang = 'ENG';
+        this.changeStateLang('en');
       } else {
         this.locale = 'zh';
         this.lang = '中文';
+        this.changeStateLang('zh');
       }
 //      localStorage.setItem('lng', this.locale);
 
@@ -549,6 +556,7 @@
       locale(val) {
         this.$i18n.locale = val;
         localStorage.setItem('locale', val);
+        this.changeStateLang(val);
       }
     }
   }

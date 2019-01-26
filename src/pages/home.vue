@@ -6,16 +6,18 @@
         <img :src="homepage.image" alt="">
         <div class="container banner-content pt-md-5 pt-sm-2 pt-0">
           <table></table>
-          <div class="banner-title mt-md-5 mt-0 mt-sm-2 pt-md-5 pt-0">{{homepage.title}}</div>
-          <div class="banner-abs">{{homepage.abstract}}</div>
+          <div class="banner-title mt-md-5 mt-0 mt-sm-2 pt-md-5 pt-0" v-show="getLang == 'zh'">{{homepage.title}}</div>
+          <div class="banner-title mt-md-5 mt-0 mt-sm-2 pt-md-5 pt-0" v-show="getLang == 'en'">{{homepage.title_en}}</div>
+          <div class="banner-abs" v-show="getLang == 'zh'">{{homepage.abstract}}</div>
+          <div class="banner-abs" v-show="getLang == 'en'">{{homepage.abstract_en}}</div>
         </div>
 
       </div>
       <div class="homepage-content pt-5 pb-5">
         <div class="container">
           <div class="row justify-content-center">
-            <div class="col-12" v-html="homepage.content">
-            </div>
+            <div class="col-12" v-html="homepage.content" v-show="getLang == 'zh'"></div>
+            <div class="col-12" v-html="homepage.content_en" v-show="getLang == 'en'"></div>
           </div>
         </div>
 
@@ -23,7 +25,8 @@
       <div class="floor pt-5 pb-5" v-for="(item,index) in homepage.items">
         <div class="container">
           <div class="row">
-            <div class="col-12 col-md-6" v-html="item.content"></div>
+            <div class="col-12 col-md-6" v-html="item.content" v-show="getLang == 'zh'"></div>
+            <div class="col-12 col-md-6" v-html="item.content_en" v-show="getLang == 'en'"></div>
             <div class="col-12 col-md-6 text-center">
               <img :src="item.image" alt="">
             </div>
@@ -68,6 +71,7 @@
     computed: {
       ...mapGetters([
         'getHomepage',
+        'getLang'
       ])
     },
     created() {

@@ -184,19 +184,19 @@
             <img :src="'./static/img/logo.jpg'"/>
           </div>
           <router-link to="/about/AboutUs">
-            About Us
+            {{$t('about.aboutUs')}}
           </router-link>
           <router-link to="/about/TermsOfUse">
-            Terms Of Use
+            {{$t('about.termsOfUse')}}
           </router-link>
           <router-link to="/about/Privacy">
-            Privacy
+            {{$t('about.privacy')}}
           </router-link>
           <router-link to="/about/Support">
-            Support
+            {{$t('about.support')}}
           </router-link>
           <router-link to="/methods">
-            METHODS
+            {{$t('about.methods')}}
           </router-link>
         </div>
       </div>

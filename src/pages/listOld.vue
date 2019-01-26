@@ -55,7 +55,9 @@
                       aria-expanded="false" data-offset="10,20">{{$t('list.classification')}}</span>
                 <div class="dropdown-menu" aria-labelledby="classification" v-if="sortList.length>0">
                   <a class="dropdown-item" href="#" v-for="(type_item,index) in sortList"
-                     @click.prevent="getCourseListFromSort(type_item.id)">{{type_item.name}}</a>
+                     @click.prevent="getCourseListFromSort(type_item.id)" v-show="getLang == 'zh'">{{type_item.name}}</a>
+                  <a class="dropdown-item" href="#" v-for="(type_item,index) in sortList"
+                     @click.prevent="getCourseListFromSort(type_item.id)" v-show="getLang == 'en'">{{type_item.name_en}}</a>
                 </div>
               </div>
               <div class="dropdown title" :class="{'active':typeActive=='teacher'}">
@@ -108,7 +110,9 @@
                 <template v-if="sortList.length>0">
                   <li class="sort-item" v-for="(type_item,index) in sortList">
                     <a href="#" :class="typeId==type_item.id?'filter-on':''"
-                       @click.prevent="getCourseListFromSort(type_item.id)">{{type_item.name}}</a>
+                       @click.prevent="getCourseListFromSort(type_item.id)" v-show="getLang == 'zh'">{{type_item.name}}</a>
+                    <a href="#" :class="typeId==type_item.id?'filter-on':''"
+                       @click.prevent="getCourseListFromSort(type_item.id)" v-show="getLang == 'en'">{{type_item.name_en}}</a>
                   </li>
                 </template>
 
@@ -170,7 +174,8 @@
           <div class="course-item row" v-for="(item,index) in courseList">
             <div class="course-info col-12 col-md-4 mb-2 mb-md-0">
               <h4 @click.prevent="goToDetail(item.num)">
-                <span class="course-name">{{item.name}}</span>
+                <span class="course-name" v-show="getLang == 'zh'">{{item.name}}</span>
+                <span class="course-name" v-show="getLang == 'en'">{{item.name_en}}</span>
                 <span class="course-id">({{item.num}})</span>
               </h4>
 
@@ -230,7 +235,9 @@
               <template v-if="sortList.length>0">
                 <li class="sort-item" v-for="(type_item,index) in sortList">
                   <a href="#" :class="typeId==type_item.id?'filter-on':''"
-                     @click.prevent="getCourseListFromSort(type_item.id)">{{type_item.name}}</a>
+                     @click.prevent="getCourseListFromSort(type_item.id)" v-show="getLang == 'zh'">{{type_item.name}}</a>
+                  <a href="#" :class="typeId==type_item.id?'filter-on':''"
+                     @click.prevent="getCourseListFromSort(type_item.id)" v-show="getLang == 'en'">{{type_item.name_en}}</a>
                 </li>
               </template>
 
@@ -258,7 +265,8 @@
               <div class="col-12 col-lg-6" v-for="(item,index) in courseList">
                 <div class="course-item">
                   <p class="course-id">{{item.num}}</p>
-                  <h4 class="course-name" @click.prevent="goToDetail(item.num)">{{item.name}}</h4>
+                  <h4 class="course-name" @click.prevent="goToDetail(item.num)" v-show="getLang == 'zh'">{{item.name}}</h4>
+                  <h4 class="course-name" @click.prevent="goToDetail(item.num)" v-show="getLang == 'en'">{{item.name_en}}</h4>
                   <div class="course-info">
                     <div class="course-price">{{$t('detail.coursePrice')}}&nbsp;:&nbsp;${{item.price}}</div>
                     <div class="course-level">
@@ -326,6 +334,7 @@
 </template>
 
 <script>
+  import {mapGetters} from 'vuex'
   import Common from '../components/common'
   import Level from '../components/level.vue'
 
@@ -347,6 +356,9 @@
         teacherId:'',
         mode:'list'
       }
+    },
+    computed: {
+      ...mapGetters(['getLang'])
     },
     methods: {
       changeMode(mode){

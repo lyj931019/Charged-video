@@ -22,6 +22,9 @@ export default {
   },
   getTypes: state => {
     return state.types;
+  },
+  getLang: state => {
+    return state.lang;
   }
 
 }
