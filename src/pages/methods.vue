@@ -10,7 +10,9 @@
             <div class="active pt-3">
               <!--<h1>{{page.title}}</h1>-->
               <template v-if="content.content">
-                <div v-html="content.content"></div>
+                <!--<div v-html="content.content"></div>-->
+                <div v-html="content.content" v-show="getLang == 'zh'"></div>
+                <div v-html="content.content_en" v-show="getLang == 'en'"></div>
               </template>
               <template v-else>
                 <div>{{$t('common.noContent')}}</div>
@@ -30,7 +32,7 @@
 <script>
   import Common from '../components/common'
   import Guidance from '../common/guidance.vue'
-
+  import {mapGetters} from 'vuex'
   export default {
     name: 'about',
     components: {...Common, Guidance},
@@ -39,6 +41,11 @@
         active: 'methods',
         content: null
       }
+    },
+    computed: {
+      ...mapGetters([
+        'getLang'
+      ])
     },
     methods: {
       changePage(pageName) {
