@@ -10,7 +10,8 @@
         <div v-if="lesson.video">
           <video :src="lesson.video" controls="controls"></video>
         </div>
-        <div v-html="lesson.content" @click="getPronunciation"></div>
+        <div v-html="lesson.content"></div>
+        <!--<div v-html="lesson.content" @click="getPronunciation"></div>-->
       </div>
     </div>
     <audio :src="audioUrl" id="audio" autoplay>
@@ -61,11 +62,12 @@
           _this.lesson = res.data.data;
           let content = _this.lesson.content;
           let html = ''
-          if (content && content.length > 0) {
-            html = content.replace(/\b[a-zA-Z]+\b/g, function (world) {
-              return '<span class="pronunciation">' + world + '</span>'
-            })
-          }
+          // if (content && content.length > 0) {
+          //   html = content.replace(/\b[a-zA-Z]+\b/g, function (world) {
+          //     return '<span class="pronunciation">' + world + '</span>'
+          //   })
+          // }
+          html = content;
           _this.classRoomActive = false;
           _this.lesson.content = html;
         })
