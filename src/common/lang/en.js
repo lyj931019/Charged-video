@@ -24,6 +24,7 @@ module.exports = {
     preparing:'You are preparing to buy',
     payment:'Choose Payment Method',
     wechat:'Wechat Pay',
+    ali:'Ali Pay',
     questionOrder:'Used only in event of question about order',
     review:'Review Cart and Checkout',
   },

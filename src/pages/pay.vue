@@ -16,16 +16,21 @@
               </div>
               <div class="form-group">
                 <div class="custom-control custom-radio pay-type p-2 m-4">
-                  <input type="radio" id="pay" name="sex" v-model="payType" class="custom-control-input" value="1" checked>
-                  <label class="custom-control-label" for="pay">{{$t('pay.wechat')}}</label>
+                  <input type="radio" id="ali" name="payment" v-model="payType" class="custom-control-input" value="0" checked>
+                  <label class="custom-control-label" for="ali">{{$t('pay.ali')}}</label>
                 </div>
+                <div class="custom-control custom-radio pay-type p-2 m-4">
+                  <input type="radio" id="we" name="payment" v-model="payType" class="custom-control-input" value="1">
+                  <label class="custom-control-label" for="we">{{$t('pay.wechat')}}</label>
+                </div>
+
               </div>
             </div>
             <div class="section p-4">
               <form>
                 <div class="form-group">
                   <label for="name" class="label">{{$t('userCenter.nickname')}} *</label>
-                  <input type="email" v-model="name" class="form-control" id="name" >
+                  <input type="text" v-model="name" class="form-control" id="name" >
                 </div>
                 <div class="row">
                   <div class="col-12 col-md-6">
@@ -172,10 +177,11 @@
           let _this = this;
           this.$http({
             method: 'post',
-            url: '/courses/buy',
+            url: '/payment/page',
             data: {
               user_id: _this.getUserInfo.user_id,
-              course_id: _this.courses.id
+              course_id: _this.courses.id,
+              return_url: 'http://'+window.location.host+'/#/userCenter'
             },
             transformRequest: [function (data) {
               let ret = ''
@@ -186,13 +192,14 @@
             }],
           }).then(res => {
             if (res.data.state.code == 0) {
-              _this.tips = _this.$t('common.success');
-              _this.icon_type = 'success';
+              // _this.tips = _this.$t('common.success');
+              // _this.icon_type = 'success';
+              window.location.href = res.data.data;
             } else {
               _this.tips = _this.$t('common.bought');
               _this.icon_type = 'fail';
             }
-            $('#payTips').modal('show');
+            // $('#payTips').modal('show');
 //            _this.$router.push({ name: 'userCenter'})
           })
         } else {

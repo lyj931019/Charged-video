@@ -24,6 +24,7 @@ module.exports = {
     preparing:'您正准备购买',
     payment:'选择支付方式',
     wechat:'微信支付',
+    ali:'支付宝支付',
     questionOrder:'仅在有关订单的问题时使用',
     review:'查看购物车和结帐',
   },
