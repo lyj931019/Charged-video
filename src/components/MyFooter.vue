@@ -177,38 +177,44 @@
         <!--</div>-->
       <!--</div>-->
     <!--</div>-->
-    <div class="foot-bg">
-      <div class="container-fluid mb-2">
-        <div class="row footer__link" STYLE="font-size: 0.8rem;">
-          <div class="footer__link--logo">
-            <img :src="'./static/img/logo.jpg'"/>
+    <div class="real-footer">
+      <div class="foot-bg">
+        <div class="container-fluid mb-2">
+          <div class="row footer__link" STYLE="font-size: 0.8rem;">
+            <div class="footer__link--logo">
+              <img :src="'./static/img/logo.jpg'"/>
+            </div>
+            <div class="footer__link--content">
+              <router-link to="/about/AboutUs">
+                {{$t('about.aboutUs')}}
+              </router-link>
+              <router-link to="/about/TermsOfUse">
+                {{$t('about.termsOfUse')}}
+              </router-link>
+              <router-link to="/about/Privacy">
+                {{$t('about.privacy')}}
+              </router-link>
+              <router-link to="/about/Support">
+                {{$t('about.support')}}
+              </router-link>
+              <router-link to="/methods">
+                {{$t('about.methods')}}
+              </router-link>
+            </div>
+
           </div>
-          <router-link to="/about/AboutUs">
-            {{$t('about.aboutUs')}}
-          </router-link>
-          <router-link to="/about/TermsOfUse">
-            {{$t('about.termsOfUse')}}
-          </router-link>
-          <router-link to="/about/Privacy">
-            {{$t('about.privacy')}}
-          </router-link>
-          <router-link to="/about/Support">
-            {{$t('about.support')}}
-          </router-link>
-          <router-link to="/methods">
-            {{$t('about.methods')}}
-          </router-link>
         </div>
-      </div>
-      <div class="container-fluid">
-        <div class="row">
-          <div class="col-12 center text-center">
-            © Copyright 2001 - 2018
-            <a href="#" class="foot-btn">Berklee College of Music</a>
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-12 center text-center">
+              © Copyright 2001 - 2018
+              <a href="#" class="foot-btn">Berklee College of Music</a>
+            </div>
           </div>
         </div>
       </div>
     </div>
+
   </div>
 
 
@@ -475,12 +481,20 @@
     width: .85rem;
   }
 
+  .real-footer{
+
+  }
   .foot-bg {
     background-color: #4c5960;
     color: #dee2e5;
     padding: 1rem 1rem 1rem;
     justify-content: space-between;
     text-align: center;
+
+    position: absolute;
+    left: 0; right: 0;
+    outline: 9999px solid #4c5960;
+    clip: rect(0 9999px 9999px 0);
   }
 
   .foot-icons img {
@@ -502,12 +516,14 @@
   }
   .footer__link{
     display: flex;
+    justify-content: center;
+
     a{
       color: #fff;
-      flex: 1;
+      /*flex: 1;*/
       text-align: left;
       line-height: 20px;
-      padding: 20px;
+      padding: 0 20px;
     }
     &--logo{
       width: 190px;
@@ -515,9 +531,18 @@
       margin-right: 20px;
       flex: none;
       img{
-        width: 190px;
-        height: 60px;
+        /*width: 190px;*/
+        /*height: 60px;*/
+        max-width: 100%;
+        max-height: 100%;
       }
+    }
+    &--content{
+      display: flex;
+      flex-wrap: nowrap;
+      align-items: center;
+      margin-top: 12px;
+      justify-content: space-between;
     }
   }
 </style>

@@ -27,6 +27,9 @@ module.exports = {
     ali:'Ali Pay',
     questionOrder:'Used only in event of question about order',
     review:'Review Cart and Checkout',
+    errTips:'Please fill out the form with " * " in the form',
+    sp:'State/Province',
+    postalCode:'Postal Code'
   },
   footer:{},
   about:{
@@ -113,6 +116,7 @@ module.exports = {
     tips:'Please remove special characters before submitting, for example: èüîñò.',
     correct:'Please enter the correct',
     existingAccount:'Existing account',
+    haveAccount:'Don\'t have an account'
   },
   common:{
     noContent:'No Content',

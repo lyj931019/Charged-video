@@ -1,14 +1,14 @@
 <template>
-  <div>
+  <div class="pay-bg">
     <MyHeader/>
-    <div class="jumbotron mb-0">
+    <div >
       <div class="container-fluid">
         <div class="row">
           <div class="col-12 col-md-8 p-2" v-if="courses">
             <div class="section">
               <p class="course-tips">{{$t('pay.preparing')}}&nbsp;<span style="color:#ee243c;">({{courses.buy_day}}&nbsp;{{$t('detail.days')}})</span></p>
               <h2 class="course-title">{{courses.name}}</h2>
-              <p class="course-time">Fall Term Starts September 24,2018/Duration,12 Weeks</p>
+              <!--<p class="course-time">Fall Term Starts September 24,2018/Duration,12 Weeks</p>-->
             </div>
             <div class="section">
               <div class="choose-title">
@@ -19,10 +19,10 @@
                   <input type="radio" id="ali" name="payment" v-model="payType" class="custom-control-input" value="0" checked>
                   <label class="custom-control-label" for="ali">{{$t('pay.ali')}}</label>
                 </div>
-                <div class="custom-control custom-radio pay-type p-2 m-4">
-                  <input type="radio" id="we" name="payment" v-model="payType" class="custom-control-input" value="1">
-                  <label class="custom-control-label" for="we">{{$t('pay.wechat')}}</label>
-                </div>
+                <!--<div class="custom-control custom-radio pay-type p-2 m-4">-->
+                  <!--<input type="radio" id="we" name="payment" v-model="payType" class="custom-control-input" value="1" checked>-->
+                  <!--<label class="custom-control-label" for="we">{{$t('pay.wechat')}}</label>-->
+                <!--</div>-->
 
               </div>
             </div>
@@ -60,13 +60,13 @@
                   </div>
                   <div class="col-12 col-md-6">
                     <div class="form-group">
-                      <label for="state" class="label">State/Province *</label>
+                      <label for="state" class="label">{{$t('pay.sp')}} *</label>
                       <input type="text" v-model="state" class="form-control" id="state" >
                     </div>
                   </div>
                   <div class="col-12 col-md-6">
                     <div class="form-group">
-                      <label for="code" class="label">Postal Code *</label>
+                      <label for="code" class="label">{{$t('pay.postalCode')}} *</label>
                       <input type="text" v-model="code" class="form-control" id="code" >
                     </div>
                   </div>
@@ -109,6 +109,7 @@
                 </button>
               </div>
             </div>
+            <p class="alert alert-danger" v-if="payErr">{{$t('pay.errTips')}}</p>
           </div>
         </div>
       </div>
@@ -152,7 +153,7 @@
         courses: null,
         tips: '',
         icon_type: 'success',
-        payType: '1',
+        payType: '0',
         email:'',
         name:'',
         addr1:'',
@@ -161,7 +162,9 @@
         city:'',
         state:'',
         code:'',
-        phone:''
+        phone:'',
+        // errTips:'',
+        payErr:false
       }
     },
     computed: {
@@ -172,7 +175,17 @@
       ])
     },
     methods: {
+      checkForm(){
+        return this.name && this.addr1 && this.country && this.city && this.state && this.code && this.phone;
+      },
       buyCourse() {
+        this.payErr = !this.checkForm();
+        console.log(this.payErr );
+        // return ;
+        if(this.payErr){
+          // this.errTips = ''
+          return ;
+        }
         if (this.getIsLogin) {
           let _this = this;
           this.$http({
@@ -229,8 +242,9 @@
   }
 </script>
 <style scoped>
-  .jumbotron{
-    border-top: 2px solid #d2d2d2;
+  .pay-bg{
+    background:#e9ecef;
+    outline: #e9ecef solid 999px;
   }
   .section {
     background-color: #fff;

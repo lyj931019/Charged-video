@@ -55,8 +55,8 @@
 
           </div>
           <div class="signup">
-            Don't have an account?&nbsp;&nbsp;
-            <router-link :to="{ name: 'login'}">Log In</router-link>
+            {{$t('register.haveAccount')}}?&nbsp;&nbsp;
+            <router-link :to="{ name: 'login'}">{{$t('header.login')}}</router-link>
           </div>
         </div>
 

@@ -27,6 +27,9 @@ module.exports = {
     ali:'支付宝支付',
     questionOrder:'仅在有关订单的问题时使用',
     review:'查看购物车和结帐',
+    errTips:'请填写表单中带 " * " 的选项',
+    sp:'州/省',
+    postalCode:'邮政编码'
   },
   footer: {},
   about: {
@@ -113,6 +116,7 @@ module.exports = {
     tips:'请在提交前删除特殊字符，例如：èüîñò。',
     correct:'请输入正确的',
     existingAccount:'已有账号',
+    haveAccount:'已经有账号'
   },
   common: {
     noContent: '未设置',
