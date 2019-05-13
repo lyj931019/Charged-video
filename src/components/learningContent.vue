@@ -1,22 +1,38 @@
 <template>
-  <div v-if="lesson">
+  <div  v-if="lesson">
     <div class="lesson-topic">
       <div class="topic-divider">
         {{lesson.title}}
       </div>
       <div class="lesson-content">
         <table></table>
-        <!--<div v-html="lesson.abstract"></div>-->
+        <div v-html="lesson.abstract"></div>
         <div v-if="lesson.video">
-          <video :src="lesson.video" controls="controls"></video>
+          <template v-if="lesson.video.indexOf('mp3',lesson.video.lastIndexOf('.'))">
+            <aplayer
+              :music="{
+                      title: lesson.title,
+                      artist: 'audio',
+                      src: lesson.video,
+                    }"
+              mutex
+            />
+          </template>
+          <template v-else>
+            <video :src="lesson.video" controls="controls"></video>
+          </template>
+
+
         </div>
-        <div v-html="lesson.content"></div>
+        <!--<div id="aplayer"></div>-->
+        <div  v-html="lesson.content"></div>
         <!--<div v-html="lesson.content" @click="getPronunciation"></div>-->
       </div>
     </div>
-    <audio :src="audioUrl" id="audio" autoplay>
-      <!--您的浏览器不支持 audio 标签。-->
-    </audio>
+    <!-- 点击单词播放单词读音，现取消 -->
+    <!--<audio :src="audioUrl" id="audio" autoplay>-->
+      <!--&lt;!&ndash;您的浏览器不支持 audio 标签。&ndash;&gt;-->
+    <!--</audio>-->
     <!-- tips -->
     <div class="modal fade" id="audioErr" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
          aria-hidden="true">
@@ -42,13 +58,34 @@
 </template>
 
 <script>
+  import Aplayer from 'vue-aplayer'
+  // const ap = new APlayer(options);
   export default {
     name:'learningContent',
+    components:{Aplayer},
     data(){
       return {
         lesson:null,
         audioUrl:'',
         classRoomActive: false,
+        // ap:null,
+        // options:{
+        //   container: null,
+        //   mini: false,
+        //   autoplay: false,
+        //   loop: 'all',
+        //   order: 'random',
+        //   preload: 'auto',
+        //   volume: 0.7,
+        //   mutex: true,
+        //   listFolded: false,
+        //   listMaxHeight: 90,
+        //   audio: [{
+        //     name: 'name',
+        //     artist: '',
+        //     url: '',
+        //   }]
+        // }
       }
     },
     methods:{
@@ -67,6 +104,13 @@
           //     return '<span class="pronunciation">' + world + '</span>'
           //   })
           // }
+          // _this.options.audio[0].url = _this.lesson.video;
+          // _this.options.audio[0].name = _this.lesson.title;
+          // setTimeout(()=>{
+          //   _this.options.container = window.document.getElementById('aplayer');
+          //   _this.ap = new _this.$ap(_this.options);
+          // },1000)
+
           html = content;
           _this.classRoomActive = false;
           _this.lesson.content = html;

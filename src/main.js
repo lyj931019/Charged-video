@@ -23,6 +23,9 @@ import 'summernote'
 import 'summernote/dist/lang/summernote-zh-CN'
 import 'summernote/dist/summernote.css'
 
+// import 'APlayer/dist/APlayer.min.css';
+// import APlayer from 'APlayer';
+// import Aplayer from 'vue-aplayer'
 
 
 // import VueUeditorWrap from 'vue-ueditor-wrap'
@@ -30,6 +33,7 @@ import 'summernote/dist/summernote.css'
 
 Vue.prototype._ = LYJ;
 Vue.prototype.$http = axios;
+// Vue.prototype.$ap = APlayer;
 // Vue.use(Vuex);
 Vue.config.productionTip = false
 // 获得权限
