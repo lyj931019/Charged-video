@@ -8,7 +8,7 @@
         <table></table>
         <div v-html="lesson.abstract"></div>
         <div v-if="lesson.video">
-          <template v-if="lesson.video.indexOf('mp3',lesson.video.lastIndexOf('.'))">
+          <template v-if="lesson.video.indexOf('mp3',lesson.video.lastIndexOf('.'))>-1">
             <aplayer
               :music="{
                       title: lesson.title,
