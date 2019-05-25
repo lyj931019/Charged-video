@@ -29,9 +29,14 @@ import 'summernote/dist/summernote.css'
 
 
 // import VueUeditorWrap from 'vue-ueditor-wrap'
+// 视频播放器
+// import 'video.js/dist/video-js.css'
+// import 'vue-video-player/src/custom-theme.css'
+// import VideoPlayer from 'vue-video-player'
+// Vue.use(VideoPlayer);
 
 
-Vue.prototype._ = LYJ;
+
 Vue.prototype.$http = axios;
 // Vue.prototype.$ap = APlayer;
 // Vue.use(Vuex);

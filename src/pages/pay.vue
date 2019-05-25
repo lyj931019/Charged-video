@@ -26,58 +26,58 @@
 
               </div>
             </div>
-            <div class="section p-4">
-              <form>
-                <div class="form-group">
-                  <label for="name" class="label">{{$t('userCenter.nickname')}} *</label>
-                  <input type="text" v-model="name" class="form-control" id="name" >
-                </div>
-                <div class="row">
-                  <div class="col-12 col-md-6">
-                    <div class="form-group">
-                      <label for="addr" class="label">{{$t('userCenter.address')}} 1 *</label>
-                      <input type="text"  v-model="addr1" class="form-control" id="addr" >
-                    </div>
-                  </div>
-                  <div class="col-12 col-md-6">
-                    <div class="form-group">
-                      <label for="addr2" class="label">{{$t('userCenter.address')}} 2</label>
-                      <input type="text" v-model="addr2" class="form-control" id="addr2" >
-                    </div>
-                  </div>
+            <!--<div class="section p-4">-->
+              <!--<form>-->
+                <!--<div class="form-group">-->
+                  <!--<label for="name" class="label">{{$t('userCenter.nickname')}} *</label>-->
+                  <!--<input type="text" v-model="name" class="form-control" id="name" >-->
+                <!--</div>-->
+                <!--<div class="row">-->
+                  <!--<div class="col-12 col-md-6">-->
+                    <!--<div class="form-group">-->
+                      <!--<label for="addr" class="label">{{$t('userCenter.address')}} 1 *</label>-->
+                      <!--<input type="text"  v-model="addr1" class="form-control" id="addr" >-->
+                    <!--</div>-->
+                  <!--</div>-->
+                  <!--<div class="col-12 col-md-6">-->
+                    <!--<div class="form-group">-->
+                      <!--<label for="addr2" class="label">{{$t('userCenter.address')}} 2</label>-->
+                      <!--<input type="text" v-model="addr2" class="form-control" id="addr2" >-->
+                    <!--</div>-->
+                  <!--</div>-->
 
-                  <div class="col-12 col-md-6">
-                    <div class="form-group">
-                      <label for="country" class="label">{{$t('userCenter.country')}} *</label>
-                      <input type="text" v-model="country" class="form-control" id="country" >
-                    </div>
-                  </div>
-                  <div class="col-12 col-md-6">
-                    <div class="form-group">
-                      <label for="city"  class="label">{{$t('userCenter.city')}} *</label>
-                      <input type="text" v-model="city" class="form-control" id="city" >
-                    </div>
-                  </div>
-                  <div class="col-12 col-md-6">
-                    <div class="form-group">
-                      <label for="state" class="label">{{$t('pay.sp')}} *</label>
-                      <input type="text" v-model="state" class="form-control" id="state" >
-                    </div>
-                  </div>
-                  <div class="col-12 col-md-6">
-                    <div class="form-group">
-                      <label for="code" class="label">{{$t('pay.postalCode')}} *</label>
-                      <input type="text" v-model="code" class="form-control" id="code" >
-                    </div>
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label for="phone" class="label">{{$t('userCenter.phone')}} *</label>
-                  <input type="text" v-model="phone" class="form-control" id="phone" >
-                  <div id="emailHelp" class="form-text text-muted">{{$t('pay.questionOrder')}}</div>
-                </div>
-              </form>
-            </div>
+                  <!--<div class="col-12 col-md-6">-->
+                    <!--<div class="form-group">-->
+                      <!--<label for="country" class="label">{{$t('userCenter.country')}} *</label>-->
+                      <!--<input type="text" v-model="country" class="form-control" id="country" >-->
+                    <!--</div>-->
+                  <!--</div>-->
+                  <!--<div class="col-12 col-md-6">-->
+                    <!--<div class="form-group">-->
+                      <!--<label for="city"  class="label">{{$t('userCenter.city')}} *</label>-->
+                      <!--<input type="text" v-model="city" class="form-control" id="city" >-->
+                    <!--</div>-->
+                  <!--</div>-->
+                  <!--<div class="col-12 col-md-6">-->
+                    <!--<div class="form-group">-->
+                      <!--<label for="state" class="label">{{$t('pay.sp')}} *</label>-->
+                      <!--<input type="text" v-model="state" class="form-control" id="state" >-->
+                    <!--</div>-->
+                  <!--</div>-->
+                  <!--<div class="col-12 col-md-6">-->
+                    <!--<div class="form-group">-->
+                      <!--<label for="code" class="label">{{$t('pay.postalCode')}} *</label>-->
+                      <!--<input type="text" v-model="code" class="form-control" id="code" >-->
+                    <!--</div>-->
+                  <!--</div>-->
+                <!--</div>-->
+                <!--<div class="form-group">-->
+                  <!--<label for="phone" class="label">{{$t('userCenter.phone')}} *</label>-->
+                  <!--<input type="text" v-model="phone" class="form-control" id="phone" >-->
+                  <!--<div id="emailHelp" class="form-text text-muted">{{$t('pay.questionOrder')}}</div>-->
+                <!--</div>-->
+              <!--</form>-->
+            <!--</div>-->
           </div>
           <div class="col-12 col-md-4 p-2"  v-if="courses">
             <div class="section">
@@ -87,7 +87,7 @@
               <div class="checkout-course">
                 <div class="checkout-course-title">
                   <span>{{courses.name}}</span>
-                  <span>${{courses.price}}</span>
+                  <span>￥{{(courses.price/100).toFixed(2)}}</span>
                 </div>
                 <div>
                   <!--(3 Credits)<a href="#">Remove</a>-->
@@ -101,7 +101,7 @@
               <hr>
               <div class="checkout">
                 <span class="check-price">
-                  <b>{{$t('pay.total')}}</b> ${{courses.price}}
+                  <b>{{$t('pay.total')}}</b> ￥{{(courses.price/100).toFixed(2)}}
                 </span>
                 <br>
                 <button class="checkout-btn btn" @click="buyCourse">
@@ -179,13 +179,13 @@
         return this.name && this.addr1 && this.country && this.city && this.state && this.code && this.phone;
       },
       buyCourse() {
-        this.payErr = !this.checkForm();
-        console.log(this.payErr );
-        // return ;
-        if(this.payErr){
-          // this.errTips = ''
-          return ;
-        }
+        // this.payErr = !this.checkForm();
+        // console.log(this.payErr );
+        // // return ;
+        // if(this.payErr){
+        //   // this.errTips = ''
+        //   return ;
+        // }
         if (this.getIsLogin) {
           let _this = this;
           this.$http({
