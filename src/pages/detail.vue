@@ -40,7 +40,7 @@
                                 d="M148 288h-40c-6.6 0-12-5.4-12-12v-40c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12zm108-12v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm96 0v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm-96 96v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm-96 0v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm192 0v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm96-260v352c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V112c0-26.5 21.5-48 48-48h48V12c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v52h128V12c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v52h48c26.5 0 48 21.5 48 48zm-48 346V160H48v298c0 3.3 2.7 6 6 6h340c3.3 0 6-2.7 6-6z"></path>
                         </svg><!-- <div class="far fa-calendar-alt"></div> -->
                       </i>
-                      <span>2019年1月14日</span>
+                      <span v-if="courses">{{courses.created_at | formatDate}}</span>
 
                     </div>
                     <div class="course-level detail-level col-12 col-sm-6 col-lg-12">
@@ -66,7 +66,7 @@
                   <div class="nav-scroll" :class="{active:windowScrollTop>=requireH && windowScrollTop<authorH}" @click="gotoSection(requireH+1)">{{$t('detail.learningRequirements')}}</div>
                   <div class="nav-scroll" :class="{active:windowScrollTop>=authorH && windowScrollTop<questionH}" @click="gotoSection(authorH+1)">{{$t('detail.teacherProfile')}}</div>
                   <div class="buy" @click="buyCourse" v-if="coursesHash!=2 ">{{$t('detail.buyCourse')}}&nbsp;<span style="font-size: 1.1rem;" v-if="courses">({{courses.buy_day}}&nbsp;{{$t('detail.days')}})</span>  </div>
-                  <div class="buy"  v-else>{{$t('detail.bought')}}</div>
+                  <div class="buy"  v-else @click="goToStudyPage(courses.num)">{{$t('detail.enter')}}</div>
                   <div class="try" @click="tryCourse" v-if="courses && coursesHash==0 && courses.try  && courses.try_day>0">
                     {{$t('detail.tryCourse')}}
                     <span>({{courses.try_day}}&nbsp;{{$t('detail.days')}})</span>
@@ -216,10 +216,10 @@
           <div class="row">
             <div class="col-12 col-lg-7">
               <div class="advisors content-section">
-                <h2>Questions?</h2>
-                <p class="txt-lg">Contact our Academic Advisors by phone at 1-866-BERKLEE (U.S.), 1-617-747-2146 (INT'L), or by email at <a href="#">advisors@online.berklee.edu</a>.</p>
-                <p class="txt-lg">We can also answer basic questions in the comments below. Please note that all comments are public.</p>
-                <a class="read-more bo-button-tertiary" href="#" style="background: none;">Comments</a>
+                <h2>{{$t('detail.question')}}</h2>
+                <p class="txt-lg">{{$t('detail.contactUsByPhone')}}<a href="#">&nbsp;advisors@e-l.ink</a>.</p>
+                <p class="txt-lg">{{$t('detail.commentsTxt')}}</p>
+                <a class="read-more bo-button-tertiary" href="#" style="background: none;">{{$t('detail.comments')}}</a>
                 <div class="comments readmore-hidden" id="comments">
                   <div id="fb-root">
                     <div class="fb-comments" data-href="#" data-num-posts="10" data-width="100%" id="fb-container"></div>
@@ -299,6 +299,8 @@
   import Icon from '../components/icon.vue'
   import Guidance from '../common/guidance.vue'
   import { mapGetters } from 'vuex'
+  import { mapMutations } from 'vuex'
+  import {formatDate} from '../common/date'
   export default {
     name: 'detailF',
     components: {...Common,Level,Avatar,DownArrow,Icon,Guidance},
@@ -323,6 +325,12 @@
         favoritesHash:false,
       }
     },
+    filters:{
+      formatDate(time){
+        let date = new Date(time*1000);
+        return formatDate(date,'yyyy-MM-dd');
+      }
+    },
     computed: {
       // 使用对象展开运算符将 getter 混入 computed 对象中
       ...mapGetters([
@@ -332,6 +340,9 @@
       ])
     },
     methods: {
+      ...mapMutations([
+        'changelearningNum' // 将 `this.incrementBy(amount)` 映射为 `this.$store.commit('incrementBy', amount)`
+      ]),
       showLessonContent(index) {
         let newValue = !this.lessonActive[index]
         this.lessonActive.splice(index, 1, newValue);
@@ -466,7 +477,11 @@
             _this.getState(user_id)
           }
         });
-      }
+      },
+      goToStudyPage(num) {
+        this.changelearningNum(num);
+        this.$router.push({name: 'learningCenter'})
+      },
     },
     beforeMount() {
       let num = this.$route.params.num;

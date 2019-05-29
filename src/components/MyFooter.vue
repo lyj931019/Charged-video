@@ -207,8 +207,8 @@
         <div class="container-fluid">
           <div class="row">
             <div class="col-12 center text-center">
-              © Copyright 2001 - 2018
-              <a href="#" class="foot-btn">Berklee College of Music</a>
+              © Copyright 2019
+              <a href="#" class="foot-btn">i-Link Corporation</a>
             </div>
           </div>
         </div>
@@ -543,6 +543,11 @@
       align-items: center;
       margin-top: 12px;
       justify-content: space-between;
+    }
+  }
+  @media (max-width: 992px) {
+    .foot-bg{
+      margin-bottom: 70px;
     }
   }
 </style>

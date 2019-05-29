@@ -13,7 +13,10 @@ module.exports = {
     admissions:'招生',
     allCourses: '所有课程',
     contact:'联系 / 帮助',
-    hello:'你好'
+    hello:'你好',
+    anytime:'随时开始学习',
+    noApplicationRequired:'无申请资质要求',
+    toEnrollInAcourse:'购买课程。'
   },
   login:{
     noAccount:'没有账号'
@@ -72,8 +75,15 @@ module.exports = {
     lecturer: '讲师',
     collected:'已收藏',
     days:'天',
-    level:'难度',
+    level:'级别',
     bought:'已购买',
+    enter:'进入课程',
+    contactUs:'联系我们',
+    needGuidance:'需要指导？',
+    question:'有疑问？',
+    contactUsByPhone:'请拨打：0755-83220600，或发送邮件：',
+    commentsTxt:'您也可以在以下评论区提出基本的问题。请注意所有的评论都是公开的。',
+    comments:'评论'
   },
   userCenter: {
     tryCourse: '试用',
@@ -104,7 +114,7 @@ module.exports = {
     technicalAssistance:'技术援助',
     city:'城市',
     country:'国家',
-    cutoff:'截止'
+    cutoff:'有效期至'
   },
   learningCenter:{
     lessonList:'章节列表',

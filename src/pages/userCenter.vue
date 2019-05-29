@@ -180,18 +180,18 @@
             </div>
 
             <div class="col-12 col-lg-1"></div>
-            <div class="col-12 col-lg-4">
-              <div class="courseInfo">
-                <div class="drop-info">
-                  <h4>{{$t('userCenter.schoolLink')}}</h4>
-                  <p><a href="#">{{$t('userCenter.schoolLink')}}</a></p>
-                  <p><a href="#">{{$t('userCenter.academicPolicy')}}</a></p>
-                  <p><a href="#">{{$t('userCenter.frequentlyAskedQuestions')}}</a></p>
-                  <p><a href="#">{{$t('userCenter.taxInformation')}}</a></p>
-                  <p><a href="#">{{$t('userCenter.technicalAssistance')}}</a></p>
-                </div>
-              </div>
-            </div>
+            <!--<div class="col-12 col-lg-4">-->
+              <!--<div class="courseInfo">-->
+                <!--<div class="drop-info">-->
+                  <!--<h4>{{$t('userCenter.schoolLink')}}</h4>-->
+                  <!--<p><a href="#">{{$t('userCenter.schoolLink')}}</a></p>-->
+                  <!--<p><a href="#">{{$t('userCenter.academicPolicy')}}</a></p>-->
+                  <!--<p><a href="#">{{$t('userCenter.frequentlyAskedQuestions')}}</a></p>-->
+                  <!--<p><a href="#">{{$t('userCenter.taxInformation')}}</a></p>-->
+                  <!--<p><a href="#">{{$t('userCenter.technicalAssistance')}}</a></p>-->
+                <!--</div>-->
+              <!--</div>-->
+            <!--</div>-->
           </div>
         </div>
       </div>

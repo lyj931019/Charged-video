@@ -1,10 +1,13 @@
 <template>
   <div class="advisor-contact-block">
-    <p class="guidance">Need guidance?</p>
-    <a class="tel-main" href="tel:18662375533">1-866-BERKLEE</a>
-    <a class="tel-intl" href="tel:16177472146" isrender="true">Int'l: +1-617-747-2146</a>
-    <p class="call-text">
-      <a href="tel:18662375533">Call</a>,&nbsp;<a href="sms:18662375533">Text</a>,&nbsp;or&nbsp;<a href="mailto: advisors@online.berklee.edu">Email us</a></p>
+    <p class="guidance">{{$t('detail.needGuidance')}}</p>
+    <!--<a class="tel-main" :href="$t('detail.contactUs')">{{$t('detail.contactUs')}}</a>-->
+    <router-link :to="{ name: 'about',params:{item:'Support'}}" class="tel-main">{{$t('detail.contactUs')}}</router-link>
+    <!--<a class="tel-main" href="tel:18662375533">1-866-BERKLEE</a>-->
+    <!--<a class="tel-intl" href="tel:16177472146" isrender="true">Int'l: +1-617-747-2146</a>-->
+    <!--<p class="call-text">-->
+      <!--<a href="tel:18662375533">Call</a>,&nbsp;<a href="sms:18662375533">Text</a>,&nbsp;or&nbsp;<a href="mailto: advisors@online.berklee.edu">Email us</a>-->
+    <!--</p>-->
   </div>
 </template>
 <script>

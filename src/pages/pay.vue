@@ -207,7 +207,7 @@
             if (res.data.state.code == 0) {
               // _this.tips = _this.$t('common.success');
               // _this.icon_type = 'success';
-              window.location.href = res.data.data;
+              window.open(res.data.data);
             } else {
               _this.tips = _this.$t('common.bought');
               _this.icon_type = 'fail';

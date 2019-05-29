@@ -156,3 +156,8 @@ video{
   text-overflow: ellipsis;
   white-space: nowrap;
 }
+
+.lesson-topics img{
+  max-width: 100%;
+  max-height: 100%;
+}

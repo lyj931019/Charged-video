@@ -302,15 +302,15 @@
                   <ul class="sub-nav-group">
                     <li>
                       <div class="drop-info">
-                        <h3>No application required</h3>
-                        <h5>to enroll in a course.</h5>
+                        <h3>{{$t('header.noApplicationRequired')}}</h3>
+                        <h5>{{$t('header.toEnrollInAcourse')}}</h5>
                         <hr role="separator">
                         <div class="cert-course-dates">
                           <i>
                             <svg class="svg-inline--fa fa-clock fa-w-16" aria-hidden="true" data-prefix="far" data-icon="clock" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm0 448c-110.5 0-200-89.5-200-200S145.5 56 256 56s200 89.5 200 200-89.5 200-200 200zm61.8-104.4l-84.9-61.7c-3.1-2.3-4.9-5.9-4.9-9.7V116c0-6.6 5.4-12 12-12h32c6.6 0 12 5.4 12 12v141.7l66.8 48.6c5.4 3.9 6.5 11.4 2.6 16.8L334.6 349c-3.9 5.3-11.4 6.5-16.8 2.6z"></path></svg><!-- <div class="far fa-clock"></div> -->
                           </i>
-                          <a href="#" target="blank">
-                            Next Term Starts January 14
+                          <a href="javascript:void(0)"  target="blank">
+                            {{$t('header.anytime')}}
                           </a>
                         </div>
 
@@ -331,12 +331,12 @@
                     <li>
                       <div class="drop-info" style="font-size: 0.9rem;
     font-weight: normal;">
-                        Need Guidance?<br>
-                        <h3 style="font-size: 1.2rem;">1-866-BERKLEE</h3>
-                        <h5 style="font-size: 0.8rem;">Int'l +1-617-747-2146</h5>
+                        {{$t('detail.needGuidance')}}<br>
+                        <h3 style="font-size: 1.2rem;">0756-8322 0600</h3>
+                        <!--<h5 style="font-size: 0.8rem;">Int'l +1-617-747-2146</h5>-->
                         <h5 style="margin-bottom: 2px;">
-                          <a href="#" style="font-weight: bold;text-transform: initial;">
-                            advisors@online.berklee.edu
+                          <a href="javascript:void(0)"  style="font-weight: bold;text-transform: initial;">
+                            advisors@e-l.ink
                           </a>
                         </h5>
                         <hr role="separator" style="margin: 5px 0 5px 0;">
@@ -344,8 +344,8 @@
                           <i>
                             <svg class="svg-inline--fa fa-clock fa-w-16" aria-hidden="true" data-prefix="far" data-icon="clock" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm0 448c-110.5 0-200-89.5-200-200S145.5 56 256 56s200 89.5 200 200-89.5 200-200 200zm61.8-104.4l-84.9-61.7c-3.1-2.3-4.9-5.9-4.9-9.7V116c0-6.6 5.4-12 12-12h32c6.6 0 12 5.4 12 12v141.7l66.8 48.6c5.4 3.9 6.5 11.4 2.6 16.8L334.6 349c-3.9 5.3-11.4 6.5-16.8 2.6z"></path></svg><!-- <div class="far fa-clock"></div> -->
                           </i>
-                          <a href="#" target="blank">
-                            Next Term Starts January 14
+                          <a href="javascript:void(0)" >
+                            {{$t('header.anytime')}}
                           </a>
                         </div>
 
@@ -380,7 +380,8 @@
                         <i>
                           <svg class="svg-inline--fa fa-phone fa-w-16" aria-hidden="true" data-prefix="fa" data-icon="phone" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M493.397 24.615l-104-23.997c-11.314-2.611-22.879 3.252-27.456 13.931l-48 111.997a24 24 0 0 0 6.862 28.029l60.617 49.596c-35.973 76.675-98.938 140.508-177.249 177.248l-49.596-60.616a24 24 0 0 0-28.029-6.862l-111.997 48C3.873 366.516-1.994 378.08.618 389.397l23.997 104C27.109 504.204 36.748 512 48 512c256.087 0 464-207.532 464-464 0-11.176-7.714-20.873-18.603-23.385z"></path></svg><!-- <div class="fa fa-phone"></div> -->
                         </i>
-                        {{$t('header.contact')}}
+                        <router-link style="display: inline;" :to="{ name: 'about',params:{item:'Support'}}">{{$t('header.contact')}}</router-link>
+
                       </a>
                     </li>
                   </ul>

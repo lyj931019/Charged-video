@@ -13,7 +13,10 @@ module.exports = {
     admissions:'Admissions',
     allCourses: 'All Courses',
     contact:'Contact / Help',
-    hello:'Hello'
+    hello:'Hello',
+    anytime:'Next Term Starts Anytime',
+    noApplicationRequired:'No application required',
+    toEnrollInAcourse:'to enroll in a course.'
   },
   login:{
     noAccount:'No Account'
@@ -74,6 +77,13 @@ module.exports = {
     days:'days',
     level:'Level',
     bought:'Bought',
+    enter:'Enter',
+    contactUs:'Contact Us',
+    needGuidance:'Need guidance?',
+    question:'Question?',
+    contactUsByPhone:'Contact our Academic Advisors by phone at 0755-83220600, or by email at ',
+    commentsTxt:'We can also answer basic questions in the comments below. Please note that all comments are public.',
+    comments:'Comments'
   },
   userCenter:{
     tryCourse:'try',

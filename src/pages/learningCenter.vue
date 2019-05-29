@@ -1,9 +1,9 @@
 <template>
-  <div class="classroom" style="background-color: #eff1f2;" :class="classRoomActive?'active':''" v-if="courses">
+  <div class="classroom" style="background-color: #eff1f2; outline: 999px solid #eff1f2;" :class="classRoomActive?'active':''" v-if="courses">
     <div class="header">
       <div class="icon">
         <!--<img src="../assets/img/Berklee_Logo_Square.svg" alt="">-->
-        <img :src="'./static/img/logo-min.png'" alt="">
+        <router-link :to="{ name: 'index'}"><img :src="'./static/img/logo-min.png'" alt=""></router-link>
         <!--<span>Sample Lessons</span>-->
         <span>{{courses.name}}</span>
       </div>
@@ -104,7 +104,7 @@
     components: {Avatar},
     data() {
       return {
-        classRoomActive: false,
+        classRoomActive: true,
         asideDetailActive: true,
         courses: null,
         lesson: null,
@@ -329,7 +329,7 @@
     vertical-align: top;
   }
 
-  .header .icon img + span {
+  .header .icon span {
     color: rgba(255, 255, 255, 0.9);
     letter-spacing: 1px;
     font-size: 1.2rem;
@@ -634,5 +634,7 @@
   #audio {
     visibility: hidden;
   }
+
+
 
 </style>
