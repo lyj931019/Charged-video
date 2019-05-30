@@ -53,7 +53,7 @@ module.exports = {
     academicHour:'课时',
     tuition:'学费',
     classification:'分类',
-    all:'所有',
+    all:'全部',
     teachers:'教师',
   },
   detail: {

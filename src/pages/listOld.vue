@@ -145,8 +145,16 @@
           <div class="col-6 col-md-2 text-right">
             {{$t('detail.level')}}:
             <span class="dropdown-toggle " style="cursor: pointer;" role="button" id="level" data-toggle="dropdown" aria-haspopup="true"
-                  aria-expanded="false" data-offset="0,0">{{levelActive}}</span>
+                  aria-expanded="false" data-offset="0,0">
+              <template v-if="levelActive != 'All'">
+                {{levelActive}}
+              </template>
+              <template v-else>{{$t('list.all')}}</template>
+            </span>
             <div class="dropdown-menu level-all" aria-labelledby="level" v-if="sortList.length>0">
+              <a href="#" @click.prevent="getCourseListFromLevel('All')">
+                <h6>{{$t('list.all')}}</h6>
+              </a>
               <a href="#" @click.prevent="getCourseListFromLevel(1)">
                 <Level :level="1"></Level>
                 <h6>{{$t('detail.level')}} 1</h6>
@@ -202,23 +210,23 @@
               <p class="title">{{$t('detail.level')}}</p>
             </div>
             <div class="level-list">
-              <a href="#" @click.prevent="getCourseListFromLevel(1)">
+              <a href="#" @click.prevent="getCourseListFromLevel(1)" :class="{ active: levelActive == 1 }">
                 <Level :level="1"></Level>
                 <h6>{{$t('detail.level')}} 1</h6>
               </a>
-              <a href="#" @click.prevent="getCourseListFromLevel(2)">
+              <a href="#" @click.prevent="getCourseListFromLevel(2)" :class="{ active: levelActive == 2 }">
                 <Level :level="2"></Level>
                 <h6>{{$t('detail.level')}} 2</h6>
               </a>
-              <a href="#" @click.prevent="getCourseListFromLevel(3)">
+              <a href="#" @click.prevent="getCourseListFromLevel(3)" :class="{ active: levelActive == 3 }">
                 <Level :level="3"></Level>
                 <h6>{{$t('detail.level')}} 3</h6>
               </a>
-              <a href="#" @click.prevent="getCourseListFromLevel(4)">
+              <a href="#" @click.prevent="getCourseListFromLevel(4)" :class="{ active: levelActive == 4 }">
                 <Level :level="4"></Level>
                 <h6>{{$t('detail.level')}} 4</h6>
               </a>
-              <a href="#" @click.prevent="getCourseListFromLevel(5)">
+              <a href="#" @click.prevent="getCourseListFromLevel(5)" :class="{ active: levelActive == 5 }">
                 <Level :level="5"></Level>
                 <h6>{{$t('detail.level')}} 5</h6>
               </a>
@@ -620,7 +628,9 @@
     display: inline-block;
     width: 60px;
   }
-
+  .level-list a.active{
+    text-decoration: underline;
+  }
   .level-list a h6 {
     color: #25353c;
     margin-top: 0.1rem;
