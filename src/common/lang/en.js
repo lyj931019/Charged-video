@@ -83,7 +83,9 @@ module.exports = {
     question:'Question?',
     contactUsByPhone:'Contact our Academic Advisors by phone at 0755-83220600, or by email at ',
     commentsTxt:'We can also answer basic questions in the comments below. Please note that all comments are public.',
-    comments:'Comments'
+    comments:'Comments',
+    more:'More',
+    less:'Less',
   },
   userCenter:{
     tryCourse:'try',

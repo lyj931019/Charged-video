@@ -92,7 +92,7 @@
           <div class="row">
             <div class="col-12 col-lg-9" v-if="courses">
               <h2>{{$t('detail.syllabus')}}</h2>
-              <template v-for="(lesson,index) in courses.lessons">
+              <template v-for="(lesson,index) in lessons">
                 <div class="lesson-container">
                   <div class="lesson-title">
                     <a href="#" @click.prevent="showLessonContent(index)">
@@ -108,6 +108,14 @@
 
 
               </template>
+              <div class="lesson-title" v-if="courses">
+                <span style="cursor: pointer;" @click="moreLessons()" v-if="courses.lessons.length>10 && lessons.length<=10">
+                  <b>+</b>&nbsp;&nbsp;&nbsp;{{$t('detail.more')}}
+                </span>
+                <span style="cursor: pointer;" @click="lessLessons()" v-if="courses.lessons.length>10 && lessons.length>10">
+                  <b>-</b>&nbsp;&nbsp;&nbsp;{{$t('detail.less')}}
+                </span>
+              </div>
             </div>
           </div>
         </div>
@@ -323,6 +331,7 @@
         bottomH:0,
         coursesHash:0,
         favoritesHash:false,
+        lessons:[]
       }
     },
     filters:{
@@ -343,6 +352,18 @@
       ...mapMutations([
         'changelearningNum' // 将 `this.incrementBy(amount)` 映射为 `this.$store.commit('incrementBy', amount)`
       ]),
+      lessLessons(){
+        this.lessons = [];
+        if(this.courses.lessons.length>10){
+          this.lessons = this.lessons.concat(this.courses.lessons.slice(0,10));
+        }else {
+          this.lessons = this.lessons.concat(this.courses.lessons);
+        }
+      },
+      moreLessons(){
+        this.lessons = [];
+        this.lessons = this.lessons.concat(this.courses.lessons);
+      },
       showLessonContent(index) {
         let newValue = !this.lessonActive[index]
         this.lessonActive.splice(index, 1, newValue);
@@ -472,6 +493,7 @@
             _this.lessonActive.push(false);
           }
           _this.courses = res.data.data;
+          _this.lessLessons();
           if(localStorage.getItem('user_id')){
             let user_id = localStorage.getItem('user_id')
             _this.getState(user_id)

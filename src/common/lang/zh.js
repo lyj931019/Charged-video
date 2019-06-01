@@ -83,7 +83,9 @@ module.exports = {
     question:'有疑问？',
     contactUsByPhone:'请拨打：0755-83220600，或发送邮件：',
     commentsTxt:'您也可以在以下评论区提出基本的问题。请注意所有的评论都是公开的。',
-    comments:'评论'
+    comments:'评论',
+    more:'展开',
+    less:'收起',
   },
   userCenter: {
     tryCourse: '试用',
