@@ -847,9 +847,13 @@
     background-color: white;
   }
   .course-footer a.box>div{
-    font-size: 1rem;
-    line-height: 1.65rem;
+    font-size: 0.55rem;
+    line-height: 0.55rem;
   }
+  .course-footer a.box:last-child>div{
+     font-size: 1rem;
+     line-height: 1.65rem;
+   }
   .course-footer a.box:last-child{
     background: #ee243c;
     width: 36%;

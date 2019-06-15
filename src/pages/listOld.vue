@@ -190,7 +190,7 @@
             </div>
             <div class="course-time col-6 col-md-3 mb-2 mb-md-0">{{item.period}}h</div>
             <div class="course-price col-6 col-md-3 text-md-center">
-              {{$t('detail.coursePrice')}}&nbsp;:&nbsp;${{item.price}}
+              {{$t('detail.coursePrice')}}&nbsp;:&nbsp;￥{{item.price}}
             </div>
             <div class="course-level col-6 col-md-2 text-md-right">
               <div>
@@ -276,7 +276,7 @@
                   <h4 class="course-name" @click.prevent="goToDetail(item.num)" v-show="getLang == 'zh'">{{item.name}}</h4>
                   <h4 class="course-name" @click.prevent="goToDetail(item.num)" v-show="getLang == 'en'">{{item.name_en}}</h4>
                   <div class="course-info">
-                    <div class="course-price">{{$t('detail.coursePrice')}}&nbsp;:&nbsp;${{item.price}}</div>
+                    <div class="course-price">{{$t('detail.coursePrice')}}&nbsp;:&nbsp;￥{{item.price}}</div>
                     <div class="course-level">
                       <Level :level="item.level"></Level>
                       <p>{{$t('detail.level')}} {{item.level}}</p>

@@ -179,39 +179,46 @@
     <!--</div>-->
     <div class="real-footer">
       <div class="foot-bg">
-        <div class="container-fluid mb-2">
+        <div class="container-fluid">
           <div class="row footer__link" STYLE="font-size: 0.8rem;">
             <div class="footer__link--logo">
               <img :src="'./static/img/logo.jpg'"/>
             </div>
-            <div class="footer__link--content">
-              <router-link to="/about/AboutUs">
-                {{$t('about.aboutUs')}}
-              </router-link>
-              <router-link to="/about/TermsOfUse">
-                {{$t('about.termsOfUse')}}
-              </router-link>
-              <router-link to="/about/Privacy">
-                {{$t('about.privacy')}}
-              </router-link>
-              <router-link to="/about/Support">
-                {{$t('about.support')}}
-              </router-link>
-              <router-link to="/methods">
-                {{$t('about.methods')}}
-              </router-link>
+            <div>
+              <div class="footer__link--content">
+                <router-link to="/about/AboutUs">
+                  {{$t('about.aboutUs')}}
+                </router-link>
+                <router-link to="/about/TermsOfUse">
+                  {{$t('about.termsOfUse')}}
+                </router-link>
+                <router-link to="/about/Privacy">
+                  {{$t('about.privacy')}}
+                </router-link>
+                <router-link to="/about/Support">
+                  {{$t('about.support')}}
+                </router-link>
+                <router-link to="/methods">
+                  {{$t('about.methods')}}
+                </router-link>
+              </div>
+              <div class="footer__link--copyright">
+                © Copyright 2019
+                <a href="#" class="foot-btn">i-Link Corporation</a>
+              </div>
             </div>
+
 
           </div>
         </div>
-        <div class="container-fluid">
-          <div class="row">
-            <div class="col-12 center text-center">
-              © Copyright 2019
-              <a href="#" class="foot-btn">i-Link Corporation</a>
-            </div>
-          </div>
-        </div>
+        <!--<div class="container-fluid">-->
+          <!--<div class="row">-->
+            <!--<div class="col-12 center text-center">-->
+              <!--© Copyright 2019-->
+              <!--<a href="#" class="foot-btn">i-Link Corporation</a>-->
+            <!--</div>-->
+          <!--</div>-->
+        <!--</div>-->
       </div>
     </div>
 
@@ -539,10 +546,19 @@
     }
     &--content{
       display: flex;
-      flex-wrap: nowrap;
+      flex-wrap: wrap;
       align-items: center;
       margin-top: 12px;
       justify-content: space-between;
+      align-content:space-between;
+    }
+    &--copyright{
+      font-size: 1rem;
+      padding: 0.5rem;
+      & a{
+        padding: 0;
+        color: #dee2e5;
+      }
     }
   }
   @media (max-width: 992px) {

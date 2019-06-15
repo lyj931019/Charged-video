@@ -19,8 +19,11 @@
         </template>
 
         <div class="submit" v-if="!done">
-          <div id="summernote"></div>
-          <!--<vue-ueditor-wrap v-model="msg" :config="myConfig"></vue-ueditor-wrap>-->
+          <template v-if="ueConfig">
+            <vue-ueditor-wrap v-model="ueMsg" :config="ueConfig" :destroy="true"></vue-ueditor-wrap>
+          </template>
+
+          <!--<div id="summernote"></div>-->
 
           <div class="submit-btn">
             <span class="file-name" v-if="audioName">
@@ -136,14 +139,14 @@
 </template>
 
 <script>
-  //  import VueUeditorWrap from 'vue-ueditor-wrap'
+   import VueUeditorWrap from 'vue-ueditor-wrap'
   import {mapGetters, mapMutations} from 'vuex'
   import Icon from '../components/icon.vue'
 
   export default {
     name: 'homework',
     components: {
-//      VueUeditorWrap
+     VueUeditorWrap,
       Icon
     },
     data() {
@@ -160,6 +163,19 @@
         fileName:null,
         audioName:null,
         typeErr:false,
+        ueMsg:'',
+        ueConfig:{
+          // 编辑器不自动被内容撑高
+          autoHeightEnabled: false,
+          // 初始容器高度
+          initialFrameHeight: 240,
+          // 初始容器宽度
+          initialFrameWidth: '100%',
+          // 上传文件接口（这个地址是我为了方便各位体验文件上传功能搭建的临时接口，请勿在生产环境使用！！！）
+          serverUrl: '',
+          // UEditor 资源文件的存放路径，如果你使用的是 vue-cli 生成的项目，通常不需要设置该选项，vue-ueditor-wrap 会自动处理常见的情况，如果需要特殊配置，参考下方的常见问题2
+          UEDITOR_HOME_URL: '/static/UEditor/'
+        }
       }
     },
     computed: {
@@ -182,9 +198,9 @@
       chooseAudio(event){
         this.audioName = event.target.files[0].name;
       },
-      summernoteSubmit() {
-        let content = $('#summernote').summernote('code');
-        console.log(content);
+      summernoteSubmit() { // 获取富文本内容
+        // let content = $('#summernote').summernote('code');
+        let content = this.ueMsg;
         return content;
       },
       getTaskAllInfo(id) {
@@ -197,24 +213,24 @@
             _this.homework = res.data.data.task;
             _this.fileUrl = '';
             _this.audioUrl = '';
-            if (res.data.data.submit) {
-              $('#summernote').summernote('destroy');
+            if (res.data.data.submit) { // 如果该作业已经提交过了
+              // $('#summernote').summernote('destroy');
               setTimeout(() => {
                 _this.done = true;
                 _this.submits = res.data.data;
               }, 100);
-            } else {
+            } else { // 如果该作业还没做
               _this.submits = null;
-              setTimeout(() => {
-                $('#summernote').summernote({
-                  height: 240,
-                  minHeight: 240,
-                  maxHeight: 240,
-                  disableDragAndDrop: true,
-                  shortcuts: false,
-                  popover: {}
-                });
-              }, 100);
+              // setTimeout(() => {
+              //   $('#summernote').summernote({
+              //     height: 240,
+              //     minHeight: 240,
+              //     maxHeight: 240,
+              //     disableDragAndDrop: true,
+              //     shortcuts: false,
+              //     popover: {}
+              //   });
+              // }, 100);
             }
           }
 
@@ -233,7 +249,7 @@
           _this.getSubmit(id);
         });
       },
-      getSubmit(id) {
+      getSubmit(id) { // 过去已经提交的作业
         let _this = this;
         this.$http({
           method: 'get',
@@ -242,27 +258,27 @@
             task_id: id,
             user_id: _this.getUserInfo.user_id
           }
-        }).then(res => {
+        }).then(res => { // 已经提交作业了
           if (res.data.state.code == 0) {
-            $('#summernote').summernote('destroy');
+            // $('#summernote').summernote('destroy');
             setTimeout(() => {
               _this.done = true;
               _this.submits = res.data.data;
             }, 100);
 
-          } else {
+          } else {  // 没提交过作业了
             _this.done = false;
             _this.submits = null;
-            setTimeout(() => {
-              $('#summernote').summernote({
-                height: 240,
-                minHeight: 240,
-                maxHeight: 240,
-                disableDragAndDrop: true,
-                shortcuts: false,
-                popover: {}
-              });
-            }, 100)
+            // setTimeout(() => {
+            //   $('#summernote').summernote({
+            //     height: 240,
+            //     minHeight: 240,
+            //     maxHeight: 240,
+            //     disableDragAndDrop: true,
+            //     shortcuts: false,
+            //     popover: {}
+            //   });
+            // }, 100)
           }
         });
       },
@@ -274,7 +290,7 @@
         }
         this.hideLoading();
       },
-      async submitHomework() {
+      async submitHomework() { // 提交作业
         let _this = this;
         _this.isSuccess = true;
         _this.typeErr = false;
@@ -378,14 +394,14 @@
 
     },
     mounted() {
-      $('#summernote').summernote({
-        height: 240,
-        minHeight: 240,
-        maxHeight: 240,
-        disableDragAndDrop: true,
-        shortcuts: false,
-        popover: {}
-      });
+      // $('#summernote').summernote({
+      //   height: 240,
+      //   minHeight: 240,
+      //   maxHeight: 240,
+      //   disableDragAndDrop: true,
+      //   shortcuts: false,
+      //   popover: {}
+      // });
 
       let id = this.$route.params.id;
       this.getTaskAllInfo(id);
