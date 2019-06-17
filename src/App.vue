@@ -13,10 +13,9 @@
 <script>
   import { mapMutations,mapState } from 'vuex'
   import Loading from '@/common/loading.vue'
-  import Components from '@/components/'
   export default {
     name: 'App',
-    components: {...Components,Loading},
+    components: {Loading},
     methods: {
       ...mapMutations([
         'changeLoginStatus', // 将 `this.increment()` 映射为 `this.$store.commit('increment')`

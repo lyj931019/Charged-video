@@ -190,7 +190,7 @@
             </div>
             <div class="course-time col-6 col-md-3 mb-2 mb-md-0">{{item.period}}h</div>
             <div class="course-price col-6 col-md-3 text-md-center">
-              {{$t('detail.coursePrice')}}&nbsp;:&nbsp;￥{{item.price}}
+              {{$t('detail.coursePrice')}}&nbsp;:&nbsp;￥{{(item.price / 100).toFixed(2)}}
             </div>
             <div class="course-level col-6 col-md-2 text-md-right">
               <div>

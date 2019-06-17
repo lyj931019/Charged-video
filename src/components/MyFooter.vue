@@ -204,7 +204,7 @@
               </div>
               <div class="footer__link--copyright">
                 © Copyright 2019
-                <a href="#" class="foot-btn">i-Link Corporation</a>
+                <a href="#" class="foot-btn">i-Link Incorporation</a>
               </div>
             </div>
 
@@ -548,13 +548,13 @@
       display: flex;
       flex-wrap: wrap;
       align-items: center;
-      margin-top: 12px;
+      margin-top: 6px;
       justify-content: space-between;
       align-content:space-between;
     }
     &--copyright{
       font-size: 1rem;
-      padding: 0.5rem;
+      padding: 0.3rem 0.5rem;
       & a{
         padding: 0;
         color: #dee2e5;

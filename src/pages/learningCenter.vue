@@ -1,6 +1,6 @@
 <template>
   <div class="classroom" style="background-color: #eff1f2; outline: 999px solid #eff1f2;" :class="classRoomActive?'active':''" v-if="courses">
-    <div class="header">
+    <div class="header" v-if="classRoomActive">
       <div class="icon">
         <!--<img src="../assets/img/Berklee_Logo_Square.svg" alt="">-->
         <router-link :to="{ name: 'index'}"><img :src="'./static/img/logo-min.png'" alt=""></router-link>
@@ -25,7 +25,7 @@
     <div class="little-header" v-if="courses">
       {{courses.name}}
     </div>
-    <div class="little-header-toggle-btn navbar-light" @click="toggleClassRoomActive">
+    <div class="little-header-toggle-btn navbar-light" :class="{'isOpen': !classRoomActive}" @click="toggleClassRoomActive">
       <span class="navbar-toggler-icon"></span>
     </div>
     <!--<div class="little-header-avatar">-->
@@ -59,7 +59,7 @@
               </h2>
               <template v-for="(lesson,index) in courses.lessons">
                 <div class="select-item" @click="getLesson(lesson.id)">
-                  {{index}}&nbsp;-&nbsp;{{lesson.title}}
+                  {{lesson.title}}
                 </div>
               </template>
 
@@ -400,7 +400,7 @@
     width: 20px;
   }
   .little-header {
-    line-height: 40px;
+    line-height: 60px;
     color: #777777;
     box-shadow: 0 0 4px #CCC;
     background-color: #ffffff;
@@ -411,8 +411,13 @@
     left: 0;
     right: 0;
     bottom: 0;
-    height: 40px;
+    height: 60px;
     width: 100%;
+    padding-left: 70px;
+    padding-right: 10px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   .little-header-toggle-btn {
@@ -427,6 +432,10 @@
     color: rgba(0, 0, 0, .8);
     background-color: #fff;
     z-index: 301;
+  }
+  .little-header-toggle-btn.isOpen{
+    box-shadow: none;
+    border-right: 1px solid #ccc;
   }
 
   @media (min-width: 1280px) {

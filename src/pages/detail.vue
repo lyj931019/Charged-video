@@ -5,11 +5,11 @@
       <div class="bg" id="abs">
         <div class="container-fluid">
           <h5 class="online-course">
-            <a href="#">{{$t('header.home')}}</a>
+            <router-link to="/">{{$t('header.home')}}</router-link>
             <DownArrow class="bar"></DownArrow>
-            <a href="#">{{$t('header.allCourses')}}</a>
+            <router-link to="/list/all">{{$t('header.allCourses')}}</router-link>
             <DownArrow class="bar"></DownArrow>
-            <a href="#">{{$t('detail.onlineCourse')}}</a>
+            <a>{{$t('detail.onlineCourse')}}</a>
           </h5>
           <div class="row">
 
@@ -49,7 +49,7 @@
                     </div>
                     <div class="course-price col-12 col-sm-6 col-lg-12">
                       <p>{{$t('detail.coursePrice')}}</p>
-                      <p>¥{{courses.price}}</p>
+                      <p>¥{{(courses.price / 100).toFixed(2)}}</p>
                     </div>
                   </div>
                 </div>
@@ -96,9 +96,8 @@
                 <div class="lesson-container">
                   <div class="lesson-title">
                     <a href="#" @click.prevent="showLessonContent(index)">
-                      <DownArrow :active="lessonActive[index]" class="lesson-i"/><span>
-                      Lesson {{lesson.lesson}}
-                    </span><strong>{{lesson.title}}&nbsp;</strong>
+                    <DownArrow :active="lessonActive[index]" class="lesson-i"/>
+                    <strong>{{lesson.title}}&nbsp;</strong>
                     </a>
                   </div>
                   <div class="lesson-content" :class="{active:lessonActive[index]}">

@@ -89,7 +89,7 @@
                 <p class="course-id">{{item.num}}</p>
                 <h4 class="course-name" @click.prevent="goToDetail(item.num)">{{item.name}}</h4>
                 <div class="course-info">
-                  <div class="course-price">{{$t('detail.coursePrice')}}&nbsp;:&nbsp;${{item.price}}</div>
+                  <div class="course-price">{{$t('detail.coursePrice')}}&nbsp;:&nbsp;${{(item.price / 100).toFixed(2)}}</div>
                   <div class="course-level">
                     <Level :level="item.level"></Level>
                     <p>Level {{item.level}}</p>

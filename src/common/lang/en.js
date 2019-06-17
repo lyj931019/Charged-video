@@ -116,7 +116,7 @@ module.exports = {
     technicalAssistance:'Technical assistance',
     city:'City',
     country:'Country',
-    cutoff:'Cutoff'
+    cutoff:'Due Date'
   },
   learningCenter:{
     lessonList:'Lesson list',
