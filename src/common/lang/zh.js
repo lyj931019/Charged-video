@@ -140,7 +140,7 @@ module.exports = {
     pwdErr: '密码错误',
     twoPwdErr: '两次密码输入不一致',
     wrongNamePwd: '用户名或密码错误',
-    account: '账号',
+    account: '账号，字母和数字组合',
     signUp:'注册',
     password: '密码',
     email:'邮箱',

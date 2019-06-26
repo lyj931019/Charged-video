@@ -64,12 +64,11 @@
     </div>
     <div id="footer">
       <!--<img src="../assets/img/footer_logo.gif" alt="Berklee College of Music">-->
-      <p id="footerArea">©2001-2018
-        Berklee College of Music &nbsp;&nbsp;
+      <p id="footerArea">
         <span>
-     <a href="#" title="Terms of Use">Terms of Use</a> |
-     <a href="#" title="Privacy Policy">Privacy Policy</a><br><br>
-     Berklee College of Music is accredited by the New England Association of Schools and Colleges (NEASC)
+     <router-link to="/about/TermsOfUse" title="Terms of Use">Terms of Use</router-link> |
+     <router-link to="/about/Privacy" href="#" title="Privacy Policy">Privacy Policy</router-link><br><br>
+     © Copyright 2019 i-Link Incorporation
      </span>
       </p>
     </div>

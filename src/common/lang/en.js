@@ -140,7 +140,7 @@ module.exports = {
     pwdErr:'Wrong Password',
     twoPwdErr:'Two password entries are inconsistent',
     wrongNamePwd:'Wrong user name or password',
-    account:'Account',
+    account:'Account.Combination of letters and Numbers',
     signUp:'Sign up',
     password: 'Password',
     email:'Email',
