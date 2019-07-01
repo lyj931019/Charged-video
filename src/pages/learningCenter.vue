@@ -58,7 +58,7 @@
                 Select a Lesson
               </h2>
               <template v-for="(lesson,index) in courses.lessons">
-                <div class="select-item" @click="getLesson(lesson.id)">
+                <div class="select-item" @click="getLesson(lesson.id, lesson.try)" :key="index" :class="{'disabled': !lesson.try}">
                   {{lesson.title}}
                 </div>
               </template>
@@ -148,7 +148,7 @@
         }).then(res => {
           _this.courses = res.data.data;
           _this.getUserHomeworkList();
-          _this.getLesson(_this.courses.lessons[0].id);
+          _this.getLesson(_this.courses.lessons[0].id, _this.courses.lessons[0].try);
         });
       },
       getUserHomeworkList(){
@@ -165,11 +165,15 @@
 //          _this.getLesson(_this.courses.lessons[0].id);
         });
       },
-      getLesson(id) {
-        let w = document.body.clientWidth;
-        this.$router.push({ name: 'learningContent', params: { id:id}});
-        if (w < 1280){
-          this.classRoomActive = !this.classRoomActive;
+      getLesson(id, isTry = true) {
+        if (isTry) {
+          let w = document.body.clientWidth;
+          this.$router.push({ name: 'learningContent', params: { id:id}});
+          if (w < 1280){
+            this.classRoomActive = !this.classRoomActive;
+          }
+        } else {
+          
         }
       },
       getHomework(id) {
@@ -515,11 +519,15 @@
     font-size: 15px;
     line-height: 1rem;
   }
-
+  .select-item.disabled{
+    color: #999;
+  }
+  .select-item.disabled .tips{
+    color: rgb(240, 32, 46);
+  }
   .select-item:hover ,.homework-item:hover{
     background: #EFF1F2;
   }
-
   .select-item.active ,.homework-item:active {
     color: rgb(240, 32, 46);
   }

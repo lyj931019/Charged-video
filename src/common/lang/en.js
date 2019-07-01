@@ -123,6 +123,7 @@ module.exports = {
     goBack:'Go back',
     audioErr:'Audio not found',
     homework:'Homework',
+    noTest: 'not test'
   },
   register:{
     tips:'Please remove special characters before submitting, for example: èüîñò.',
@@ -140,13 +141,16 @@ module.exports = {
     pwdErr:'Wrong Password',
     twoPwdErr:'Two password entries are inconsistent',
     wrongNamePwd:'Wrong user name or password',
-    account:'Account.Combination of letters and Numbers',
+    account:'Account',
     signUp:'Sign up',
     password: 'Password',
     email:'Email',
     fail:'Fail',
     exist:'Exist',
     bought:'Bought',
+    rePassword: 'The passwords are different',
+    accountRule: '6-15 numbers and/or English letters',
+    passwordRule: '6-15 numbers and/or English letters'
   },
   placeholder: {
     phone:'Please enter your phone number',

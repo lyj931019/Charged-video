@@ -9,7 +9,7 @@
             </a>
           </router-link>
         </div>
-        <div id="benefits">
+        <!-- <div id="benefits">
           <ul class="clearfix">
             <li class="first">Sample Courses</li>
             <li>Free Video Tutorials</li>
@@ -17,7 +17,7 @@
             <li>Free Course Catalog</li>
             <li class="first">Free Lesson and Degree Handbooks</li>
           </ul>
-        </div>
+        </div> -->
       </div>
 
     </div>
@@ -34,6 +34,9 @@
             </p>
             <p class="first-input">
               <input type="password" :placeholder="$t('placeholder.pwd')" v-model="userPwd">
+            </p>
+            <p class="first-input">
+              <input type="password" :placeholder="$t('placeholder.pwd_again')" v-model="reUserPwd">
             </p>
             <p class="first-input">
               <input type="email" :placeholder="$t('placeholder.email')" v-model="userEmail">
@@ -85,20 +88,26 @@
         userPwd: '',
         userEmail: '',
         registerErr: false,
-        errTips: ''
+        errTips: '',
+        reUserPwd: ''
       }
     },
     methods: {
       register() {
         let _this = this;
-        if (!(this.userName.length > 0 && /^[a-zA-Z][a-zA-Z0-9_]{4,15}$/.test(this.userName))) {
+        if (!(this.userName.length > 0 && /^[a-zA-Z0-9_]{4,15}$/.test(this.userName))) {
           this.registerErr = true;
-          this.errTips = this.$t('register.correct') + this.$t('common.account');
+          this.errTips = this.$t('register.correct') + this.$t('common.account') + '. ' + this.$t('common.accountRule');
           return;
         }
         if (!(this.userPwd.length > 0 && /^([a-zA-Z0-9]|[._]){4,19}$/.test(this.userPwd))) {
           this.registerErr = true;
-          this.errTips = this.$t('register.correct') + this.$t('common.password');
+          this.errTips = this.$t('register.correct') + this.$t('common.password') + '. ' + this.$t('common.passwordRule');
+          return;
+        }
+        if (this.userPwd !== this.reUserPwd) {
+          this.registerErr = true;
+          this.errTips = this.$t('common.rePassword');
           return;
         }
         if (!(this.userEmail.length > 0 && /^[A-Za-z\d]+([-_.][A-Za-z\d]+)*@([A-Za-z\d]+[-.])+[A-Za-z\d]{2,4}$/.test(this.userEmail))) {

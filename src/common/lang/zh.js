@@ -123,6 +123,7 @@ module.exports = {
     goBack:'返回',
     audioErr:'Audio not found',
     homework:'作业',
+    noTest: '非试用'
   },
   register:{
     tips:'请在提交前删除特殊字符，例如：èüîñò。',
@@ -140,13 +141,16 @@ module.exports = {
     pwdErr: '密码错误',
     twoPwdErr: '两次密码输入不一致',
     wrongNamePwd: '用户名或密码错误',
-    account: '账号，字母和数字组合',
+    account: '账号',
     signUp:'注册',
     password: '密码',
     email:'邮箱',
     fail:'失败',
     exist:'已存在',
     bought:'已购买',
+    rePassword: '两次输入的密码不同',
+    accountRule: '6-15位数字和英文组合',
+    passwordRule: '6-15位数字和英文组合'
   },
   placeholder: {
     phone: '请输入电话号码',

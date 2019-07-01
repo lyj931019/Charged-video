@@ -3,7 +3,7 @@
     <MyHeader/>
     <div class="body">
       <div class="bg">
-        <img src="http://cdn.e-l.ink/WechatIMG81.jpeg" />
+        <img src="http://cdn.e-l.ink/WechatIMG811.jpeg" />
       </div>
       <div class="course-mode" v-show="mode == 'orther'">
         <img src="../assets/img/list.png" @click="changeMode('list')" alt="">
