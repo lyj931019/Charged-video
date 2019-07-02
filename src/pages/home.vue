@@ -40,11 +40,10 @@
 
 <script>
   import Common from '../components/common'
-  import Guidance from '../common/guidance.vue'
   import {mapMutations,mapGetters} from 'vuex'
   export default {
     name: 'home',
-    components: {...Common, Guidance},
+    components: {...Common},
     data() {
       return {
         active: true,

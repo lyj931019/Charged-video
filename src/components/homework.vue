@@ -61,8 +61,18 @@
             </p>
             <div v-if="submits.submit_content" v-html="submits.submit_content"></div>
             <div class="task-file" v-if="submits.submit_file||submits.submit_audio">
-              <a :href="submits.submit_audio" v-if="submits.submit_audio">
-                <img :src="'./static/img/audio-c.png'" alt="">
+              <a href="javascript:void(0);" v-if="submits.submit_audio" >
+                <!--<img :src="'./static/img/audio-c.png'" alt="">-->
+                <aplayer
+                  :music="{
+                      title: $t('learningCenter.homework'),
+                      artist: getUserInfo.user_nickname,
+                      src: submits.submit_audio,
+                    }"
+                  mutex
+                  preload="true"
+                  :float="true"
+                />
               </a>
               <a :href="submits.submit_file" v-if="submits.submit_file">
                 <img :src="'./static/img/file-c.png'" alt="">
@@ -135,25 +145,30 @@
         </div>
       </div>
     </div>
+    <div class="submit-audio">
+
+    </div>
   </div>
 </template>
 
 <script>
-   import VueUeditorWrap from 'vue-ueditor-wrap'
+  import VueUeditorWrap from 'vue-ueditor-wrap'
   import {mapGetters, mapMutations} from 'vuex'
   import Icon from '../components/icon.vue'
+  import Aplayer from 'vue-aplayer'
 
   export default {
     name: 'homework',
     components: {
      VueUeditorWrap,
-      Icon
+      Icon,
+      Aplayer
     },
     data() {
       return {
         msg: '',
         homework: null,
-        done: false,
+        done: true,
         submits: null,
         icon_type: 'success',
         tips: '',
@@ -179,7 +194,7 @@
           toolbars:[['Undo', 'Redo','test']],
           elementPathEnabled : false,
           maximumWords: 5000
-        }
+        },
       }
     },
     computed: {
@@ -392,7 +407,7 @@
           return false;
         });
         return true;
-      }
+      },
     },
     beforeMount() {
 
@@ -599,5 +614,10 @@
     font-size: 1rem;
     display: inline-block;
     max-width: 35%;
+  }
+
+  .submit-audio{
+    width: 200px;
+    margin: 0 auto;
   }
 </style>
