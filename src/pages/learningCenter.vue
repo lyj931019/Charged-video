@@ -58,7 +58,7 @@
                 Select a Lesson
               </h2>
               <template v-for="(lesson,index) in courses.lessons">
-                <div class="select-item" @click="getLesson(lesson.id, lesson.try)" :key="index" :class="{'disabled': !lesson.try}">
+                <div class="select-item" @click="getLesson(lesson.id, courses.try?lesson.try:true)" :key="index" :class="{'disabled': courses.try?!lesson.try:false}">
                   {{lesson.title}}
                 </div>
               </template>
@@ -75,8 +75,8 @@
                   <span class="pen">
                     <img src="../assets/img/pen.png" alt="">
                   </span>
-                    {{homework.title}}
-                    <span class="data">
+                  <span class="homework-title">{{homework.title}}</span>
+                  <span class="data">
                     {{homework.status==1?'Submitted':(homework.status==2?'Reviewed':'')}}
                   </span>
                 </div>
@@ -148,7 +148,8 @@
         }).then(res => {
           _this.courses = res.data.data;
           _this.getUserHomeworkList();
-          _this.getLesson(_this.courses.lessons[0].id, _this.courses.lessons[0].try);
+          _this.getLesson(_this.courses.lessons[0].id, _this.courses.try?_this.courses.lessons[0].try:true);
+          console.log(_this.courses)
         });
       },
       getUserHomeworkList(){
@@ -173,7 +174,7 @@
             this.classRoomActive = !this.classRoomActive;
           }
         } else {
-          
+
         }
       },
       getHomework(id) {
@@ -549,6 +550,11 @@
     padding: 6px;
     margin-right: 8px;
   }
+  .homework-item .homework-title{
+    display: inline-block;
+    width: 80%;
+    vertical-align: middle;
+  }
   .homework-item .pen img{
     width: 20px;
   }
@@ -557,8 +563,7 @@
     color: #ee243c;
     position: absolute;
     right: 16px;
-    top: 0;
-    bottom: 0;
+    bottom: 2px;
     margin: auto;
     font-size: 14px;
     height: 14px;

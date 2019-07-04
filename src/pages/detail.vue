@@ -16,7 +16,7 @@
             <div class="col-12 col-lg-9 course-intr">
               <h1 class="title" v-show="getLang == 'zh'">{{courses.name}}</h1>
               <h1 class="title" v-show="getLang == 'en'">{{courses.name_en}}</h1>
-              <div class="course-author">
+              <div class="course-author" v-if="courses.instructor">
                 <Avatar :src="courses.instructor.avatar"/>
                 <span>
                   {{$t('detail.author')}}:
@@ -200,7 +200,7 @@
           <div class="row">
             <div class="col-12 col-lg-9" v-if="courses">
               <h2>{{$t('detail.teacherProfile')}}</h2>
-              <div class="author-content">
+              <div class="author-content" v-if="courses.instructor">
                 <div>
                   <Avatar :src="courses.instructor.avatar"/>
                 </div>
@@ -212,7 +212,7 @@
                   <div v-html="courses.instructor.abstract"></div>
                 </div>
               </div>
-
+              <div class="author-content" v-else style="margin-left: 9rem">{{$t('common.noContent')}}</div>
             </div>
           </div>
         </div>
@@ -309,7 +309,7 @@
   import { mapMutations } from 'vuex'
   import {formatDate} from '../common/date'
   export default {
-    name: 'detailF',
+    name: 'detail',
     components: {...Common,Level,Avatar,DownArrow,Icon,Guidance},
     data() {
       return {
