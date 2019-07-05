@@ -1,5 +1,6 @@
 <template>
-  <div class="classroom" style="background-color: #eff1f2; outline: 999px solid #eff1f2;" :class="classRoomActive?'active':''" v-if="courses">
+  <div class="classroom" style="background-color: #eff1f2; outline: 999px solid #eff1f2;"
+       :class="classRoomActive?'active':''" v-if="courses">
     <div class="header" v-if="classRoomActive">
       <div class="icon">
         <!--<img src="../assets/img/Berklee_Logo_Square.svg" alt="">-->
@@ -10,7 +11,7 @@
       <div class="title" v-if="lesson">
         {{lesson.title}}
       </div>
-      <div class="avatar mr-3" id="avatarDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
+      <div class="avatar mr-3" id="avatarDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         <!--<Avatar :src="getUserInfo.user_avatar"/>-->
         <span style="display: inline-block;max-width: 100px;vertical-align: middle;" class="omit">
           {{getUserInfo.user_nickname}}
@@ -25,22 +26,25 @@
     <div class="little-header" v-if="courses">
       {{courses.name}}
     </div>
-    <div class="little-header-toggle-btn navbar-light" :class="{'isOpen': !classRoomActive}" @click="toggleClassRoomActive">
+    <div class="little-header-toggle-btn navbar-light" :class="{'isOpen': !classRoomActive}"
+         @click="toggleClassRoomActive">
       <span class="navbar-toggler-icon"></span>
     </div>
     <!--<div class="little-header-avatar">-->
-      <!--<Avatar :src="getUserInfo.user_avatar"/>-->
+    <!--<Avatar :src="getUserInfo.user_avatar"/>-->
     <!--</div>-->
     <div class="content-container">
       <table></table>
       <div class="aside-container">
         <div class="aside-list">
-          <div class="aside-item" :class="{'active':asideItemActive == 'lesson'}" @click="toggleAsideDetailActive('lesson')">
+          <div class="aside-item" :class="{'active':asideItemActive == 'lesson'}"
+               @click="toggleAsideDetailActive('lesson')">
             <img src="../assets/img/book.png" alt="">
             <br>
             {{$t('learningCenter.lessonList')}}
           </div>
-          <div class="aside-item" :class="{'active':asideItemActive == 'homework'}"  @click="toggleAsideDetailActive('homework')">
+          <div class="aside-item" :class="{'active':asideItemActive == 'homework'}"
+               @click="toggleAsideDetailActive('homework')">
             <img src="../assets/img/homework.png" alt="">
             <br>
             {{$t('learningCenter.homework')}}
@@ -51,14 +55,15 @@
             {{$t('learningCenter.goBack')}}
           </div>
         </div>
-        <div class="aside-detail active"  v-if="courses">
+        <div class="aside-detail active" v-if="courses">
           <div class="aside-content" :class="{'active':asideActive == 'lesson'}">
             <div v-if="courses.lessons.length>0">
               <h2 class="select-prompt">
                 Select a Lesson
               </h2>
               <template v-for="(lesson,index) in courses.lessons">
-                <div class="select-item" @click="getLesson(lesson.id, courses.try?lesson.try:true)" :key="index" :class="{'disabled': courses.try?!lesson.try:false}">
+                <div class="select-item" @click="getLesson(lesson.id, isTry?lesson.try:true)" :key="index"
+                     :class="{'disabled': isTry?(!lesson.try):false}">
                   {{lesson.title}}
                 </div>
               </template>
@@ -77,7 +82,7 @@
                   </span>
                   <span class="homework-title">{{homework.title}}</span>
                   <span class="data">
-                    {{homework.status==1?'Submitted':(homework.status==2?'Reviewed':'')}}
+                    {{homework.status == 1 ? 'Submitted' : (homework.status == 2 ? 'Reviewed' : '')}}
                   </span>
                 </div>
               </template>
@@ -86,7 +91,7 @@
           </div>
         </div>
       </div>
-      <div class="lesson-topics" >
+      <div class="lesson-topics">
         <keep-alive>
           <router-view></router-view>
         </keep-alive>
@@ -96,7 +101,7 @@
   </div>
 </template>
 <script>
-  import {mapGetters,mapState,mapMutations} from 'vuex'
+  import {mapGetters, mapState, mapMutations} from 'vuex'
   import Avatar from '../components/avatar.vue'
 
   export default {
@@ -110,9 +115,10 @@
         lesson: null,
         lessonList: null,
         audioUrl: '',
-        asideActive:'lesson',
-        asideItemActive:'lesson',
-        homeworkList:null
+        asideActive: 'lesson',
+        asideItemActive: 'lesson',
+        homeworkList: null,
+        isTry: false,
       }
     },
     methods: {
@@ -138,7 +144,7 @@
       getUserCourses() {
         let _this = this;
         let num = this.getLearningNum;
-        if(num.length<=0){
+        if (num.length <= 0) {
           this.$router.replace({name: 'userCenter'});
           return false;
         }
@@ -148,18 +154,45 @@
         }).then(res => {
           _this.courses = res.data.data;
           _this.getUserHomeworkList();
-          _this.getLesson(_this.courses.lessons[0].id, _this.courses.try?_this.courses.lessons[0].try:true);
-          console.log(_this.courses)
+          _this.getLesson(_this.courses.lessons[0].id, _this.isTry ? _this.courses.lessons[0].try : true);
         });
       },
-      getUserHomeworkList(){
+      getUserCoursesNow() {
+        let _this = this;
+        let num = this.getLearningNum;
+        this.$http({
+          method: 'post',
+          url: '/courses/read',
+          data: {
+            user_id: _this.getUserInfo.user_id,
+            course_id: num,
+          },
+          transformRequest: [function (data) {
+            let ret = ''
+            for (let it in data) {
+              ret += encodeURIComponent(it) + '=' + encodeURIComponent(data[it]) + '&'
+            }
+            return ret
+          }],
+        }).then(res => {
+          _this.courses = res.data.data["course"];
+          _this.isTry = res.data.data.state.try;
+          console.log(res.data.data.state );
+          _this.getUserHomeworkList();
+          if(_this.courses.lessons.length){
+            _this.getLesson(_this.courses.lessons[0].id, _this.isTry ? _this.courses.lessons[0].try : true);
+          }
+
+        })
+      },
+      getUserHomeworkList() {
         let _this = this;
         this.$http({
           method: 'get',
           url: '/tasks/user',
-          params:{
-            user_id:_this.getUserInfo.user_id,
-            course_id:_this.courses.id
+          params: {
+            user_id: _this.getUserInfo.user_id,
+            course_id: _this.courses.id
           }
         }).then(res => {
           _this.homeworkList = res.data.data;
@@ -169,8 +202,8 @@
       getLesson(id, isTry = true) {
         if (isTry) {
           let w = document.body.clientWidth;
-          this.$router.push({ name: 'learningContent', params: { id:id}});
-          if (w < 1280){
+          this.$router.push({name: 'learningContent', params: {id: id}});
+          if (w < 1280) {
             this.classRoomActive = !this.classRoomActive;
           }
         } else {
@@ -179,8 +212,8 @@
       },
       getHomework(id) {
         let w = document.body.clientWidth;
-        this.$router.push({ name: 'homework', params: { id:id}});
-        if (w < 1280){
+        this.$router.push({name: 'homework', params: {id: id}});
+        if (w < 1280) {
           this.classRoomActive = !this.classRoomActive;
         }
       },
@@ -196,12 +229,12 @@
             if (res.data.state.code === 0) {
               _this.audioUrl = res.data.data.audio;
 //              $('#audio')
-              setTimeout(()=>{
+              setTimeout(() => {
                 console.log(document.getElementById("audio").currentSrc)
 //                document.getElementById("audio").played;
                 document.getElementById("audio").load()
                 document.getElementById("audio").played()
-              },50)
+              }, 50)
 
             } else {
               $('#audioErr').modal('show');
@@ -212,7 +245,7 @@
     },
     beforeMount() {
       if (localStorage.getItem('isLogin')) {
-        this.getUserCourses();
+        this.getUserCoursesNow();
 
       } else {
         this.$router.replace({name: 'login'});
@@ -228,9 +261,9 @@
         'homeworkListChange'
       ])
     },
-    watch:{
+    watch: {
       homeworkListChange(val) {
-        if(val){
+        if (val) {
           this.getUserHomeworkList();
           this.changeHomeworkList(false);
         }
@@ -240,12 +273,14 @@
 </script>
 
 <style scoped>
-  .aside-content{
+  .aside-content {
     display: none;
   }
-  .aside-content.active{
+
+  .aside-content.active {
     display: block;
   }
+
   .header {
     background: rgba(86, 96, 104, 1);
     height: 60px;
@@ -290,7 +325,6 @@
     border-right: 1px solid #ccc;
   }
 
-
   @media (max-width: 1280px) {
     .classroom .header {
       left: -100%;
@@ -319,6 +353,7 @@
       left: 60px;
     }
   }
+
   .classroom .content-container .aside-detail.active {
     display: block;
   }
@@ -348,30 +383,36 @@
     vertical-align: middle;
     box-sizing: border-box;
   }
+
   @media (max-width: 390px) {
-    .header .icon img + span{
+    .header .icon img + span {
       display: none;
     }
   }
+
   @media (max-width: 550px) {
-    .header .icon img + span{
+    .header .icon img + span {
       max-width: 180px;
     }
   }
-  @media (max-width:380px) {
-    .classroom .content-container .aside-detail{
+
+  @media (max-width: 380px) {
+    .classroom .content-container .aside-detail {
       /*width:140px;*/
-      width:calc(100% - 60px);
+      width: calc(100% - 60px);
     }
+
     .classroom.active .content-container .aside-container {
       width: 100%;
     }
   }
-  @media (max-width:186px) {
-    .dropdown-menu{
-      min-width:100px;
+
+  @media (max-width: 186px) {
+    .dropdown-menu {
+      min-width: 100px;
     }
   }
+
   .header .title {
     width: 500px;
     overflow: hidden;
@@ -396,14 +437,16 @@
     border-radius: 25px;
     width: auto;
     /*margin: 5px 29px 0 0;*/
-    line-height:60px;
+    line-height: 60px;
     text-align: center;
     color: #ffffff;
     cursor: pointer;
   }
-  .header .avatar>.lt img{
+
+  .header .avatar > .lt img {
     width: 20px;
   }
+
   .little-header {
     line-height: 60px;
     color: #777777;
@@ -438,7 +481,8 @@
     background-color: #fff;
     z-index: 301;
   }
-  .little-header-toggle-btn.isOpen{
+
+  .little-header-toggle-btn.isOpen {
     box-shadow: none;
     border-right: 1px solid #ccc;
   }
@@ -449,11 +493,13 @@
     }
 
   }
-  @media (min-width: 1460px){
-    .classroom .content-container  .aside-detail{
+
+  @media (min-width: 1460px) {
+    .classroom .content-container .aside-detail {
       width: 530px;
     }
   }
+
   .little-header-avatar {
     position: fixed;
     right: 0;
@@ -479,10 +525,11 @@
     line-height: 1.4rem;
   }
 
-  .aside-item.active{
+  .aside-item.active {
     background: #3f3f3f;
     box-shadow: inset 2px 0px 5px #222;
   }
+
   .aside-item img {
     width: 20px;
   }
@@ -503,11 +550,13 @@
     margin-bottom: 0;
     /*padding-bottom: 15px;*/
   }
-  .aside-detail h2.select-prompt.homework{
+
+  .aside-detail h2.select-prompt.homework {
     background: #EFF1F2;
-    color: rgba(0,0,0,0.65);
+    color: rgba(0, 0, 0, 0.65);
     font-size: .95rem;
   }
+
   .aside-detail h2.select-prompt:hover {
     color: rgb(240, 32, 46);
   }
@@ -520,20 +569,24 @@
     font-size: 15px;
     line-height: 1rem;
   }
-  .select-item.disabled{
+
+  .select-item.disabled {
     color: #999;
   }
-  .select-item.disabled .tips{
-    color: rgb(240, 32, 46);
-  }
-  .select-item:hover ,.homework-item:hover{
-    background: #EFF1F2;
-  }
-  .select-item.active ,.homework-item:active {
+
+  .select-item.disabled .tips {
     color: rgb(240, 32, 46);
   }
 
-  .homework-item{
+  .select-item:hover, .homework-item:hover {
+    background: #EFF1F2;
+  }
+
+  .select-item.active, .homework-item:active {
+    color: rgb(240, 32, 46);
+  }
+
+  .homework-item {
     color: #222;
     margin-bottom: 0;
     padding: 15px 0 15px 20px;
@@ -543,22 +596,25 @@
     position: relative;
   }
 
-  .homework-item .pen{
+  .homework-item .pen {
     display: inline-block;
     border: 1px solid #ccc;
     border-radius: 50%;
     padding: 6px;
     margin-right: 8px;
   }
-  .homework-item .homework-title{
+
+  .homework-item .homework-title {
     display: inline-block;
     width: 80%;
     vertical-align: middle;
   }
-  .homework-item .pen img{
+
+  .homework-item .pen img {
     width: 20px;
   }
-  .homework-item .data{
+
+  .homework-item .data {
     font-weight: bold;
     color: #ee243c;
     position: absolute;
@@ -569,6 +625,7 @@
     height: 14px;
     line-height: 14px;
   }
+
   @media (max-width: 800px) {
     .lesson-topics .lesson-topic {
       font-size: 1.2em;
@@ -656,7 +713,6 @@
   #audio {
     visibility: hidden;
   }
-
 
 
 </style>

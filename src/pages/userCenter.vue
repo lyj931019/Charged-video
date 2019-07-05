@@ -65,7 +65,7 @@
               <template v-if="lessonList">
                 <template v-for="(item,index) in lessonList">
                   <div class="courseItem">
-                    <a href="#" class="nav-link" @click.prevent="goToStudyPage(item.course.num)">
+                    <a href="#" class="nav-link" @click.prevent="goToStudyPage(item.course.id)">
                       {{item.course.name}}
                       <span class="try" v-if="item.try">({{$t('userCenter.tryCourse')}})</span>
                       <span style="color: #ee243c">({{$t('userCenter.cutoff')}}&nbsp;:&nbsp;{{item.used_at | formatDate}})</span>
@@ -574,6 +574,11 @@
     font-size: 1rem;
     /*margin-right: 4rem;*/
     color: #25353c;
+    display: inline-block;
+    width: 94%;
+  }
+  .course a span{
+    display: inline-block;
   }
 
   .course .delete {
@@ -583,6 +588,7 @@
     cursor: pointer;
     /*z-index: 20;*/
     right: 2rem;
+    width:auto;
   }
   .course .delete img{
     width: 1.8rem;
