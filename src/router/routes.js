@@ -20,7 +20,7 @@ export default [
     }
   },
   {
-    path: '/detail/:num',
+    path: '/detail/:num',//传课程的num，courses.num
     name: 'detail',
     component: Pages.Detail,
     meta: {
@@ -28,7 +28,7 @@ export default [
     }
   },
   {
-    path: '/learningCenter',
+    path: '/learningCenter/:courseId',//传课程的id，courses.id
     name: 'learningCenter',
     component: Pages.LearningCenter,
     meta: {

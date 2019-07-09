@@ -157,15 +157,16 @@
           _this.getLesson(_this.courses.lessons[0].id, _this.isTry ? _this.courses.lessons[0].try : true);
         });
       },
-      getUserCoursesNow() {
+      getUserCoursesNow(id) {
         let _this = this;
-        let num = this.getLearningNum;
+        let user_id = localStorage.getItem('user_id');
+        user_id = this.$base64.decode(user_id);
         this.$http({
           method: 'post',
           url: '/courses/read',
           data: {
-            user_id: _this.getUserInfo.user_id,
-            course_id: num,
+            user_id: user_id,
+            course_id: id,
           },
           transformRequest: [function (data) {
             let ret = ''
@@ -243,10 +244,16 @@
         }
       }
     },
+    beforeRouteUpdate (to, from, next) {
+//      this.getLesson(to.params.id);
+//      this.getUserCoursesNow(to.params.id);
+      console.log(to.params.courseId);
+      next();
+    },
     beforeMount() {
       if (localStorage.getItem('isLogin')) {
-        this.getUserCoursesNow();
-
+        let id = this.$route.params.courseId;
+        this.getUserCoursesNow(id);
       } else {
         this.$router.replace({name: 'login'});
       }

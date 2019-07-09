@@ -295,8 +295,8 @@
         'changelearningNum' // 将 `this.incrementBy(amount)` 映射为 `this.$store.commit('incrementBy', amount)`
       ]),
       goToStudyPage(num) {
-        this.changelearningNum(num);
-        this.$router.push({name: 'learningCenter'})
+//        this.changelearningNum(num);
+        this.$router.push({name: 'learningCenter',params:{courseId:num}})
       },
       changeTab(tab) {
         this.active = tab;
@@ -434,9 +434,11 @@
       let _this = this;
       console.log(_this.getIsLogin);
       if (localStorage.getItem('isLogin')) {
+        let user_id = localStorage.getItem('user_id');
+        user_id = this.$base64.decode(user_id);
         this.$http({
           method: 'get',
-          url: '/users/courses?user_id=' + localStorage.getItem('user_id'),
+          url: '/users/courses?user_id=' + user_id,
         }).then(res => {
           _this.lessonList = res.data.data;
         })

@@ -35,9 +35,10 @@ import 'summernote/dist/summernote.css'
 // import VideoPlayer from 'vue-video-player'
 // Vue.use(VideoPlayer);
 
-
+import { Base64 } from 'js-base64';
 
 Vue.prototype.$http = axios;
+Vue.prototype.$base64 = Base64;
 // Vue.prototype.$ap = APlayer;
 // Vue.use(Vuex);
 Vue.config.productionTip = false

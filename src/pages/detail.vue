@@ -66,7 +66,7 @@
                   <div class="nav-scroll" :class="{active:windowScrollTop>=requireH && windowScrollTop<authorH}" @click="gotoSection(requireH+1)">{{$t('detail.learningRequirements')}}</div>
                   <div class="nav-scroll" :class="{active:windowScrollTop>=authorH && windowScrollTop<questionH}" @click="gotoSection(authorH+1)">{{$t('detail.teacherProfile')}}</div>
                   <div class="buy" @click="buyCourse" v-if="coursesHash!=2 ">{{$t('detail.buyCourse')}}&nbsp;<span style="font-size: 1.1rem;" v-if="courses">({{courses.buy_day}}&nbsp;{{$t('detail.days')}})</span>  </div>
-                  <div class="buy"  v-else @click="goToStudyPage(courses.num)">{{$t('detail.enter')}}</div>
+                  <div class="buy"  v-else @click="goToStudyPage(courses.id)">{{$t('detail.enter')}}</div>
                   <div class="try" @click="tryCourse" v-if="courses && coursesHash==0 && courses.try  && courses.try_day>0">
                     {{$t('detail.tryCourse')}}
                     <span>({{courses.try_day}}&nbsp;{{$t('detail.days')}})</span>
@@ -494,14 +494,15 @@
           _this.courses = res.data.data;
           _this.lessLessons();
           if(localStorage.getItem('user_id')){
-            let user_id = localStorage.getItem('user_id')
+            let user_id = localStorage.getItem('user_id');
+            user_id = this.$base64.decode(user_id);
             _this.getState(user_id)
           }
         });
       },
       goToStudyPage(num) {
-        this.changelearningNum(num);
-        this.$router.push({name: 'learningCenter'})
+//        this.changelearningNum(num);
+        this.$router.push({name: 'learningCenter',params:{courseId:num}})
       },
     },
     beforeMount() {
