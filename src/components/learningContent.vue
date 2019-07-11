@@ -172,7 +172,7 @@
       }
     },
     beforeMount() {
-      if (localStorage.getItem('isLogin')) {
+      if (localStorage.getItem('isLogin') === 'true') {
         let id = this.$route.params.id;
         this.getLesson(id);
       } else {

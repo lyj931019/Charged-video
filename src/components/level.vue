@@ -36,7 +36,7 @@
     props: {
       level: {
         type: Number,
-        default: 4,
+        default: 5,
       }
     }
   }

@@ -8,7 +8,8 @@ export default [
     component: Pages.Home,
     meta: {
       pageTitle: '主页',
-      keepAlive: true
+      keepAlive: true,
+      hasHeader:true
     }
   },
   {
@@ -16,7 +17,8 @@ export default [
     name: 'list',
     component: Pages.ListOld,
     meta: {
-      keepAlive: false
+      keepAlive: false,
+      hasHeader:true
     }
   },
   {
@@ -24,7 +26,8 @@ export default [
     name: 'detail',
     component: Pages.Detail,
     meta: {
-      keepAlive: false
+      keepAlive: false,
+      hasHeader:true
     }
   },
   {
@@ -52,7 +55,8 @@ export default [
     name: 'userCourse',
     component: Pages.UserCourse,
     meta: {
-      keepAlive: false
+      keepAlive: false,
+      hasHeader:true
     }
   },
   {
@@ -60,7 +64,8 @@ export default [
     name: 'userCenter',
     component: Pages.UserCenter,
     meta: {
-      keepAlive: false
+      keepAlive: false,
+      hasHeader:true
     }
   },
   {
@@ -84,7 +89,8 @@ export default [
     name: 'about',
     component: Pages.About,
     meta: {
-      keepAlive: true
+      keepAlive: true,
+      hasHeader:true
     }
   },
   {
@@ -92,7 +98,8 @@ export default [
     name: 'pay',
     component: Pages.Pay,
     meta: {
-      keepAlive: false
+      keepAlive: false,
+      hasHeader:true
     }
   },
   {
@@ -100,7 +107,8 @@ export default [
     name: 'methods',
     component: Pages.Methods,
     meta: {
-      keepAlive: true
+      keepAlive: true,
+      hasHeader:true
     }
   }
 ]

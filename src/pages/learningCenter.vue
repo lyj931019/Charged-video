@@ -176,14 +176,21 @@
             return ret
           }],
         }).then(res => {
-          _this.courses = res.data.data["course"];
-          _this.isTry = res.data.data.state.try;
-          console.log(res.data.data.state );
-          _this.getUserHomeworkList();
-          if(_this.courses.lessons.length){
-            _this.getLesson(_this.courses.lessons[0].id, _this.isTry ? _this.courses.lessons[0].try : true);
+          if(res.data.state.code == 0){
+            _this.courses = res.data.data["course"];
+            _this.isTry = res.data.data.state.try;
+            console.log(res.data.data.state );
+            _this.getUserHomeworkList();
+            if(_this.courses.lessons.length){
+              _this.getLesson(_this.courses.lessons[0].id, _this.isTry ? _this.courses.lessons[0].try : true);
+            }
+          }else{
+            _this.$router.replace({name: 'login'});
           }
 
+
+        }).catch(err=>{
+          _this.$router.replace({name: 'login'});
         })
       },
       getUserHomeworkList() {
@@ -251,7 +258,7 @@
       next();
     },
     beforeMount() {
-      if (localStorage.getItem('isLogin')) {
+      if (localStorage.getItem('isLogin') === 'true') {
         let id = this.$route.params.courseId;
         this.getUserCoursesNow(id);
       } else {

@@ -163,7 +163,7 @@
             <div class="course-level col-6 col-md-2 text-md-right">
               <div>
                 <Level :level="item.level"></Level>
-                <p>{{$t('detail.level')}} {{item.level}}</p>
+                <p>{{$t('detail.level')}} {{item.level || 5}}</p>
               </div>
 
             </div>
@@ -247,7 +247,7 @@
                     <div class="course-price">{{$t('detail.coursePrice')}}&nbsp;:&nbsp;￥{{item.price}}</div>
                     <div class="course-level">
                       <Level :level="item.level"></Level>
-                      <p>{{$t('detail.level')}} {{item.level}}</p>
+                      <p>{{$t('detail.level')}} {{item.level || 5}}</p>
                     </div>
                   </div>
                   <!--<div class="course-intr" v-html="item.synopsis"></div>-->

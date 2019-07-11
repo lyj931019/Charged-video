@@ -386,7 +386,8 @@
         let param = new FormData(); //创建form对象
         param.append('file', file);
         let config = {
-          headers: {'Content-Type': 'multipart/form-data'}
+          headers: {'Content-Type': 'multipart/form-data'},
+          timeout: 120000
         }; //添加请求头
 
 

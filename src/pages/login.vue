@@ -83,7 +83,7 @@
           }).then(res => {
             if (res.data.state.code == 0) {
               localStorage.setItem('user_id',this.$base64.encode(res.data.data.id));
-              localStorage.setItem('isLogin',true);
+              localStorage.setItem('isLogin','true');
               _this.changeLoginStatus(true);
               _this.changeUserInfo(res.data.data);
               _this.$router.push({name: 'userCenter'});

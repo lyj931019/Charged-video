@@ -45,7 +45,7 @@
                     </div>
                     <div class="course-level detail-level col-12 col-sm-6 col-lg-12">
                       <Level :level="courses.level"/>
-                      <span>{{$t('detail.level')}} {{courses.level}}</span>
+                      <span>{{$t('detail.level')}} {{courses.level || 5}}</span>
                     </div>
                     <div class="course-price col-12 col-sm-6 col-lg-12">
                       <p>{{$t('detail.coursePrice')}}</p>

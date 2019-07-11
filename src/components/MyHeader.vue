@@ -492,6 +492,7 @@
         'changeStateLang'
       ]),
       getSortList() {
+        console.log(123)
         let _this = this;
         if(_this.getTypes){
           _this.sortList = _this.getTypes;
@@ -523,6 +524,7 @@
         this.changeUserInfo(userInfo);
         localStorage.removeItem('isLogin');
         localStorage.removeItem('user_id');
+        this.$router.replace({name: 'index'});
       },
       changeLang(lang) {
         this.locale = lang;
