@@ -180,7 +180,6 @@
       },
       buyCourse() {
         // this.payErr = !this.checkForm();
-        // console.log(this.payErr );
         // // return ;
         // if(this.payErr){
         //   // this.errTips = ''

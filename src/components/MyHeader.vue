@@ -492,7 +492,6 @@
         'changeStateLang'
       ]),
       getSortList() {
-        console.log(123)
         let _this = this;
         if(_this.getTypes){
           _this.sortList = _this.getTypes;
@@ -553,8 +552,6 @@
         this.changeStateLang('zh');
       }
 //      localStorage.setItem('lng', this.locale);
-
-//      console.log(this.sortList);
     },
     watch: {
       locale(val) {

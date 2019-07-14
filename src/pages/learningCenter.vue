@@ -179,7 +179,6 @@
           if(res.data.state.code == 0){
             _this.courses = res.data.data["course"];
             _this.isTry = res.data.data.state.try;
-            console.log(res.data.data.state );
             _this.getUserHomeworkList();
             if(_this.courses.lessons.length){
               _this.getLesson(_this.courses.lessons[0].id, _this.isTry ? _this.courses.lessons[0].try : true);
@@ -238,7 +237,6 @@
               _this.audioUrl = res.data.data.audio;
 //              $('#audio')
               setTimeout(() => {
-                console.log(document.getElementById("audio").currentSrc)
 //                document.getElementById("audio").played;
                 document.getElementById("audio").load()
                 document.getElementById("audio").played()
@@ -254,7 +252,7 @@
     beforeRouteUpdate (to, from, next) {
 //      this.getLesson(to.params.id);
 //      this.getUserCoursesNow(to.params.id);
-      console.log(to.params.courseId);
+
       next();
     },
     beforeMount() {

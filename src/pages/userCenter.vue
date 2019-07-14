@@ -432,7 +432,6 @@
     },
     mounted() {
       let _this = this;
-      console.log(_this.getIsLogin);
       if (localStorage.getItem('isLogin')==='true') {
         let user_id = localStorage.getItem('user_id');
         user_id = this.$base64.decode(user_id);

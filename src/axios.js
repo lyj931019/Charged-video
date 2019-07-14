@@ -8,7 +8,7 @@ axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded
 // axios.defaults.baseURL = 'http://192.168.1.12/github/educate/advanced/api/web/v1/';
 // axios.defaults.baseURL = 'http://47.244.63.58/educate/advanced/api/web/v1/';
 // axios.defaults.baseURL = 'http://api.e-l.ink/v1/';
-axios.defaults.baseURL = 'http://47.102.196.87/educate/advanced/api/web/v1/';
+axios.defaults.baseURL = '/educate/advanced/api/web/v1/';
 
 
 export default axios;

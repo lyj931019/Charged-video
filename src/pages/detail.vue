@@ -468,7 +468,6 @@
           }
         }).then(res => {
           _this.coursesHash = res.data.data;
-          console.log(_this.coursesHash)
         });
         this.$http({
           method: 'get',
@@ -479,7 +478,6 @@
           }
         }).then(res => {
           _this.favoritesHash = res.data.data;
-          console.log(_this.favoritesHash)
         })
       },
       getData(num){

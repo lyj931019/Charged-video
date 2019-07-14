@@ -30,7 +30,6 @@
     beforeCreate(){
       let user_id = localStorage.getItem('user_id');
       user_id = this.$base64.decode(user_id);
-      console.log(user_id)
       let isLogin = localStorage.getItem('isLogin');
       if(user_id){
         let _this = this;

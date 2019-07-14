@@ -342,7 +342,6 @@
         if (_this.audioUrl.length > 0) {
           data['submit_audio'] = _this.audioUrl;
         }
-        console.log('loading');
         await this.$http({
           method: 'post',
           url: '/tasks/submits',
