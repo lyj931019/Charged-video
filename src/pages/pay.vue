@@ -19,10 +19,10 @@
                   <input type="radio" id="ali" name="payment" v-model="payType" class="custom-control-input" value="0" checked>
                   <label class="custom-control-label" for="ali">{{$t('pay.ali')}}</label>
                 </div>
-                <!--<div class="custom-control custom-radio pay-type p-2 m-4">-->
-                  <!--<input type="radio" id="we" name="payment" v-model="payType" class="custom-control-input" value="1" checked>-->
-                  <!--<label class="custom-control-label" for="we">{{$t('pay.wechat')}}</label>-->
-                <!--</div>-->
+                <div class="custom-control custom-radio pay-type p-2 m-4">
+                  <input type="radio" id="we" name="payment" v-model="payType" class="custom-control-input" value="1" checked>
+                  <label class="custom-control-label" for="we">{{$t('pay.wechat')}}</label>
+                </div>
 
               </div>
             </div>
@@ -136,6 +136,17 @@
         </div>
       </div>
     </div>
+    <div class="modal fade" id="wechatPay" tabindex="-1" role="dialog" data-backdrop="static" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
+        <div class="modal-content qr">
+          <div class="qrcode" id="qrcode"></div>
+          <button class="btn btn-outline-secondary" @click="cancelWechatPay">
+            {{$t('common.cancel')}}
+          </button>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -144,6 +155,9 @@
   import Icon from '../components/icon.vue'
   import Common from '../components/common'
   import {mapGetters} from 'vuex'
+  import QRCode from 'qrcodejs2'
+
+
 
   export default {
     name: 'pay',
@@ -164,7 +178,10 @@
         code:'',
         phone:'',
         // errTips:'',
-        payErr:false
+        payErr:false,
+        orderId:'',
+        checkOrderTimer:null,
+        succTimer:null
       }
     },
     computed: {
@@ -178,6 +195,78 @@
       checkForm(){
         return this.name && this.addr1 && this.country && this.city && this.state && this.code && this.phone;
       },
+      // 打开二维码
+      openQr(url){
+        let qrcode = new QRCode('qrcode', {
+          width: 200,  // 设置宽度
+          height: 200, // 设置高度
+          text: url,
+        })
+      },
+      async checkOrder(){
+        let _this = this;
+        await this.$http({
+          method: 'get',
+          url: '/payment/'+_this.orderId,
+        }).then(res=>{
+          let code = res.data.state.code;
+          if(code === 0){
+             _this.tips = _this.$t('common.success');
+             _this.icon_type = 'success';
+            $('#payTips').modal('show');
+            $('#wechatPay').modal('hide');
+            _this.succTimer = setTimeout(()=>{
+              $('#payTips').modal('hide');
+              _this.$router.push({ name: 'userCenter'})
+            },5000)
+          }else{}
+          return false;
+        }).catch(err=>err);
+        _this.checkOrderTimer = setTimeout(()=>{
+          _this.checkOrder();
+        },3000);
+      },
+      // 微信支付
+      wechatPay(){
+        let _this = this;
+        $('#wechatPay').modal('show');
+        this.$http({
+          method: 'post',
+          url: '/payment/native',
+          data: {
+            user_id: _this.getUserInfo.user_id,
+            course_id: _this.courses.id,
+          },
+          transformRequest: [function (data) {
+            let ret = ''
+            for (let it in data) {
+              ret += encodeURIComponent(it) + '=' + encodeURIComponent(data[it]) + '&'
+            }
+            return ret
+          }],
+        }).then(res=>{
+          let data = res.data.data;
+          _this.orderId = data.order_no;
+          _this.openQr(data.code_url);
+          _this.checkOrder();
+        })
+      },
+      // 取消微信支付
+      cancelWechatPay(){
+        $('#wechatPay').modal('hide');
+        this.clearTimer();
+      },
+      // 清除查询订单的定时器
+      clearTimer(){
+        if(this.checkOrderTimer){
+          clearTimeout(this.checkOrderTimer);
+          this.checkOrderTimer = null;
+        }
+        if(this.succTimer){
+          clearTimeout(this.succTimer);
+          this.succTimer = null;
+        }
+      },
       buyCourse() {
         // this.payErr = !this.checkForm();
         // // return ;
@@ -187,33 +276,39 @@
         // }
         if (this.getIsLogin) {
           let _this = this;
-          this.$http({
-            method: 'post',
-            url: '/payment/page',
-            data: {
-              user_id: _this.getUserInfo.user_id,
-              course_id: _this.courses.id,
-              return_url: 'http://'+window.location.host+'/#/userCenter'
-            },
-            transformRequest: [function (data) {
-              let ret = ''
-              for (let it in data) {
-                ret += encodeURIComponent(it) + '=' + encodeURIComponent(data[it]) + '&'
+          console.log(this.payType)
+          if(this.payType+'' === '1'){
+            this.wechatPay();
+          }else{
+            this.$http({
+              method: 'post',
+              url: '/payment/page',
+              data: {
+                user_id: _this.getUserInfo.user_id,
+                course_id: _this.courses.id,
+                return_url: 'http://'+window.location.host+'/#/userCenter'
+              },
+              transformRequest: [function (data) {
+                let ret = ''
+                for (let it in data) {
+                  ret += encodeURIComponent(it) + '=' + encodeURIComponent(data[it]) + '&'
+                }
+                return ret
+              }],
+            }).then(res => {
+              if (res.data.state.code == 0) {
+                // _this.tips = _this.$t('common.success');
+                // _this.icon_type = 'success';
+                window.open(res.data.data);
+              } else {
+                _this.tips = _this.$t('common.bought');
+                _this.icon_type = 'fail';
               }
-              return ret
-            }],
-          }).then(res => {
-            if (res.data.state.code == 0) {
-              // _this.tips = _this.$t('common.success');
-              // _this.icon_type = 'success';
-              window.open(res.data.data);
-            } else {
-              _this.tips = _this.$t('common.bought');
-              _this.icon_type = 'fail';
-            }
-            // $('#payTips').modal('show');
+              // $('#payTips').modal('show');
 //            _this.$router.push({ name: 'userCenter'})
-          })
+            })
+          }
+
         } else {
           this.gotoLogin();
         }
@@ -238,6 +333,9 @@
       this.city = this.getUserInfo.user_city;
       this.phone = this.getUserInfo.user_phone;
     },
+    beforeDestroy(){
+      this.clearTimer();
+    }
   }
 </script>
 <style scoped>
@@ -323,5 +421,15 @@
   }
   .checkout-member h6{
     font-weight: bold;
+  }
+
+  .modal-content.qr{
+    background-color: #fff;
+    padding:20px;
+  }
+  .qrcode{
+    text-align: center;
+    width: 200px;
+    margin: 0 auto 20px;
   }
 </style>
