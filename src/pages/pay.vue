@@ -140,7 +140,13 @@
          aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
         <div class="modal-content qr">
-          <div class="qrcode" id="qrcode"></div>
+          <div class="qr-content">
+            <div class="loading" v-if="loading">
+              <img :src="'./static/img/loading.png'" alt="">
+            </div>
+            <div class="qrcode" id="qrcode"></div>
+          </div>
+
           <button class="btn btn-outline-secondary" @click="cancelWechatPay">
             {{$t('common.cancel')}}
           </button>
@@ -181,7 +187,9 @@
         payErr:false,
         orderId:'',
         checkOrderTimer:null,
-        succTimer:null
+        succTimer:null,
+        qrcode:null,
+        loading:false
       }
     },
     computed: {
@@ -197,11 +205,16 @@
       },
       // 打开二维码
       openQr(url){
-        let qrcode = new QRCode('qrcode', {
-          width: 200,  // 设置宽度
-          height: 200, // 设置高度
-          text: url,
-        })
+        if(this.qrcode){
+          this.qrcode.makeCode(url);
+        }else{
+          this.qrcode = new QRCode('qrcode', {
+            width: 200,  // 设置宽度
+            height: 200, // 设置高度
+            text: url,
+          })
+        }
+        this.loading =false;
       },
       async checkOrder(){
         let _this = this;
@@ -229,6 +242,7 @@
       // 微信支付
       wechatPay(){
         let _this = this;
+        this.loading = true;
         $('#wechatPay').modal('show');
         this.$http({
           method: 'post',
@@ -254,6 +268,7 @@
       // 取消微信支付
       cancelWechatPay(){
         $('#wechatPay').modal('hide');
+        this.qrcode.clear();
         this.clearTimer();
       },
       // 清除查询订单的定时器
@@ -277,8 +292,14 @@
         if (this.getIsLogin) {
           let _this = this;
           console.log(this.payType)
+
           if(this.payType+'' === '1'){
-            this.wechatPay();
+            if(this.is_weixn()){
+              this.pay_jsapi();
+            }else{
+              this.wechatPay();
+            }
+
           }else{
             this.$http({
               method: 'post',
@@ -316,6 +337,104 @@
       gotoLogin(){
         this.$router.push({ name: 'login'})
       },
+      // 判断是不是微信浏览器打开
+      is_weixn(){
+
+        var ua = navigator.userAgent.toLowerCase();
+        console.log(ua)
+        if(ua.match(/MicroMessenger/i)=="micromessenger") {
+
+          return true;
+
+        } else {
+
+          return false;
+
+        }
+      },
+      //支付方法
+      pay_jsapi(){
+        //必须先等微信授权获取openid后
+        if(!this.openid)
+          return false;
+
+        //进行JSAPI下单
+        var api = "/payment/jsapi";
+        var data = "openid=" + this.openid + "&url=" + location.href;
+        this.$http.post(api, data).then(function(response){
+          //判断结果
+          if(response.data.state.code !== 0){
+            alert("微信统一下单失败");
+            return;
+          }
+
+          //提取接口返回
+          var signature = response.data.data.payConfig;   //JSSDK签署配置
+          var payConfig = response.data.data.payConfig;   //JSAPI支付配置
+
+          //配置微信JSSDK
+          wx.config({
+            debug       : true, //开启调试模式(正式打包时请用false)
+            appId       : signature.appId,
+            timestamp   : signature.timestamp,
+            nonceStr    : signature.nonceStr,
+            signature   : signature.signature,
+            jsApiList   : ['chooseWXPay']
+          });
+          //调起微信支付
+          wx.ready(function(){
+            wx.chooseWXPay({
+              "timestamp" : payConfig.timeStamp,
+              "nonceStr"  : payConfig.nonceStr,
+              "package"   : payConfig.package,
+              "signType"  : payConfig.signType,
+              "paySign"   : payConfig.paySign,
+              "success"   : function (res) {
+                alert("支付完成");
+              }
+            });
+          });
+        });
+      }
+    },
+    created(){
+
+      if(this.is_weixn()){
+        //定义this, 在异步方法中使用
+        var self = this;
+
+        //获取GET参数code
+        var code = this.$url()["code"];
+
+        //判断code参数是否存在
+        if(code){
+          //如果有code，则用这个code获取授权配置
+          var api = "/payment/wechat-auth";
+          var data = "code=" + code;
+          this.$http.post(api, data).then(function(response){
+            //获取返回的openid
+            if(response.data.state.code === 0){
+              self.openid = response.data.data;
+              console.log("授权成功获取OPNEID：",self.openid);
+            } else {
+              console.log("授权失败CODE无效或过期")
+            }
+          });
+        } else {
+          //如果不存在，则获取微信OAUTH授权地址然后进行跳转
+          var api = "/payment/wechat-auth-url";
+          var data = "redirectUrl=" + location.href;
+          this.$http.post(api, data).then(function(response){
+            //跳转到微信授权页面(授权后会自动跳转回来)
+            if(response.data.state.code === 0)
+              location.href = response.data.data;
+            else{}
+            // alert("获取授权地址失败,请检查接口配置");
+          });
+        }
+
+      }
+
     },
     beforeMount() {
       let num = this.$route.params.num;
@@ -430,6 +549,38 @@
   .qrcode{
     text-align: center;
     width: 200px;
+
+  }
+
+  .qr-content{
+    width: 200px;
+    height: 200px;
     margin: 0 auto 20px;
+    position: relative;
+  }
+  .loading{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 200px;
+    height: 200px;
+    background-color: rgba(255,255,255,.9);
+  }
+  .loading img{
+    position: absolute;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    top: 0;
+    margin: auto;
+    animation: loading 2s linear infinite;
+  }
+  @keyframes loading {
+    to{
+      transform:rotate(0deg);
+    }
+    from{
+      transform:rotate(-180deg);
+    }
   }
 </style>

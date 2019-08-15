@@ -41,7 +41,22 @@ Vue.prototype.$http = axios;
 Vue.prototype.$base64 = Base64;
 // Vue.prototype.$ap = APlayer;
 // Vue.use(Vuex);
-Vue.config.productionTip = false
+Vue.config.productionTip = false;
+
+Vue.prototype.$url=function(){
+  var url = decodeURIComponent(location.search);
+  var theRequest = new Object();
+  if (url.indexOf("?") != -1) {
+    var str = url.substr(1);
+    var strs = str.split("&");
+    for(var i = 0; i < strs.length; i ++) {
+      theRequest[strs[i].split("=")[0]] = unescape(strs[i].split("=")[1]);
+    }
+  }
+  return theRequest;
+};
+
+
 // 获得权限
 // Notification.requestPermission();
 // Vue.prototype.$Message = myComponent.Message;
