@@ -2,7 +2,7 @@
  * @Description: In User Settings Edit
  * @Author: your name
  * @Date: 2019-07-21 17:53:27
- * @LastEditTime: 2019-08-24 17:35:42
+ * @LastEditTime: 2019-09-17 23:26:23
  * @LastEditors: Please set LastEditors
  -->
 <template>
@@ -82,8 +82,8 @@
               <h2 class="select-prompt homework">
                 To-Do
               </h2>
-              <template v-for="(homework,index) in homeworkList">
-                <div class="homework-item" @click="getHomework(homework.id)">
+              <template v-for="(homework, index) in homeworkList">
+                <div class="homework-item" @click="getHomework(homework.id)" :key="index">
                   <span class="pen">
                     <img src="../assets/img/pen.png" alt="">
                   </span>
@@ -214,7 +214,7 @@
         });
       },
       getLesson(id, isTry = true) {
-        if (isTry) {
+        if (isTry && this.$route.params.id !== id) {
           let w = document.body.clientWidth;
           this.$router.push({name: 'learningContent', params: {id: id}});
           if (w < 1280) {
@@ -225,10 +225,12 @@
         }
       },
       getHomework(id) {
-        let w = document.body.clientWidth;
-        this.$router.push({name: 'homework', params: {id: id}});
-        if (w < 1280) {
-          this.classRoomActive = !this.classRoomActive;
+        if (this.$route.params.id !== id) {
+          let w = document.body.clientWidth;
+          this.$router.push({name: 'homework', params: {id: id}});
+          if (w < 1280) {
+            this.classRoomActive = !this.classRoomActive;
+          }
         }
       },
       getPronunciation(e) {

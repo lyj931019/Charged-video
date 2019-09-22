@@ -2,7 +2,7 @@
  * @Description: In User Settings Edit
  * @Author: your name
  * @Date: 2019-06-15 23:25:35
- * @LastEditTime: 2019-08-25 00:49:30
+ * @LastEditTime: 2019-09-22 16:15:51
  * @LastEditors: Please set LastEditors
  -->
 <template>
@@ -105,6 +105,9 @@
         lockTime: 0
       }
     },
+    mounted() {
+      console.log(window.invite_code)
+    },
     methods: {
       register() {
         let _this = this;
@@ -131,6 +134,7 @@
         if (this.userPwd.length > 0) {
 //          this.$router.push({ name: 'userCenter'});
           let _this = this;
+          console.log(window.invite_code)
           this.$http({
             method: 'post',
             url: 'v2/users',
@@ -138,10 +142,12 @@
               email: _this.userEmail,
               password: _this.userPwd,
               nickname: _this.userName,
-              captcha: this.code
+              captcha: this.code,
+              invite_code: window.invite_code
             }
           }).then(res => {
-            if (res.data.state.code == 0 && res.data.status) {
+            if (res.data.state.code == 0) {
+              this.$message.success(this.$t('common.signUp') + this.$t('common.success'))
 //              _this.changeLoginStatus(true);
 //              _this.changeUserInfo(res.data.data);
               _this.$router.push({name: 'login'})

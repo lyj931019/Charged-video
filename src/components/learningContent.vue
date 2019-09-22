@@ -2,7 +2,7 @@
  * @Description: In User Settings Edit
  * @Author: your name
  * @Date: 2019-07-21 17:53:27
- * @LastEditTime: 2019-08-24 17:34:50
+ * @LastEditTime: 2019-08-31 15:20:53
  * @LastEditors: Please set LastEditors
  -->
 <template>
@@ -17,21 +17,21 @@
         <div v-if="lesson.video">
           <template v-if="lesson.video.indexOf('mp3',lesson.video.lastIndexOf('.'))>-1">
             <aplayer
-              :music="{
-                      title: lesson.title,
-                      artist: 'audio',
-                      src: lesson.video,
-                    }"
+              :key="lesson.id"
+              ref="aplayer"
+              :music="musicOption"
+              show-lrc
               mutex
-              preload="true"
-            />
+              preload="true">
+              <!-- <div slot="display">123123444444444123</div> -->
+            </aplayer>
           </template>
           <template v-else>
             <!--<video :src="lesson.video" controls="controls"></video>-->
             <video-player  class="video-player vjs-custom-skin"
-                           ref="videoPlayer"
-                           :playsinline="true"
-                           :options="playerOptions"
+              ref="videoPlayer"
+              :playsinline="true"
+              :options="playerOptions"
             />
           </template>
 
@@ -58,7 +58,7 @@
             </button>
           </div>
           <div class="modal-body">
-            {{$t('common.supportHotline')}}:400-882-3823
+            <!-- {{$t('common.supportHotline')}}:400-882-3823 -->
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -78,30 +78,14 @@
   // const ap = new APlayer(options);
   export default {
     name:'learningContent',
-    components:{Aplayer,videoPlayer},
+    components:{ Aplayer, videoPlayer },
     data(){
       return {
         lesson:null,
         audioUrl:'',
         classRoomActive: false,
-        // ap:null,
-        // options:{
-        //   container: null,
-        //   mini: false,
-        //   autoplay: false,
-        //   loop: 'all',
-        //   order: 'random',
-        //   preload: 'auto',
-        //   volume: 0.7,
-        //   mutex: true,
-        //   listFolded: false,
-        //   listMaxHeight: 90,
-        //   audio: [{
-        //     name: 'name',
-        //     artist: '',
-        //     url: '',
-        //   }]
-        // }
+        musicOption: {
+        },
         playerOptions: {
           autoplay: false, //如果true,浏览器准备好时开始回放。
           muted: false, // 默认情况下将会消除任何音频。
@@ -127,15 +111,16 @@
     },
     methods:{
       getLesson(id) {
-
         let _this = this;
         this.$http({
           method: 'get',
           url: 'v1/courses/lessons/' + id,
         }).then(res => {
-          _this.lesson = res.data.data;
-          let content = _this.lesson.content;
+          this.setMusicOption(res.data.data)
+          this.lesson = res.data.data;
+          let content = this.lesson.content;
           let html = ''
+          
           // if (content && content.length > 0) {
           //   html = content.replace(/\b[a-zA-Z]+\b/g, function (world) {
           //     return '<span class="pronunciation">' + world + '</span>'
@@ -149,10 +134,11 @@
           // },1000)
 
           html = content;
-          _this.playerOptions.sources.push({type:'video/mp4',src:_this.lesson.video});
-          _this.classRoomActive = false;
-          _this.lesson.content = html;
-
+          
+          // 设置视频播放
+          this.playerOptions.sources.push({type:'video/mp4',src:this.lesson.video});
+          this.classRoomActive = false;
+          this.lesson.content = html;
         })
       },
       getPronunciation(e) {
@@ -176,6 +162,28 @@
             }
           })
         }
+      },
+      setMusicOption(data) {
+        // 设置音频播放字幕
+        if (data) {
+          let lcrSrc = ''
+          try {
+            let lcrList = []
+            data.subtitles.forEach(item => {
+              const time = item.time[0].replace(/([^:]+):/, '') + '.00'
+              const text = item.content
+              lcrList.push(`[${time}]${text}\n`)
+            })
+            lcrSrc = lcrList.join('')
+          } catch (error) {
+          }
+          this.musicOption = JSON.parse(JSON.stringify({
+            artist: 'audio',
+            title: data.title,
+            src: data.video,
+            lrc: lcrSrc
+          }))
+        }
       }
     },
     beforeMount() {
@@ -195,8 +203,8 @@
 </script>
 
 
-<style scoped>
-  @media (max-width: 800px) {
+<style lang="scss">
+  @media (min-width: 800px) {
     .lesson-topics .lesson-topic {
       font-size: 1.2em;
     }
@@ -227,6 +235,7 @@
     border-top: 0 none;
     margin: 0 0 10px;
     padding: 0;
+    word-break: break-word !important;
   }
 
   .lesson-topics {
@@ -239,7 +248,7 @@
   .lesson-topics .lesson-topic {
     font-weight: 400;
     color: rgba(0, 0, 0, .8);
-    padding: 40px;
+    padding: 20px;
     background: #fff;
     margin: 0px auto 20px;
     border: 1px solid rgba(0, 0, 0, .14);
@@ -251,6 +260,7 @@
   @media (min-width: 1280px) {
     .lesson-topics .lesson-topic {
       margin: 0px 60px 20px auto;
+      padding: 40px;
     }
   }
 
@@ -278,8 +288,10 @@
     cursor: text;
     line-height: 1.3em;
     font-size: 21px !important;
+    ul, img{
+      max-width: 100% !important;
+    }
   }
-
   .lesson-topics .lesson-content > div {
     margin: 40px 0;
   }
@@ -291,5 +303,8 @@
   .lesson-topics img{
     max-width: 100%;
     max-height: 100%;
+  }
+  .aplayer-lrc p{
+    font-size: 16px !important;
   }
 </style>

@@ -1,3 +1,10 @@
+<!--
+ * @Description: In User Settings Edit
+ * @Author: your name
+ * @Date: 2019-06-15 23:25:35
+ * @LastEditTime: 2019-06-15 23:25:35
+ * @LastEditors: your name
+ -->
 <template>
   <div class="body">
     <MyHeader/>
@@ -127,7 +134,7 @@
       let _this = this;
       this.$http({
         method:'get',
-        url:'/users/courses?user_id='+_this.getUserInfo.user_id,
+        url:'v1/users/courses?user_id='+_this.getUserInfo.user_id,
       }).then(res=>{
         _this.lessonList=res.data.data.items;
       })

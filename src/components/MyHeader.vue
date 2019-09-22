@@ -2,8 +2,8 @@
  * @Description: In User Settings Edit
  * @Author: your name
  * @Date: 2019-07-21 17:53:27
- * @LastEditTime: 2019-07-21 17:53:27
- * @LastEditors: your name
+ * @LastEditTime: 2019-09-22 23:18:47
+ * @LastEditors: Please set LastEditors
  -->
 <template>
   <div class="scroll">
@@ -443,7 +443,7 @@
               <a href="#" id="avatarDropDown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
                  role="button" class="drop-nickname dropdown-toggle">
                 <!--<Avatar :src="getUserInfo.user_avatar"/>-->
-                {{getUserInfo.user_nickname}}
+                {{getUserInfo.user_nickname}}（{{getUserInfo.customer}}）
               </a>
               <br>
               <div class="dropdown-menu" style="float: right;right: 2px;left: auto" aria-labelledby="avatarDropDown">

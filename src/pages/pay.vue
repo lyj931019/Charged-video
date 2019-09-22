@@ -1,3 +1,10 @@
+<!--
+ * @Description: In User Settings Edit
+ * @Author: your name
+ * @Date: 2019-08-25 00:54:01
+ * @LastEditTime: 2019-09-22 23:13:02
+ * @LastEditors: Please set LastEditors
+ -->
 <template>
   <div class="pay-bg">
     <MyHeader/>
@@ -15,7 +22,7 @@
                 <img src="../assets/img/right.png" alt="">{{$t('pay.payment')}}
               </div>
               <div class="form-group">
-                <div class="custom-control custom-radio pay-type p-2 m-4">
+                <div class="custom-control custom-radio pay-type p-2 m-4" v-if="env !== 'weixin'">
                   <input type="radio" id="ali" name="payment" v-model="payType" class="custom-control-input" value="0" checked>
                   <label class="custom-control-label" for="ali">{{$t('pay.ali')}}</label>
                 </div>
@@ -23,7 +30,10 @@
                   <input type="radio" id="we" name="payment" v-model="payType" class="custom-control-input" value="1" checked>
                   <label class="custom-control-label" for="we">{{$t('pay.wechat')}}</label>
                 </div>
-
+                <div class="custom-control custom-radio pay-type p-2 m-4">
+                  <input type="radio" id="point" name="payment" v-model="payType" class="custom-control-input" value="2" checked>
+                  <label class="custom-control-label" for="point">{{$t('pay.pointPay')}} （{{$t('pay.needPoint')}}：{{courses.price}} {{$t('pay.yourPoint')}}: {{point}}）</label>
+                </div>
               </div>
             </div>
             <!--<div class="section p-4">-->
@@ -162,14 +172,14 @@
   import Common from '../components/common'
   import {mapGetters} from 'vuex'
   import QRCode from 'qrcodejs2'
-
-
+  import { getPoint } from '@/service'
 
   export default {
     name: 'pay',
     components: {...Common, Avatar, Icon},
     data() {
       return {
+        env: '',
         courses: null,
         tips: '',
         icon_type: 'success',
@@ -189,7 +199,10 @@
         checkOrderTimer:null,
         succTimer:null,
         qrcode:null,
-        loading:false
+        loading:false,
+        openid: null,
+        wxCode: null,
+        point: 0
       }
     },
     computed: {
@@ -291,45 +304,47 @@
         // }
         if (this.getIsLogin) {
           let _this = this;
-          console.log(this.payType)
-
-          if(this.payType+'' === '1'){
-            if(this.is_weixn()){
-              this.pay_jsapi();
-            }else{
-              this.wechatPay();
-            }
-
-          }else{
-            this.$http({
-              method: 'post',
-              url: 'v1/payment/page',
-              data: {
-                user_id: _this.getUserInfo.user_id,
-                course_id: _this.courses.id,
-                return_url: 'http://'+window.location.host+'/#/userCenter'
-              },
-              transformRequest: [function (data) {
-                let ret = ''
-                for (let it in data) {
-                  ret += encodeURIComponent(it) + '=' + encodeURIComponent(data[it]) + '&'
+          switch (this.payType) {
+            case '0':
+              this.$http({
+                method: 'post',
+                url: 'v1/payment/page',
+                data: {
+                  user_id: _this.getUserInfo.user_id,
+                  course_id: _this.courses.id,
+                  return_url: 'http://'+window.location.host+'/#/userCenter'
+                },
+                transformRequest: [function (data) {
+                  let ret = ''
+                  for (let it in data) {
+                    ret += encodeURIComponent(it) + '=' + encodeURIComponent(data[it]) + '&'
+                  }
+                  return ret
+                }],
+              }).then(res => {
+                if (res.data.state.code == 0) {
+                  // _this.tips = _this.$t('common.success');
+                  // _this.icon_type = 'success';
+                  window.open(res.data.data);
+                } else {
+                  _this.tips = _this.$t('common.bought');
+                  _this.icon_type = 'fail';
                 }
-                return ret
-              }],
-            }).then(res => {
-              if (res.data.state.code == 0) {
-                // _this.tips = _this.$t('common.success');
-                // _this.icon_type = 'success';
-                window.open(res.data.data);
-              } else {
-                _this.tips = _this.$t('common.bought');
-                _this.icon_type = 'fail';
+                // $('#payTips').modal('show');
+  //            _this.$router.push({ name: 'userCenter'})
+              })
+              break;
+            case '1':
+              if(this.is_weixn()){
+                this.pay_jsapi();
+              }else{
+                this.wechatPay();
               }
-              // $('#payTips').modal('show');
-//            _this.$router.push({ name: 'userCenter'})
-            })
+            case '2':
+              this.pointPay()
+            default:
+              break;
           }
-
         } else {
           this.gotoLogin();
         }
@@ -339,17 +354,11 @@
       },
       // 判断是不是微信浏览器打开
       is_weixn(){
-
         var ua = navigator.userAgent.toLowerCase();
-        console.log(ua)
         if(ua.match(/MicroMessenger/i)=="micromessenger") {
-
           return true;
-
         } else {
-
           return false;
-
         }
       },
       //支付方法
@@ -357,24 +366,38 @@
         //必须先等微信授权获取openid后
         if(!this.openid)
           return false;
-
         //进行JSAPI下单
-        var api = "/payment/jsapi";
-        var data = "openid=" + this.openid + "&url=" + location.href;
-        this.$http.post(api, data).then(function(response){
+        var api = "v1/payment/jsapi";
+        // var data = `openid=${this.openid}&url=${window.location.href}`
+        var data = {
+          openid: this.openid,
+          url: window.location.href,
+          user_id: this.getUserInfo.user_id,
+          course_id: this.courses.id
+        }
+        this.$http({
+          method: 'post',
+          url: api,
+          data,
+          transformRequest: [function (data) {
+            let ret = ''
+            for (let it in data) {
+              ret += encodeURIComponent(it) + '=' + encodeURIComponent(data[it]) + '&'
+            }
+            return ret
+          }]
+        }).then(response => {
           //判断结果
           if(response.data.state.code !== 0){
-            alert("微信统一下单失败");
+            this.$message.error(res.data.state.message)
             return;
           }
-
           //提取接口返回
-          var signature = response.data.data.payConfig;   //JSSDK签署配置
+          var signature = response.data.data.signature;   //JSSDK签署配置
           var payConfig = response.data.data.payConfig;   //JSAPI支付配置
-
           //配置微信JSSDK
           wx.config({
-            debug       : true, //开启调试模式(正式打包时请用false)
+            debug       : false, //开启调试模式(正式打包时请用false)
             appId       : signature.appId,
             timestamp   : signature.timestamp,
             nonceStr    : signature.nonceStr,
@@ -382,34 +405,74 @@
             jsApiList   : ['chooseWXPay']
           });
           //调起微信支付
-          wx.ready(function(){
+          wx.ready(() => {
             wx.chooseWXPay({
               "timestamp" : payConfig.timeStamp,
               "nonceStr"  : payConfig.nonceStr,
               "package"   : payConfig.package,
               "signType"  : payConfig.signType,
               "paySign"   : payConfig.paySign,
-              "success"   : function (res) {
-                alert("支付完成");
+              "success"   : (res) => {
+                this.$message.success('Pay Success!')
+                this.$router.push('/userCourse')
               }
             });
           });
-        });
+        })
+      },
+      // 积分支付
+      pointPay() {
+        if (this.point < this.courses.price) {
+          this.$message.error(this.$t('pay.noPoint'))
+        } else {
+          this.loading = false
+          this.$http({
+            method: 'post',
+            url: `/v2/courses/${this.courses.id}/redeem`,
+            data: {
+              user_id: this.getUserInfo.user_id
+            }
+          }).then(res => {
+            this.loading = false
+            if (res.data.state.code === 0) {
+              this.$message({
+                type: 'success',
+                message: 'Pay Success!',
+                onClose: () => {
+                  this.$router.push('/userCourse')
+                }
+              })
+            } else {
+              this.$message.error(res.data.state.message)
+            }
+          })
+        }
+      },
+      /**
+       * @description: 获取积分
+       * @param {type} 
+       * @return: 
+       */
+      getPoint() {
+        getPoint().then(res => {
+          this.point = res.data.total
+        })
       }
     },
     created(){
-
+      this.getPoint()
       if(this.is_weixn()){
+        this.env = 'weixin'
         //定义this, 在异步方法中使用
         var self = this;
 
         //获取GET参数code
         var code = this.$url()["code"];
-
+        this.wxCode = code
         //判断code参数是否存在
         if(code){
           //如果有code，则用这个code获取授权配置
-          var api = "/payment/wechat-auth";
+          var api = "v1/payment/wechat-auth";
           var data = "code=" + code;
           this.$http.post(api, data).then(function(response){
             //获取返回的openid
@@ -422,7 +485,7 @@
           });
         } else {
           //如果不存在，则获取微信OAUTH授权地址然后进行跳转
-          var api = "/payment/wechat-auth-url";
+          var api = "v1/payment/wechat-auth-url";
           var data = "redirectUrl=" + location.href;
           this.$http.post(api, data).then(function(response){
             //跳转到微信授权页面(授权后会自动跳转回来)
@@ -432,9 +495,7 @@
             // alert("获取授权地址失败,请检查接口配置");
           });
         }
-
       }
-
     },
     beforeMount() {
       let num = this.$route.params.num;
@@ -454,6 +515,7 @@
     },
     beforeDestroy(){
       this.clearTimer();
+      window.history.replaceState(null, null, window.location.href.replace(/\?(\S*)#/, '#'))
     }
   }
 </script>

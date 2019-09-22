@@ -2,7 +2,7 @@
  * @Description: In User Settings Edit
  * @Author: your name
  * @Date: 2019-07-21 17:53:27
- * @LastEditTime: 2019-08-24 17:34:34
+ * @LastEditTime: 2019-09-19 22:41:05
  * @LastEditors: Please set LastEditors
  -->
 <template>
@@ -33,6 +33,14 @@
       ...mapState([
         'LOADING'
       ])
+    },
+    created() {
+      const invite_code = this.$route.query.invite_code || sessionStorage.invite_code
+      if (invite_code) {
+        console.log(invite_code)
+        window.invite_code = invite_code
+        sessionStorage.invite_code = this.$route.query.invite_code
+      }
     },
     beforeCreate(){
       let user_id = localStorage.getItem('user_id');

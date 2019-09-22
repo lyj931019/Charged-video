@@ -2,7 +2,7 @@
  * @Description: In User Settings Edit
  * @Author: your name
  * @Date: 2019-07-21 17:53:27
- * @LastEditTime: 2019-08-25 00:50:07
+ * @LastEditTime: 2019-09-01 13:44:05
  * @LastEditors: Please set LastEditors
  -->
 <template>
@@ -647,7 +647,8 @@ export default {
 }
 
 .sort {
-  margin-bottom: 3rem;
+  height: 2rem;
+  margin-bottom: 1rem;
   border-bottom: 2px solid #aaa;
   padding-bottom: 1px;
 }
@@ -659,7 +660,6 @@ export default {
   font-weight: bold;
   margin-right: 4rem;
   display: inline-block;
-  padding-bottom: 0.8rem;
   cursor: pointer;
   position: relative;
 }
@@ -729,7 +729,6 @@ export default {
 
 .new-list .sort {
   margin-bottom: 1rem;
-  height: auto;
 }
 .new-list .sort .title {
   font-size: 1.3rem;
@@ -737,8 +736,6 @@ export default {
   font-weight: bold;
   margin-right: 4rem;
   display: inline-block;
-  padding-bottom: 0.2rem;
-  padding-top: 0.2rem;
   cursor: pointer;
 }
 .new-list .course-info {

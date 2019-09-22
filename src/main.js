@@ -1,3 +1,10 @@
+/*
+ * @Description: In User Settings Edit
+ * @Author: your name
+ * @Date: 2019-08-25 00:52:30
+ * @LastEditTime: 2019-09-01 12:58:01
+ * @LastEditors: Please set LastEditors
+ */
 // The Vue build version to load with the `import` command
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
@@ -16,6 +23,8 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap/dist/js/bootstrap.bundle.min'
 import '../static/global.css'
 
+import ElementUI from 'element-ui';
+import 'element-ui/lib/theme-chalk/index.css';
 
 import '../static/summernote/summernote-bs4.css';
 import '../static/summernote/summernote-bs4.min';
@@ -36,6 +45,8 @@ import 'summernote/dist/summernote.css'
 // Vue.use(VideoPlayer);
 
 import { Base64 } from 'js-base64';
+
+Vue.use(ElementUI);
 
 Vue.prototype.$http = axios;
 Vue.prototype.$base64 = Base64;

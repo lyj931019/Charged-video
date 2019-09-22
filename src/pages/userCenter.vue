@@ -2,7 +2,7 @@
  * @Description: In User Settings Edit
  * @Author: your name
  * @Date: 2019-07-21 17:53:27
- * @LastEditTime: 2019-08-24 17:36:53
+ * @LastEditTime: 2019-09-22 23:15:33
  * @LastEditors: Please set LastEditors
  -->
 <template>
@@ -57,49 +57,67 @@
         <div class="container-fluid">
           <div class="row">
             <div class="col-12 tab-container"  :class="{active:active=='course'}">
-              <template v-if="lessonList">
-                <template v-for="(item,index) in lessonList">
-                  <div class="courseItem" :key="index">
-                    <a href="#" class="nav-link" @click.prevent="goToStudyPage(item.course.id)">
-                      {{item.course.name}}
-                      <span class="try" v-if="item.try">({{$t('userCenter.tryCourse')}})</span>
-                      <span style="color: #ee243c">({{$t('userCenter.cutoff')}}&nbsp;:&nbsp;{{item.used_at | formatDate}})</span>
-                    </a>
-                    <router-link class="delete" :to="{ name: 'pay',params: {num:item.course.num}}">
-                      <img v-if="item.try" src="../assets/img/buy.png" alt="">
-                    </router-link>
-                  </div>
+              <div class="row" v-if="lessonList">
+                <template v-for="(item, index) in lessonList">
+                  <class-card :item="item" :key="index" @click="goToStudyPage"/>
                 </template>
-              </template>
-              <div class="row">
-              <class-card :itme="item" />
-              <class-card :itme="item" />
               </div>
             </div>
-            <div class="col-12 col-lg-7 tab-container"
+            <div class="col-12 tab-container"
                  :class="{active:active=='favorites'}">
-              <template v-if="favoritesList">
-                <template v-for="(item,index) in favoritesList">
-                  <div class="courseItem">
-                    <router-link class="nav-link" :to="{name: 'detail', params: { num: item.course.num } }">
-                        {{item.course.name}}
-                    </router-link>
-                    <img src="../assets/img/delete.png" @click="confirmDelete(item.course)" class="delete" alt="">
-                  </div>
+              <div class="row" v-if="favoritesList">
+                <template v-for="(item, index) in favoritesList">
+                  <favorite-card :item="item" :key="index" @click="confirmDelete"/>
                 </template>
-              </template>
+              </div>
             </div>
-            <div class="col-12 col-lg-7 tab-container"  :class="{active:active=='account'}">
-              <div class="courseItem">
-                <a class="nav-link" href="#" @click.prevent="changeTab('changeInfo')">
-                  {{$t('userCenter.editDetails')}}
-                </a>
+            <div class="col-12 tab-container" :class="{active:active=='account'}">
+              <div class="row">
+                <div class="col-12 col-lg-4">
+                  <div class="creditsBox">
+                    <div class="creditsBox-center">
+                      <div class="credits-title">我的积分</div>
+                      <div class="credits-number">{{point.total || 0}}</div>
+                  </div>
+                  </div>
+                </div>
+                <div class="col-12 col-lg-7 "  :class="{active:active=='account'}">
+                  <div class="courseItem">
+                    <a class="nav-link" href="#" @click.prevent="changeTab('changeBigAccount')">
+                      {{$t('userCenter.bigAccount')}}
+                    </a>
+                  </div>
+                  <div class="courseItem">
+                    <a class="nav-link" href="#" @click.prevent="changeTab('changeCredits')">
+                      {{$t('userCenter.creditsLog')}}
+                    </a>
+                  </div>
+                  <div class="courseItem">
+                    <a class="nav-link" href="#" @click.prevent="changeTab('changeInfo')">
+                      {{$t('userCenter.editDetails')}}
+                    </a>
+                  </div>
+                  <div class="courseItem">
+                    <a class="nav-link" href="#" @click.prevent="changeTab('changePwd')">
+                      {{$t('userCenter.changeThePassword')}}
+                    </a>
+                  </div>
+                </div>
               </div>
-              <div class="courseItem">
-                <a class="nav-link" href="#" @click.prevent="changeTab('changePwd')">
-                  {{$t('userCenter.changeThePassword')}}
-                </a>
-              </div>
+            </div>
+            <!-- 大客户通道表单 -->
+            <div class="col-12 col-lg-7 tab-container change-container"  :class="{active:active=='changeBigAccount'}">
+              <h3 class="change-title">{{$t('userCenter.bigAccount')}}</h3>
+              <form class="change-content">
+                <div class="form-group">
+                  <label for="bigAccountCode">{{$t('userCenter.bigAccountInfo')}}:</label>
+                  <input type="text" v-model="bigAccountCode" class="form-control">
+                </div>
+                <div class="btns">
+                  <button class="btn btn-outline-secondary" type="button" @click="changeTab('account')">{{$t('common.cancel')}}</button>
+                  <button class="btn btn-outline-primary" type="button" @click="submitBigAccount()">{{$t('common.sure')}}</button>
+                </div>
+              </form>
             </div>
             <div class="col-12 col-lg-7 tab-container change-container"  :class="{active:active=='changePwd'}">
               <h3 class="change-title">{{$t('userCenter.changeThePassword')}}</h3>
@@ -178,7 +196,17 @@
               </form>
             </div>
 
-            <div class="col-12 col-lg-1"></div>
+            <div class="col-12 col-lg-10 tab-container" v-if="active === 'changeCredits'" :class="{active:active==='changeCredits'}">
+              <template v-if="point.history.length>0">
+                <div class="courseItem" v-for="(item,index) in point.history" :key="index">
+                  <a class="nav-link">
+                    {{item.remark}}
+                    ({{item.increment}})
+                    <span style="float: right">{{item.time}}</span>
+                  </a>
+                </div>
+              </template>
+            </div>
             <!--<div class="col-12 col-lg-4">-->
               <!--<div class="courseInfo">-->
                 <!--<div class="drop-info">-->
@@ -257,17 +285,13 @@
   import {mapGetters} from 'vuex'
   import Components from '../components/index'
   import { mapMutations } from 'vuex'
-  import {formatDate} from '../common/date'
   import ClassCard from '@/components/ClassCard'
+  import FavoriteCard from '@/components/FavoriteCard'
+  import { getPoint } from '@/service'
+ 
   export default {
     name: 'userCenter',
-    components: {...Components,Icon, ClassCard},
-    filters:{
-      formatDate(time){
-        let date = new Date(time*1000);
-        return formatDate(date,'yyyy-MM-dd');
-      }
-    },
+    components: {...Components,Icon, ClassCard, FavoriteCard},
     data() {
       return {
         lessonList: null,
@@ -285,7 +309,9 @@
         PwdChangeErrTips:'',
         adderss2:'',
         city:'',
-        country:''
+        country:'',
+        point: {}, // 积分
+        bigAccountCode: '' // 大客户优惠码
       }
     },
     methods: {
@@ -428,6 +454,49 @@
             $('#changeSuccess').modal('show');
           }
         })
+      },
+      /**
+       * @description: 大客户表单提交
+       * @param {type} 
+       * @return: 
+       */
+      submitBigAccount() {
+        this.$http({
+          method: 'put',
+          url: 'v2/customers/redeem',
+          data: {
+            user_id: this.getUserInfo.user_id,
+            code: this.bigAccountCode
+          }
+        }).then(res => {
+          let code = res.data.state.code;
+          if(code == 0){
+            this.$message({
+              type: 'success',
+              center: 'center',
+              message: this.$t('common.success'),
+              onClose: () => {
+                this.changeTab('course')
+                this.getFavorites()
+              }
+            })
+            // $('#changeSuccess').modal('show');
+          }else{
+            // TODO: 失败
+            this.$message.error(res.data.state.message)
+            // $('#changeSuccess').modal('show');
+          }
+        })
+      },
+      /**
+       * @description: 获取积分
+       * @param {type} 
+       * @return: 
+       */
+      getPoint() {
+        getPoint().then(res => {
+          this.point = res.data
+        })
       }
     },
     mounted() {
@@ -441,6 +510,7 @@
         }).then(res => {
           _this.lessonList = res.data.data;
         })
+        this.getPoint()
       } else {
         this.$router.replace({name: 'login'});
       }
@@ -455,7 +525,7 @@
   }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
   .centerTitle {
     padding-top: 3rem;
     /*background: url(../assets/img/home_bg_grad_2_color.jpg) 0 0 no-repeat;*/
@@ -669,5 +739,22 @@
     padding: 2rem 2rem 1.5rem 2rem;
     -webkit-justify-content: center;
     justify-content: center;
+  }
+  .creditsBox{
+    height: 100%;
+    background: linear-gradient(135deg, #FE563C, #F88A7D); /* 标准的语法 */
+    color: #fff;
+    display: flex;
+    align-items:center;
+    justify-content:center;
+    &-center{
+      text-align: center
+    }
+    .credits-title{
+      font-size: 24px;
+    }
+    .credits-number{
+      font-size: 30px;
+    }
   }
 </style>

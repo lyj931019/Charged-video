@@ -1,3 +1,10 @@
+/*
+ * @Description: In User Settings Edit
+ * @Author: your name
+ * @Date: 2019-06-15 23:25:35
+ * @LastEditTime: 2019-06-15 23:25:35
+ * @LastEditors: your name
+ */
 const muntation = {
   changeLoginStatus(state,isLogin){
     state.isLogin = isLogin;
@@ -13,6 +20,7 @@ const muntation = {
     state.user.user_adderss2 = userInfo.adderss_2;
     state.user.user_city = userInfo.city;
     state.user.user_country = userInfo.country;
+    state.user.customer = userInfo.customer;
   },
   changelearningNum(state,learningNum){
     state.learningNum = learningNum;

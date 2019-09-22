@@ -2,7 +2,7 @@
  * @Description: In User Settings Edit
  * @Author: your name
  * @Date: 2019-06-15 23:25:34
- * @LastEditTime: 2019-08-24 17:17:30
+ * @LastEditTime: 2019-09-22 22:50:21
  * @LastEditors: Please set LastEditors
  */
 module.exports = {
@@ -35,11 +35,15 @@ module.exports = {
     payment:'选择支付方式',
     wechat:'微信支付',
     ali:'支付宝支付',
+    pointPay:'使用积分兑换',
     questionOrder:'仅在有关订单的问题时使用',
     review:'查看购物车和结帐',
     errTips:'请填写表单中带 " * " 的选项',
     sp:'州/省',
-    postalCode:'邮政编码'
+    postalCode:'邮政编码',
+    needPoint: '需要积分',
+    yourPoint: '你的积分',
+    noPoint: '积分不足，无法兑换'
   },
   footer: {},
   about: {
@@ -115,6 +119,7 @@ module.exports = {
     phone: '电话',
     address: '地址',
     deleteCollection: '是否取消收藏',
+    removeFavorites: '取消收藏',
     schoolLink:'学校链接',
     schoolCalendar:'学校日历',
     academicPolicy:'学术政策',
@@ -123,7 +128,11 @@ module.exports = {
     technicalAssistance:'技术援助',
     city:'城市',
     country:'国家',
-    cutoff:'有效期至'
+    cutoff:'有效期至',
+    correct: '批改',
+    creditsLog: '积分记录',
+    bigAccount: '大客户通道',
+    bigAccountInfo: '请输入大客户优惠码'
   },
   learningCenter:{
     lessonList:'章节列表',

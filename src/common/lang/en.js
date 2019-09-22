@@ -2,7 +2,7 @@
  * @Description: In User Settings Edit
  * @Author: your name
  * @Date: 2019-06-15 23:25:34
- * @LastEditTime: 2019-08-24 17:17:56
+ * @LastEditTime: 2019-09-22 22:50:31
  * @LastEditors: Please set LastEditors
  */
 module.exports = {
@@ -35,11 +35,15 @@ module.exports = {
     payment:'Choose Payment Method',
     wechat:'Wechat Pay',
     ali:'Ali Pay',
+    pointPay:'Exchange points',
     questionOrder:'Used only in event of question about order',
     review:'Review Cart and Checkout',
     errTips:'Please fill out the form with " * " in the form',
     sp:'State/Province',
-    postalCode:'Postal Code'
+    postalCode:'Postal Code',
+    needPoint: 'need point',
+    yourPoint: 'your point',
+    noPoint: 'Not enough points'
   },
   footer:{},
   about:{
@@ -115,6 +119,7 @@ module.exports = {
     phone:'Phone',
     address:'Address',
     deleteCollection:'Whether to cancel the collection',
+    removeFavorites: 'remove',
     schoolLink:'School link',
     schoolCalendar:'School calendar',
     academicPolicy:'Academic policy',
@@ -123,7 +128,11 @@ module.exports = {
     technicalAssistance:'Technical assistance',
     city:'City',
     country:'Country',
-    cutoff:'Due Date'
+    cutoff:'Due Date',
+    correct: 'correct',
+    creditsLog: 'Credits log',
+    bigAccount: 'Key account channel',
+    bigAccountInfo: 'Please enter Key account Code'
   },
   learningCenter:{
     lessonList:'Lesson list',

@@ -2,7 +2,7 @@
  * @Description: In User Settings Edit
  * @Author: your name
  * @Date: 2019-06-15 23:25:35
- * @LastEditTime: 2019-08-25 00:50:03
+ * @LastEditTime: 2019-09-01 13:10:41
  * @LastEditors: Please set LastEditors
  -->
 <template>
@@ -77,7 +77,7 @@
   }
 </script>
 
-<style scoped>
+<style>
   .about-header {
     font-weight: 700;
     padding: 2rem 0;
@@ -145,5 +145,8 @@
 
   .about-content > div.active {
     display: block;
+  }
+  .about-content img{
+    width: 100% !important;
   }
 </style>
