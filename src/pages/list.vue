@@ -324,7 +324,7 @@
 
   .course-id{
     margin-bottom: 0;
-    font-size: 0.9rem;
+    font-size: 12px;
   }
   .course-name{
     box-shadow: rgb(238, 36, 60) 0px -1px 0px inset;
@@ -356,7 +356,7 @@
     margin: 0;
   }
   .course-intr{
-    font-size: 0.9rem;
+    font-size: 12px;
   }
   .sort-list{
     list-style: none;

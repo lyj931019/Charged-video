@@ -1,3 +1,10 @@
+<!--
+ * @Description: In User Settings Edit
+ * @Author: your name
+ * @Date: 2019-07-21 17:53:27
+ * @LastEditTime: 2019-08-24 17:34:50
+ * @LastEditors: Please set LastEditors
+ -->
 <template>
   <div  v-if="lesson">
     <div class="lesson-topic">
@@ -124,7 +131,7 @@
         let _this = this;
         this.$http({
           method: 'get',
-          url: '/courses/lessons/' + id,
+          url: 'v1/courses/lessons/' + id,
         }).then(res => {
           _this.lesson = res.data.data;
           let content = _this.lesson.content;
@@ -155,7 +162,7 @@
           let _this = this;
           _this.$http({
             method: 'get',
-            url: '/medias/pronunciations/' + html,
+            url: 'v1/medias/pronunciations/' + html,
           }).then((res) => {
             if (res.data.state.code === 0) {
               _this.audioUrl = res.data.data.audio;

@@ -1,3 +1,10 @@
+<!--
+ * @Description: In User Settings Edit
+ * @Author: your name
+ * @Date: 2019-07-21 17:53:27
+ * @LastEditTime: 2019-07-21 17:53:27
+ * @LastEditors: your name
+ -->
 <template>
   <div class="scroll">
     <header id="masthead">
@@ -329,7 +336,7 @@
                 <div class="header-down sub-nav">
                   <ul class="sub-nav-group">
                     <li>
-                      <div class="drop-info" style="font-size: 0.9rem;
+                      <div class="drop-info" style="font-size: 12px;
     font-weight: normal;">
                         {{$t('detail.needGuidance')}}<br>
                         <h3 style="font-size: 1.2rem;">0756-8322 0600</h3>
@@ -498,7 +505,7 @@
         }else{
           this.$http({
             method: 'get',
-            url: '/types',
+            url: 'v1/types',
             params: {
               page: 1,
               pageSize: 100
@@ -645,7 +652,7 @@
   }
 
   #masthead .navbar .form-inline {
-    font-size: 0.9rem;
+    font-size: 12px;
   }
 
   #masthead .btn-apply {
@@ -673,7 +680,7 @@
 
     /*#masthead .btn-apply, #masthead .btn-login {*/
       /*padding: 4px 8px;*/
-      /*font-size: 0.9rem;*/
+      /*font-size: 12px;*/
     /*}*/
 
     #mast-simple.navbar {
@@ -861,7 +868,7 @@
     display: block;
     padding: 5px 0 10px 0;
     margin-bottom: 7.5px;
-    font-size: 0.9rem;
+    font-size: 12px;
     font-weight: bold;
     color: #000000;
   }
@@ -870,7 +877,7 @@
     display: block;
     padding-left: 0;
     font-weight: 200;
-    font-size: 0.9rem;
+    font-size: 12px;
     line-height: 1.6rem;
     color: #000000;
     text-transform: capitalize;
@@ -1115,7 +1122,7 @@
   }
 
   .drop-nickname,.hello-nickname{
-    font-size: 0.9rem;
+    font-size: 12px;
     color: rgba(0, 0, 0, 0.71);
     font-weight: bold;
   }

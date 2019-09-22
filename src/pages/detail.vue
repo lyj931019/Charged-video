@@ -1,3 +1,10 @@
+<!--
+ * @Description: In User Settings Edit
+ * @Author: your name
+ * @Date: 2019-07-21 17:53:27
+ * @LastEditTime: 2019-08-24 17:35:28
+ * @LastEditors: Please set LastEditors
+ -->
 <template>
   <div>
     <MyHeader/>
@@ -14,8 +21,8 @@
           <div class="row">
 
             <div class="col-12 col-lg-9 course-intr">
-              <h1 class="title" v-show="getLang == 'zh'">{{courses.name}}</h1>
-              <h1 class="title" v-show="getLang == 'en'">{{courses.name_en}}</h1>
+              <h1 class="title" v-if="getLang == 'zh'">{{courses.name}}</h1>
+              <h1 class="title" v-else-if="getLang == 'en'">{{courses.name_en}}</h1>
               <div class="course-author" v-if="courses.instructor">
                 <Avatar :src="courses.instructor.avatar"/>
                 <span>
@@ -30,7 +37,7 @@
               <div class="row mt-5">
                 <div class="col-12 col-lg-4 order-1 order-lg-2">
                   <div class="course-info row">
-                    <div class="course-date col-12 col-sm-6 col-lg-12">
+                    <div class="course-date col-6 col-sm-4 col-lg-12">
                       <i>
                         <svg class="svg-inline--fa fa-calendar-alt fa-w-14" aria-hidden="true" data-prefix="far"
                              data-icon="calendar-alt" role="img" xmlns="http://www.w3.org/2000/svg"
@@ -43,19 +50,23 @@
                       <span v-if="courses">{{courses.created_at | formatDate}}</span>
 
                     </div>
-                    <div class="course-level detail-level col-12 col-sm-6 col-lg-12">
-                      <Level :level="courses.level"/>
-                      <span>{{$t('detail.level')}} {{courses.level || 5}}</span>
+                    <div class="course-level detail-level col-6 col-sm-4 col-lg-12">
+                      <div class="linebox">
+                        <Level :level="courses.level"/>
+                        <span>{{$t('detail.level')}} {{courses.level || 5}}</span>
+                      </div>
                     </div>
-                    <div class="course-price col-12 col-sm-6 col-lg-12">
-                      <p>{{$t('detail.coursePrice')}}</p>
-                      <p>¥{{(courses.price / 100).toFixed(2)}}</p>
+                    <div class="course-price col-6 col-sm-4 col-lg-12">
+                      <p>{{$t('detail.coursePrice')}}:</p>
+                      <p>
+                        <span class="price"><span class="unit">￥</span>{{(courses.price / 100).toFixed(2)}}</span>
+                        <span class="sale-price"><s>￥{{(courses.price_dollar / 100).toFixed(2)}}</s></span>
+                      </p>
                     </div>
                   </div>
                 </div>
-                <div class="col-12 col-lg-8 order-lg-1 order-2" v-show="getLang == 'zh'" v-html="courses.abstract"></div>
-                <div class="col-12 col-lg-8 order-lg-1 order-2" v-show="getLang == 'en'" v-html="courses.abstract_en"></div>
-
+                <div class="col-12 col-lg-8 order-lg-1 order-2" v-if="getLang == 'zh'" v-html="courses.abstract"></div>
+                <div class="col-12 col-lg-8 order-lg-1 order-2" v-else-if="getLang == 'en'" v-html="courses.abstract_en"></div>
               </div>
             </div>
             <div class="col-12 col-lg-3 d-none d-lg-block">
@@ -391,7 +402,7 @@
           let _this = this;
           this.$http({
             method: 'post',
-            url: '/courses/try',
+            url: 'v1/courses/try',
             data:{
               user_id:_this.getUserInfo.user_id,
               course_id:_this.courses.id
@@ -422,7 +433,7 @@
           let _this = this;
           this.$http({
             method: 'post',
-            url: '/favorites',
+            url: 'v1/favorites',
             data:{
               user_id:_this.getUserInfo.user_id,
               course_id:_this.courses.id
@@ -461,7 +472,7 @@
         let _this = this;
         this.$http({
           method: 'get',
-          url: '/courses/hash',
+          url: 'v1/courses/hash',
           params:{
             user_id,
             course_id:_this.courses.id
@@ -471,7 +482,7 @@
         });
         this.$http({
           method: 'get',
-          url: '/favorites/hash',
+          url: 'v1/favorites/hash',
           params:{
             user_id,
             course_id:_this.courses.id
@@ -484,7 +495,7 @@
         let _this = this;
         this.$http({
           method: 'get',
-          url: '/courses/' + num,
+          url: 'v1/courses/' + num,
         }).then(res => {
           for (let obj of res.data.data.lessons) {
             _this.lessonActive.push(false);
@@ -532,7 +543,7 @@
   }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
   .bar{
     width: .4rem;
   }
@@ -622,16 +633,37 @@
     font-weight: bold;
   }
 
-  .course-level span {
+  .course-level {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
     font-size: 1rem;
-    margin-left: 0.7rem;
+    line-height: 1.35rem;
     font-weight: bold;
+    span{
+      margin-left: 0.7rem;
+    }
   }
 
-  .course-price p {
-    margin-bottom: 0;
-    font-size: 1rem;
-    font-weight: bold;
+  .course-price{
+    p {
+      margin-bottom: 0;
+      font-size: 1rem;
+      font-weight: bold;
+    }
+    .price{
+      color: #f40;
+      font-size: 2rem;
+      font-weight: normal;
+      .unit{
+        font-size: 1.2rem
+      }
+    }
+    .sale-price{
+      font-weight: normal;
+      font-size: 1.2rem;
+      color: #919191
+    }
   }
 
   .lesson, .author {

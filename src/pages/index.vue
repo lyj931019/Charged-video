@@ -341,7 +341,7 @@
     text-decoration: none;
     color: #25353c;
     font-weight: bold;
-    font-size: 0.9rem;
+    font-size: 12px;
     width: 100%;
     text-align: center;
   }
@@ -367,7 +367,7 @@
     text-decoration: none;
     color: #fff;
     font-weight: bold;
-    font-size: 0.9rem;
+    font-size: 12px;
     width: 100%;
     text-align: center;
   }

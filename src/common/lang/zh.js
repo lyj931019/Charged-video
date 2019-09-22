@@ -1,3 +1,10 @@
+/*
+ * @Description: In User Settings Edit
+ * @Author: your name
+ * @Date: 2019-06-15 23:25:34
+ * @LastEditTime: 2019-08-24 17:17:30
+ * @LastEditors: Please set LastEditors
+ */
 module.exports = {
   header: {
     login: '登录',
@@ -160,6 +167,8 @@ module.exports = {
     pwd: '请输入密码',
     pwd_old: '请输入原密码',
     email:'请输入邮箱',
+    code: '请输入验证码',
+    getCode: '发送邮件'
   },
   task:{
     title:'提交作业',

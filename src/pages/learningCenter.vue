@@ -1,3 +1,10 @@
+<!--
+ * @Description: In User Settings Edit
+ * @Author: your name
+ * @Date: 2019-07-21 17:53:27
+ * @LastEditTime: 2019-08-24 17:35:42
+ * @LastEditors: Please set LastEditors
+ -->
 <template>
   <div class="classroom" style="background-color: #eff1f2; outline: 999px solid #eff1f2;"
        :class="classRoomActive?'active':''" v-if="courses">
@@ -150,7 +157,7 @@
         }
         this.$http({
           method: 'get',
-          url: '/courses/' + num,
+          url: 'v1/courses/' + num,
         }).then(res => {
           _this.courses = res.data.data;
           _this.getUserHomeworkList();
@@ -163,7 +170,7 @@
         user_id = this.$base64.decode(user_id);
         this.$http({
           method: 'post',
-          url: '/courses/read',
+          url: 'v1/courses/read',
           data: {
             user_id: user_id,
             course_id: id,
@@ -196,7 +203,7 @@
         let _this = this;
         this.$http({
           method: 'get',
-          url: '/tasks/user',
+          url: 'v1/tasks/user',
           params: {
             user_id: _this.getUserInfo.user_id,
             course_id: _this.courses.id
@@ -231,7 +238,7 @@
           let _this = this;
           _this.$http({
             method: 'get',
-            url: '/medias/pronunciations/' + html,
+            url: 'v1/medias/pronunciations/' + html,
           }).then((res) => {
             if (res.data.state.code === 0) {
               _this.audioUrl = res.data.data.audio;
@@ -465,7 +472,7 @@
     box-shadow: 0 0 4px #CCC;
     background-color: #ffffff;
     text-align: center;
-    font-size: 0.9rem;
+    font-size: 12px;
     position: fixed;
     top: 0;
     left: 0;

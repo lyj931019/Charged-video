@@ -220,7 +220,7 @@
         let _this = this;
         await this.$http({
           method: 'get',
-          url: '/payment/'+_this.orderId,
+          url: 'v1/payment/'+_this.orderId,
         }).then(res=>{
           let code = res.data.state.code;
           if(code === 0){
@@ -246,7 +246,7 @@
         $('#wechatPay').modal('show');
         this.$http({
           method: 'post',
-          url: '/payment/native',
+          url: 'v1/payment/native',
           data: {
             user_id: _this.getUserInfo.user_id,
             course_id: _this.courses.id,
@@ -303,7 +303,7 @@
           }else{
             this.$http({
               method: 'post',
-              url: '/payment/page',
+              url: 'v1/payment/page',
               data: {
                 user_id: _this.getUserInfo.user_id,
                 course_id: _this.courses.id,
@@ -441,7 +441,7 @@
       let _this = this;
       this.$http({
         method: 'get',
-        url: '/courses/' + num,
+        url: 'v1/courses/' + num,
       }).then(res => {
         _this.courses = res.data.data;
       });

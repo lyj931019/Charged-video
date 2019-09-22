@@ -1,3 +1,10 @@
+/*
+ * @Description: In User Settings Edit
+ * @Author: your name
+ * @Date: 2019-06-15 23:25:35
+ * @LastEditTime: 2019-08-12 23:19:56
+ * @LastEditors: Please set LastEditors
+ */
 import Index from './index.vue'
 import List from './list.vue'
 import Detail from './detail.vue'
@@ -14,7 +21,7 @@ import Methods from './methods.vue'
 
 import ListOld from './listOld.vue'
 
-import Home from './home.vue'
+import Home from './home/index.vue'
 
 
 

@@ -1,3 +1,10 @@
+<!--
+ * @Description: In User Settings Edit
+ * @Author: your name
+ * @Date: 2019-06-15 23:25:35
+ * @LastEditTime: 2019-08-24 17:35:08
+ * @LastEditors: Please set LastEditors
+ -->
 <template>
   <div>
     <MyHeader/>
@@ -114,7 +121,7 @@
           key = key.substring(1);
           this.$http({
             method: 'get',
-            url: '/pages/'+key,
+            url: 'v1/pages/'+key,
           }).then(res => {
             if(res.data.state.code == 0){
               _this.pages.push(res.data.data);

@@ -1,3 +1,10 @@
+<!--
+ * @Description: In User Settings Edit
+ * @Author: your name
+ * @Date: 2019-07-21 17:53:27
+ * @LastEditTime: 2019-08-24 17:34:43
+ * @LastEditors: Please set LastEditors
+ -->
 <template>
   <div>
     <div class="lesson-topic">
@@ -226,7 +233,7 @@
         let _this = this;
         this.$http({
           method: 'get',
-          url: '/tasks/user/' + id + '?user_id=' + _this.getUserInfo.user_id,
+          url: 'v1/tasks/user/' + id + '?user_id=' + _this.getUserInfo.user_id,
         }).then(res => {
           if (res.data.state.code == 0) {
             _this.homework = res.data.data.task;
@@ -261,7 +268,7 @@
         let _this = this;
         this.$http({
           method: 'get',
-          url: '/tasks/' + id,
+          url: 'v1/tasks/' + id,
         }).then(res => {
           _this.homework = res.data.data;
           _this.classRoomActive = false;
@@ -272,7 +279,7 @@
         let _this = this;
         this.$http({
           method: 'get',
-          url: '/tasks/submits',
+          url: 'v1/tasks/submits',
           params: {
             task_id: id,
             user_id: _this.getUserInfo.user_id
@@ -344,7 +351,7 @@
         }
         await this.$http({
           method: 'post',
-          url: '/tasks/submits',
+          url: 'v1/tasks/submits',
           data: data,
           transformRequest: [function (data) {
             let ret = ''

@@ -1,3 +1,10 @@
+<!--
+ * @Description: In User Settings Edit
+ * @Author: your name
+ * @Date: 2019-07-21 17:53:27
+ * @LastEditTime: 2019-07-21 17:53:27
+ * @LastEditors: your name
+ -->
 <template>
   <div style="background-color: #f2f2f2;position: fixed;top: 0;left: 0;right: 0;bottom: 0;">
     <div style="text-align: center;margin: 2rem 0 1.88rem;">
@@ -68,7 +75,7 @@
           let _this = this;
           this.$http({
             method: 'post',
-            url: '/users/login',
+            url: 'v1/users/login',
             data: {
               email: _this.userName,
               password: _this.userPwd,

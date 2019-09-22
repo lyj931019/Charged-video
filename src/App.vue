@@ -1,3 +1,10 @@
+<!--
+ * @Description: In User Settings Edit
+ * @Author: your name
+ * @Date: 2019-07-21 17:53:27
+ * @LastEditTime: 2019-08-24 17:34:34
+ * @LastEditors: Please set LastEditors
+ -->
 <template>
   <div id="app">
     <!--<MyHeader/>-->
@@ -35,7 +42,7 @@
         let _this = this;
         this.$http({
           method: 'get',
-          url: '/users/'+user_id,
+          url: 'v1/users/'+user_id,
         }).then(res => {
           if (res.data.state.code == 0) {
             _this.changeLoginStatus(true);

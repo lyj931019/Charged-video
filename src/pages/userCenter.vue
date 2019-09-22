@@ -1,9 +1,15 @@
+<!--
+ * @Description: In User Settings Edit
+ * @Author: your name
+ * @Date: 2019-07-21 17:53:27
+ * @LastEditTime: 2019-08-24 17:36:53
+ * @LastEditors: Please set LastEditors
+ -->
 <template>
   <div>
     <div class="body">
       <MyHeader/>
     </div>
-
     <div class="centerTitle">
       <img src="../assets/img/student_satisfaction.jpg" alt="" class="bg-img">
       <div class="body">
@@ -19,17 +25,6 @@
         </div>
       </div>
     </div>
-    <!--<div style="background-color: #cbf3eb;" class="knowMore">-->
-      <!--<div class="body">-->
-        <!--<div class="container-fluid">-->
-          <!--<div class="row">-->
-            <!--<div class="col-12 text-center">-->
-              <!--<p>{{$t('userCenter.knowMore')}}</p>-->
-            <!--</div>-->
-          <!--</div>-->
-        <!--</div>-->
-      <!--</div>-->
-    <!--</div>-->
     <div style="background-color: #e2e3e5;" class="userList  d-none d-md-block">
       <div class="body">
         <div class="container-fluid">
@@ -61,10 +56,10 @@
       <div class="body">
         <div class="container-fluid">
           <div class="row">
-            <div class="col-12 col-lg-7 tab-container"  :class="{active:active=='course'}">
+            <div class="col-12 tab-container"  :class="{active:active=='course'}">
               <template v-if="lessonList">
                 <template v-for="(item,index) in lessonList">
-                  <div class="courseItem">
+                  <div class="courseItem" :key="index">
                     <a href="#" class="nav-link" @click.prevent="goToStudyPage(item.course.id)">
                       {{item.course.name}}
                       <span class="try" v-if="item.try">({{$t('userCenter.tryCourse')}})</span>
@@ -76,6 +71,10 @@
                   </div>
                 </template>
               </template>
+              <div class="row">
+              <class-card :itme="item" />
+              <class-card :itme="item" />
+              </div>
             </div>
             <div class="col-12 col-lg-7 tab-container"
                  :class="{active:active=='favorites'}">
@@ -259,9 +258,10 @@
   import Components from '../components/index'
   import { mapMutations } from 'vuex'
   import {formatDate} from '../common/date'
+  import ClassCard from '@/components/ClassCard'
   export default {
     name: 'userCenter',
-    components: {...Components,Icon},
+    components: {...Components,Icon, ClassCard},
     filters:{
       formatDate(time){
         let date = new Date(time*1000);
@@ -319,7 +319,7 @@
         let _this = this;
         this.$http({
           method: 'get',
-          url: '/favorites?user_id=' + _this.getUserInfo.user_id,
+          url: 'v1/favorites?user_id=' + _this.getUserInfo.user_id,
         }).then(res => {
           _this.favoritesList = res.data.data;
         })
@@ -336,7 +336,7 @@
         };
         let data = params;
         this.$http({
-          url: "/favorites",
+          url: "v1/favorites",
           data,
           method: 'delete',
           headers: {'Content-Type': 'application/x-www-form-urlencoded'},
@@ -360,7 +360,7 @@
           let _this = this;
           this.$http({
             method: 'put',
-            url: '/users/modify-password',
+            url: 'v1/users/modify-password',
             data: {
               email: _this.getUserInfo.user_email,
               password: _this.oldPwd,
@@ -394,7 +394,7 @@
         let _this = this;
         this.$http({
           method: 'put',
-          url: '/users/'+_this.getUserInfo.user_id,
+          url: 'v1/users/'+_this.getUserInfo.user_id,
           data: {
             id:_this.getUserInfo.user_id,
             nickname: _this.nickName,
@@ -437,7 +437,7 @@
         user_id = this.$base64.decode(user_id);
         this.$http({
           method: 'get',
-          url: '/users/courses?user_id=' + user_id,
+          url: 'v1/users/courses?user_id=' + user_id,
         }).then(res => {
           _this.lessonList = res.data.data;
         })

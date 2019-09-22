@@ -1,3 +1,10 @@
+/*
+ * @Description: In User Settings Edit
+ * @Author: your name
+ * @Date: 2019-06-15 23:25:34
+ * @LastEditTime: 2019-08-24 17:17:56
+ * @LastEditors: Please set LastEditors
+ */
 module.exports = {
   header: {
     login: 'Log in',
@@ -160,6 +167,8 @@ module.exports = {
     pwd:'Please enter your password',
     pwd_old:'Please enter the old password',
     email:'please input your email',
+    code: 'verification code',
+    getCode: 'send email'
   },
   task:{
     title:'Submit Your Assignment',

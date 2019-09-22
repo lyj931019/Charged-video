@@ -1,3 +1,10 @@
+<!--
+ * @Description: In User Settings Edit
+ * @Author: your name
+ * @Date: 2019-06-15 23:25:35
+ * @LastEditTime: 2019-08-25 00:50:03
+ * @LastEditors: Please set LastEditors
+ -->
 <template>
   <div>
     <MyHeader/>
@@ -56,7 +63,7 @@
       let _this = this;
       this.$http({
         method: 'get',
-        url: '/pages/methods',
+        url: 'v1/pages/methods',
       }).then(res => {
         if (res.data.state.code == 0) {
           _this.content = res.data.data;

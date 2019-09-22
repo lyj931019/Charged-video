@@ -1,47 +1,82 @@
+<!--
+ * @Description: In User Settings Edit
+ * @Author: your name
+ * @Date: 2019-07-21 17:53:27
+ * @LastEditTime: 2019-08-25 00:50:07
+ * @LastEditors: Please set LastEditors
+ -->
 <template>
   <div>
-    <MyHeader/>
+    <MyHeader />
     <div class="body">
       <div class="bg">
         <img src="http://cdn.e-l.ink/WechatIMG811.jpeg" />
       </div>
       <div class="course-mode" v-show="mode == 'orther'">
-        <img src="../assets/img/list.png" @click="changeMode('list')" alt="">
+        <img src="../assets/img/list.png" @click="changeMode('list')" alt />
       </div>
       <div class="course-mode" v-show="mode == 'list'">
-        <img src="../assets/img/kuai.png" @click="changeMode('orther')" alt="">
+        <img src="../assets/img/kuai.png" @click="changeMode('orther')" alt />
       </div>
       <div class="course" v-show="mode == 'list'">
         <div class="row">
           <div class="col-12">
             <div class="sort d-sm-block d-none">
-              <span class="title" @click.prevent="getCourseListFromSort('')"
-                    :class="{'active':typeActive=='all'}">{{$t('list.all')}}</span>
-              <div class="dropdown title" :class="{'active':typeActive=='sort'}" >
-                <span class="dropdown-toggle" role="button"
-                      id="classification" data-toggle="dropdown" aria-haspopup="true"
-                      aria-expanded="false" data-offset="10,20">{{$t('list.classification')}}</span>
-                <div class="dropdown-menu" aria-labelledby="classification" v-if="sortList.length>0">
-                  <a class="dropdown-item" href="#" v-for="(type_item,index) in sortList"
-                     @click.prevent="getCourseListFromSort(type_item.id)" v-show="getLang == 'zh'">{{type_item.name}}</a>
-                  <a class="dropdown-item" href="#" v-for="(type_item,index) in sortList"
-                     @click.prevent="getCourseListFromSort(type_item.id)" v-show="getLang == 'en'">{{type_item.name_en}}</a>
+              <span
+                class="title"
+                @click.prevent="getCourseListFromSort('')"
+                :class="{'active':typeActive=='all'}"
+              >{{$t('list.all')}}</span>
+              <div class="dropdown title" :class="{'active':typeActive=='sort'}">
+                <span
+                  class="dropdown-toggle"
+                  role="button"
+                  id="classification"
+                  data-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                  data-offset="10,20"
+                >{{$t('list.classification')}}</span>
+                <div
+                  class="dropdown-menu"
+                  aria-labelledby="classification"
+                  v-if="sortList.length>0"
+                >
+                  <a
+                    class="dropdown-item"
+                    href="#"
+                    v-for="(type_item,index) in sortList"
+                    :key="index"
+                    @click.prevent="getCourseListFromSort(type_item.id)"
+                  >{{{zh: type_item.name, en: type_item.name_en}[getLang]}}</a>
                 </div>
               </div>
               <div class="dropdown title" :class="{'active':typeActive=='teacher'}">
-                <span class="dropdown-toggle"  role="button"
-                      id="teacher" data-toggle="dropdown" aria-haspopup="true"
-                      aria-expanded="false">{{$t('list.teachers')}}</span>
+                <span
+                  class="dropdown-toggle"
+                  role="button"
+                  id="teacher"
+                  data-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                >{{$t('list.teachers')}}</span>
                 <div class="dropdown-menu" aria-labelledby="teacher" v-if="teacherList.length>0">
-                  <a class="dropdown-item" href="#" v-for="(type_item,index) in teacherList" @click.prevent="getCourseListFromTeacher(type_item.id)"
+                  <a
+                    class="dropdown-item"
+                    href="#"
+                    v-for="(type_item,index) in teacherList"
+                    :key="index"
+                    @click.prevent="getCourseListFromTeacher(type_item.id)"
                   >{{type_item.name}}</a>
                 </div>
               </div>
-
             </div>
             <div class="d-block d-sm-none">
               <div class="level">
-                <a href="#" @click.prevent="getCourseListFromLevel('')">{{$t('list.all')}} {{$t('detail.level')}}</a>
+                <a
+                  href="#"
+                  @click.prevent="getCourseListFromLevel('')"
+                >{{$t('list.all')}} {{$t('detail.level')}}</a>
                 <p class="title">{{$t('detail.level')}}</p>
               </div>
               <div class="level-list">
@@ -66,45 +101,59 @@
                   <h6>{{$t('detail.level')}} 5</h6>
                 </a>
               </div>
-              <hr>
+              <hr />
               <div class="sort">
                 <p class="title">{{$t('list.classification')}}</p>
               </div>
               <ul class="sort-list">
                 <li class="sort-item">
-                  <a href="#" :class="typeId==''?'filter-on':''"
-                     @click.prevent="getCourseListFromSort('')">{{$t('list.all')}}</a>
+                  <a
+                    href="#"
+                    :class="typeId==''?'filter-on':''"
+                    @click.prevent="getCourseListFromSort('')"
+                  >{{$t('list.all')}}</a>
                 </li>
                 <template v-if="sortList.length>0">
-                  <li class="sort-item" v-for="(type_item,index) in sortList">
-                    <a href="#" :class="typeId==type_item.id?'filter-on':''"
-                       @click.prevent="getCourseListFromSort(type_item.id)" v-show="getLang == 'zh'">{{type_item.name}}</a>
-                    <a href="#" :class="typeId==type_item.id?'filter-on':''"
-                       @click.prevent="getCourseListFromSort(type_item.id)" v-show="getLang == 'en'">{{type_item.name_en}}</a>
+                  <li class="sort-item" v-for="(type_item,index) in sortList" :key="index">
+                    <a
+                      href="#"
+                      :class="typeId==type_item.id?'filter-on':''"
+                      @click.prevent="getCourseListFromSort(type_item.id)"
+                      v-show="getLang == 'zh'"
+                    >{{type_item.name}}</a>
+                    <a
+                      href="#"
+                      :class="typeId==type_item.id?'filter-on':''"
+                      @click.prevent="getCourseListFromSort(type_item.id)"
+                      v-show="getLang == 'en'"
+                    >{{type_item.name_en}}</a>
                   </li>
                 </template>
-
               </ul>
-              <hr>
+              <hr />
               <div class="sort">
                 <p class="title">{{$t('list.teachers')}}</p>
               </div>
               <ul class="sort-list">
                 <li class="sort-item">
-                  <a href="#" :class="teacherId==''?'filter-on':''"
-                     @click.prevent="getCourseListFromTeacher('')">{{$t('list.all')}}</a>
+                  <a
+                    href="#"
+                    :class="teacherId==''?'filter-on':''"
+                    @click.prevent="getCourseListFromTeacher('')"
+                  >{{$t('list.all')}}</a>
                 </li>
                 <template v-if="teacherList.length>0">
-                  <li class="sort-item" v-for="(type_item,index) in teacherList">
-                    <a href="#" :class="teacherId==(type_item.id+'')?'filter-on':''"
-                       @click.prevent="getCourseListFromTeacher(type_item.id+'')">{{type_item.name}}</a>
+                  <li class="sort-item" v-for="(type_item,index) in teacherList" :key="index">
+                    <a
+                      href="#"
+                      :class="teacherId==(type_item.id+'')?'filter-on':''"
+                      @click.prevent="getCourseListFromTeacher(type_item.id+'')"
+                    >{{type_item.name}}</a>
                   </li>
                 </template>
-
               </ul>
             </div>
           </div>
-
         </div>
         <div class="row item-title d-none d-md-flex">
           <div class="col-12 col-md-4 mb-2 mb-md-0">{{$t('list.courseName')}}</div>
@@ -112,11 +161,17 @@
           <div class="col-6 col-md-3 text-md-center">{{$t('list.tuition')}}</div>
           <div class="col-6 col-md-2 text-right">
             {{$t('detail.level')}}:
-            <span class="dropdown-toggle " style="cursor: pointer;" role="button" id="level" data-toggle="dropdown" aria-haspopup="true"
-                  aria-expanded="false" data-offset="0,0">
-              <template v-if="levelActive != 'All'">
-                {{levelActive}}
-              </template>
+            <span
+              class="dropdown-toggle"
+              style="cursor: pointer;"
+              role="button"
+              id="level"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+              data-offset="0,0"
+            >
+              <template v-if="levelActive != 'All'">{{levelActive}}</template>
               <template v-else>{{$t('list.all')}}</template>
             </span>
             <div class="dropdown-menu level-all" aria-labelledby="level" v-if="sortList.length>0">
@@ -147,93 +202,129 @@
           </div>
         </div>
         <template v-if="courseList.length>0">
-          <div class="course-item row" v-for="(item,index) in courseList">
+          <div class="course-item row" v-for="(item,index) in courseList" :key="index">
             <div class="course-info col-12 col-md-4 mb-2 mb-md-0">
               <h4 @click.prevent="goToDetail(item.num)">
-                <span class="course-name" v-show="getLang == 'zh'">{{item.name}}</span>
-                <span class="course-name" v-show="getLang == 'en'">{{item.name_en}}</span>
+                <span class="course-name">{{{zh: item.name, en: item.name_en}[getLang]}}</span>
                 <span class="course-id">({{item.num}})</span>
               </h4>
-
             </div>
-            <div class="course-time col-6 col-md-3 mb-2 mb-md-0">{{item.period}}h</div>
-            <div class="course-price col-6 col-md-3 text-md-center">
-              {{$t('detail.coursePrice')}}&nbsp;:&nbsp;￥{{(item.price / 100).toFixed(2)}}
+            <div class="course-time col-4 col-md-3 mb-2 mb-md-0">{{item.period}}h</div>
+            <div class="course-price col-5 col-md-3 text-md-center">
+              <span class="price"><span class="unit">￥</span>{{(item.price / 100).toFixed(2)}}</span>
+              <span class="sale-price"><s>￥{{(item.price_dollar / 100).toFixed(2)}}</s></span>
             </div>
-            <div class="course-level col-6 col-md-2 text-md-right">
+            <div class="course-level col-3 col-md-2 text-md-right">
               <div>
                 <Level :level="item.level"></Level>
                 <p>{{$t('detail.level')}} {{item.level || 5}}</p>
               </div>
-
             </div>
           </div>
         </template>
       </div>
-      <div class="course new-list"  v-show="mode == 'orther'">
+      <div class="course new-list" v-show="mode == 'orther'">
         <div class="row">
           <div class="col-12 col-lg-4">
             <div class="level">
-              <a href="#" @click.prevent="getCourseListFromLevel('')">{{$t('list.all')}} {{$t('detail.level')}}</a>
+              <a
+                href="#"
+                @click.prevent="getCourseListFromLevel('')"
+              >{{$t('list.all')}} {{$t('detail.level')}}</a>
               <p class="title">{{$t('detail.level')}}</p>
             </div>
             <div class="level-list">
-              <a href="#" @click.prevent="getCourseListFromLevel(1)" :class="{ active: levelActive == 1 }">
+              <a
+                href="#"
+                @click.prevent="getCourseListFromLevel(1)"
+                :class="{ active: levelActive == 1 }"
+              >
                 <Level :level="1"></Level>
                 <h6>{{$t('detail.level')}} 1</h6>
               </a>
-              <a href="#" @click.prevent="getCourseListFromLevel(2)" :class="{ active: levelActive == 2 }">
+              <a
+                href="#"
+                @click.prevent="getCourseListFromLevel(2)"
+                :class="{ active: levelActive == 2 }"
+              >
                 <Level :level="2"></Level>
                 <h6>{{$t('detail.level')}} 2</h6>
               </a>
-              <a href="#" @click.prevent="getCourseListFromLevel(3)" :class="{ active: levelActive == 3 }">
+              <a
+                href="#"
+                @click.prevent="getCourseListFromLevel(3)"
+                :class="{ active: levelActive == 3 }"
+              >
                 <Level :level="3"></Level>
                 <h6>{{$t('detail.level')}} 3</h6>
               </a>
-              <a href="#" @click.prevent="getCourseListFromLevel(4)" :class="{ active: levelActive == 4 }">
+              <a
+                href="#"
+                @click.prevent="getCourseListFromLevel(4)"
+                :class="{ active: levelActive == 4 }"
+              >
                 <Level :level="4"></Level>
                 <h6>{{$t('detail.level')}} 4</h6>
               </a>
-              <a href="#" @click.prevent="getCourseListFromLevel(5)" :class="{ active: levelActive == 5 }">
+              <a
+                href="#"
+                @click.prevent="getCourseListFromLevel(5)"
+                :class="{ active: levelActive == 5 }"
+              >
                 <Level :level="5"></Level>
                 <h6>{{$t('detail.level')}} 5</h6>
               </a>
             </div>
-            <hr>
+            <hr />
             <div class="sort">
               <p class="title">{{$t('list.classification')}}</p>
             </div>
             <ul class="sort-list">
               <li class="sort-item">
-                <a href="#" :class="typeId==''?'filter-on':''"
-                   @click.prevent="getCourseListFromSort('')">{{$t('list.all')}}</a>
+                <a
+                  href="#"
+                  :class="typeId==''?'filter-on':''"
+                  @click.prevent="getCourseListFromSort('')"
+                >{{$t('list.all')}}</a>
               </li>
               <template v-if="sortList.length>0">
                 <li class="sort-item" v-for="(type_item,index) in sortList">
-                  <a href="#" :class="typeId==type_item.id?'filter-on':''"
-                     @click.prevent="getCourseListFromSort(type_item.id)" v-show="getLang == 'zh'">{{type_item.name}}</a>
-                  <a href="#" :class="typeId==type_item.id?'filter-on':''"
-                     @click.prevent="getCourseListFromSort(type_item.id)" v-show="getLang == 'en'">{{type_item.name_en}}</a>
+                  <a
+                    href="#"
+                    :class="typeId==type_item.id?'filter-on':''"
+                    @click.prevent="getCourseListFromSort(type_item.id)"
+                    v-show="getLang == 'zh'"
+                  >{{type_item.name}}</a>
+                  <a
+                    href="#"
+                    :class="typeId==type_item.id?'filter-on':''"
+                    @click.prevent="getCourseListFromSort(type_item.id)"
+                    v-show="getLang == 'en'"
+                  >{{type_item.name_en}}</a>
                 </li>
               </template>
-
             </ul>
-            <hr>
+            <hr />
             <div class="sort">
               <p class="title">{{$t('list.teachers')}}</p>
             </div>
             <ul class="sort-list">
               <li class="sort-item">
-                <a href="#" :class="teacherId==''?'filter-on':''"
-                   @click.prevent="getCourseListFromTeacher('')">{{$t('list.all')}}</a>
+                <a
+                  href="#"
+                  :class="teacherId==''?'filter-on':''"
+                  @click.prevent="getCourseListFromTeacher('')"
+                >{{$t('list.all')}}</a>
               </li>
               <template v-if="teacherList.length>0">
                 <li class="sort-item" v-for="(type_item,index) in teacherList">
-                  <a href="#" :class="teacherId==(type_item.id+'')?'filter-on':''"
-                     @click.prevent="getCourseListFromTeacher(type_item.id+'')">{{type_item.name}}</a>
+                  <a
+                    href="#"
+                    :class="teacherId==(type_item.id+'')?'filter-on':''"
+                    @click.prevent="getCourseListFromTeacher(type_item.id+'')"
+                  >{{type_item.name}}</a>
                 </li>
               </template>
-
             </ul>
           </div>
           <div class="col-12 col-lg-8">
@@ -241,10 +332,20 @@
               <div class="col-12 col-lg-6" v-for="(item,index) in courseList">
                 <div class="course-item">
                   <p class="course-id">{{item.num}}</p>
-                  <h4 class="course-name" @click.prevent="goToDetail(item.num)" v-show="getLang == 'zh'">{{item.name}}</h4>
-                  <h4 class="course-name" @click.prevent="goToDetail(item.num)" v-show="getLang == 'en'">{{item.name_en}}</h4>
+                  <h4
+                    class="course-name"
+                    @click.prevent="goToDetail(item.num)"
+                    v-show="getLang == 'zh'"
+                  >{{item.name}}</h4>
+                  <h4
+                    class="course-name"
+                    @click.prevent="goToDetail(item.num)"
+                    v-show="getLang == 'en'"
+                  >{{item.name_en}}</h4>
                   <div class="course-info">
-                    <div class="course-price">{{$t('detail.coursePrice')}}&nbsp;:&nbsp;￥{{item.price}}</div>
+                    <div
+                      class="course-price"
+                    >{{$t('detail.coursePrice')}}&nbsp;:&nbsp;￥{{item.price}}</div>
                     <div class="course-level">
                       <Level :level="item.level"></Level>
                       <p>{{$t('detail.level')}} {{item.level || 5}}</p>
@@ -252,7 +353,6 @@
                   </div>
                   <!--<div class="course-intr" v-html="item.synopsis"></div>-->
                 </div>
-
               </div>
             </div>
             <nav aria-label="Page navigation example" v-if="pageCount>1" class="page-navigation">
@@ -264,13 +364,21 @@
                   </a>
                 </li>
                 <template v-for="item in 9">
-                  <li class="page-item" v-if="(item-5+page>=1) && (item-5+page<=pageCount)" :class="{active:item == 5}"
-                      @click="changePage(page+item-5)">
+                  <li
+                    class="page-item"
+                    v-if="(item-5+page>=1) && (item-5+page<=pageCount)"
+                    :class="{active:item == 5}"
+                    @click="changePage(page+item-5)"
+                  >
                     <a class="page-link" href="#">{{(item - 5 + page)}}</a>
                   </li>
                 </template>
 
-                <li class="page-item" :class="{disabled:page>=pageCount}" @click="changePage(page+1)">
+                <li
+                  class="page-item"
+                  :class="{disabled:page>=pageCount}"
+                  @click="changePage(page+1)"
+                >
                   <a class="page-link" href="#" aria-label="Next">
                     <span aria-hidden="true">&raquo;</span>
                     <span class="sr-only">Next</span>
@@ -290,8 +398,12 @@
             </a>
           </li>
           <template v-for="item in 9">
-            <li class="page-item" v-if="(item-5+page>=1) && (item-5+page<=pageCount)" :class="{active:item == 5}"
-                @click="changePage(page+item-5)">
+            <li
+              class="page-item"
+              v-if="(item-5+page>=1) && (item-5+page<=pageCount)"
+              :class="{active:item == 5}"
+              @click="changePage(page+item-5)"
+            >
               <a class="page-link" href="#">{{(item - 5 + page)}}</a>
             </li>
           </template>
@@ -305,451 +417,457 @@
         </ul>
       </nav>
     </div>
-    <MyFooter/>
+    <MyFooter />
   </div>
 </template>
 
 <script>
-  import {mapGetters} from 'vuex'
-  import Common from '../components/common'
-  import Level from '../components/level.vue'
+import { mapGetters } from "vuex";
+import Common from "../components/common";
+import Level from "../components/level.vue";
 
-  export default {
-    name: 'listOld',
-    components: {...Common, Level},
-    data() {
-      return {
-        courseList: [],
-        typeId: '',
-        sortList: [],
-        page: 1,
-        pageCount: 1,
-        pageSize: 100,
-        totalCount: 1,
-        typeActive: 'all',
-        levelActive: 'All',
-        teacherList:[],
-        teacherId:'',
-        mode:'list'
+export default {
+  name: "listOld",
+  components: { ...Common, Level },
+  data() {
+    return {
+      courseList: [],
+      typeId: "",
+      sortList: [],
+      page: 1,
+      pageCount: 1,
+      pageSize: 100,
+      totalCount: 1,
+      typeActive: "all",
+      levelActive: "All",
+      teacherList: [],
+      teacherId: "",
+      mode: "list"
+    };
+  },
+  computed: {
+    ...mapGetters(["getLang"])
+  },
+  methods: {
+    changeMode(mode) {
+      this.mode = mode;
+    },
+    getCourseList(key, value, page = 1) {
+      let _this = this;
+      let params = {
+        page,
+        pageSize: 100
+      };
+      if (key && value) {
+        params[key] = value;
       }
+      this.$http({
+        method: "get",
+        url: "v1/courses",
+        params
+      }).then(res => {
+        let result = res.data.data;
+        _this.courseList = result.items;
+        _this.page = result.page;
+        _this.pageCount = result.pageCount;
+        _this.pageSize = result.pageSize;
+        _this.totalCount = result.totalCount;
+      });
     },
-    computed: {
-      ...mapGetters(['getLang'])
-    },
-    methods: {
-      changeMode(mode){
-        this.mode = mode;
-      },
-      getCourseList(key, value, page = 1) {
-        let _this = this;
-        let params = {
-          page,
+    getSortList() {
+      let _this = this;
+      this.$http({
+        method: "get",
+        url: "v1/types",
+        params: {
+          page: 1,
           pageSize: 100
-        };
-        if (key && value) {
-          params[key] = value;
         }
-        this.$http({
-          method: 'get',
-          url: '/courses',
-          params
-        }).then(res => {
-          let result = res.data.data
-          _this.courseList = result.items;
-          _this.page = result.page;
-          _this.pageCount = result.pageCount;
-          _this.pageSize = result.pageSize;
-          _this.totalCount = result.totalCount;
-        })
-      },
-      getSortList() {
-        let _this = this;
-        this.$http({
-          method: 'get',
-          url: '/types',
-          params: {
-            page: 1,
-            pageSize: 100
-          }
-        }).then(res => {
-          _this.sortList = res.data.data.items;
-        })
-      },
-      getTeacherList() {
-        let _this = this;
-        this.$http({
-          method: 'get',
-          url: '/instructors',
-          params: {
-            page: 1,
-            pageSize: 100
-          }
-        }).then(res => {
-          _this.teacherList = res.data.data.items;
-        })
-      },
-      goToDetail(num) {
-        this.$router.push({name: 'detail', params: {num}})
-      },
-      getCourseListFromSort(typeId) {
-        this.typeId = typeId;
-        this.teacherId = '';
-        if (typeId.length <= 0) {
-          this.typeActive = 'all';
-        } else {
-          this.typeActive = 'sort';
+      }).then(res => {
+        _this.sortList = res.data.data.items;
+      });
+    },
+    getTeacherList() {
+      let _this = this;
+      this.$http({
+        method: "get",
+        url: "v1/instructors",
+        params: {
+          page: 1,
+          pageSize: 100
         }
+      }).then(res => {
+        _this.teacherList = res.data.data.items;
+      });
+    },
+    goToDetail(num) {
+      this.$router.push({ name: "detail", params: { num } });
+    },
+    getCourseListFromSort(typeId) {
+      this.typeId = typeId;
+      this.teacherId = "";
+      if (typeId.length <= 0) {
+        this.typeActive = "all";
+      } else {
+        this.typeActive = "sort";
+      }
+      this.levelActive = "All";
+      this.getCourseList("type_id", typeId);
+    },
+    getCourseListFromTeacher(id) {
+      this.teacherId = id;
+      this.typeId = "";
+      if (id.length <= 0) {
+        this.typeActive = "all";
+        this.getCourseList("", "");
+      } else {
+        this.typeActive = "teacher";
+        this.getCourseList("instructor_id", id);
+      }
+      this.levelActive = "All";
+    },
+    getCourseListFromLevel(level) {
+      if (level.length <= 0) {
         this.levelActive = "All";
-        this.getCourseList('type_id', typeId)
-      },
-      getCourseListFromTeacher(id){
-        this.teacherId = id;
-        this.typeId = '';
-        if (id.length <= 0) {
-          this.typeActive = 'all';
-          this.getCourseList('', '');
-        } else {
-          this.typeActive = 'teacher';
-          this.getCourseList('instructor_id', id)
-        }
-        this.levelActive = 'All';
-      },
-      getCourseListFromLevel(level) {
-        if (level.length <= 0) {
-          this.levelActive = 'All';
-        } else {
-          this.levelActive = level;
-        }
-        this.typeActive = 'all';
-        this.getCourseList('level', level)
-      },
-      changePage(page) {
-        if (page == this.page) {
-
-        } else {
-          if (page >= 1 && page <= this.pageCount) {
-            this.getCourseList('', '', page);
-          }
-        }
-
+      } else {
+        this.levelActive = level;
       }
+      this.typeActive = "all";
+      this.getCourseList("level", level);
     },
-    created(){
-      this.getSortList();
-      this.getTeacherList();
-    },
-    beforeMount:function(){
-      if(this.$route.params.type === 'all'){
-        this.getCourseList('','');
-      }else{
-        this.getCourseListFromSort(this.$route.params.type);
+    changePage(page) {
+      if (page == this.page) {
+      } else {
+        if (page >= 1 && page <= this.pageCount) {
+          this.getCourseList("", "", page);
+        }
       }
-      this.levelActive = 'All';
-    },
-    beforeRouteUpdate (to, from, next) {
-      if(to.params.type === 'all'){
-        this.getCourseList('','');
-      }else{
-        this.getCourseListFromSort(to.params.type);
-      }
-      this.levelActive = 'All';
-      next();
-    },
+    }
+  },
+  created() {
+    this.getSortList();
+    this.getTeacherList();
+  },
+  beforeMount: function() {
+    if (this.$route.params.type === "all") {
+      this.getCourseList("", "");
+    } else {
+      this.getCourseListFromSort(this.$route.params.type);
+    }
+    this.levelActive = "All";
+  },
+  beforeRouteUpdate(to, from, next) {
+    if (to.params.type === "all") {
+      this.getCourseList("", "");
+    } else {
+      this.getCourseListFromSort(to.params.type);
+    }
+    this.levelActive = "All";
+    next();
   }
+};
 </script>
 
-<style scoped>
-  #level +.dropdown-menu.level-all{
-    left: -30px !important;
+<style scoped lang="scss">
+#level + .dropdown-menu.level-all {
+  left: -30px !important;
+}
+@media (max-width: 991px) {
+  #level + .dropdown-menu.level-all {
+    left: -15px !important;
   }
-  @media (max-width: 991px) {
-    #level +.dropdown-menu.level-all{
-      left: -15px !important;
-    }
-  }
-  .course-mode {
-    text-align: right;
-  }
-  .course-mode img{
-    cursor: pointer;
-    width: 24px;
-  }
-  .body {
-    /*padding-top: 120px;*/
-  }
+}
+.course-mode {
+  text-align: right;
+}
+.course-mode img {
+  cursor: pointer;
+  width: 24px;
+}
+.body {
+  /*padding-top: 120px;*/
+}
 
+.bg {
+  /* padding: 90px 0px 30px; */
+}
+
+@media (max-width: 767px) {
   .bg {
-    /* padding: 90px 0px 30px; */
+    /* padding: 200px 30px 30px; */
   }
+}
 
-  @media (max-width: 767px) {
-    .bg {
-      /* padding: 200px 30px 30px; */
-    }
-  }
+.bg img {
+  width: 100%;
+  margin-bottom: 50px;
+}
 
-  .bg img{
-    width: 100%;
-    margin-bottom: 50px;
-  }
+.bg .container {
+}
 
-  .bg .container {
+.bg .container .row .content {
+  margin-top: -120px;
+  background: #25353c;
+  color: #f2f2f2;
+  padding: 40px;
+}
 
-  }
+.bg .container .row .content p {
+  font-size: 1.3rem;
+  font-weight: 500;
+  line-height: 2.5rem;
+}
 
-  .bg .container .row .content {
-    margin-top: -120px;
-    background: #25353C;
-    color: #F2F2F2;
-    padding: 40px;
-  }
+.bg .container .row .content li {
+  font-size: 1.1rem;
+  line-height: 2rem;
+}
 
-  .bg .container .row .content p {
-    font-size: 1.3rem;
-    font-weight: 500;
-    line-height: 2.5rem;
+.bg .container .row .content hr {
+  border-color: #7b8b96;
+}
 
-  }
+.bg .container .row .content .svg {
+}
 
-  .bg .container .row .content li {
-    font-size: 1.1rem;
-    line-height: 2rem;
-  }
+.bg .container .row .content .svg svg {
+  width: 1rem;
+}
 
-  .bg .container .row .content hr {
-    border-color: #7b8b96;
-  }
+.level a {
+  color: #25353c;
+  border-bottom: 1px solid #ee243c;
+  float: right;
+  font-size: 1.2rem;
+}
 
-  .bg .container .row .content .svg {
+.level a:hover {
+  text-decoration: none;
+}
 
-  }
+.sort {
+  margin-bottom: 3rem;
+  border-bottom: 2px solid #aaa;
+  padding-bottom: 1px;
+}
 
-  .bg .container .row .content .svg svg {
-    width: 1rem;
-  }
+.level .title,
+.sort .title {
+  font-size: 1.3rem;
+  line-height: 2rem;
+  font-weight: bold;
+  margin-right: 4rem;
+  display: inline-block;
+  padding-bottom: 0.8rem;
+  cursor: pointer;
+  position: relative;
+}
 
-  .level a {
-    color: #25353c;
-    border-bottom: 1px solid #ee243c;
-    float: right;
-    font-size: 1.2rem;
-  }
+.title:hover {
+  box-shadow: 0px 4px 0px 0px #ee243c;
+}
 
-  .level a:hover {
-    text-decoration: none;
-  }
+.title.active {
+  box-shadow: 0px 4px 0px 0px #ee243c;
+}
 
-  .sort {
-    margin-bottom: 3rem;
-    border-bottom: 2px solid #aaa;
-    padding-bottom: 1px;
-  }
+#classification + .dropdown-menu {
+  top: -20px !important;
+  left: -20px !important;
+}
 
-  .level .title, .sort .title {
-    font-size: 1.3rem;
-    line-height: 2rem;
-    font-weight: bold;
-    margin-right: 4rem;
-    display: inline-block;
-    padding-bottom: 0.8rem;
-    cursor: pointer;
-    position: relative;
-  }
+#level + .dropdown-menu {
+  left: -86px !important;
+  text-align: center;
+}
 
-  .title:hover {
-    box-shadow: 0px 4px 0px 0px #ee243c;
-  }
+#level + .dropdown-menu a {
+  font-weight: bold;
+  color: #000000;
+}
 
-  .title.active {
-    box-shadow: 0px 4px 0px 0px #ee243c;
-  }
+#level + .dropdown-menu a h6 {
+  font-weight: bold;
+}
 
-  #classification + .dropdown-menu {
-    top: -20px !important;
-    left: -20px !important;
-  }
+.level-list {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 
-  #level + .dropdown-menu {
-    left: -86px !important;
-    text-align: center;
-  }
+.level-list a {
+  text-align: center;
+  display: inline-block;
+  width: 60px;
+}
+.level-list a.active {
+  text-decoration: underline;
+}
+.level-list a h6 {
+  color: #25353c;
+  margin-top: 0.1rem;
+}
 
-  #level + .dropdown-menu a {
-    font-weight: bold;
-    color: #000000;
-  }
+.item-title {
+  font-weight: bold;
+  font-size: 1rem;
+}
 
-  #level + .dropdown-menu a h6 {
-    font-weight: bold;
-  }
+.course-item {
+  padding: .8rem 0 .8rem;
+  border-top: 1px solid rgb(222, 226, 229);
+}
 
-  .level-list {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
+.new-list .course-item {
+  box-shadow: rgba(0, 0, 0, 0.22) 3px 3px 8px;
+  margin: 15px 0;
+  padding: 30px;
+  border: 1px solid rgb(222, 226, 229);
+}
 
-  .level-list a {
-    text-align: center;
-    display: inline-block;
-    width: 60px;
-  }
-  .level-list a.active{
-    text-decoration: underline;
-  }
-  .level-list a h6 {
-    color: #25353c;
-    margin-top: 0.1rem;
-  }
+.new-list .sort {
+  margin-bottom: 1rem;
+  height: auto;
+}
+.new-list .sort .title {
+  font-size: 1.3rem;
+  line-height: 2rem;
+  font-weight: bold;
+  margin-right: 4rem;
+  display: inline-block;
+  padding-bottom: 0.2rem;
+  padding-top: 0.2rem;
+  cursor: pointer;
+}
+.new-list .course-info {
+  text-align: right;
+}
 
-  .item-title {
-    font-weight: bold;
-    font-size: 1rem;
-  }
+.new-list .course-price {
+  float: left;
+  font-size: 1rem;
+  font-weight: 600;
+  margin-top: 0.5rem;
+}
 
-  .course-item {
-    padding: 1.2rem 0 0.2rem;
-    border-top: 1px solid rgb(222, 226, 229);
-  }
+.course-item .course-info h4 {
+  margin-bottom: 0.2rem;
+}
 
-  .new-list .course-item {
-    box-shadow: rgba(0, 0, 0, 0.22) 3px 3px 8px;
-    margin: 15px 0;
-    padding: 30px;
-    border: 1px solid rgb(222, 226, 229);
-  }
+.course-id {
+  margin-bottom: 0;
+  font-size: 1.2rem;
+  color: #919191;
+  cursor: pointer;
+}
 
-  .new-list .sort{
-    margin-bottom: 1rem;
-    height: auto;
-  }
-  .new-list .sort .title{
-    font-size: 1.3rem;
-    line-height: 2rem;
-    font-weight: bold;
-    margin-right: 4rem;
-    display: inline-block;
-    padding-bottom: .2rem;
-    padding-top: .2rem;
-    cursor: pointer;
-  }
-  .new-list .course-info {
-    text-align: right;
-  }
+.course-name {
+  box-shadow: rgb(238, 36, 60) 0px -1px 0px inset;
+  font-weight: 700;
+  font-size: 1.3rem;
+  cursor: pointer;
+}
 
-  .new-list .course-price {
-    float: left;
-    font-size: 1rem;
-    font-weight: 600;
-    margin-top: 0.5rem;
-  }
+.course-name:hover {
+  background-color: rgba(238, 36, 60, 0.2);
+}
 
-  .course-item .course-info h4 {
-    margin-bottom: 0.2rem;
-  }
+.course-time {
+  font-size: 1.2rem;
+}
 
-  .course-id {
-    margin-bottom: 0;
-    font-size: 1.2rem;
-    color: #919191;
-    cursor: pointer;
-  }
+.course-price {
+  font-size: 1.2rem;
+}
 
-  .course-name {
-    box-shadow: rgb(238, 36, 60) 0px -1px 0px inset;
-    display: inline-block;
-    font-weight: 700;
-    font-size: 1.3rem;
-    cursor: pointer;
-  }
+.course-level {
+  font-size: 0.8rem;
+  font-weight: 900;
+  vertical-align: top;
+}
 
-  .course-name:hover {
-    background-color: rgba(238, 36, 60, 0.2);
-  }
+.course-level > div {
+  display: inline-block;
+  text-align: center;
+}
 
-  .course-time {
-    font-size: 1.2rem;
-  }
+.course-level p {
+  margin: 0;
+}
 
-  .course-price {
-    font-size: 1.2rem;
-  }
+.course-intr {
+  font-size: 12px;
+}
 
-  .course-level {
-    font-size: 0.8rem;
-    font-weight: 900;
-    vertical-align: top;
-  }
+.sort-list {
+  list-style: none;
+}
 
-  .course-level > div {
-    display: inline-block;
-    text-align: center;
-  }
+.sort-list .sort-item a {
+  color: black;
+  font-family: "Avenir Next Cyr W00 Regular", Helvetica, Arial, sans-serif;
+  font-size: 1rem;
+  position: relative;
+}
 
-  .course-level p {
-    margin: 0;
-  }
+.sort-list .sort-item {
+  list-style-type: none;
+  margin-bottom: 0.28em;
+  padding: 0.25em 0 0 2.5em;
+}
 
-  .course-intr {
-    font-size: 0.9rem;
-  }
+.sort-list .sort-item a.filter-on {
+  text-decoration: none;
+  color: #25353c;
+  -webkit-box-shadow: inset 0 -1px 0 #ee243c;
+  box-shadow: inset 0 -1px 0 #ee243c;
+  transition: all ease 0.2s;
+}
 
-  .sort-list {
-    list-style: none;
-  }
+.sort-list .sort-item a:before {
+  content: " ";
+  display: block;
+  border: solid 0.8em #dee2e5;
+  border-radius: 1.4em;
+  height: 0;
+  width: 0;
+  position: absolute;
+  left: -2.75em;
+  top: 40%;
+  margin-top: -0.75em;
+}
 
-  .sort-list .sort-item a {
-    color: black;
-    font-family: "Avenir Next Cyr W00 Regular", Helvetica, Arial, sans-serif;
-    font-size: 1rem;
-    position: relative;
-  }
+.sort-list .sort-item a.filter-on:after {
+  content: " ";
+  display: block;
+  width: 0.7em;
+  height: 1.2em;
+  border: solid limegreen;
+  border-width: 0 0.3em 0.3em 0;
+  position: absolute;
+  left: -2.3em;
+  top: 0;
+  margin-top: -0.2em;
+  -webkit-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+  -o-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
 
-  .sort-list .sort-item {
-    list-style-type: none;
-    margin-bottom: .28em;
-    padding: 0.25em 0 0 2.5em;
-  }
+nav.page-navigation {
+  margin-top: 2rem;
+}
 
-  .sort-list .sort-item a.filter-on {
-    text-decoration: none;
-    color: #25353c;
-    -webkit-box-shadow: inset 0 -1px 0 #ee243c;
-    box-shadow: inset 0 -1px 0 #ee243c;
-    transition: all ease .2s;
+.price{
+  color: #f40;
+  .unit{
+    font-size: .9rem
   }
-
-  .sort-list .sort-item a:before {
-    content: " ";
-    display: block;
-    border: solid 0.8em #DEE2E5;
-    border-radius: 1.4em;
-    height: 0;
-    width: 0;
-    position: absolute;
-    left: -2.75em;
-    top: 40%;
-    margin-top: -0.75em;
-  }
-
-  .sort-list .sort-item a.filter-on:after {
-    content: " ";
-    display: block;
-    width: 0.7em;
-    height: 1.2em;
-    border: solid limegreen;
-    border-width: 0 0.3em 0.3em 0;
-    position: absolute;
-    left: -2.3em;
-    top: 0;
-    margin-top: -0.2em;
-    -webkit-transform: rotate(45deg);
-    -moz-transform: rotate(45deg);
-    -o-transform: rotate(45deg);
-    transform: rotate(45deg);
-  }
-
-  nav.page-navigation {
-    margin-top: 2rem;
-  }
+}
+.sale-price{
+  font-size: .9rem;
+  color: #919191
+}
 </style>

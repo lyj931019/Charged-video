@@ -1,3 +1,10 @@
+<!--
+ * @Description: In User Settings Edit
+ * @Author: your name
+ * @Date: 2019-06-15 23:25:35
+ * @LastEditTime: 2019-08-25 00:49:30
+ * @LastEditors: Please set LastEditors
+ -->
 <template>
   <div style="background-color: #f2f2f2;position: fixed;top: 0;left: 0;right: 0;bottom: 0;">
     <div id="header">
@@ -40,6 +47,10 @@
             </p>
             <p class="first-input">
               <input type="email" :placeholder="$t('placeholder.email')" v-model="userEmail">
+            </p>
+            <p class="first-input">
+              <input class="codeInput" :placeholder="$t('placeholder.code')" v-model="code">
+              <button class="sendCodeBtn" :class="{'btn-disabled': !!lockTime}" :disabled="!!lockTime" @click="handleSend">{{ lockTime ? `${lockTime}s` : $t('placeholder.getCode')}}</button>
             </p>
             <p class="btn-con">
               <button class="loginBtn" @click="register">{{$t('common.signUp')}}</button>
@@ -89,7 +100,9 @@
         userEmail: '',
         registerErr: false,
         errTips: '',
-        reUserPwd: ''
+        reUserPwd: '',
+        code: '',
+        lockTime: 0
       }
     },
     methods: {
@@ -120,31 +133,51 @@
           let _this = this;
           this.$http({
             method: 'post',
-            url: '/users',
+            url: 'v2/users',
             data: {
               email: _this.userEmail,
               password: _this.userPwd,
               nickname: _this.userName,
-            },
-            transformRequest: [function (data) {
-              let ret = ''
-              for (let it in data) {
-                ret += encodeURIComponent(it) + '=' + encodeURIComponent(data[it]) + '&'
-              }
-              return ret
-            }],
+              captcha: this.code
+            }
           }).then(res => {
-            if (res.data.state.code == 0) {
+            if (res.data.state.code == 0 && res.data.status) {
 //              _this.changeLoginStatus(true);
 //              _this.changeUserInfo(res.data.data);
-              _this.$router.push({name: 'login'});
+              _this.$router.push({name: 'login'})
             } else {
               _this.registerErr = true;
+              this.errTips = res.data.data.message
             }
           })
-
-
         }
+      },
+      handleSend() {
+        if (!(this.userEmail.length > 0 && /^[A-Za-z\d]+([-_.][A-Za-z\d]+)*@([A-Za-z\d]+[-.])+[A-Za-z\d]{2,4}$/.test(this.userEmail))) {
+          this.registerErr = true;
+          this.errTips = this.$t('register.correct') + this.$t('common.email');
+          return;
+        }
+        this.$http({
+          method: 'post',
+          url: 'v2/users/captcha/email',
+          data: {
+            email: this.userEmail,
+          }
+        }).then(res => {
+          if (res.data.state.code === 0) {
+            this.lockTime = 60
+            const countDown = () => {
+              this.lockTime--
+              setTimeout(() => {
+                if (this.lockTime > 0) {
+                  countDown()
+                }
+              }, 1000)
+            }
+            countDown()
+          } 
+        })
       }
     },
     beforeMount() {
@@ -156,7 +189,7 @@
   }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
   #header{
     margin: 8px auto 0 auto;
     width: auto;
@@ -214,6 +247,11 @@
 
   .login-container p.first-input {
     margin-bottom: 10px;
+    &::after{
+      content: '';
+      display: table;
+      clear: both;
+    }
   }
 
   .login-container p.btn-con {
@@ -246,6 +284,9 @@
     padding: 5px 15px;
     -webkit-appearance: none;
     text-align: center;
+    &:focus {
+      outline: none;
+    }
   }
 
   .row {
@@ -282,5 +323,39 @@
   }
   #footer p {
     margin-top: 20px;
+  }
+  .codeInput{
+    width: 60%;
+    float: left;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    color: rgba(0, 0, 0, 1);
+    padding: 4px 8px;
+    position: relative;
+    font-size: .88rem;
+    z-index: 99;
+    line-height: 1.4rem;
+    background-color: #fff;
+  }
+  .sendCodeBtn{
+    width: 40%;
+    float: left;
+    background: #ed2024;
+    border: none;
+    color: #FFF;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: normal;
+    display: block;
+    height: 32px;
+    line-height: 32px;
+    -webkit-appearance: none;
+    text-align: center;
+    &:focus {
+      outline: none;
+    }
+    &.btn-disabled{
+      background: #ccc
+    }
   }
 </style>
